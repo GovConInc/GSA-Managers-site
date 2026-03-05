@@ -53,7 +53,7 @@ async function getAccessToken(credentials) {
   return tokenData.access_token;
 }
 
-async function runQuery(projectId, query, accessToken) {
+async function runQuery(projectId, query, accessToken, queryParameters = []) {
   const response = await fetch(
     `https://bigquery.googleapis.com/bigquery/v2/projects/${projectId}/queries`,
     {
@@ -66,6 +66,8 @@ async function runQuery(projectId, query, accessToken) {
         query,
         useLegacySql: false,
         timeoutMs: 30000,
+        parameterMode: queryParameters.length ? 'NAMED' : undefined,
+        queryParameters: queryParameters.length ? queryParameters : undefined,
       }),
     }
   );
@@ -109,18 +111,23 @@ export async function onRequestGet(context) {
     const currentYear = new Date().getFullYear();
     const startYear = currentYear - yearRange;
 
-    // Build WHERE clauses
-    const conditions = [`action_date_fiscal_year >= ${startYear}`];
+    // Build WHERE clauses with parameterized queries
+    const conditions = ['action_date_fiscal_year >= @startYear'];
+    const params = [
+      { name: 'startYear', parameterType: { type: 'INT64' }, parameterValue: { value: String(startYear) } },
+    ];
 
     if (naics) {
-      conditions.push(`CAST(naics_code AS STRING) LIKE '${naics}%'`);
+      conditions.push(`CAST(naics_code AS STRING) LIKE CONCAT(@naics, '%')`);
+      params.push({ name: 'naics', parameterType: { type: 'STRING' }, parameterValue: { value: naics } });
     }
     if (state) {
-      conditions.push(`primary_place_of_performance_state_code = '${state.toUpperCase()}'`);
+      conditions.push('primary_place_of_performance_state_code = @state');
+      params.push({ name: 'state', parameterType: { type: 'STRING' }, parameterValue: { value: state.toUpperCase() } });
     }
     if (keyword) {
-      const safeKeyword = keyword.replace(/'/g, "''").toLowerCase();
-      conditions.push(`LOWER(product_or_service_code_description) LIKE '%${safeKeyword}%'`);
+      conditions.push(`LOWER(product_or_service_code_description) LIKE CONCAT('%', @keyword, '%')`);
+      params.push({ name: 'keyword', parameterType: { type: 'STRING' }, parameterValue: { value: keyword.toLowerCase() } });
     }
     if (setAside) {
       const setAsideMap = {
@@ -205,11 +212,11 @@ export async function onRequestGet(context) {
     `;
 
     const [metricsResult, monthlyResult, vendorsResult, agenciesResult, businessTypesResult] = await Promise.all([
-      runQuery(projectId, metricsQuery, accessToken),
-      runQuery(projectId, monthlyQuery, accessToken),
-      runQuery(projectId, vendorsQuery, accessToken),
-      runQuery(projectId, agenciesQuery, accessToken),
-      runQuery(projectId, businessTypesQuery, accessToken),
+      runQuery(projectId, metricsQuery, accessToken, params),
+      runQuery(projectId, monthlyQuery, accessToken, params),
+      runQuery(projectId, vendorsQuery, accessToken, params),
+      runQuery(projectId, agenciesQuery, accessToken, params),
+      runQuery(projectId, businessTypesQuery, accessToken, params),
     ]);
 
     const metrics = metricsResult[0] || {};
