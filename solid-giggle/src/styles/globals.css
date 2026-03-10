@@ -1,3 +1,22 @@
+/* Contrast fix for callout boxes and Cards */
+.card,
+.callout,
+.bg-white {
+  color: #1e293b; /* Tailwind slate-900 */
+}
+
+.bg-white.text-white,
+.card.text-white,
+.callout.text-white {
+  color: #1e293b !important;
+}
+
+/* For dark backgrounds, ensure light text */
+.bg-slate-900,
+.bg-blue-700,
+.bg-slate-900.text-slate-900 {
+  color: #fff !important;
+}
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
