@@ -19,66 +19,25 @@
 }
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import {
-  ArrowRight, CheckCircle2, Shield, Target, FileText, Users,
-  Award, Building2, Rocket, TrendingUp, Clock, Database,
-  CheckCheck, AlertCircle, Zap, ExternalLink
-} from "lucide-react";
-import Section from "../components/Section";
-import Card from "../components/Card";
-import { LinkButton } from "../components/Button";
-import { BRAND, LINKS } from "../lib/constants";
-import MethodologyLoop from "../components/MethodologyLoop";
+/* Contrast fix for callout boxes and Cards */
+.card,
+.callout,
+.bg-white {
+  color: #1e293b; /* Tailwind slate-900 */
+}
 
-const guaranteedPrograms = [
-  {
-    icon: Award,
-    title: "GSA Schedule Application",
-    subtitle: "Submitted in 30 Business Days",
-    description:
-      "Complete GSA MAS application — strategy, pricing, documentation, technical responses, and submission. We handle negotiations through award.",
-    guarantee: "Submitted or Full Refund",
-  },
-  {
-    icon: Database,
-    title: "FCP Baseline Migration",
-    subtitle: "7–14 Business Days",
-    description:
-      "Full catalog migration from legacy SIP to the FAS Catalog Platform. Data validation, upload, and GSA Advantage verification included.",
-    guarantee: "Guaranteed Turnaround",
-  },
-  {
-    icon: Shield,
-    title: "Ongoing Schedule Management",
-    subtitle: "Starting at $350/mo",
-    description:
-      "Quarterly IFF reporting, catalog maintenance, modifications, option renewals, compliance monitoring, and eBuy support — all handled.",
-    guarantee: "Full Compliance Coverage",
-  },
-];
+.bg-white.text-white,
+.card.text-white,
+.callout.text-white {
+  color: #1e293b !important;
+}
 
-const fcpServices = [
-  {
-    icon: Database,
-    title: "FCP Baseline Migration",
-    description:
-      "Seamless transition from legacy SIP/EDI to the new FAS Catalog Platform without losing catalog data or compliance standing.",
-  },
-  {
-    icon: FileText,
-    title: "GSA Contract Management",
-    description:
-      "Professional management of your GSA Schedule — Modifications, Sales Reporting, Product/Service Updates, Refreshes, Mass Mods, and more.",
-  },
-  {
-    icon: CheckCheck,
-    title: "Modification Support",
-    description:
-      "GSA Schedule modifications for new SINs, offerings, pricing, and EPA updates with accurate and compliant catalog pricing maintained.",
-  },
-  {
-    icon: TrendingUp,
+/* For dark backgrounds, ensure light text */
+.bg-slate-900,
+.bg-blue-700,
+.bg-slate-900.text-slate-900 {
+  color: #fff !important;
+}
     title: "GSA Advantage & eBuy Support",
     description:
       "Ongoing management of GSA Advantage listings and eBuy participation — catalog accuracy, compliance checks, and timely updates.",
