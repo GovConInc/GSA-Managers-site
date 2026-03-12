@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a4480"/>
+      <stop offset="100%" style="stop-color:#2e6bb0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield icon -->
+  <path d="M25 15 L50 8 L75 15 L75 45 C75 60 50 75 50 75 C50 75 25 60 25 45 Z"
+        fill="url(#shieldGrad)" stroke="#0d2a4d" stroke-width="2"/>
+
+  <!-- Checkmark inside shield -->
+  <path d="M38 42 L46 52 L62 32"
+        fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- GSA text -->
+  <text x="90" y="45" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="bold" fill="#1a4480">GSA</text>
+
+  <!-- Support Center text -->
+  <text x="90" y="72" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#555555">Support Center</text>
+
+  <!-- Decorative line -->
+  <rect x="90" y="50" width="120" height="3" fill="#c9a227"/>
+</svg>
