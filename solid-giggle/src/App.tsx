@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./routes/Home";
 import NotFound from "./routes/NotFound";
+import Enroll from "./routes/Enroll";
 
 
 // Information Pages
@@ -43,12 +44,16 @@ export default function App() {
         <Route path="/information/search-contracts" element={<SearchContracts />} />
         
 
+
         {/* Services Routes */}
         <Route path="/services" element={<ServicesGSA />} />
         <Route path="/services/gsa-contractors" element={<ServicesGSA />} />
         <Route path="/services/programs" element={<ServicesPrograms />} />
         <Route path="/services/compliance-capture" element={<ServicesCompliance />} />
         <Route path="/services/proposal-writing" element={<ServicesProposalWriting />} />
+
+        {/* Enroll Page */}
+        <Route path="/enroll" element={<Enroll />} />
 
         {/* About Routes */}
         <Route path="/about" element={<About />} />
