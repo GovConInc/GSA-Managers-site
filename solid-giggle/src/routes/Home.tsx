@@ -2,92 +2,95 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  ArrowRight, CheckCircle2, Shield, Target, FileText, Users,
-  Award, Building2, Rocket, TrendingUp, Clock, Database,
-  CheckCheck, AlertCircle, Zap, ExternalLink
+  ArrowRight,
+  CheckCircle2,
+  Shield,
+  FileText,
+  Rocket,
+  TrendingUp,
+  Database,
+  Zap,
+  Award,
+  Users,
+  BarChart3,
 } from "lucide-react";
 import Section from "../components/Section";
 import Card from "../components/Card";
 import { LinkButton } from "../components/Button";
 import { BRAND, LINKS } from "../lib/constants";
-import MethodologyLoop from "../components/MethodologyLoop";
 
-const guaranteedPrograms = [
+const coreServices = [
   {
-    icon: Award,
-    title: "GSA Schedule Application",
-    subtitle: "Submitted in 30 Business Days",
+    icon: Rocket,
+    title: "FCP Baseline Package",
+    subtitle: "For New Contractors",
     description:
-      "Complete GSA MAS application — strategy, pricing, documentation, technical responses, and submission. We handle negotiations through award.",
-    guarantee: "Submitted or Full Refund",
+      "Our all-in-one package to get you on the GSA Schedule. We handle the entire application, FCP catalog setup, and negotiations until you are awarded.",
+    guarantee: "Guaranteed Award or Full Refund",
+    link: "/services/gsa",
+    cta: "Start Your Application",
   },
   {
     icon: Database,
-    title: "FCP Baseline Migration",
-    subtitle: "7–14 Business Days",
+    title: "FCP Catalog Management",
+    subtitle: "For Existing Contractors",
     description:
-      "Full catalog migration from legacy SIP to the FAS Catalog Platform. Data validation, upload, and GSA Advantage verification included.",
-    guarantee: "Guaranteed Turnaround",
+      "Full management of your catalog on the FAS Catalog Platform (FCP). We handle migrations, updates, and modifications to ensure you stay compliant and visible.",
+    guarantee: "Guaranteed Compliance",
+    link: "/services/gsa",
+    cta: "Manage My Catalog",
   },
   {
     icon: Shield,
-    title: "Ongoing Schedule Management",
-    subtitle: "Starting at $350/mo",
+    title: "Ongoing Compliance",
+    subtitle: "Retained Monthly Support",
     description:
-      "Quarterly IFF reporting, catalog maintenance, modifications, option renewals, compliance monitoring, and eBuy support — all handled.",
+      "Comprehensive support to manage your GSA contract, including sales reporting, modifications, and proactive compliance monitoring.",
     guarantee: "Full Compliance Coverage",
+    link: "/services/gsa",
+    cta: "Learn About Management",
   },
 ];
 
-const fcpServices = [
+const howItWorks = [
   {
-    icon: Database,
-    title: "FCP Baseline Migration",
+    number: "01",
+    title: "Strategy Call & Document Review",
     description:
-      "Seamless transition from legacy SIP/EDI to the new FAS Catalog Platform without losing catalog data or compliance standing.",
+      "We start with a free consultation to assess your eligibility and create a customized roadmap. Then, we guide you through gathering all necessary documents.",
+    icon: Users,
   },
   {
+    number: "02",
+    title: "Application & FCP Catalog Build",
+    description:
+      "Our team prepares and perfects your GSA application and builds your product/service catalog on the new FCP, ensuring 100% compliance before submission.",
     icon: FileText,
-    title: "GSA Contract Management",
-    description:
-      "Professional management of your GSA Schedule — Modifications, Sales Reporting, Product/Service Updates, Refreshes, Mass Mods, and more.",
   },
   {
-    icon: CheckCheck,
-    title: "Modification Support",
+    number: "03",
+    title: "Negotiation & GSA Award",
     description:
-      "GSA Schedule modifications for new SINs, offerings, pricing, and EPA updates with accurate and compliant catalog pricing maintained.",
-  },
-  {
-    icon: TrendingUp,
-    title: "GSA Advantage & eBuy Support",
-    description:
-      "Ongoing management of GSA Advantage listings and eBuy participation — catalog accuracy, compliance checks, and timely updates.",
+      "We handle all communications and negotiations with your GSA Contracting Officer. We don't stop until you receive your official GSA Schedule award.",
+    icon: Award,
   },
 ];
 
-const whyChooseUs = [
+const trustMetrics = [
+  {
+    stat: "99%",
+    label: "GSA Approval Rate",
+    detail: "Our meticulous process ensures your application is right the first time.",
+  },
   {
     stat: "15+",
-    label: "Years GSA Experience",
-    detail: "Deep expertise across every phase of the GSA Schedule lifecycle.",
+    label: "Years of GSA Experience",
+    detail: "We've successfully navigated every change in GSA policy.",
   },
   {
     stat: "$640M",
-    label: "Largest Win Supported",
-    detail:
-      "High-value proposals and contract support across federal agencies.",
-  },
-  {
-    stat: "87%",
-    label: "GSA Approval Rate",
-    detail:
-      "Accurate, complete submissions driven by experience and execution speed.",
-  },
-  {
-    stat: "100%",
-    label: "On-Time Guarantee",
-    detail: "Every deadline met, or your money back.",
+    label: "Largest Contract Win",
+    detail: "We have experience supporting high-value, complex federal proposals.",
   },
 ];
 
@@ -96,11 +99,11 @@ export default function Home() {
     <>
       <Helmet>
         <title>
-          {BRAND.name} — Expert GSA Schedule Consulting | MAS Award | FCP Migration | Catalog Management
+          {BRAND.name} — Unlock Federal Sales with the FCP Baseline Package
         </title>
         <meta
           name="description"
-          content="GSA Managers specializes in GSA Schedule applications, FCP catalog migration, modifications, and ongoing contract management. Guaranteed timelines, expert execution."
+          content="The FCP Baseline Package is the fastest way to get on the GSA Schedule. We offer guaranteed GSA applications, FCP catalog management, and ongoing compliance."
         />
         <link rel="canonical" href="https://gsamanagers.com/" />
       </Helmet>
@@ -110,190 +113,167 @@ export default function Home() {
         <div className="absolute inset-0 bg-grid opacity-20" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1.5 text-sm font-bold text-slate-700 border border-slate-200">
-                <Zap size={14} className="animate-pulse-subtle" />
-                GSA Schedule Specialists
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1.5 text-sm font-bold text-slate-700 border border-slate-200">
+              <Zap size={14} className="text-amber-500" />
+              The New Standard for GSA Schedule Awards
+            </div>
 
-              <h1 className="mt-6 font-display text-4xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-6xl leading-tight">
-                Your GSA Schedule. Managed Right.
-              </h1>
+            <h1 className="mt-6 font-display text-5xl font-black tracking-tight text-slate-900 sm:text-6xl lg:text-7xl leading-tight">
+              Unlock Federal Sales with the FCP Baseline Package
+            </h1>
 
-              <p className="mt-6 text-lg text-slate-600 leading-relaxed">
-                We get companies onto the GSA Schedule and keep them there — with
-                expert application support, FCP catalog management, and guaranteed
-                timelines. No guessing. No delays.
-              </p>
+            <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-600 leading-relaxed">
+              Stop guessing. Our guaranteed, all-in-one package handles your entire GSA application and the new FCP catalog setup. Get awarded faster and start selling to the world's largest customer.
+            </p>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <LinkButton
-                  href={LINKS.booking}
-                  target="_blank"
-                  rel="noreferrer"
-                  size="lg"
-                >
-                  Book Readiness Call
-                  <ArrowRight size={18} className="ml-2" />
-                </LinkButton>
-                <LinkButton href="/services" variant="secondary" size="lg">
-                  View Services
-                </LinkButton>
-              </div>
-            </motion.div>
-
-            {/* Quick Service Picker */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:pl-8"
-            >
-              <Card className="p-8 bg-white shadow-2xl">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="h-12 w-12 rounded-xl bg-blue-600/10 flex items-center justify-center">
-                    <Rocket className="text-blue-600" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-slate-900">
-                      Get Started
-                    </h3>
-                    <p className="text-sm text-slate-500">Choose your path</p>
-                  </div>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
+              <LinkButton
+                href={LINKS.booking}
+                target="_blank"
+                rel="noreferrer"
+                size="lg"
+              >
+                Book Your Free Strategy Call
+                <ArrowRight size={18} className="ml-2" />
+              </LinkButton>
+              <LinkButton href="#how-it-works" variant="secondary" size="lg">
+                See How It Works
+              </LinkButton>
+            </div>
+            
+            <div className="mt-10 flex items-center justify-center gap-x-8 gap-y-4 flex-wrap">
+                <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
+                    <CheckCircle2 size={16} className="text-emerald-500"/>
+                    Guaranteed GSA Award
                 </div>
-
-                <div className="space-y-3">
-                  <Link
-                    to="/services/gsa-contractors"
-                    className="block p-4 rounded-xl border-2 border-slate-200 hover:border-red-500 hover:bg-red-50 transition group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-bold text-slate-900 group-hover:text-red-600 transition">
-                          New GSA Schedule Application
-                        </div>
-                        <div className="text-sm text-slate-500 mt-1">
-                          MAS award in 30 business days, guaranteed
-                        </div>
-                      </div>
-                      <ArrowRight
-                        className="text-slate-400 group-hover:text-red-500 transition"
-                        size={20}
-                      />
-                    </div>
-                  </Link>
-
-                  <Link
-                    to="/services/gsa-contractors"
-                    className="block p-4 rounded-xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-bold text-slate-900 group-hover:text-blue-600 transition">
-                          FCP Catalog Migration
-                        </div>
-                        <div className="text-sm text-slate-500 mt-1">
-                          SIP → FCP transition in 7–14 days
-                        </div>
-                      </div>
-                      <ArrowRight
-                        className="text-slate-400 group-hover:text-blue-500 transition"
-                        size={20}
-                      />
-                    </div>
-                  </Link>
-
-                  <Link
-                    to="/services/gsa-contractors"
-                    className="block p-4 rounded-xl border-2 border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 transition group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition">
-                          Ongoing Schedule Management
-                        </div>
-                        <div className="text-sm text-slate-500 mt-1">
-                          Modifications, reporting, and catalog upkeep
-                        </div>
-                      </div>
-                      <ArrowRight
-                        className="text-slate-400 group-hover:text-emerald-500 transition"
-                        size={20}
-                      />
-                    </div>
-                  </Link>
-
-                  <Link
-                    to="/services/gsa-resources"
-                    className="block p-4 rounded-xl border-2 border-slate-200 hover:border-slate-400 hover:bg-slate-50 transition group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-bold text-slate-900 group-hover:text-slate-700 transition">
-                          GSA Resources & Guides
-                        </div>
-                        <div className="text-sm text-slate-500 mt-1">
-                          eLibrary, Advantage, eBuy, FCP explained
-                        </div>
-                      </div>
-                      <ArrowRight
-                        className="text-slate-400 group-hover:text-slate-600 transition"
-                        size={20}
-                      />
-                    </div>
-                  </Link>
+                <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
+                    <CheckCircle2 size={16} className="text-emerald-500"/>
+                    FCP Catalog Included
                 </div>
-              </Card>
-            </motion.div>
-          </div>
+                <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
+                    <CheckCircle2 size={16} className="text-emerald-500"/>
+                    Expert-Led Process
+                </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ===== STATS ===== */}
-      <section className="bg-slate-900 py-12">
-        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {whyChooseUs.map((item, idx) => (
+      {/* ===== HOW IT WORKS ===== */}
+      <Section
+        id="how-it-works"
+        title="Your 3-Step Path to a GSA Schedule Award"
+        kicker="How It Works"
+        center
+      >
+        <p className="text-center text-slate-600 max-w-3xl mx-auto mb-16">
+          The FCP Baseline Package simplifies the complex GSA application process into a clear, managed timeline. We do the heavy lifting so you can focus on your business.
+        </p>
+        <div className="relative">
+          {/* Decorative line */}
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2">
+            <motion.div 
+              className="h-full bg-blue-600"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 1, ease: 'easeInOut' }}
+              style={{ transformOrigin: 'left' }}
+            />
+          </div>
+
+          <div className="relative grid gap-12 lg:grid-cols-3">
+            {howItWorks.map((step, idx) => (
               <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 20 }}
+                key={step.title}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="text-center"
+                transition={{ delay: idx * 0.2, duration: 0.6 }}
+                className="relative z-10 text-center"
               >
-                <div className="text-4xl font-black text-white mb-2">
-                  {item.stat}
+                <div className="flex items-center justify-center mb-6">
+                  <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center ring-8 ring-slate-50 relative">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-blue-600 text-white font-bold text-xs">
+                      STEP {idx + 1}
+                    </div>
+                    <step.icon size={32} className="text-blue-600" />
+                  </div>
                 </div>
-                <div className="text-amber-400 font-bold mb-1">
-                  {item.label}
-                </div>
-                <div className="text-sm text-slate-400">{item.detail}</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-slate-600">
+                  {step.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
+      </Section>
+      
+      {/* ===== TRUST & SOCIAL PROOF ===== */}
+      <section className="bg-slate-900 py-20 text-white">
+        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p className="text-sm font-bold uppercase tracking-wider text-amber-400">
+                        A Partner You Can Trust
+                    </p>
+                    <h2 className="mt-4 font-display text-4xl font-bold text-white">
+                        We Don't Just Submit Applications. We Secure Awards.
+                    </h2>
+                    <p className="mt-6 text-lg text-slate-300 leading-relaxed">
+                        Getting a GSA Schedule is a strategic investment. Our expertise de-risks the entire process, saving you time and positioning you for long-term federal success. We've been the trusted partner for hundreds of businesses, from small startups to large enterprises.
+                    </p>
+                     <div className="mt-8">
+                        <LinkButton
+                            href="/about"
+                            variant="secondary"
+                        >
+                            More About Our Experience
+                        </LinkButton>
+                    </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    {trustMetrics.slice(0, 2).map((metric) => (
+                        <motion.div
+                          key={metric.label}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1, duration: 0.5 }}
+                        >
+                            <Card className="p-6 bg-white/10 border-white/20 h-full">
+                                <div className="text-amber-400 font-display text-6xl font-bold">{metric.stat}</div>
+                                <h3 className="mt-2 text-xl font-bold text-white">{metric.label}</h3>
+                                <p className="mt-2 text-slate-300">{metric.detail}</p>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </div>
       </section>
 
-      {/* ===== GUARANTEED SERVICES ===== */}
+      {/* ===== CORE SERVICES ===== */}
       <Section
-        title="Guaranteed Delivery. Every Time."
-        kicker="Our Timelines"
+        title="Solutions for Every Stage of Your GSA Journey"
+        kicker="Our Services"
         center
       >
-        <p className="text-center text-slate-600 max-w-5xl mx-auto mb-12">
-          These services come with ironclad completion guarantees. We'll complete and
-          submit within the stated timelines — as long as you provide the documents we
-          need. No excuses, no delays.
+        <p className="text-center text-slate-600 max-w-3xl mx-auto mb-12">
+          Whether you're aiming for your first federal contract or are an established GSA holder needing expert support, we have a service designed for your specific needs.
         </p>
 
         <div className="grid gap-8 lg:grid-cols-3 mx-auto max-w-6xl">
-          {guaranteedPrograms.map((program, idx) => (
+          {coreServices.map((program, idx) => (
             <motion.div
               key={program.title}
               initial={{ opacity: 0, y: 20 }}
@@ -301,222 +281,48 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <Card className="p-6 h-full border-2 mx-auto max-w-md" hover>
-                <div className="flex items-start justify-between mb-4">
-                  <div className="h-14 w-14 rounded-xl bg-slate-900 flex items-center justify-center text-white">
-                    <program.icon size={28} />
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded">
-                      {program.guarantee}
+              <Card className="p-6 h-full border-2 mx-auto max-w-md flex flex-col" hover>
+                <div className="flex-grow">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="h-14 w-14 rounded-xl bg-slate-900 flex items-center justify-center text-white">
+                      <program.icon size={28} />
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded">
+                        {program.guarantee}
+                      </div>
                     </div>
                   </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">
+                    {program.title}
+                  </h3>
+                  <div className="text-sm font-semibold text-blue-600 mb-3">
+                    {program.subtitle}
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    {program.description}
+                  </p>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 mb-1">
-                  {program.title}
-                </h3>
-                <div className="text-sm font-semibold text-blue-600 mb-3 flex items-center gap-2">
-                  <Clock size={14} />
-                  {program.subtitle}
+                <div className="mt-6">
+                    <LinkButton
+                        href={program.link}
+                        variant={idx === 0 ? 'primary' : 'secondary'}
+                        className="w-full"
+                    >
+                        {program.cta}
+                        <ArrowRight size={16} className="ml-2"/>
+                    </LinkButton>
                 </div>
-                <p className="text-slate-600 leading-relaxed">
-                  {program.description}
-                </p>
-
-                <Link
-                  to="/services/gsa-contractors"
-                  className="mt-6 inline-flex items-center gap-2 text-red-600 font-bold text-sm hover:gap-3 transition-all"
-                >
-                  Learn More <ArrowRight size={16} />
-                </Link>
               </Card>
             </motion.div>
           ))}
         </div>
-
-        <div className="mt-12 text-center">
-          <Card className="inline-block p-6 bg-slate-50 border-2 border-amber-400">
-            <div className="flex items-center gap-3">
-              <AlertCircle className="text-amber-500" size={24} />
-              <div className="text-left">
-                <div className="font-bold text-slate-900">
-                  The Only Requirement
-                </div>
-                <div className="text-sm text-slate-600">
-                  Provide the documents we request. We handle the rest.
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
       </Section>
-
-      {/* ===== FCP / 2026 UPDATES ===== */}
-      <section className="bg-slate-50 py-16">
-        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-sm font-bold uppercase tracking-wider text-blue-600">
-              FOR GSA CONTRACTORS
-            </p>
-            <h2 className="mt-2 font-display text-4xl font-bold text-slate-900">
-              2026 GSA Updates
-            </h2>
-            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-              GSA has transitioned from legacy SIP/EDI to the new FAS Catalog Platform.
-              We handle your baseline migration, Price Proposal migration, and Compliance
-              & Pricing (C&P) report. Our services don't stop there.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
-            {fcpServices.map((service, idx) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <Card className="p-6 h-full bg-white" hover>
-                  <div className="h-12 w-12 rounded-xl bg-blue-600/10 flex items-center justify-center text-blue-600 mb-4">
-                    <service.icon size={24} />
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    {service.description}
-                  </p>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* FCP Urgency Banner */}
-          <div className="bg-gradient-to-r from-blue-700 to-slate-900 rounded-2xl p-8 lg:p-12 text-white">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-bold mb-4">
-                  Avoid GSA Contract Cancellation
-                </h3>
-                <p className="text-blue-100 leading-relaxed mb-6">
-                  GSA requires FCP baseline migration within 60 days of notification.
-                  Missing this deadline can result in contract suspension or
-                  cancellation. We complete migrations in 7–14 days.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    "Product File & Services Plus File setup",
-                    "Compliance & Pricing (C&P) reporting",
-                    "Performance Assessment & Training",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2
-                        className="text-amber-400 shrink-0 mt-0.5"
-                        size={20}
-                      />
-                      <span className="text-white">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="lg:pl-8">
-                <Card className="p-8 bg-white/10 border-white/20">
-                  <div className="text-5xl font-black text-amber-400 mb-2">
-                    14 Days. Guaranteed.
-                  </div>
-                  <div className="text-white font-bold mb-4">
-                    To Complete FCP Migration
-                  </div>
-                  <p className="text-blue-200 text-sm mb-6">
-                    Don't risk losing your GSA Schedule. We handle the entire
-                    transition within 2 weeks — or your money back.
-                  </p>
-                  <LinkButton
-                    href="/services/gsa-contractors"
-                    variant="secondary"
-                    className="w-full"
-                  >
-                    Get Started Now
-                  </LinkButton>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== METHODOLOGY ===== */}
-      <section className="bg-white py-16">
-        <MethodologyLoop />
-      </section>
-
-      {/* ===== QUICK LINKS ===== */}
-      <section className="bg-slate-50 py-16">
-        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-sm font-bold uppercase tracking-wider text-blue-600">
-              Quick Links
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-slate-900">
-              Essential GSA Resources
-            </h2>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                name: "GSA eLibrary",
-                url: LINKS.gsaELibrary,
-                desc: "Look up GSA contract holders and SINs",
-              },
-              {
-                name: "GSA Advantage",
-                url: LINKS.gsaAdvantage,
-                desc: "Federal online purchasing portal",
-              },
-              {
-                name: "FCP Platform",
-                url: LINKS.fcpPlatform,
-                desc: "FAS Catalog Platform for GSA vendors",
-              },
-              {
-                name: "GSA eBuy",
-                url: LINKS.gsaeBuy,
-                desc: "RFQ portal for GSA Schedule holders",
-              },
-            ].map((link) => (
-              <a
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group rounded-xl border-2 border-slate-200 bg-white p-5 transition hover:border-blue-500 hover:shadow-lg"
-              >
-                <div className="font-bold text-slate-900 group-hover:text-blue-600 transition flex items-center gap-2">
-                  {link.name}
-                  <ExternalLink size={14} className="text-slate-400 group-hover:text-blue-500" />
-                </div>
-                <div className="mt-1 text-sm text-slate-500">{link.desc}</div>
-              </a>
-            ))}
-          </div>
-
-          <div className="mt-6 text-center">
-            <Link
-              to="/services/gsa-resources"
-              className="inline-flex items-center gap-2 text-blue-600 font-bold hover:underline"
-            >
-              View Complete GSA Resource Guide
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
+      
       {/* ===== FINAL CTA ===== */}
-      <Section title="Ready to Get on the GSA Schedule?" kicker="Next Step" dark>
+      <Section title="Ready to Win Government Contracts?" kicker="Take the Next Step" dark>
         <Card
           className="p-8 lg:p-12 bg-white/10 border-white/20"
           hover={false}
@@ -524,20 +330,20 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="font-display text-3xl font-bold text-white mb-4">
-                Book Your Free GSA Readiness Call
+                Book Your Free GSA Strategy Call
               </h3>
               <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                We'll assess your GSA eligibility, review your current schedule
-                status or catalog, and give you a clear action plan. No pitch —
-                just actionable intelligence.
+                In a free, 15-minute call, we'll assess your company's GSA eligibility and show you exactly how the FCP Baseline Package can unlock your path to the federal marketplace.
               </p>
               <ul className="space-y-3">
-                {[
-                  "GSA eligibility and qualification review",
-                  "FCP migration readiness assessment",
-                  "Catalog compliance gap analysis",
-                  "Clear next-step roadmap",
-                ].map((item) => (
+                {(
+                  [
+                    "Confirm your GSA eligibility",
+                    "Get a personalized FCP roadmap",
+                    "Receive a clear, flat-rate quote",
+                    "No obligation, no pressure",
+                  ]
+                ).map((item) => (
                   <li
                     key={item}
                     className="flex items-center gap-3 text-white"
@@ -558,7 +364,7 @@ export default function Home() {
                   Schedule Your Call
                 </h4>
                 <p className="text-slate-600 mb-6">
-                  15–30 minutes. Zero obligation. 100% transparency.
+                  Secure your spot now. Find out if the GSA Schedule is right for you.
                 </p>
                 <LinkButton
                   href={LINKS.booking}
@@ -567,7 +373,7 @@ export default function Home() {
                   size="lg"
                   className="w-full"
                 >
-                  Book Now — It's Free
+                  Find a Time
                   <ArrowRight size={18} className="ml-2" />
                 </LinkButton>
                 <p className="mt-4 text-xs text-slate-500">
