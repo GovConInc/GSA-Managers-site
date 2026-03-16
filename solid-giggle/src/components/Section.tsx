@@ -8,7 +8,6 @@ export default function Section({
   id,
   actions,
   className,
-  dark = false,
   center = false,
 }: {
   title: string;
@@ -17,7 +16,6 @@ export default function Section({
   actions?: ReactNode;
   children: ReactNode;
   className?: string;
-  dark?: boolean;
   center?: boolean;
 }) {
   return (
@@ -25,7 +23,7 @@ export default function Section({
       id={id} 
       className={cn(
         "py-16 sm:py-20",
-        dark ? "bg-gov-navy text-white" : "bg-white",
+        "bg-background text-foreground",
         className
       )}
     >
@@ -35,17 +33,11 @@ export default function Section({
         )}>
           <div>
             {kicker && (
-              <p className={cn(
-                "text-sm font-bold uppercase tracking-wider",
-                dark ? "text-gov-gold" : "text-gov-blue"
-              )}>
+              <p className="text-sm font-bold uppercase tracking-wider text-primary">
                 {kicker}
               </p>
             )}
-            <h2 className={cn(
-              "mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl",
-              dark ? "text-white" : "text-gov-navy"
-            )}>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl text-primary-foreground">
               {title}
             </h2>
           </div>

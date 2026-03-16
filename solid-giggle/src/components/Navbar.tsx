@@ -60,21 +60,21 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-slate-100">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
       {/* Top bar */}
-      <div className="bg-slate-50 border-b border-slate-100">
+      <div className="bg-secondary/50 border-b border-border">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-2 lg:px-8">
-          <div className="flex items-center gap-4 text-xs text-slate-500">
-            <a href={`tel:${BRAND.phone}`} className="flex items-center gap-1.5 hover:text-slate-900 transition">
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <a href={`tel:${BRAND.phone}`} className="flex items-center gap-1.5 hover:text-foreground transition">
               <Phone size={12} />
               {BRAND.phone}
             </a>
-            <span className="hidden sm:inline text-slate-300">|</span>
-            <a href={`mailto:${BRAND.email}`} className="hidden sm:block hover:text-slate-900 transition">
+            <span className="hidden sm:inline text-border">|</span>
+            <a href={`mailto:${BRAND.email}`} className="hidden sm:block hover:text-foreground transition">
               {BRAND.email}
             </a>
           </div>
-          <div className="text-xs text-slate-400">
+          <div className="text-xs text-muted-foreground">
             {BRAND.location}
           </div>
         </div>
@@ -106,15 +106,15 @@ export default function Navbar() {
                     className={cn(
                       "flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold rounded-lg transition-all",
                       isActiveParent 
-                        ? "text-gov-crimson" 
-                        : "text-slate-700 hover:text-gov-navy hover:bg-slate-50"
+                        ? "text-primary" 
+                        : "text-foreground hover:text-primary hover:bg-secondary"
                     )}
                   >
                     {x.label}
                     <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
                   </NavLink>
                   <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                    <div className="w-60 rounded-xl border border-slate-100 bg-white p-2 shadow-xl shadow-slate-200/60">
+                    <div className="w-60 rounded-xl border border-border bg-background p-2 shadow-xl shadow-shadow">
                       {x.children.map((child) => (
                         <NavLink
                           key={child.to}
@@ -123,8 +123,8 @@ export default function Navbar() {
                             cn(
                               "block rounded-lg px-4 py-2.5 text-sm font-medium transition-all",
                               isActive
-                                ? "text-gov-navy font-bold bg-slate-100"
-                                : "text-slate-600 hover:text-gov-navy hover:bg-slate-50"
+                                ? "text-primary font-bold bg-secondary"
+                                : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                             )
                           }
                         >
@@ -144,8 +144,8 @@ export default function Navbar() {
                   cn(
                     "px-4 py-2.5 text-sm font-semibold rounded-lg transition-all",
                     isActive 
-                      ? "text-gov-crimson" 
-                      : "text-slate-700 hover:text-gov-navy hover:bg-slate-50"
+                      ? "text-primary" 
+                      : "text-foreground hover:text-primary hover:bg-secondary"
                   )
                 }
                 end={x.to === "/"}
@@ -165,7 +165,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="focus-ring flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white lg:hidden"
+          className="focus-ring flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card lg:hidden"
           onClick={() => setOpen((s) => !s)}
           aria-label="Toggle navigation"
         >
@@ -175,29 +175,29 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="border-t border-slate-100 bg-white lg:hidden">
+        <div className="border-t border-border bg-background lg:hidden">
           <div className="mx-auto w-full max-w-7xl px-5 py-4">
             <div className="grid gap-1">
               {primary.map((x) => {
                 if (x.children) {
                   const isExpanded = openDropdown === x.label;
                   return (
-                    <div key={x.label} className="rounded-xl border border-slate-200 overflow-hidden">
+                    <div key={x.label} className="rounded-xl border border-border overflow-hidden">
                       <button
                         onClick={() => toggleMobileDropdown(x.label)}
-                        className="flex w-full items-center justify-between px-4 py-3.5 text-sm font-semibold text-slate-800 bg-white"
+                        className="flex w-full items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground bg-card"
                       >
                         {x.label}
                         <ChevronDown 
                           size={18} 
                           className={cn(
-                            "text-slate-400 transition-transform",
+                            "text-muted-foreground transition-transform",
                             isExpanded && "rotate-180"
                           )} 
                         />
                       </button>
                       {isExpanded && (
-                        <div className="border-t border-slate-100 bg-slate-50/50 px-2 py-2">
+                        <div className="border-t border-border bg-secondary/30 px-2 py-2">
                           {x.children.map(child => (
                             <NavLink
                               key={child.to}
@@ -206,8 +206,8 @@ export default function Navbar() {
                                 cn(
                                   "block rounded-lg px-4 py-2.5 text-sm font-medium transition",
                                   isActive 
-                                    ? "text-gov-crimson bg-white" 
-                                    : "text-slate-600 hover:text-gov-navy hover:bg-white"
+                                    ? "text-primary bg-background" 
+                                    : "text-muted-foreground hover:text-foreground hover:bg-background/50"
                                 )
                               }
                             >
@@ -227,8 +227,8 @@ export default function Navbar() {
                       cn(
                         "rounded-xl border px-4 py-3.5 text-sm font-semibold transition",
                         isActive
-                          ? "border-slate-300 bg-slate-100 text-gov-navy font-bold"
-                          : "border-slate-200 bg-white text-slate-800 hover:bg-slate-50"
+                          ? "border-primary/30 bg-secondary text-primary font-bold"
+                          : "border-border bg-card text-foreground hover:bg-secondary/50"
                       )
                     }
                     end={x.to === "/"}

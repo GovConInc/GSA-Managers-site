@@ -13,17 +13,17 @@ export default function Card({
   variant?: "default" | "elevated" | "outlined";
 }) {
   const variants: Record<string, string> = {
-    default: "border border-slate-200/80 bg-white shadow-soft",
-    elevated: "bg-white shadow-xl shadow-slate-200/50",
-    outlined: "border-2 border-slate-200 bg-white",
+    default: "border border-border bg-card shadow-soft",
+    elevated: "bg-card shadow-xl shadow-shadow",
+    outlined: "border-2 border-border bg-card",
   };
 
   return (
     <div
       className={cn(
-        "rounded-2xl",
+        "rounded-2xl transition-all duration-300",
         variants[variant],
-        hover && "card-hover",
+        hover && "hover:scale-[1.02] hover:shadow-lg hover:border-primary",
         className
       )}
     >

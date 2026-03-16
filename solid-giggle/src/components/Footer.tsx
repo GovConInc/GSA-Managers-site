@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gov-navy text-white">
+    <footer className="bg-secondary text-secondary-foreground">
       {/* Main Footer */}
       <div className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-4">
@@ -14,12 +14,12 @@ export default function Footer() {
               <img
                 src="/logo.png"
                 alt="GSA Managers Inc."
-                className="h-8 w-auto brightness-0 invert"
+                className="h-8 w-auto"
               />
-              <div className="mt-2 text-xs text-slate-400">{BRAND.tagline}</div>
+              <div className="mt-2 text-xs text-muted-foreground">{BRAND.tagline}</div>
             </div>
 
-            <p className="mt-6 text-sm text-slate-400 leading-relaxed">
+            <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
               Expert GSA Schedule consulting — from application and award to FCP catalog
               migration, modifications, and ongoing contract management.
             </p>
@@ -27,41 +27,41 @@ export default function Footer() {
 
           {/* Information */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Information</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Information</p>
             <div className="mt-4 grid gap-2 text-sm">
-              <Link to="/information/sam-dsbs-fema" className="text-slate-300 hover:text-white transition">SAM / DSBS / FEMA</Link>
-              <Link to="/information/certification-data" className="text-slate-300 hover:text-white transition">Certification Data</Link>
-              <Link to="/information/finding-bids" className="text-slate-300 hover:text-white transition">Finding Government Bids</Link>
-              <Link to="/information/writing-proposals" className="text-slate-300 hover:text-white transition">Writing Proposals 101</Link>
-              <Link to="/information/contract-vehicles" className="text-slate-300 hover:text-white transition">Contract Vehicles 101</Link>
+              <Link to="/information/sam-dsbs-fema" className="text-foreground hover:text-primary transition">SAM / DSBS / FEMA</Link>
+              <Link to="/information/certification-data" className="text-foreground hover:text-primary transition">Certification Data</Link>
+              <Link to="/information/finding-bids" className="text-foreground hover:text-primary transition">Finding Government Bids</Link>
+              <Link to="/information/writing-proposals" className="text-foreground hover:text-primary transition">Writing Proposals 101</Link>
+              <Link to="/information/contract-vehicles" className="text-foreground hover:text-primary transition">Contract Vehicles 101</Link>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Services</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Services</p>
             <div className="mt-4 grid gap-2 text-sm">
-              <Link to="/services/gsa-contractors" className="text-slate-300 hover:text-white transition">GSA Contractors</Link>
-              <Link to="/services/programs" className="text-slate-300 hover:text-white transition">Programs</Link>
-              <Link to="/services/compliance-capture" className="text-slate-300 hover:text-white transition">Compliance & Capture</Link>
-              <Link to="/services/proposal-writing" className="text-slate-300 hover:text-white transition">Proposal Writing</Link>
+              <Link to="/services/gsa-contractors" className="text-foreground hover:text-primary transition">GSA Contractors</Link>
+              <Link to="/services/programs" className="text-foreground hover:text-primary transition">Programs</Link>
+              <Link to="/services/compliance-capture" className="text-foreground hover:text-primary transition">Compliance & Capture</Link>
+              <Link to="/services/proposal-writing" className="text-foreground hover:text-primary transition">Proposal Writing</Link>
             </div>
           </div>
 
           {/* Contact */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Contact</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Contact</p>
             <div className="mt-4 space-y-3 text-sm">
-              <a href={`tel:${BRAND.phone}`} className="flex items-center gap-3 text-slate-300 hover:text-white transition">
-                <Phone size={16} className="text-slate-400" />
+              <a href={`tel:${BRAND.phone}`} className="flex items-center gap-3 text-foreground hover:text-primary transition">
+                <Phone size={16} className="text-muted-foreground" />
                 {BRAND.phone}
               </a>
-              <a href={`mailto:${BRAND.email}`} className="flex items-center gap-3 text-slate-300 hover:text-white transition">
-                <Mail size={16} className="text-slate-400" />
+              <a href={`mailto:${BRAND.email}`} className="flex items-center gap-3 text-foreground hover:text-primary transition">
+                <Mail size={16} className="text-muted-foreground" />
                 {BRAND.email}
               </a>
-              <div className="flex items-center gap-3 text-slate-300">
-                <MapPin size={16} className="text-slate-400" />
+              <div className="flex items-center gap-3 text-foreground">
+                <MapPin size={16} className="text-muted-foreground" />
                 {BRAND.location}
               </div>
             </div>
@@ -70,7 +70,7 @@ export default function Footer() {
               href={LINKS.booking} 
               target="_blank" 
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-gov-navy transition hover:bg-slate-100"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
             >
               Book a Call
               <ArrowUpRight size={16} />
@@ -80,15 +80,15 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-slate-800">
+      <div className="border-t border-border">
         <div className="mx-auto w-full max-w-7xl px-5 py-6 lg:px-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-xs text-slate-500">
+            <div className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
             </div>
-            <div className="flex gap-6 text-xs text-slate-500">
-              <a href="#" className="hover:text-slate-300 transition">Privacy Policy</a>
-              <a href="#" className="hover:text-slate-300 transition">Terms of Service</a>
+            <div className="flex gap-6 text-xs text-muted-foreground">
+              <a href="#" className="hover:text-foreground transition">Privacy Policy</a>
+              <a href="#" className="hover:text-foreground transition">Terms of Service</a>
             </div>
           </div>
         </div>

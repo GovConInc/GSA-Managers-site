@@ -23,11 +23,11 @@ export const Button = forwardRef<HTMLButtonElement, BtnProps>(function Button(
 
   const styles: Record<string, string> = {
     primary:
-      "bg-gov-crimson text-white hover:bg-gov-crimson/90 active:scale-[0.98]",
+      "bg-primary text-primary-foreground hover:bg-primary/90 active:scale-[0.98]",
     secondary:
-      "bg-white text-gov-navy border-2 border-slate-200 hover:border-gov-blue hover:text-gov-blue active:bg-slate-50",
+      "bg-secondary text-secondary-foreground border-2 border-border hover:border-primary hover:text-primary active:bg-accent",
     ghost:
-      "bg-transparent text-gov-navy hover:bg-slate-100 active:bg-slate-200",
+      "bg-transparent text-foreground hover:bg-accent active:bg-accent/80",
   };
   
   return (
@@ -56,11 +56,11 @@ export function LinkButton({ className, variant = "primary", size = "md", ...pro
 
   const styles: Record<string, string> = {
     primary:
-      "bg-gov-crimson text-white hover:bg-gov-crimson/90 active:scale-[0.98]",
+      "bg-primary text-primary-foreground hover:bg-primary/90 active:scale-[0.98]",
     secondary:
-      "bg-white text-gov-navy border-2 border-slate-200 hover:border-gov-blue hover:text-gov-blue active:bg-slate-50",
+      "bg-secondary text-secondary-foreground border-2 border-border hover:border-primary hover:text-primary active:bg-accent",
     ghost:
-      "bg-transparent text-gov-navy hover:bg-slate-100 active:bg-slate-200",
+      "bg-transparent text-foreground hover:bg-accent active:bg-accent/80",
   };
   
   return <a className={cn(base, sizes[size], styles[variant], className)} {...props} />;

@@ -58,15 +58,15 @@ export default function OurProcess() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative bg-gradient-to-b from-slate-50 to-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-background py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gov-crimson/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gov-navy/5 rounded-full blur-3xl" />
-        <div 
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+        <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--border)) 1px, transparent 0)`,
             backgroundSize: '40px 40px',
           }}
         />
@@ -74,32 +74,32 @@ export default function OurProcess() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gov-crimson/10 mb-6">
-            <div className="w-2 h-2 rounded-full bg-gov-crimson animate-pulse" />
-            <span className="text-xs font-bold text-gov-crimson uppercase tracking-[0.2em]">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 mb-6">
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-xs font-bold text-primary uppercase tracking-[0.2em]">
               The 5C Methodology
             </span>
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-gray-900 mb-6">
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-6">
             Our Process
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             A proven methodology that transforms government contracting from overwhelming to achievable.
           </p>
         </motion.div>
 
         {/* Progress Line (Desktop) */}
         <div className="hidden lg:block relative mb-8">
-          <div className="absolute top-1/2 left-[10%] right-[10%] h-1 bg-gray-200 rounded-full -translate-y-1/2" />
-          <motion.div 
-            className="absolute top-1/2 left-[10%] h-1 bg-gradient-to-r from-gray-400 via-gov-navy via-50% to-gov-crimson rounded-full -translate-y-1/2"
+          <div className="absolute top-1/2 left-[10%] right-[10%] h-1 bg-border rounded-full -translate-y-1/2" />
+          <motion.div
+            className="absolute top-1/2 left-[10%] h-1 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full -translate-y-1/2"
             initial={{ width: 0 }}
             whileInView={{ width: '80%' }}
             viewport={{ once: true }}
@@ -115,13 +115,8 @@ export default function OurProcess() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + idx * 0.15, type: "spring", stiffness: 300 }}
                 className={`
-                  w-4 h-4 rounded-full border-4 border-white shadow-md
-                  ${stage.emphasized 
-                    ? stage.color === "navy" 
-                      ? "bg-gov-navy" 
-                      : "bg-gov-crimson"
-                    : "bg-gray-400"
-                  }
+                  w-4 h-4 rounded-full border-4 border-background shadow-md
+                  ${stage.emphasized ? "bg-primary" : "bg-muted-foreground"}
                 `}
               />
             ))}
@@ -152,25 +147,23 @@ export default function OurProcess() {
                 <div className={`
                   relative h-full rounded-2xl p-6 transition-all duration-500 ease-out
                   ${isEmphasized
-                    ? stage.color === "crimson"
-                      ? "bg-gradient-to-br from-gov-crimson to-red-800"
-                      : "bg-gradient-to-br from-gov-navy to-slate-900"
-                    : "bg-white border border-gray-200"
+                    ? "bg-gradient-to-br from-primary to-primary/80"
+                    : "bg-card border border-border"
                   }
                   ${isHovered
                     ? isEmphasized
                       ? "shadow-2xl scale-[1.03] -translate-y-2"
-                      : "shadow-xl scale-[1.02] -translate-y-1 border-gray-300"
+                      : "shadow-xl scale-[1.02] -translate-y-1 border-border/80"
                     : isEmphasized
                       ? "shadow-xl"
                       : "shadow-md"
                   }
                 `}>
-                  
+
                   {/* Step Number - Large Background */}
                   <div className={`
                     absolute top-4 right-4 font-display text-6xl font-black leading-none
-                    ${isEmphasized ? "text-white/10" : "text-gray-100"}
+                    ${isEmphasized ? "text-white/10" : "text-border"}
                   `}>
                     {stage.number}
                   </div>
@@ -182,7 +175,7 @@ export default function OurProcess() {
                     ${isHovered ? "scale-110" : ""}
                     ${isEmphasized
                       ? "bg-white/20 backdrop-blur-sm"
-                      : "bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200"
+                      : "bg-gradient-to-br from-secondary to-accent border border-border"
                     }
                   `}>
                     <Icon
@@ -190,7 +183,7 @@ export default function OurProcess() {
                       strokeWidth={2}
                       className={`
                         transition-all duration-300
-                        ${isEmphasized ? "text-white" : "text-gray-800"}
+                        ${isEmphasized ? "text-white" : "text-foreground"}
                         ${isHovered ? "scale-110" : ""}
                       `}
                     />
@@ -201,7 +194,7 @@ export default function OurProcess() {
                     {/* Subtitle */}
                     <p className={`
                       text-[11px] font-bold uppercase tracking-[0.15em] mb-2
-                      ${isEmphasized ? "text-white/60" : "text-gray-400"}
+                      ${isEmphasized ? "text-white/60" : "text-muted-foreground"}
                     `}>
                       {stage.subtitle}
                     </p>
@@ -209,7 +202,7 @@ export default function OurProcess() {
                     {/* Title */}
                     <h3 className={`
                       font-display text-xl font-bold mb-3
-                      ${isEmphasized ? "text-white" : "text-gray-900"}
+                      ${isEmphasized ? "text-white" : "text-foreground"}
                     `}>
                       {stage.title}
                     </h3>
@@ -217,7 +210,7 @@ export default function OurProcess() {
                     {/* Description */}
                     <p className={`
                       text-sm leading-relaxed mb-4
-                      ${isEmphasized ? "text-white/80" : "text-gray-600"}
+                      ${isEmphasized ? "text-white/80" : "text-muted-foreground"}
                     `}>
                       {stage.description}
                     </p>
@@ -234,7 +227,7 @@ export default function OurProcess() {
                         >
                           <div className={`
                             pt-4 border-t
-                            ${isEmphasized ? "border-white/20" : "border-gray-200"}
+                            ${isEmphasized ? "border-white/20" : "border-border"}
                           `}>
                             <div className="flex flex-wrap gap-2">
                               {stage.details.map((detail, i) => (
@@ -244,7 +237,7 @@ export default function OurProcess() {
                                     text-xs font-medium px-3 py-1.5 rounded-full
                                     ${isEmphasized
                                       ? "bg-white/15 text-white/90"
-                                      : "bg-gray-100 text-gray-700"
+                                      : "bg-secondary text-secondary-foreground"
                                     }
                                   `}
                                 >
@@ -262,11 +255,7 @@ export default function OurProcess() {
                   {isEmphasized && (
                     <div className={`
                       absolute -top-3 left-6 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider
-                      ${stage.color === "crimson" 
-                        ? "bg-white text-gov-crimson" 
-                        : "bg-white text-gov-navy"
-                      }
-                      shadow-lg
+                      bg-background text-primary shadow-lg
                     `}>
                       Core Phase
                     </div>
@@ -276,12 +265,12 @@ export default function OurProcess() {
                   <div className={`
                     absolute bottom-4 right-4 w-8 h-8 rounded-full flex items-center justify-center
                     transition-all duration-300
-                    ${isEmphasized ? "bg-white/10" : "bg-gray-100"}
+                    ${isEmphasized ? "bg-white/10" : "bg-secondary"}
                     ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}
                   `}>
-                    <ChevronRight 
-                      size={16} 
-                      className={isEmphasized ? "text-white" : "text-gray-600"} 
+                    <ChevronRight
+                      size={16}
+                      className={isEmphasized ? "text-white" : "text-muted-foreground"}
                     />
                   </div>
                 </div>
@@ -294,9 +283,9 @@ export default function OurProcess() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 + 0.2 }}
-                      className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"
+                      className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center"
                     >
-                      <ChevronRight size={18} className="text-gray-400 rotate-90" />
+                      <ChevronRight size={18} className="text-muted-foreground rotate-90" />
                     </motion.div>
                   </div>
                 )}
@@ -304,8 +293,6 @@ export default function OurProcess() {
             );
           })}
         </div>
-
-        {/* Loop Indicator - Removed */}
       </div>
     </section>
   );

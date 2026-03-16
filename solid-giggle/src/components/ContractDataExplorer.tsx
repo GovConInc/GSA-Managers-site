@@ -198,51 +198,51 @@ export default function ContractDataExplorer() {
       {/* Search Panel */}
       <Card className="p-6 mb-8" hover={false}>
         <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gov-blue/10 text-gov-blue">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
             <Filter size={20} />
           </div>
-          <h2 className="text-xl font-bold text-gov-navy">Contract Data Explorer</h2>
+          <h2 className="text-xl font-bold text-foreground">Contract Data Explorer</h2>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 rounded-lg bg-red-50 border-2 border-red-200">
-            <p className="text-sm font-semibold text-red-900 mb-2">Error:</p>
-            <p className="text-sm text-red-800 font-mono break-words">{error}</p>
+          <div className="mb-6 p-4 rounded-lg bg-destructive/10 border-2 border-destructive/20">
+            <p className="text-sm font-semibold text-destructive mb-2">Error:</p>
+            <p className="text-sm text-destructive font-mono break-words">{error}</p>
           </div>
         )}
 
         <form onSubmit={handleSearch}>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">NAICS Code</label>
+              <label className="block text-sm font-semibold text-muted-foreground mb-2">NAICS Code</label>
               <input
                 type="text"
                 value={naicsCode}
                 onChange={(e) => setNaicsCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
                 placeholder="e.g., 541512"
                 maxLength={6}
-                className="w-full rounded-lg border-2 border-slate-200 px-4 py-2.5 text-sm focus:border-gov-blue focus:outline-none transition"
+                className="w-full rounded-lg border-2 border-border bg-transparent px-4 py-2.5 text-sm focus:border-primary focus:outline-none transition"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">State</label>
+              <label className="block text-sm font-semibold text-muted-foreground mb-2">State</label>
               <input
                 type="text"
                 value={state}
                 onChange={(e) => setState(e.target.value.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase())}
                 placeholder="e.g., VA"
                 maxLength={2}
-                className="w-full rounded-lg border-2 border-slate-200 px-4 py-2.5 text-sm focus:border-gov-blue focus:outline-none transition"
+                className="w-full rounded-lg border-2 border-border bg-transparent px-4 py-2.5 text-sm focus:border-primary focus:outline-none transition"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Set-Aside Type</label>
+              <label className="block text-sm font-semibold text-muted-foreground mb-2">Set-Aside Type</label>
               <select
                 value={setAside}
                 onChange={(e) => setSetAside(e.target.value)}
-                className="w-full rounded-lg border-2 border-slate-200 px-4 py-2.5 text-sm focus:border-gov-blue focus:outline-none transition"
+                className="w-full rounded-lg border-2 border-border bg-transparent px-4 py-2.5 text-sm focus:border-primary focus:outline-none transition"
               >
                 <option value="">All Types</option>
                 <option value="8a">8(a) Program</option>
@@ -253,13 +253,13 @@ export default function ContractDataExplorer() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Keyword</label>
+              <label className="block text-sm font-semibold text-muted-foreground mb-2">Keyword</label>
               <input
                 type="text"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Search descriptions..."
-                className="w-full rounded-lg border-2 border-slate-200 px-4 py-2.5 text-sm focus:border-gov-blue focus:outline-none transition"
+                className="w-full rounded-lg border-2 border-border bg-transparent px-4 py-2.5 text-sm focus:border-primary focus:outline-none transition"
               />
             </div>
           </div>
@@ -269,14 +269,14 @@ export default function ContractDataExplorer() {
               <button
                 type="button"
                 onClick={() => setTimeRange(1)}
-                className={cn("rounded-lg px-4 py-2 text-sm font-semibold transition", timeRange === 1 ? "bg-gov-blue text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200")}
+                className={cn("rounded-lg px-4 py-2 text-sm font-semibold transition", timeRange === 1 ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80")}
               >
                 1 Year View
               </button>
               <button
                 type="button"
                 onClick={() => setTimeRange(5)}
-                className={cn("rounded-lg px-4 py-2 text-sm font-semibold transition", timeRange === 5 ? "bg-gov-blue text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200")}
+                className={cn("rounded-lg px-4 py-2 text-sm font-semibold transition", timeRange === 5 ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80")}
               >
                 5 Year View
               </button>
@@ -298,10 +298,10 @@ export default function ContractDataExplorer() {
             <Card className="p-6" hover>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Total Award Value</p>
-                  <p className="mt-2 text-2xl font-bold text-gov-navy">{usd(data.metrics.total_contract_value)}</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Total Award Value</p>
+                  <p className="mt-2 text-2xl font-bold text-foreground">{usd(data.metrics.total_contract_value)}</p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gov-blue/10 text-gov-blue">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <DollarSign size={24} />
                 </div>
               </div>
@@ -310,10 +310,10 @@ export default function ContractDataExplorer() {
             <Card className="p-6" hover>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Small Business Count</p>
-                  <p className="mt-2 text-2xl font-bold text-gov-navy">{formatCount(data.metrics.small_business_count)}</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Small Business Count</p>
+                  <p className="mt-2 text-2xl font-bold text-foreground">{formatCount(data.metrics.small_business_count)}</p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gov-green/10 text-gov-green">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-500/10 text-green-500">
                   <Users size={24} />
                 </div>
               </div>
@@ -322,10 +322,10 @@ export default function ContractDataExplorer() {
             <Card className="p-6" hover>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Small Business Value</p>
-                  <p className="mt-2 text-2xl font-bold text-gov-navy">{usd(data.metrics.small_business_value)}</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Small Business Value</p>
+                  <p className="mt-2 text-2xl font-bold text-foreground">{usd(data.metrics.small_business_value)}</p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gov-crimson/10 text-gov-crimson">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-500">
                   <TrendingUp size={24} />
                 </div>
               </div>
@@ -334,10 +334,10 @@ export default function ContractDataExplorer() {
             <Card className="p-6" hover>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Small Business %</p>
-                  <p className="mt-2 text-2xl font-bold text-gov-navy">{data.metrics.small_business_percentage.toFixed(1)}%</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Small Business %</p>
+                  <p className="mt-2 text-2xl font-bold text-foreground">{data.metrics.small_business_percentage.toFixed(1)}%</p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gov-gold/20 text-gov-gold">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-yellow-500/20 text-yellow-500">
                   <TrendingUp size={24} />
                 </div>
               </div>
@@ -349,7 +349,7 @@ export default function ContractDataExplorer() {
             {/* Timeline Chart */}
             <Card className="p-6" hover={false}>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-bold text-lg text-gov-navy">Monthly Spending</h3>
+                <h3 className="font-bold text-lg text-foreground">Monthly Spending</h3>
                 <div className="flex gap-1">
                   {[
                     { id: "total", label: "Total" },
@@ -361,7 +361,7 @@ export default function ContractDataExplorer() {
                       onClick={() => setChartView(view.id as typeof chartView)}
                       className={cn(
                         "rounded-lg px-3 py-1.5 text-xs font-semibold transition",
-                        chartView === view.id ? "bg-gov-blue text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                        chartView === view.id ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                       )}
                     >
                       {view.label}
@@ -372,24 +372,24 @@ export default function ContractDataExplorer() {
               {data.timeline && data.timeline.length > 0 ? (
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={getChartData()}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="month" tick={{ fontSize: 11 }} stroke="#64748b" />
-                    <YAxis tick={{ fontSize: 11 }} stroke="#64748b" tickFormatter={(value) => compact(value)} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                    <XAxis dataKey="month" tick={{ fontSize: 11 }} stroke="var(--muted-foreground)" />
+                    <YAxis tick={{ fontSize: 11 }} stroke="var(--muted-foreground)" tickFormatter={(value) => compact(value)} />
                     <Tooltip
-                      contentStyle={{ background: "rgba(15, 23, 42, 0.95)", border: "none", borderRadius: "8px", color: "#fff" }}
+                      contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))", borderRadius: "var(--radius)", color: "hsl(var(--foreground))" }}
                       formatter={(value: number) => [usd(value), "Value"]}
                     />
-                    <Line type="monotone" dataKey="value" stroke="#2563eb" strokeWidth={3} dot={{ fill: "#2563eb", r: 4 }} activeDot={{ r: 6 }} />
+                    <Line type="monotone" dataKey="value" stroke="hsl(var(--primary))" strokeWidth={3} dot={{ fill: "hsl(var(--primary))", r: 4 }} activeDot={{ r: 6 }} />
                   </LineChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="h-64 flex items-center justify-center text-slate-500">No timeline data available</div>
+                <div className="h-64 flex items-center justify-center text-muted-foreground">No timeline data available</div>
               )}
             </Card>
 
             {/* Pie Chart */}
             <Card className="p-6" hover={false}>
-              <h3 className="font-bold text-lg text-gov-navy mb-6">Set-Aside Distribution</h3>
+              <h3 className="font-bold text-lg text-foreground mb-6">Set-Aside Distribution</h3>
               {data.setAsideDistribution && data.setAsideDistribution.length > 0 ? (
                 <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
@@ -408,13 +408,13 @@ export default function ContractDataExplorer() {
                       ))}
                     </Pie>
                     <Tooltip
-                      contentStyle={{ background: "rgba(15, 23, 42, 0.95)", border: "none", borderRadius: "8px", color: "#fff" }}
+                      contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))", borderRadius: "var(--radius)", color: "hsl(var(--foreground))" }}
                       formatter={(value: number) => [usd(value), "Value"]}
                     />
                   </PieChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="h-64 flex items-center justify-center text-slate-500">No set-aside data available</div>
+                <div className="h-64 flex items-center justify-center text-muted-foreground">No set-aside data available</div>
               )}
             </Card>
           </div>
@@ -423,27 +423,27 @@ export default function ContractDataExplorer() {
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Top Agencies */}
             <Card className="overflow-hidden" hover={false}>
-              <div className="bg-slate-50 border-b border-slate-200 px-6 py-4">
+              <div className="bg-secondary border-b border-border px-6 py-4">
                 <div className="flex items-center gap-3">
-                  <Building2 size={18} className="text-gov-blue" />
-                  <h3 className="font-bold text-gov-navy">Top 10 Agencies</h3>
+                  <Building2 size={18} className="text-primary" />
+                  <h3 className="font-bold text-foreground">Top 10 Agencies</h3>
                 </div>
               </div>
               <div className="overflow-auto max-h-96">
                 <table className="w-full">
-                  <thead className="sticky top-0 bg-white border-b-2 border-slate-200">
+                  <thead className="sticky top-0 bg-background border-b-2 border-border">
                     <tr>
-                      <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-600">Agency</th>
-                      <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-600">Value</th>
-                      <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-600">Awards</th>
+                      <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Agency</th>
+                      <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Value</th>
+                      <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Awards</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data.topAgencies.map((agency, idx) => (
-                      <tr key={`${agency.name}-${idx}`} className="border-b border-slate-100 hover:bg-slate-50 transition">
-                        <td className="px-6 py-4 text-sm text-slate-700">{agency.name || 'Unknown'}</td>
-                        <td className="px-6 py-4 text-sm font-semibold text-right text-gov-blue">{usd(agency.value)}</td>
-                        <td className="px-6 py-4 text-sm text-right text-slate-600">{formatCount(agency.count)}</td>
+                      <tr key={`${agency.name}-${idx}`} className="border-b border-border hover:bg-secondary/80 transition">
+                        <td className="px-6 py-4 text-sm text-foreground">{agency.name || 'Unknown'}</td>
+                        <td className="px-6 py-4 text-sm font-semibold text-right text-primary">{usd(agency.value)}</td>
+                        <td className="px-6 py-4 text-sm text-right text-muted-foreground">{formatCount(agency.count)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -453,32 +453,32 @@ export default function ContractDataExplorer() {
 
             {/* Top Contractors */}
             <Card className="overflow-hidden" hover={false}>
-              <div className="bg-slate-50 border-b border-slate-200 px-6 py-4">
+              <div className="bg-secondary border-b border-border px-6 py-4">
                 <div className="flex items-center gap-3">
-                  <Users size={18} className="text-gov-blue" />
-                  <h3 className="font-bold text-gov-navy">Top 10 Contractors</h3>
+                  <Users size={18} className="text-primary" />
+                  <h3 className="font-bold text-foreground">Top 10 Contractors</h3>
                 </div>
               </div>
               <div className="overflow-auto max-h-96">
                 <table className="w-full">
-                  <thead className="sticky top-0 bg-white border-b-2 border-slate-200">
+                  <thead className="sticky top-0 bg-background border-b-2 border-border">
                     <tr>
-                      <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-600">Contractor</th>
-                      <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-600">Value</th>
-                      <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-600">Awards</th>
+                      <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Contractor</th>
+                      <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Value</th>
+                      <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Awards</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data.topContractors.map((contractor, idx) => (
-                      <tr key={`${contractor.name}-${idx}`} className="border-b border-slate-100 hover:bg-slate-50 transition">
-                        <td className="px-6 py-4 text-sm text-slate-700">
+                      <tr key={`${contractor.name}-${idx}`} className="border-b border-border hover:bg-secondary/80 transition">
+                        <td className="px-6 py-4 text-sm text-foreground">
                           {contractor.name || 'Unknown'}
                           {contractor.is_small && (
-                            <span className="ml-2 inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-semibold text-green-700">Small</span>
+                            <span className="ml-2 inline-flex items-center rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-semibold text-green-500">Small</span>
                           )}
                         </td>
-                        <td className="px-6 py-4 text-sm font-semibold text-right text-gov-blue">{usd(contractor.value)}</td>
-                        <td className="px-6 py-4 text-sm text-right text-slate-600">{formatCount(contractor.count)}</td>
+                        <td className="px-6 py-4 text-sm font-semibold text-right text-primary">{usd(contractor.value)}</td>
+                        <td className="px-6 py-4 text-sm text-right text-muted-foreground">{formatCount(contractor.count)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -492,11 +492,11 @@ export default function ContractDataExplorer() {
       {/* Empty State */}
       {!hasSearched && (
         <Card className="p-12 text-center" hover={false}>
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gov-blue/10 text-gov-blue mx-auto">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary mx-auto">
             <Search size={32} />
           </div>
-          <h3 className="mt-6 text-xl font-bold text-gov-navy">Ready to explore contract data?</h3>
-          <p className="mt-2 text-slate-600 max-w-md mx-auto">
+          <h3 className="mt-6 text-xl font-bold text-foreground">Ready to explore contract data?</h3>
+          <p className="mt-2 text-muted-foreground max-w-md mx-auto">
             Use the filters above to search federal contract awards by NAICS code, state, set-aside type, or keyword.
           </p>
         </Card>
