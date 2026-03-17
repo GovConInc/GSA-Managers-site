@@ -104,3 +104,14 @@
   }
 
 }
+
+@layer utilities {
+  .bg-grid {
+    background-image: linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .input-field {
+    @apply mt-2 block w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-sm transition placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10;
+  }
+}

@@ -58,8 +58,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: [""DM Serif Display"", "Georgia", "serif"],
-        sans: [""DM Sans"", "system-ui", "sans-serif"],
+        display: ['"DM Serif Display"', "Georgia", "serif"],
+        sans: ['"DM Sans"', "system-ui", "sans-serif"],
       },
       boxShadow: {
         soft: "0 4px 20px -4px rgba(10, 22, 40, 0.12)",

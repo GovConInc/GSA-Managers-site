@@ -13,8 +13,9 @@ export default function Contact() {
     company: "",
     email: "",
     phone: "",
+    cage: "",
     interest: "General Inquiry",
-    message: "",
+    bestTime: "Anytime",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
@@ -32,7 +33,6 @@ export default function Contact() {
     setSuccess(null);
     
     try {
-      // Assuming submitContact API is updated or can handle the new structure
       const r = await submitContact(formData);
       setSuccess("Your message has been sent successfully! We'll be in touch within 24 hours.");
       setFormData({
@@ -40,8 +40,9 @@ export default function Contact() {
         company: "",
         email: "",
         phone: "",
+        cage: "",
         interest: "General Inquiry",
-        message: "",
+        bestTime: "Anytime",
       });
     } catch (e: any) {
       setError(e?.message ?? "Failed to send message. Please try again or email us directly.");
@@ -104,20 +105,31 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="interest" className="block text-sm font-semibold text-slate-700">Primary Interest</label>
-                  <select id="interest" name="interest" value={formData.interest} onChange={handleInputChange} className="input-field">
-                    <option>General Inquiry</option>
-                    <option>FCP Baseline Package</option>
-                    <option>GSA Schedule Management</option>
-                    <option>Compliance & Certifications</option>
-                    <option>Proposal Writing</option>
-                  </select>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="cage" className="block text-sm font-semibold text-slate-700">CAGE Code (Optional)</label>
+                    <input id="cage" name="cage" type="text" value={formData.cage} onChange={handleInputChange} className="input-field" placeholder="e.g. 1A2B3" maxLength={5} />
+                  </div>
+                  <div>
+                    <label htmlFor="interest" className="block text-sm font-semibold text-slate-700">Primary Interest</label>
+                    <select id="interest" name="interest" value={formData.interest} onChange={handleInputChange} className="input-field">
+                      <option>General Inquiry</option>
+                      <option>FCP Baseline Package</option>
+                      <option>GSA Schedule Management</option>
+                      <option>Compliance & Certifications</option>
+                      <option>Proposal Writing</option>
+                    </select>
+                  </div>
                 </div>
                 
                 <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-slate-700">Message *</label>
-                    <textarea id="message" name="message" value={formData.message} onChange={handleInputChange} required rows={4} className="input-field" placeholder="Tell us about your goals..."></textarea>
+                    <label htmlFor="bestTime" className="block text-sm font-semibold text-slate-700">Best Time to Contact</label>
+                    <select id="bestTime" name="bestTime" value={formData.bestTime} onChange={handleInputChange} className="input-field">
+                      <option>Anytime</option>
+                      <option>Morning (8am-12pm)</option>
+                      <option>Afternoon (12pm-5pm)</option>
+                      <option>Evening (5pm-8pm)</option>
+                    </select>
                 </div>
 
                 {error && <div className="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700">{error}</div>}
