@@ -135,7 +135,7 @@ export default function Contact() {
               <Card className="p-6" hover>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600/10 text-blue-600"><Phone size={24} /></div>
-                  <h3 className="text-lg font-bold text-slate-900">Direct Contact</h4>
+                  <h3 className="text-lg font-bold text-slate-900">Direct Contact</h3>
                 </div>
                 <div className="space-y-3">
                   <a href={`tel:${BRAND.phone}`} className="flex items-center gap-3 text-slate-600 hover:text-blue-600 transition group">
