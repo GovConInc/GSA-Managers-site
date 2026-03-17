@@ -176,7 +176,6 @@ export default function Home() {
           The FCP Baseline Package simplifies the complex GSA application process into a clear, managed timeline. We do the heavy lifting so you can focus on your business.
         </p>
         <div className="relative">
-          {/* Decorative line */}
           <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2">
             <motion.div 
               className="h-full bg-blue-600"
@@ -199,12 +198,16 @@ export default function Home() {
                 className="relative z-10 text-center"
               >
                 <div className="flex items-center justify-center mb-6">
-                  <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center ring-8 ring-slate-50 relative">
+                  <motion.div 
+                    className="w-20 h-20 rounded-full bg-white flex items-center justify-center ring-8 ring-slate-50 relative"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-blue-600 text-white font-bold text-xs">
                       STEP {idx + 1}
                     </div>
                     <step.icon size={32} className="text-blue-600" />
-                  </div>
+                  </motion.div>
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">
                   {step.title}

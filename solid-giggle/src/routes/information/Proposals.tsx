@@ -1,179 +1,172 @@
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, FileText, CheckCircle, AlertTriangle } from "lucide-react";
+import { ArrowRight, FileText, CheckCircle, AlertTriangle, Users, Award } from "lucide-react";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LinkButton } from "../../components/Button";
 import { LINKS } from "../../lib/constants";
+import { motion } from "framer-motion";
 
 const colorTeams = [
-  { name: "Blue Team", phase: "Strategy & Outline", color: "bg-blue-600", desc: "Reviews outline, win themes, and solution strategy before writing starts." },
-  { name: "Pink Team", phase: "Storyboards", color: "bg-pink-400", desc: "60% draft. Validates writers are on track and the story makes sense." },
-  { name: "Red Team", phase: "Evaluation Sim", color: "bg-red-600", desc: "90% draft. Scored exactly like the government would." },
-  { name: "Gold Team", phase: "Final Polish", color: "bg-yellow-500", desc: "100% complete. White glove check for errors before submission." },
+  { name: "Blue Team", phase: "Strategy & Outline Review", color: "bg-blue-600", desc: "Reviews the proposal outline, win themes, and overall solution strategy before significant writing begins." },
+  { name: "Pink Team", phase: "Mid-Development Review", color: "bg-pink-500", desc: "Occurs at ~60% draft. Validates that writers are on the right track and the proposal's story is coherent and compelling." },
+  { name: "Red Team", phase: "Pre-Submission Evaluation", color: "bg-red-600", desc: "The final dress rehearsal. A team of independent reviewers scores the 90-95% complete proposal exactly as the government evaluator would." },
+  { name: "Gold Team", phase: "Final Polish & Pricing", color: "bg-yellow-500", desc: "Reviews the 100% complete proposal, focusing on pricing, final edits, and ensuring all volumes are consistent before submission." },
+];
+
+const proposalVolumes = [
+    {
+      title: "Volume I: Technical Approach",
+      icon: FileText,
+      items: ["Solution Details", "Management Plan", "Staffing & Key Personnel", "Quality Control Plan", "Past Performance Narratives"],
+    },
+    {
+      title: "Volume II: Pricing",
+      icon: FileText,
+      items: ["Price Schedule / Cost Buildup", "Labor Category Rates", "Rate Justifications", "Basis of Estimate (BOE)"],
+    },
+    {
+      title: "Volume III: Administrative",
+      icon: FileText,
+      items: ["SF-33/1449 Forms", "Representations & Certifications", "Subcontracting Plan", "Insurance Certificates"],
+    },
 ];
 
 export default function InformationProposals() {
   return (
     <>
       <Helmet>
-        <title>Writing Proposals 101 — GSA Managers Inc.</title>
+        <title>Proposal Writing 101 — {LINKS.name}</title>
+        <meta name="description" content="Learn the fundamentals of writing winning government proposals, including the Shipley color team review process and standard proposal structure." />
       </Helmet>
 
-      {/* Hero */}
-      <section className="bg-white">
-        <div className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
-          <div className="max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-wider text-gov-blue">Information</p>
-            <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-gov-navy sm:text-5xl">
-              Writing Proposals 101
+      {/* ===== HERO ===== */}
+      <Section>
+        <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-wider text-blue-600">Information Hub</p>
+            <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+              Proposal Writing 101
             </h1>
-            <p className="mt-6 text-lg text-slate-600 leading-relaxed">
-              Winning proposals aren't just well-written — they're compliant and structured. 
-              Learn the Shipley method that professional proposal teams use.
+            <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-600 leading-relaxed">
+              Winning proposals are not just well-written—they are compliant, responsive, and strategically structured. Learn the professional frameworks, like the Shipley color team reviews, that turn good bids into contract awards.
             </p>
-          </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Color Teams */}
-      <section className="bg-slate-50 py-16">
-        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
-          <p className="text-sm font-bold uppercase tracking-wider text-gov-blue">The Shipley Method</p>
-          <h2 className="mt-3 font-display text-2xl font-bold text-gov-navy">Color Team Reviews</h2>
-          <p className="mt-4 text-slate-600 max-w-2xl">
-            The Shipley method uses "Color Teams" to review proposals at specific milestones. 
-            Each review catches issues before they become rejection-worthy problems.
-          </p>
+      {/* ===== COLOR TEAMS ===== */}
+      <Section className="bg-slate-50">
+        <div className="text-center mb-12">
+            <h2 className="font-display text-3xl font-bold text-slate-900">
+                The Shipley Color Team Review Process
+            </h2>
+            <p className="mt-4 mx-auto max-w-2xl text-slate-600">
+                The Shipley method is the industry standard for developing complex proposals. It uses a series of "Color Team" reviews at key milestones to identify and fix issues early, dramatically increasing your probability of winning.
+            </p>
+        </div>
           
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {colorTeams.map((team) => (
-              <Card key={team.name} className={`p-6 border-l-4 ${team.color.replace('bg-', 'border-')}`} hover={false}>
-                <div className={`inline-block h-3 w-3 rounded-full ${team.color}`} />
-                <h3 className="mt-3 font-bold text-gov-navy">{team.name}</h3>
-                <p className="text-xs text-slate-500 mt-1">{team.phase}</p>
-                <p className="mt-3 text-sm text-slate-600">{team.desc}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+        <div className="relative">
+            {/* Timeline Line */}
+            <div className="hidden lg:block absolute top-8 left-0 w-full h-1 bg-slate-200"></div>
 
-      {/* Proposal Structure */}
-      <Section title="Standard Proposal Structure" kicker="Volumes">
-        <div className="grid gap-6 lg:grid-cols-3">
-          {[
-            {
-              title: "Volume I: Technical",
-              items: ["Technical Approach", "Management Plan", "Staffing Plan", "Quality Control", "Past Performance"],
-            },
-            {
-              title: "Volume II: Pricing",
-              items: ["Price Schedule", "Cost Breakdown", "Labor Categories", "Rate Justification", "Basis of Estimate"],
-            },
-            {
-              title: "Volume III: Administrative",
-              items: ["Cover Letter", "Reps & Certs", "Insurance Certs", "Subcontracting Plan", "Required Forms"],
-            },
-          ].map((vol) => (
-            <Card key={vol.title} className="p-6" hover={false}>
-              <h3 className="font-bold text-gov-navy">{vol.title}</h3>
-              <ul className="mt-4 space-y-2">
-                {vol.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-slate-600">
-                    <CheckCircle size={14} className="text-gov-green" />
-                    {item}
-                  </li>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                {colorTeams.map((team, idx) => (
+                <motion.div
+                    key={team.name}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1, duration: 0.6 }}
+                    className="relative"
+                >
+                    <div className="flex items-center mb-4">
+                        <div className={`w-16 h-16 rounded-full ${team.color} border-8 border-slate-50 flex items-center justify-center`}>
+                            <span className="text-white font-bold">{idx + 1}</span>
+                        </div>
+                        <div className="ml-4">
+                            <h3 className="font-bold text-lg text-slate-900">{team.name}</h3>
+                            <p className="text-sm font-semibold text-slate-500">{team.phase}</p>
+                        </div>
+                    </div>
+                    <p className="text-sm text-slate-600">{team.desc}</p>
+                </motion.div>
                 ))}
-              </ul>
-            </Card>
+            </div>
+        </div>
+      </Section>
+
+      {/* ===== PROPOSAL STRUCTURE ===== */}
+      <Section title="Standard Proposal Structure" kicker="The Three Volumes">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {proposalVolumes.map((vol, idx) => (
+            <motion.div
+                key={vol.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+            >
+                <Card className="p-6 h-full" hover>
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600/10 text-blue-600">
+                            <vol.icon size={24} />
+                        </div>
+                        <h3 className="font-bold text-slate-900 text-lg">{vol.title}</h3>
+                    </div>
+                    <ul className="mt-4 space-y-2">
+                        {vol.items.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-sm text-slate-700">
+                            <CheckCircle size={16} className="text-green-500 shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                        </li>
+                        ))}
+                    </ul>
+                </Card>
+            </motion.div>
           ))}
         </div>
       </Section>
 
-      {/* Common Mistakes */}
-      <section className="bg-gov-crimson/5 py-16">
-        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
-          <div className="flex items-center gap-3">
-            <AlertTriangle className="h-6 w-6 text-gov-crimson" />
-            <h2 className="font-display text-2xl font-bold text-gov-navy">Common Mistakes</h2>
-          </div>
-          
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { mistake: "Non-Compliance", desc: "Missing required sections or exceeding page limits" },
-              { mistake: "Generic Content", desc: "Copy-paste from other proposals without customization" },
-              { mistake: "Weak Past Performance", desc: "Using irrelevant or poorly documented references" },
-              { mistake: "Price Mistakes", desc: "Math errors or unrealistic pricing" },
-              { mistake: "Late Submission", desc: "Missing the deadline by even one minute" },
-              { mistake: "No Proofreading", desc: "Typos, inconsistent formatting, wrong names" },
-            ].map((item) => (
-              <Card key={item.mistake} className="p-5 border-gov-crimson/20" hover={false}>
-                <h3 className="font-semibold text-gov-crimson">{item.mistake}</h3>
-                <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
-              </Card>
+      {/* ===== COMMON MISTAKES ===== */}
+      <Section title="Avoid These Common Mistakes" kicker="Critical Errors" className="bg-red-500/5">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {([
+              { mistake: "Non-Compliance", desc: "Ignoring formatting rules, missing required sections, or exceeding page limits. This is the #1 reason for instant disqualification." },
+              { mistake: "Generic 'Boilerplate' Content", desc: "Using recycled content that doesn't directly address the customer's specific problems and evaluation criteria." },
+              { mistake: "Weak or Irrelevant Past Performance", desc: "Submitting past projects that don't align with the scope of work, proving you can't do the job." },
+              { mistake: "Pricing Errors", desc: "Simple math errors, failing to follow pricing templates, or submitting unrealistic numbers that show a lack of understanding." },
+              { mistake: "Late Submission", desc: "Missing the deadline by one second is the same as not submitting at all. There are no extensions." },
+              { mistake: "No Independent Review", desc: "Failing to have a fresh set of eyes (like a Red Team) review the proposal for errors and clarity before submission." },
+            ]).map((item, idx) => (
+              <motion.div
+                key={item.mistake}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                <Card className="p-5 border-red-200 bg-white h-full" hover>
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100 text-red-600 shrink-0">
+                            <AlertTriangle size={16}/>
+                        </div>
+                        <h3 className="font-semibold text-red-800">{item.mistake}</h3>
+                    </div>
+                    <p className="text-sm text-slate-600">{item.desc}</p>
+                </Card>
+              </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Past Performance */}
-      <Section title="Past Performance Documentation" kicker="Critical Asset">
-        <div className="grid gap-8 lg:grid-cols-2">
-          <div>
-            <p className="text-slate-600">
-              Many RFPs require Past Performance Questionnaires (PPQs). Even if they don't, 
-              you should have these on file. Send them to your top clients before you need them.
-            </p>
-            
-            <div className="mt-6 space-y-3">
-              <h3 className="font-semibold text-gov-navy">PPQ Should Include:</h3>
-              <ul className="space-y-2">
-                {[
-                  "Contract number and value",
-                  "Period of performance",
-                  "Customer point of contact",
-                  "Performance ratings (1-5 scale)",
-                  "Narrative description",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-slate-700">
-                    <FileText size={14} className="text-gov-blue" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
-          <Card className="p-6 bg-gov-navy text-white" hover={false}>
-            <h3 className="font-bold text-lg">Need a Red Team Review?</h3>
-            <p className="mt-3 text-slate-300">
-              You can't proofread your own work. Our team provides independent Red Team 
-              reviews to score your proposal before you submit.
-            </p>
-            <a 
-              href={LINKS.booking}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-gov-navy transition hover:bg-slate-100"
-            >
-              Book a Review
-              <ArrowRight size={16} />
-            </a>
-          </Card>
         </div>
       </Section>
 
-      {/* CTA */}
+      {/* ===== CTA ===== */}
       <Section title="Need Professional Proposal Support?" kicker="Our Services" dark>
         <Card className="p-8 bg-white/5 border-white/10" hover={false}>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h3 className="font-display text-2xl font-bold text-white">
-                We write proposals that win
+                We Write Proposals That Win.
               </h3>
               <p className="mt-3 text-slate-300 max-w-xl">
-                From compliance matrices to final production, our team handles every step 
-                of the proposal process.
+                Our team provides end-to-end proposal management, from creating compliant outlines and writing technical volumes to conducting Red Team reviews and ensuring a perfect, on-time submission.
               </p>
             </div>
             <LinkButton 
