@@ -809,494 +809,137 @@ const getColorClasses = (color: string) => ({
 // ============================================
 
 export default function Programs() {
-  const [expandedProgram, setExpandedProgram] = useState<string | null>(null);
-  const [expandedC, setExpandedC] = useState<string | null>(null);
-  const comparisonRef = useRef<HTMLDivElement>(null);
-  const programsRef = useRef<HTMLDivElement>(null);
-  const fiveCsRef = useRef<HTMLDivElement>(null);
+  const [activeProgram, setActiveProgram] = useState<string>('growth');
 
-  const scrollToComparison = () => comparisonRef.current?.scrollIntoView({ behavior: 'smooth' });
-  const scrollToPrograms = () => programsRef.current?.scrollIntoView({ behavior: 'smooth' });
-  const scrollToFiveCs = () => fiveCsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const selectedProgram = marketingPrograms.find(p => p.id === activeProgram);
 
   return (
     <>
       <Helmet>
-        <title>Federal Contractor Programs — GSA Managers Inc.</title>
-        <meta name="description" content="Win federal contracts with our proven 5 C's methodology. FedStart, Growth, and Prime programs plus GSA Schedule services." />
+        <title>Federal Contractor Programs — {LINKS.name}</title>
+        <meta name="description" content="Win federal contracts with our FedStart, Growth, and Prime programs. Built on our proven 5C methodology, we provide everything from compliance to capture." />
       </Helmet>
 
-      {/* HERO */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-rose-500/10 rounded-full blur-[120px]" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-sm text-white/80 mb-6">
-              <Sparkles size={16} className="text-amber-400" />
-              Federal Contractor Programs
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Everything You Need to
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
-                Win Federal Contracts
-              </span>
+      {/* ===== HERO ===== */}
+      <Section>
+        <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-wider text-blue-600">Our Programs</p>
+            <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+              From Compliant to Competitive to Prime.
             </h1>
-
-            <p className="mt-6 text-xl text-slate-300 leading-relaxed">
-              Built on our proven 5 C's methodology: Compliance, Concept, Capture, Compete, and Continue. Three programs with clear deliverables and guaranteed timelines.
+            <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-600 leading-relaxed">
+              We've packaged our proven 5C Methodology into three distinct programs. Whether you're just starting, ready to scale, or aiming to become a prime contractor, we have a clear, deliverable-based path for your success.
             </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <button onClick={scrollToFiveCs} className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition">
-                The 5 C's <ArrowDown size={18} />
-              </button>
-              <button onClick={scrollToPrograms} className="px-6 py-3 bg-white/10 border border-white/20 text-white rounded-lg hover:bg-white/20 transition">
-                View Programs
-              </button>
-              <button onClick={scrollToComparison} className="px-6 py-3 text-white/70 hover:text-white transition">
-                Compare All →
-              </button>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {stats.map((stat) => {
-              const Icon = stat.icon;
-              return (
-                <div key={stat.label} className="p-5 rounded-xl bg-white/5 border border-white/10">
-                  <Icon size={20} className="text-amber-400 mb-2" />
-                  <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-sm text-slate-400">{stat.label}</div>
-                </div>
-              );
-            })}
-          </div>
         </div>
-      </section>
-
-      {/* THE 5 C's METHODOLOGY */}
-      <section ref={fiveCsRef} className="py-20 lg:py-28 bg-white scroll-mt-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 text-sm text-slate-700 font-medium mb-6">
-              <Layers size={16} />
-              Our Proven Framework
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-900">The 5 C's of Federal Contracting</h2>
-            <p className="mt-6 text-xl text-slate-600 max-w-3xl mx-auto">
-              Every successful government contractor masters these five disciplines. Our programs are structured around this proven methodology.
-            </p>
-          </div>
-
-          {/* Process Flow - Visual */}
-          <div className="relative py-8 mb-16">
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-rose-500 to-purple-500 -translate-y-1/2" />
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
-              {processSteps.map((step) => {
-                const colors = getColorClasses(step.color);
-                return (
-                  <div key={step.step} className="flex flex-col items-center text-center">
-                    <div className={cn("w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mb-3 relative z-10 shadow-lg bg-gradient-to-br", colors.gradient)}>
-                      {step.step}
-                    </div>
-                    <h4 className="font-bold text-slate-900">{step.title}</h4>
-                    <p className="text-sm text-slate-500">{step.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* 5 C's Expandable Cards */}
-          <div className="space-y-4">
-            {fiveCsData.map((c) => {
-              const Icon = c.icon;
-              const colors = getColorClasses(c.color);
-              const isExpanded = expandedC === c.number;
-              
-              return (
-                <div key={c.number} className={cn("rounded-2xl border-2 transition-all overflow-hidden", colors.border, isExpanded ? "shadow-lg" : "")}>
-                  {/* Header - Always Visible */}
-                  <button
-                    onClick={() => setExpandedC(isExpanded ? null : c.number)}
-                    className="w-full p-6 flex items-center gap-6 text-left hover:bg-slate-50 transition"
-                  >
-                    <div className={cn("w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0 bg-gradient-to-br", colors.gradient)}>
-                      <Icon size={28} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-3">
-                        <span className={cn("text-sm font-bold px-2 py-0.5 rounded", colors.bgLight, colors.text)}>C{c.number}</span>
-                        <h3 className="text-xl font-bold text-slate-900">{c.name}</h3>
-                        <span className="text-slate-500">—</span>
-                        <span className={cn("font-medium", colors.text)}>{c.tagline}</span>
-                      </div>
-                      <p className="text-slate-600 mt-1">{c.description}</p>
-                    </div>
-                    <ChevronDown size={24} className={cn("text-slate-400 shrink-0 transition-transform", isExpanded && "rotate-180")} />
-                  </button>
-
-                  {/* Expanded Content */}
-                  {isExpanded && (
-                    <div className={cn("px-6 pb-6 border-t", colors.border)}>
-                      <div className="pt-6 grid lg:grid-cols-2 gap-8">
-                        {/* What It Means */}
-                        <div>
-                          <h4 className="font-bold text-slate-900 mb-3">What It Means</h4>
-                          <p className="text-slate-600 mb-6">{c.whatItMeans}</p>
-                          
-                          <div className={cn("p-4 rounded-xl", colors.bgLight)}>
-                            <h5 className={cn("font-bold mb-2", colors.text)}>Outcome</h5>
-                            <p className="text-slate-700">{c.outcome}</p>
-                          </div>
-                        </div>
-
-                        {/* Elements */}
-                        <div>
-                          <h4 className="font-bold text-slate-900 mb-3">Key Elements</h4>
-                          <div className="space-y-3">
-                            {c.elements.map((el, i) => (
-                              <div key={i} className="flex items-start gap-3">
-                                <Check size={18} className={cn("shrink-0 mt-0.5", colors.text)} />
-                                <div>
-                                  <span className="font-medium text-slate-900">{el.name}</span>
-                                  <p className="text-sm text-slate-500">{el.desc}</p>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* MARKETING PROGRAMS */}
-      <section ref={programsRef} className="py-20 lg:py-28 bg-slate-50 scroll-mt-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900">Marketing Programs</h2>
-            <p className="mt-4 text-lg text-slate-600">Choose your level of support — upgrade anytime with full credit applied</p>
-          </div>
-
-          {/* Program Cards */}
-          <div className="space-y-8">
-            {marketingPrograms.map((program) => {
-              const Icon = program.icon;
-              const isExpanded = expandedProgram === program.id;
-              
-              return (
-                <div 
-                  key={program.id}
-                  className={cn(
-                    "rounded-3xl border-2 bg-white transition-all overflow-hidden",
-                    program.popular ? "border-rose-300 shadow-xl" : "border-slate-200",
-                  )}
-                >
-                  {program.popular && (
-                    <div className="bg-rose-600 text-white text-center py-2 text-sm font-bold">
-                      Most Popular — Best Value for Active Pursuit
-                    </div>
-                  )}
-                  
-                  <div className="p-8">
-                    {/* Header Row */}
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6">
-                      <div className="flex items-center gap-5">
-                        <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center text-white bg-gradient-to-br", program.gradient)}>
-                          <Icon size={32} />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl font-bold text-slate-900">{program.name}</h3>
-                          <p className={cn("font-medium", program.text)}>{program.tagline}</p>
-                          <p className="text-sm text-slate-500 mt-1">{program.idealFor}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-6">
-                        <div className="text-right">
-                          <div className="text-4xl font-bold text-slate-900">${program.price.toLocaleString()}</div>
-                          <div className="text-slate-500">{program.duration}</div>
-                        </div>
-                        <LinkButton href="/register" className={cn("px-6 py-3 text-white bg-gradient-to-r whitespace-nowrap", program.gradient)}>
-                          Get Started
-                        </LinkButton>
-                      </div>
-                    </div>
-
-                    {/* Overview */}
-                    <p className="text-slate-600 mb-6">{program.overview}</p>
-
-                    {/* Key Metrics */}
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                      {program.keyMetrics.map((m, i) => (
-                        <div key={i} className={cn("p-4 rounded-xl text-center", program.bgLight)}>
-                          <div className={cn("text-2xl font-bold", program.text)}>{m.metric}</div>
-                          <div className="text-sm text-slate-600">{m.label}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* 5 C's Coverage */}
-                    <div className="flex flex-wrap items-center gap-2 mb-6">
-                      <span className="text-sm text-slate-500 mr-2">Covers:</span>
-                      {program.csCoverage.map((coverage, i) => (
-                        <span key={i} className={cn("px-3 py-1 rounded-full text-sm font-medium", program.bgLight, program.text)}>
-                          {coverage.c}: {coverage.level}
-                        </span>
-                      ))}
-                    </div>
-
-                    {program.includesPrevious && (
-                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium mb-6">
-                        <CheckCheck size={18} />
-                        Includes everything in {program.includesPrevious}
-                      </div>
-                    )}
-
-                    {/* Expand/Collapse Button */}
-                    <button
-                      onClick={() => setExpandedProgram(isExpanded ? null : program.id)}
-                      className={cn(
-                        "w-full py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2",
-                        isExpanded ? "bg-slate-100 text-slate-700" : cn(program.bgLight, program.text)
-                      )}
-                    >
-                      {isExpanded ? 'Hide Details' : 'View Full Details & Deliverables'}
-                      <ChevronDown size={20} className={cn("transition-transform", isExpanded && "rotate-180")} />
-                    </button>
-
-                    {/* Expanded Content */}
-                    {isExpanded && (
-                      <div className="mt-8 pt-8 border-t border-slate-200">
-                        {/* Deliverables by Category */}
-                        <div className="space-y-10">
-                          {program.deliverables.map((category, catIdx) => {
-                            const CatIcon = category.icon;
-                            return (
-                              <div key={catIdx}>
-                                <div className="flex items-center gap-3 mb-6">
-                                  <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center", program.bgLight, program.text)}>
-                                    <CatIcon size={22} />
-                                  </div>
-                                  <h4 className="text-xl font-bold text-slate-900">{category.category}</h4>
-                                </div>
-
-                                <div className="grid lg:grid-cols-2 gap-6">
-                                  {category.items.map((item, itemIdx) => (
-                                    <div key={itemIdx} className={cn("p-6 rounded-2xl border", program.border)}>
-                                      <div className="flex items-start justify-between mb-3">
-                                        <h5 className="font-bold text-slate-900">{item.name}</h5>
-                                        <span className={cn("text-xs font-medium px-2 py-1 rounded shrink-0 ml-2", program.bgLight, program.text)}>
-                                          {item.timeline}
-                                        </span>
-                                      </div>
-                                      <p className="text-slate-600 text-sm mb-4">{item.description}</p>
-                                      <ul className="space-y-2">
-                                        {item.details.map((detail, dIdx) => (
-                                          <li key={dIdx} className="flex items-start gap-2 text-sm text-slate-700">
-                                            <Check size={14} className={cn("shrink-0 mt-0.5", program.text)} />
-                                            {detail}
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-
-                        {/* Timeline */}
-                        <div className="mt-10 pt-10 border-t border-slate-200">
-                          <h4 className="text-xl font-bold text-slate-900 mb-6">{program.duration} Timeline</h4>
-                          <div className="grid lg:grid-cols-5 gap-4">
-                            {program.timeline.map((t, i) => (
-                              <div key={i} className={cn("p-4 rounded-xl", program.bgLight)}>
-                                <div className={cn("text-sm font-bold mb-1", program.text)}>{t.phase}</div>
-                                <div className="font-bold text-slate-900 mb-2">{t.title}</div>
-                                <ul className="space-y-1">
-                                  {t.items.map((item, j) => (
-                                    <li key={j} className="text-xs text-slate-600 flex items-start gap-1">
-                                      <Check size={10} className={cn("shrink-0 mt-0.5", program.text)} />
-                                      {item}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Not Included */}
-                        {program.notIncluded && program.notIncluded.length > 0 && (
-                          <div className="mt-8 p-6 bg-slate-50 rounded-xl">
-                            <h5 className="font-bold text-slate-700 mb-3">Not Included (Available in Higher Tiers)</h5>
-                            <div className="flex flex-wrap gap-2">
-                              {program.notIncluded.map((item, i) => (
-                                <span key={i} className="px-3 py-1 bg-slate-200 text-slate-600 rounded-full text-sm">
-                                  {item}
-                                </span>
-                              ))}
+      </Section>
+      
+      {/* ===== PROGRAMS OVERVIEW ===== */}
+      <Section className="bg-slate-50">
+        <div className="grid gap-8 lg:grid-cols-3">
+            {marketingPrograms.map((program, idx) => (
+              <motion.div
+                key={program.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                <Card className={`p-8 h-full flex flex-col relative overflow-hidden ${program.id === activeProgram ? `border-2 border-blue-500 ring-4 ring-blue-500/10` : ''}`} hover>
+                    {program.popular && <div className="absolute top-0 right-8 -mr-4 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-b-lg">MOST POPULAR</div>}
+                    <div className="flex-grow">
+                        <div className="flex items-center gap-3">
+                            <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${program.bgLight} ${program.text}`}>
+                                <program.icon size={24}/>
                             </div>
-                          </div>
-                        )}
-
-                        {/* Upgrade Note */}
-                        {program.upgradeNote && (
-                          <div className="mt-6 p-4 bg-emerald-50 rounded-xl flex items-center gap-3">
-                            <TrendingUp size={20} className="text-emerald-600" />
-                            <span className="text-emerald-700 font-medium">{program.upgradeNote}</span>
-                          </div>
-                        )}
-
-                        {/* CTA */}
-                        <div className="mt-8 flex justify-center">
-                          <LinkButton href="/register" className={cn("px-10 py-4 text-lg text-white bg-gradient-to-r", program.gradient)}>
-                            Start {program.name} — ${program.price.toLocaleString()}
-                            <ArrowRight size={20} className="ml-2" />
-                          </LinkButton>
+                            <h3 className={`font-display text-2xl font-bold ${program.text}`}>{program.name}</h3>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* COMPARISON TABLE */}
-      <section ref={comparisonRef} className="py-20 lg:py-28 bg-slate-900 scroll-mt-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">Complete Comparison</h2>
-            <p className="mt-4 text-slate-400">Every feature across all programs, organized by the 5 C's</p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr>
-                  <th className="p-4 text-left text-slate-400">Feature</th>
-                  {marketingPrograms.map((p) => (
-                    <th key={p.id} className="p-4 text-center">
-                      <span className={cn("inline-block px-3 py-1 rounded-full text-sm font-bold", p.bgLight, p.text)}>{p.name}</span>
-                      <div className="text-white font-bold text-xl mt-2">${p.price.toLocaleString()}</div>
-                      <div className="text-slate-500 text-sm">{p.duration}</div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonFeatures.map((cat) => (
-                  <>
-                    <tr key={cat.category}>
-                      <td colSpan={4} className="pt-8 pb-3 text-xs font-bold uppercase tracking-wide text-amber-400">{cat.category}</td>
-                    </tr>
-                    {cat.features.map((f, i) => (
-                      <tr key={f.name} className={i % 2 === 0 ? 'bg-slate-800/50' : ''}>
-                        <td className="p-3 text-slate-300">{f.name}</td>
-                        {['fedstart', 'growth', 'prime'].map((pid) => {
-                          const val = f[pid as keyof typeof f];
-                          return (
-                            <td key={pid} className="p-3 text-center">
-                              {val === true ? <Check size={18} className="mx-auto text-emerald-400" /> : val === false ? <span className="text-slate-600">—</span> : <span className="text-white">{val}</span>}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    ))}
-                  </>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            {marketingPrograms.map((p) => (
-              <LinkButton key={p.id} href="/register" className={cn("px-6 py-3 text-white bg-gradient-to-r", p.gradient)}>
-                Start {p.name}
-              </LinkButton>
+                        <p className="mt-4 text-slate-600">{program.overview}</p>
+                    </div>
+                    <div className="mt-6">
+                        <div className="text-sm text-slate-500">{program.duration} Program</div>
+                        <div className="font-display text-4xl font-bold text-slate-900">${program.price.toLocaleString()}</div>
+                        <p className="text-xs text-slate-500 mt-1">{program.idealFor}</p>
+                        <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="w-full mt-6" variant={program.id === activeProgram ? 'primary' : 'secondary'}>
+                            Get Started with {program.name}
+                        </LinkButton>
+                    </div>
+                </Card>
+              </motion.div>
             ))}
-          </div>
         </div>
-      </section>
+      </Section>
 
-      {/* GSA SERVICES */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 text-sm text-slate-700 font-medium mb-4">
-              <FileText size={16} />
-              Contract Vehicles
+      {/* ===== COMPARISON TABLE ===== */}
+      <Section title="Compare Our Programs" kicker="What's Included?">
+          <Card className="overflow-x-auto" hover={false}>
+              <table className="w-full min-w-[800px] text-sm">
+                  <thead>
+                      <tr className="border-b border-slate-200">
+                          <th className="text-left font-bold text-slate-900 p-4">Feature</th>
+                          {marketingPrograms.map(p => (
+                              <th key={p.id} className={`p-4 text-center ${p.text}`}>
+                                  <div className="font-display text-lg">{p.name}</div>
+                                  <div className="text-xs font-normal">${p.price.toLocaleString()}</div>
+                              </th>
+                          ))}
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {comparisonFeatures.map(cat => (
+                          <>
+                            <tr key={cat.category}>
+                                <td colSpan={4} className="p-4 bg-slate-50 font-bold text-slate-800">{cat.category}</td>
+                            </tr>
+                            {cat.features.map(feat => (
+                                <tr key={feat.name} className="border-b border-slate-100">
+                                    <td className="p-4 font-medium text-slate-700">{feat.name}</td>
+                                    <td className="p-4 text-center">{renderCheck(feat.fedstart)}</td>
+                                    <td className="p-4 text-center">{renderCheck(feat.growth)}</td>
+                                    <td className="p-4 text-center">{renderCheck(feat.prime)}</td>
+                                </tr>
+                            ))}
+                          </>
+                      ))}
+                  </tbody>
+              </table>
+          </Card>
+      </Section>
+
+       {/* ===== CTA ===== */}
+      <Section title="Ready to Build Your Federal Practice?" kicker="Get Started" dark>
+        <Card className="p-8 bg-white/5 border-white/10" hover={false}>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h3 className="font-display text-2xl font-bold text-white">
+                Let's Build Your Roadmap.
+              </h3>
+              <p className="mt-3 text-slate-300 max-w-xl">
+                Schedule a free strategy call today. We'll assess your current stage in the 5C framework and recommend the right program to help you achieve your federal contracting goals.
+              </p>
             </div>
-            <h2 className="text-3xl font-bold text-slate-900">GSA Schedule Services</h2>
-            <p className="mt-2 text-slate-600">Separate from marketing programs — add to any tier</p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {gsaServices.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div key={s.id} className="p-8 rounded-2xl border-2 border-slate-200 hover:border-slate-300 hover:shadow-lg transition">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center">
-                      <Icon size={24} className="text-slate-700" />
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-slate-900">${s.price.toLocaleString()}</div>
-                      <div className="text-sm text-slate-500">{s.timeline}</div>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900">{s.name}</h3>
-                  <p className="mt-2 text-slate-600 mb-4">{s.description}</p>
-                  <ul className="space-y-2 mb-6">
-                    {s.features.map((f, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-slate-700">
-                        <Check size={14} className="text-emerald-500" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <LinkButton href="/register" className="w-full justify-center bg-slate-900 text-white">
-                    Get Started
-                  </LinkButton>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white">Ready to Get Started?</h2>
-          <p className="mt-4 text-xl text-slate-300">Book a free consultation or call us directly.</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <LinkButton href={LINKS.booking} target="_blank" className="px-8 py-4 bg-white text-slate-900 hover:bg-slate-100">
-              Book Free Consultation
+            <LinkButton 
+              href={LINKS.booking} 
+              target="_blank" 
+              rel="noreferrer" 
+              size="lg"
+              className="shrink-0"
+            >
+              Book My Strategy Call
+              <ArrowRight size={18} className="ml-2" />
             </LinkButton>
-            <a href="tel:8136650308" className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white hover:bg-white/10 rounded-lg font-semibold transition">
-              <Phone size={18} />
-              (813) 665-0308
-            </a>
           </div>
-        </div>
-      </section>
+        </Card>
+      </Section>
     </>
   );
+}
+
+function renderCheck(value: boolean | string) {
+    if (typeof value === 'boolean' && value) {
+        return <CheckCircle size={20} className="text-green-500 mx-auto"/>
+    }
+    if (typeof value === 'string') {
+        return <span className="text-xs font-semibold bg-slate-100 px-2 py-1 rounded-full">{value}</span>
+    }
+    return <span className="text-slate-300">-</span>
 }
