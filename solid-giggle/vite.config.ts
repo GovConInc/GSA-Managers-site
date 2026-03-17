@@ -7,8 +7,15 @@ export default defineConfig({
     sourcemap: false,
     outDir: "dist",
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+    chunkSizeWarningLimit: 1000,
   },
   server: {
     historyApiFallback: true,
   },
+  publicDir: "public",
 });

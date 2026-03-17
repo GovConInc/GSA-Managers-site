@@ -325,7 +325,7 @@ export default function Home() {
       </Section>
       
       {/* ===== FINAL CTA ===== */}
-      <Section title="Ready to Win Government Contracts?" kicker="Take the Next Step" dark>
+      <Section title="Ready to Win Government Contracts?" kicker="Take the Next Step">
         <Card
           className="p-8 lg:p-12 bg-white/10 border-white/20"
           hover={false}
@@ -380,7 +380,7 @@ export default function Home() {
                   <ArrowRight size={18} className="ml-2" />
                 </LinkButton>
                 <p className="mt-4 text-xs text-slate-500">
-                  {BRAND.name} — a DBA of {BRAND.legal}
+                  {BRAND.name} — a DBA of {BRAND.founder}
                 </p>
               </Card>
             </div>

@@ -1,0 +1,15 @@
+name = "gsa-managers-site"
+type = "javascript"
+
+[env.production]
+routes = [
+  { pattern = "gsamanagers.com", zone_name = "gsamanagers.com" }
+]
+
+[build]
+command = "npm run build"
+cwd = "."
+watch_paths = ["src/**/*.tsx", "src/**/*.ts", "public/**/*"]
+
+[build.upload]
+format = "service-worker"
