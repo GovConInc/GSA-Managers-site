@@ -14,6 +14,9 @@ import {
 import { cn } from "../../components/cn";
 import { LinkButton } from "../../components/Button";
 import { LINKS } from "../../lib/constants";
+import Section from "../../components/Section";
+import Card from "../../components/Card";
+import { motion } from "framer-motion";
 
 // ============================================
 // THE 5 C's - CORRECT VERSION

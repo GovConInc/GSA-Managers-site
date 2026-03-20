@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Section from "../../components/Section";
 import ContractDataExplorer from "../../components/ContractDataExplorer";
+import { LINKS } from "../../lib/constants";
 
 export default function SearchContracts() {
   return (

@@ -17,6 +17,9 @@ import {
   DollarSign,
   Star,
   BadgeCheck,
+  Layers,
+  RefreshCw,
+  BookOpen,
 } from "lucide-react";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
