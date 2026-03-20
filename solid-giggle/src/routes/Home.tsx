@@ -7,11 +7,9 @@ import {
   Shield,
   FileText,
   Rocket,
-  TrendingUp,
-  Database,
-  Zap,
   Award,
   Users,
+  DollarSign,
 } from "lucide-react";
 import Section from "../components/Section";
 import Card from "../components/Card";
@@ -21,31 +19,31 @@ import { BRAND, LINKS } from "../lib/constants";
 const coreServices = [
   {
     icon: Rocket,
-    title: "FCP Baseline Package",
-    subtitle: "For New Contractors",
+    title: "New Contractor Special",
+    subtitle: "$999 FCP Baseline Upload & Training",
     description:
-      "Our all-in-one package to get you on the GSA Schedule. We handle the entire application, FCP catalog setup, and negotiations until you are awarded.",
-    guarantee: "Guaranteed Award or Full Refund",
-    link: "/services/gsa",
-    cta: "Start Your Application",
+      "Get your GSA Schedule journey started for just $999. We upload your catalog to the FAS Catalog Platform (FCP) and provide live training so you can manage your contract with confidence. Perfect for new contractors who want a simple, affordable entry point.",
+    guarantee: "Flat $999, No Surprises",
+    link: "/enroll",
+    cta: "Get Started for $999",
   },
   {
-    icon: Database,
-    title: "FCP Catalog Management",
-    subtitle: "For Existing Contractors",
+    icon: Award,
+    title: "GSA Schedule Submissions",
+    subtitle: "Full-Service Application & Award",
     description:
-      "Full management of your catalog on the FAS Catalog Platform (FCP). We handle migrations, updates, and modifications to ensure you stay compliant and visible.",
-    guarantee: "Guaranteed Compliance",
+      "We handle your entire GSA MAS application from start to finish: eligibility, document prep, eOffer, negotiations, and award. No guesswork, no wasted time—just a proven path to getting on schedule.",
+    guarantee: "Award or No Fee",
     link: "/services/gsa",
-    cta: "Manage My Catalog",
+    cta: "See Submission Service",
   },
   {
     icon: Shield,
-    title: "Ongoing Compliance",
-    subtitle: "Retained Monthly Support",
+    title: "GSA MAS Contract Management",
+    subtitle: "Ongoing Compliance & Support",
     description:
-      "Comprehensive support to manage your GSA contract, including sales reporting, modifications, and proactive compliance monitoring.",
-    guarantee: "Full Compliance Coverage",
+      "Stay compliant and maximize your contract value. We manage modifications, quarterly sales reporting, mass mods, and keep your catalog up to date so you never risk suspension.",
+    guarantee: "Full Compliance, Zero Stress",
     link: "/services/gsa",
     cta: "Learn About Management",
   },
@@ -54,42 +52,42 @@ const coreServices = [
 const howItWorks = [
   {
     number: "01",
-    title: "Strategy Call & Document Review",
+    title: "Free Strategy Call",
     description:
-      "We start with a free consultation to assess your eligibility and create a customized roadmap. Then, we guide you through gathering all necessary documents.",
+      "We start with a no-pressure consultation to map your business to the right GSA path. You'll get honest advice and a clear action plan—no sales pitch.",
     icon: Users,
   },
   {
     number: "02",
-    title: "Application & FCP Catalog Build",
+    title: "Choose Your Service",
     description:
-      "Our team prepares and perfects your GSA application and builds your product/service catalog on the new FCP, ensuring 100% compliance before submission.",
-    icon: FileText,
+      "Pick the level of support you need: the $999 FCP Baseline Upload, full-service GSA submission, or ongoing contract management. We make it easy to get exactly what you need, nothing you don't.",
+    icon: DollarSign,
   },
   {
     number: "03",
-    title: "Negotiation & GSA Award",
+    title: "Get Results, Not Excuses",
     description:
-      "We handle all communications and negotiations with your GSA Contracting Officer. We don't stop until you receive your official GSA Schedule award.",
-    icon: Award,
+      "We do the work, keep you informed, and deliver on our promises. You get a compliant, revenue-ready GSA contract—fast.",
+    icon: CheckCircle2,
   },
 ];
 
 const trustMetrics = [
   {
-    stat: "99%",
-    label: "GSA Approval Rate",
-    detail: "Our meticulous process ensures your application is right the first time.",
+    stat: "$999",
+    label: "New Contractor Special",
+    detail: "The most affordable, risk-free way to get started on the GSA Schedule.",
   },
   {
-    stat: "15+",
-    label: "Years of GSA Experience",
-    detail: "We've successfully navigated every change in GSA policy.",
+    stat: "100%",
+    label: "Award or No Fee",
+    detail: "If we can't get you awarded, you don't pay for full-service submissions.",
   },
   {
-    stat: "$640M",
-    label: "Largest Contract Win",
-    detail: "We have experience supporting high-value, complex federal proposals.",
+    stat: "Zero",
+    label: "Long-Term Contracts Required",
+    detail: "No lock-in. Get the help you need, when you need it.",
   },
 ];
 
@@ -104,173 +102,173 @@ export default function Home() {
           name="description"
           content="The FCP Baseline Package is the fastest way to get on the GSA Schedule. We offer guaranteed GSA applications, FCP catalog management, and ongoing compliance."
         />
-        <link rel="canonical" href="https://gsamanagers.com/" />
-      </Helmet>
+        export default function Home() {
+          return (
+            <>
+              <Helmet>
+                <title>
+                  {BRAND.name} — GSA Schedule Experts: Submissions, Management, and $999 New Contractor Special
+                </title>
+                <meta
+                  name="description"
+                  content="GSA Schedule submissions, contract management, and the $999 FCP Baseline Upload & Training. Get expert help, transparent pricing, and real results."
+                />
+                <link rel="canonical" href="https://gsamanagers.com/" />
+              </Helmet>
 
-      {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden bg-white border-b border-slate-100">
-        <div className="absolute inset-0 bg-grid opacity-20" />
+              {/* ===== HERO ===== */}
+              <section className="relative overflow-hidden bg-white border-b border-slate-100">
+                <div className="absolute inset-0 bg-grid opacity-20" />
 
-        <div className="relative mx-auto w-full max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1.5 text-sm font-bold text-slate-700 border border-slate-200">
-              <Zap size={14} className="text-amber-500" />
-              The New Standard for GSA Schedule Awards
-            </div>
-
-            <h1 className="mt-6 font-display text-5xl font-black tracking-tight text-slate-900 sm:text-6xl lg:text-7xl leading-tight">
-              Unlock Federal Sales with the FCP Baseline Package
-            </h1>
-
-            <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-600 leading-relaxed">
-              Stop guessing. Our guaranteed, all-in-one package handles your entire GSA application and the new FCP catalog setup. Get awarded faster and start selling to the world's largest customer.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
-              <LinkButton
-                href={LINKS.booking}
-                target="_blank"
-                rel="noreferrer"
-                size="lg"
-              >
-                Book Your Free Strategy Call
-                <ArrowRight size={18} className="ml-2" />
-              </LinkButton>
-              <LinkButton href="#how-it-works" variant="secondary" size="lg">
-                See How It Works
-              </LinkButton>
-            </div>
-            
-            <div className="mt-10 flex items-center justify-center gap-x-8 gap-y-4 flex-wrap">
-                <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
-                    <CheckCircle2 size={16} className="text-emerald-500"/>
-                    Guaranteed GSA Award
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
-                    <CheckCircle2 size={16} className="text-emerald-500"/>
-                    FCP Catalog Included
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
-                    <CheckCircle2 size={16} className="text-emerald-500"/>
-                    Expert-Led Process
-                </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ===== HOW IT WORKS ===== */}
-      <Section
-        id="how-it-works"
-        title="Your 3-Step Path to a GSA Schedule Award"
-        kicker="How It Works"
-        center
-      >
-        <p className="text-center text-slate-600 max-w-3xl mx-auto mb-16">
-          The FCP Baseline Package simplifies the complex GSA application process into a clear, managed timeline. We do the heavy lifting so you can focus on your business.
-        </p>
-        <div className="relative">
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2">
-            <motion.div 
-              className="h-full bg-blue-600"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 1, ease: 'easeInOut' }}
-              style={{ transformOrigin: 'left' }}
-            />
-          </div>
-
-          <div className="relative grid gap-12 lg:grid-cols-3">
-            {howItWorks.map((step, idx) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2, duration: 0.6 }}
-                className="relative z-10 text-center"
-              >
-                <div className="flex items-center justify-center mb-6">
-                  <motion.div 
-                    className="w-20 h-20 rounded-full bg-white flex items-center justify-center ring-8 ring-slate-50 relative"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
+                <div className="relative mx-auto w-full max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center"
                   >
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-blue-600 text-white font-bold text-xs">
-                      STEP {idx + 1}
+                    <h1 className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+                      GSA Schedules. No Confusion. No Overpriced Fees.
+                    </h1>
+                    <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-600 leading-relaxed">
+                      Get on the GSA Schedule, stay compliant, and grow your federal business. Choose the service you need—no upsells, no pressure, just honest expert help.
+                    </p>
+                    <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
+                      <LinkButton href="/enroll" size="lg">
+                        Get Started for $999
+                        <ArrowRight size={18} className="ml-2" />
+                      </LinkButton>
+                      <LinkButton href="/services/gsa" variant="secondary" size="lg">
+                        See Full-Service Submission
+                      </LinkButton>
                     </div>
-                    <step.icon size={32} className="text-blue-600" />
                   </motion.div>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-slate-600">
-                  {step.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-      
-      {/* ===== TRUST & SOCIAL PROOF ===== */}
-      <section className="bg-slate-900 py-20 text-white">
-        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <p className="text-sm font-bold uppercase tracking-wider text-amber-400">
-                        A Partner You Can Trust
-                    </p>
-                    <h2 className="mt-4 font-display text-4xl font-bold text-white">
-                        We Don't Just Submit Applications. We Secure Awards.
-                    </h2>
-                    <p className="mt-6 text-lg text-slate-300 leading-relaxed">
-                        Getting a GSA Schedule is a strategic investment. Our expertise de-risks the entire process, saving you time and positioning you for long-term federal success. We've been the trusted partner for hundreds of businesses, from small startups to large enterprises.
-                    </p>
-                     <div className="mt-8">
-                        <LinkButton
-                            href="/about"
-                            variant="secondary"
-                        >
-                            More About Our Experience
-                        </LinkButton>
-                    </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    {trustMetrics.slice(0, 2).map((metric) => (
-                        <motion.div
-                          key={metric.label}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.1, duration: 0.5 }}
-                        >
-                            <Card className="p-6 bg-white/10 border-white/20 h-full">
-                                <div className="text-amber-400 font-display text-6xl font-bold">{metric.stat}</div>
-                                <h3 className="mt-2 text-xl font-bold text-white">{metric.label}</h3>
-                                <p className="mt-2 text-slate-300">{metric.detail}</p>
-                            </Card>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </div>
-      </section>
+              </section>
 
-      {/* ===== CORE SERVICES ===== */}
-      <Section
-        title="Solutions for Every Stage of Your GSA Journey"
-        kicker="Our Services"
-        center
-      >
-        <p className="text-center text-slate-600 max-w-3xl mx-auto mb-12">
+              {/* ===== CORE SERVICES ===== */}
+              <Section className="bg-slate-50">
+                <div className="text-center mb-12">
+                    <h2 className="font-display text-3xl font-bold text-slate-900">
+                        Our Core Services
+                    </h2>
+                    <p className="mt-4 mx-auto max-w-2xl text-slate-600">
+                        Three clear options. No hidden fees. No long-term contracts. Just results.
+                    </p>
+                </div>
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  {coreServices.map((svc, idx) => (
+                    <motion.div
+                      key={svc.title}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1, duration: 0.6 }}
+                      className="relative"
+                    >
+                      <Card className="p-8 h-full flex flex-col items-start justify-between" hover>
+                        <div>
+                          <div className="flex items-center gap-3 mb-4">
+                            <svc.icon size={28} className="text-blue-600" />
+                            <span className="text-xs font-bold uppercase tracking-widest text-blue-400">
+                              {svc.subtitle}
+                            </span>
+                          </div>
+                          <h3 className="font-bold text-2xl text-slate-900 mb-2">
+                            {svc.title}
+                          </h3>
+                          <p className="text-slate-600 mb-4">
+                            {svc.description}
+                          </p>
+                        </div>
+                        <div className="mt-4 flex flex-col gap-2 w-full">
+                          <LinkButton href={svc.link} size="md" className="w-full">
+                            {svc.cta}
+                          </LinkButton>
+                          <span className="text-xs text-slate-400 mt-1">{svc.guarantee}</span>
+                        </div>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </Section>
+
+              {/* ===== HOW IT WORKS ===== */}
+              <Section
+                id="how-it-works"
+                title="How It Works"
+                kicker="Simple, Transparent, Effective"
+                center
+              >
+                <p className="text-center text-slate-600 max-w-3xl mx-auto mb-16">
+                  We make the GSA process easy. No jargon, no runaround—just a clear path to results.
+                </p>
+                <div className="relative">
+                  <div className="grid gap-8 md:grid-cols-3">
+                    {howItWorks.map((step, idx) => (
+                      <motion.div
+                        key={step.title}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1, duration: 0.6 }}
+                        className="relative"
+                      >
+                        <Card className="p-8 h-full flex flex-col items-center justify-between text-center" hover>
+                          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
+                            <step.icon size={32} className="text-blue-600" />
+                          </div>
+                          <h4 className="font-bold text-lg text-slate-900 mb-2">
+                            {step.title}
+                          </h4>
+                          <p className="text-slate-600 mb-4">
+                            {step.description}
+                          </p>
+                        </Card>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </Section>
+
+              {/* ===== TRUST METRICS ===== */}
+              <Section className="bg-white">
+                <div className="text-center mb-12">
+                    <h2 className="font-display text-3xl font-bold text-slate-900">
+                        Why Choose GSA Managers?
+                    </h2>
+                    <p className="mt-4 mx-auto max-w-2xl text-slate-600">
+                        We believe in transparency, results, and putting your business first. Here’s what sets us apart.
+                    </p>
+                </div>
+                <div className="grid gap-8 md:grid-cols-3">
+                  {trustMetrics.map((tm, idx) => (
+                    <motion.div
+                      key={tm.label}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1, duration: 0.6 }}
+                      className="relative"
+                    >
+                      <Card className="p-8 h-full flex flex-col items-center justify-between text-center" hover={false}>
+                        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
+                          <span className="text-2xl font-bold text-blue-600">{tm.stat}</span>
+                        </div>
+                        <h4 className="font-bold text-lg text-slate-900 mb-2">
+                          {tm.label}
+                        </h4>
+                        <p className="text-slate-600 mb-4">
+                          {tm.detail}
+                        </p>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </Section>
+            </>
+          );
+        }
           Whether you're aiming for your first federal contract or are an established GSA holder needing expert support, we have a service designed for your specific needs.
         </p>
 

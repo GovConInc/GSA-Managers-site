@@ -10,46 +10,27 @@ import { BRAND, LINKS } from "../lib/constants";
 const values = [
   {
     icon: Target,
-    title: "Results-Driven",
-    description: "Our success is measured by your contract wins, not by the hours we bill.",
+    title: "GSA Focused",
+    description: "We only do GSA Schedules. No distractions, no generic consulting—just deep expertise in what matters to you.",
   },
   {
     icon: Users,
-    title: "True Partnership",
-    description: "We operate as an integrated part of your team, not just as an external vendor.",
+    title: "Personal Service",
+    description: "You work directly with an expert, not a call center or junior staff. Every client gets white-glove support.",
   },
   {
     icon: Award,
-    title: "Uncompromising Excellence",
-    description: "Every document and submission we produce reflects our deep commitment to quality.",
+    title: "Transparent Pricing",
+    description: "No hidden fees, no long-term contracts. You always know exactly what you’re getting and what it costs.",
   },
   {
     icon: Zap,
-    title: "Proactive Speed",
-    description: "We anticipate changes and move quickly to keep you ahead of the curve.",
+    title: "Fast, Reliable Results",
+    description: "We move quickly, communicate clearly, and deliver on our promises. Your time is valuable—we respect it.",
   },
 ];
 
-const team = [
-    {
-        name: "John Doe",
-        title: "Founder & Lead Strategist",
-        avatar: "/avatars/team-1.jpg",
-        bio: "With over 15 years in federal procurement, John has guided hundreds of companies to their first multi-million dollar contracts and specializes in high-stakes GSA Schedule negotiations."
-    },
-    {
-        name: "Jane Smith",
-        title: "Director of Compliance",
-        avatar: "/avatars/team-2.jpg",
-        bio: "Jane is a certified compliance expert who ensures every application and catalog is flawless. She manages our FCP migration team and maintains a 99% approval rate."
-    },
-    {
-        name: "Alex Johnson",
-        title: "Senior Proposal Manager",
-        avatar: "/avatars/team-3.jpg",
-        bio: "Alex has managed over 200 proposal submissions, from small business set-asides to multi-billion dollar IDIQs. His strategic writing has secured over $640M in contract wins."
-    }
-];
+
 
 export default function About() {
   return (
@@ -148,52 +129,45 @@ export default function About() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {team.map((member, idx) => (
                   <motion.div
-                    key={member.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  >
-                    <Card className="p-6 text-center h-full" hover>
-                        <img src={member.avatar} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4 ring-4 ring-slate-100"/>
-                        <h3 className="text-lg font-bold text-slate-900">{member.name}</h3>
-                        <p className="text-sm font-semibold text-blue-600">{member.title}</p>
-                        <p className="mt-3 text-sm text-slate-600">{member.bio}</p>
-                    </Card>
-                  </motion.div>
-              ))}
-          </div>
-      </Section>
-
-      {/* ===== CTA ===== */}
-      <Section dark>
-        <Card
-          className="p-8 lg:p-12 bg-white/10 border-white/20"
-          hover={false}
-        >
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="font-display text-3xl font-bold text-white mb-4">
-                Ready to Work With an Expert Team?
-              </h3>
-              <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                Let's discuss your GSA goals. Schedule a free, no-obligation strategy call to see how our expertise can translate into your federal success.
-              </p>
-            </div>
-            <div className="lg:pl-8">
-              <Card className="p-8 bg-white text-center">
-                <h4 className="text-2xl font-bold text-slate-900 mb-3">
-                  Schedule Your Free Strategy Call
-                </h4>
-                <p className="text-slate-600 mb-6">
-                  Get a clear action plan from a team that knows how to win.
-                </p>
-                <LinkButton
-                  href={LINKS.booking}
-                  target="_blank"
-                  rel="noreferrer"
-                  size="lg"
-                  className="w-full"
+                    <Section>
+                      <div className="max-w-3xl mx-auto text-center">
+                        <p className="text-sm font-bold uppercase tracking-wider text-blue-600">About GSA Managers Inc.</p>
+                        <h2 className="mt-3 font-display text-3xl font-bold text-slate-900">
+                          GSA Schedules. No Confusion. No Overpriced Fees.
+                        </h2>
+                        <div className="mt-6 space-y-4 text-slate-600">
+                          <p>
+                            We exist for one reason: to make GSA Schedules simple, affordable, and effective for small businesses. No generic consulting, no bait-and-switch—just real expertise and honest support.
+                          </p>
+                          <p>
+                            Our three core services are:
+                          </p>
+                          <ul className="list-disc list-inside text-left mx-auto max-w-xl">
+                            <li><b>GSA Schedule Submissions:</b> Full-service application, eOffer, and award. Award or no fee.</li>
+                            <li><b>GSA MAS Contract Management:</b> Ongoing compliance, modifications, and reporting. No long-term contracts.</li>
+                            <li><b>New Contractor Special ($999):</b> FCP Baseline Upload & Training. The most affordable way to get started.</li>
+                          </ul>
+                          <p>
+                            You work directly with an expert. We move fast, communicate clearly, and deliver on our promises—every time.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="max-w-2xl mx-auto mt-12">
+                        <Card className="p-8" hover>
+                          <h3 className="font-bold text-slate-900 text-lg mb-2">Why GSA Managers?</h3>
+                          <ul className="space-y-3 text-slate-600">
+                            {values.map((v) => (
+                              <li key={v.title} className="flex items-start gap-3">
+                                <v.icon size={20} className="mt-1 text-blue-600" />
+                                <div>
+                                  <span className="font-semibold text-slate-900">{v.title}:</span> {v.description}
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </Card>
+                      </div>
+                    </Section>
                 >
                   Book Now
                   <ArrowRight size={18} className="ml-2" />

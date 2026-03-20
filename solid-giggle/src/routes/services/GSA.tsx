@@ -230,29 +230,29 @@ const managementBenefits = [
   "Proactive issue identification before audits",
   "Option renewals never missed",
   "Dedicated account manager on your side"
-];
-
-// ============================================
-// FCP DATA
-// ============================================
-
-const fcpConsequences = [
-  "Your catalog disappears from GSA Advantage",
-  "Agencies can't find your products/services",
-  "You can't respond to RFQs through eBuy",
-  "Your GSA Schedule becomes effectively useless"
-];
-
-const fcpBenefits = [
-  { title: "7-Day Guarantee", desc: "Complete migration in one week or it's free", icon: Zap },
-  { title: "Data Validation", desc: "Ensure 100% accuracy before upload", icon: CheckCircle },
-  { title: "System Training", desc: "Learn the new FCP workflow hands-on", icon: BookOpen },
-  { title: "Ongoing Support", desc: "We're here when you need catalog updates", icon: Shield }
-];
-
-// ============================================
-// FAQ DATA
-// ============================================
+          title: "Contract Modifications",
+          icon: RefreshCw,
+          description: "Administrative and technical contract changes",
+          tasks: [
+            "Address changes",
+            "POC updates",
+            "Scope expansions",
+            "Option year exercises"
+          ],
+          benefit: "Never miss an option renewal deadline"
+        },
+        {
+          title: "Compliance Audits",
+          icon: Shield,
+          description: "Proactive compliance monitoring and issue resolution",
+          tasks: [
+            "TDR monitoring",
+            "Price reduction compliance",
+            "Audit preparation support",
+            "Corrective action plans"
+          ],
+          benefit: "Prevent contract cancellation and penalties"
+        }
 
 const faqs = [
   {
@@ -320,6 +320,42 @@ export default function ServicesGSA() {
         <div className="relative mx-auto w-full max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <motion.div
+      // ============================================
+      // GSA SERVICES: SUBMISSION, MANAGEMENT, $999 SPECIAL
+      // ============================================
+
+      const services = [
+        {
+          icon: Rocket,
+          title: "New Contractor Special",
+          subtitle: "$999 FCP Baseline Upload & Training",
+          description:
+            "Get started for just $999. We upload your catalog to the FAS Catalog Platform (FCP) and provide live training so you can manage your contract with confidence. Perfect for new contractors who want a simple, affordable entry point.",
+          guarantee: "Flat $999, No Surprises",
+          link: "/enroll",
+          cta: "Get Started for $999",
+        },
+        {
+          icon: Award,
+          title: "GSA Schedule Submissions",
+          subtitle: "Full-Service Application & Award",
+          description:
+            "We handle your entire GSA MAS application from start to finish: eligibility, document prep, eOffer, negotiations, and award. No guesswork, no wasted time—just a proven path to getting on schedule.",
+          guarantee: "Award or No Fee",
+          link: "/contact",
+          cta: "Request Submission Help",
+        },
+        {
+          icon: Shield,
+          title: "GSA MAS Contract Management",
+          subtitle: "Ongoing Compliance & Support",
+          description:
+            "Stay compliant and maximize your contract value. We manage modifications, quarterly sales reporting, mass mods, and keep your catalog up to date so you never risk suspension.",
+          guarantee: "Full Compliance, Zero Stress",
+          link: "/contact",
+          cta: "Get Management Support",
+        },
+      ];
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
