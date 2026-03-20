@@ -1,85 +1,41 @@
-import { Helmet } from "react-helmet-async";
-import { ArrowRight } from "lucide-react";
-import Section from "../../components/Section";
-import Card from "../../components/Card";
-import { LinkButton } from "../../components/Button";
-import { BRAND, LINKS } from "../../lib/constants";
-import MethodologyLoop from "../../components/MethodologyLoop";
 
 export default function AboutMethodology() {
   return (
     <>
       <Helmet>
-        <title>Our Methodology — {BRAND.name}</title>
-        <meta 
-            name="description" 
-            content="Explore the 5C Methodology, our proven framework for achieving success in government contracting. From compliance and context to capture, compete, and continuity." 
-        />
+        <title>Our Approach — GSA Managers Inc.</title>
+        <meta name="description" content="How GSA Managers Inc. delivers honest, expert help for GSA Schedule submissions, contract management, and the $999 New Contractor Special." />
       </Helmet>
-
-      {/* ===== HERO ===== */}
-      <Section>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <p className="text-sm font-bold uppercase tracking-wider text-blue-600">Our Proven Framework</p>
-                <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-                The 5C Methodology
-                </h1>
-                <p className="mt-6 text-lg text-slate-600 leading-relaxed">
-                We don't believe in guesswork. Our 5C Methodology is a systematic, battle-tested framework that transforms government contracting from an overwhelming challenge into a repeatable process for success. We guide you through every phase to build a durable federal revenue stream.
-                </p>
-            </div>
-            <div className="lg:pl-8">
-                <Card className="p-8" hover>
-                    <h3 className="font-bold text-slate-900 text-lg">The Core Principle</h3>
-                    <p className="text-slate-600 mt-2">
-                        Most businesses fail because they jump straight to "Compete" (writing proposals) without a foundation. We force discipline by starting with "Compliance" and "Context", ensuring that by the time you compete, you're already positioned to win.
-                    </p>
-                </Card>
-            </div>
+      <Section className="py-16">
+        <div className="mx-auto max-w-3xl px-5">
+          <h1 className="font-display text-4xl font-bold mb-6 text-gov-navy">Our Approach</h1>
+          <p className="text-lg text-slate-700 mb-8">
+            GSA contracting should be simple, honest, and accessible. We focus on three core services to help you succeed:
+          </p>
+          <ul className="list-disc list-inside text-slate-700 space-y-4 mb-8">
+            <li>
+              <span className="font-bold text-gov-navy">$999 FCP Baseline Upload & Training:</span> We upload your catalog to the FAS Catalog Platform and provide live, 1-on-1 training so you can manage your contract with confidence. No hidden fees, no upsells—just a simple, affordable start.
+            </li>
+            <li>
+              <span className="font-bold text-gov-navy">GSA Schedule Submission (Award or No Fee):</span> We handle your entire GSA MAS application from start to finish. If you don’t get awarded, you don’t pay.
+            </li>
+            <li>
+              <span className="font-bold text-gov-navy">GSA MAS Contract Management:</span> Ongoing compliance, modifications, quarterly sales reporting, and catalog updates. No long-term contracts—get help when you need it.
+            </li>
+          </ul>
+          <h2 className="font-display text-2xl font-bold mb-4 text-gov-navy">Our Values</h2>
+          <ol className="list-decimal list-inside text-slate-700 space-y-4">
+            <li>
+              <span className="font-bold text-gov-navy">Clarity:</span> We explain every step, every requirement, and every option. No jargon, no confusion.
+            </li>
+            <li>
+              <span className="font-bold text-gov-navy">Transparency:</span> You always know what you’re paying for, what’s included, and what’s next. No hidden fees, no surprises.
+            </li>
+            <li>
+              <span className="font-bold text-gov-navy">Results:</span> We only succeed when you do—whether that’s getting awarded, staying compliant, or growing your federal sales.
+            </li>
+          </ol>
         </div>
-      </Section>
-
-      {/* ===== METHODOLOGY LOOP ===== */}
-      <MethodologyLoop />
-
-      {/* ===== FINAL CTA ===== */}
-      <Section title="See How the 5C Methodology Applies to You" kicker="Take the Next Step" dark>
-        <Card
-          className="p-8 lg:p-12 bg-white/10 border-white/20"
-          hover={false}
-        >
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="font-display text-3xl font-bold text-white mb-4">
-                Book Your Free Strategy Call
-              </h3>
-              <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                In a free consultation, we'll map your current business to our 5C framework, identify your biggest opportunities for growth, and provide a clear, actionable plan to win more government contracts.
-              </p>
-            </div>
-            <div className="lg:pl-8">
-              <Card className="p-8 bg-white text-center">
-                <h4 className="text-2xl font-bold text-slate-900 mb-3">
-                  Get Your Action Plan
-                </h4>
-                <p className="text-slate-600 mb-6">
-                  15 minutes is all it takes to get a clear roadmap for federal success.
-                </p>
-                <LinkButton
-                  href={LINKS.booking}
-                  target="_blank"
-                  rel="noreferrer"
-                  size="lg"
-                  className="w-full"
-                >
-                  Book Now — It's Free
-                  <ArrowRight size={18} className="ml-2" />
-                </LinkButton>
-              </Card>
-            </div>
-          </div>
-        </Card>
       </Section>
     </>
   );

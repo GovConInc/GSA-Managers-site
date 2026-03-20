@@ -20,186 +20,178 @@ import Card from "../components/Card";
 import { cn } from "../components/cn";
 import { BRAND } from "../lib/constants";
 
-/* ─── PLAN DATA ─── */
+// ENROLL PAGE DATA — $999 SPECIAL, SUBMISSION, MANAGEMENT
 const PLANS = {
   fcp: {
-    label: "One-time project",
-    name: "Catalog Upload + Training",
-    price: 1200,
+    label: "New Contractor Special",
+    name: "$999 FCP Baseline Upload + Training",
+    price: 999,
     note: "billed once",
-    cadence: "One-time — $1,200",
+    cadence: "One-time — $999",
     stripe_mode: "payment" as const,
   },
-  mgmt: {
-    label: "Annual plan",
-    name: "Annual GSA Management",
-    price: 5200,
-    note: "billed annually",
-    cadence: "Annual — $5,200/yr",
-    stripe_mode: "payment" as const,
+  submission: {
+    label: "Full-Service Submission",
+    name: "GSA Schedule Submission",
+    price: 0,
+    note: "Custom quote",
+    cadence: "Award or No Fee",
+    stripe_mode: "contact" as const,
   },
-  monthly: {
-    label: "Monthly plan",
-    name: "Annual GSA Management",
-    price: 495,
-    note: "billed monthly",
-    cadence: "Monthly — $495/mo",
-    stripe_mode: "subscription" as const,
+  management: {
+    label: "Contract Management",
+    name: "GSA MAS Management",
+    price: 0,
+    note: "Custom quote",
+    cadence: "No long-term contract",
+    stripe_mode: "contact" as const,
   },
 } as const;
 
 type PlanKey = keyof typeof PLANS;
 
-/* ─── WORKER URL ─── */
-// TODO: Replace with your deployed Cloudflare Worker URL
-const CHECKOUT_WORKER = "https://gsa-checkout.YOUR_SUBDOMAIN.workers.dev/checkout";
 const CALENDLY_URL = "https://calendar.app.google/EA6JzEhbNTH6AM6S8";
 
 /* ─── SECTION DATA ─── */
-const problems = [
-  "Catalog not uploaded or rejected in FCP — products invisible to federal buyers",
-  "Confusion around modifications — when to file them and how",
-  "Missing sales reporting deadlines — compliance risk every quarter",
-  "Mass mods ignored or improperly accepted — contract integrity at risk",
-  "GSA Advantage catalog outdated or never set up — zero marketplace visibility",
-  "No internal GSA expert — every question requires a call to the CO",
+const deliverables = [
+  {
+    title: "$999 FCP Baseline Upload & Training",
+    desc: "We upload your catalog to the FAS Catalog Platform (FCP) and provide live, 1-on-1 training so you can manage your contract with confidence. No hidden fees, no upsells—just a simple, affordable start.",
+    items: [
+      "Full FCP Catalog Upload",
+      "GSA Advantage! Setup",
+      "1-on-1 FCP Platform Training",
+      "eBuy Portal Walkthrough"
+    ]
+  },
+  {
+    title: "GSA Schedule Submission (Award or No Fee)",
+    desc: "We handle your entire GSA MAS application from start to finish: eligibility, document prep, eOffer, negotiations, and award. If you don't get awarded, you don't pay.",
+    items: [
+      "Eligibility review & roadmap",
+      "Document preparation",
+      "eOffer portal management",
+      "Negotiation & award support"
+    ]
+  },
+  {
+    title: "GSA MAS Contract Management",
+    desc: "Ongoing compliance, modifications, quarterly sales reporting, and catalog updates. No long-term contracts—get help when you need it.",
+    items: [
+      "Quarterly sales reporting",
+      "Mass mod acceptance",
+      "Catalog updates",
+      "CO communications & compliance"
+    ]
+  }
 ];
-
-const risks = [
-  {
-    title: "Missed Mass Modifications",
-    desc: "GSA issues modifications throughout the year. Ignoring them puts your contract terms out of sync — a compliance violation.",
-  },
-  {
-    title: "Catalog Errors Block Sales",
-    desc: "FCP validation errors mean your products never appear on GSA Advantage. Federal buyers can't find or purchase from you.",
-  },
-  {
-    title: "Contract Suspension Risk",
-    desc: "Missed IFF reporting, expired SAM, or unaccepted mods can lead to contract suspension — or cancellation.",
-  },
-];
-
-const fcpDeliverables = [
-  {
-    title: "Full FCP Catalog Upload",
-    desc: "We build and submit your complete product/service catalog to the FAS Catalog Platform. Validation errors fixed before submission.",
-  },
-  {
-    title: "GSA Advantage! Setup",
-    desc: "Your catalog goes live on GSA Advantage so federal agencies can find and purchase from you directly.",
-  },
-  {
-    title: "1-on-1 FCP Platform Training",
-    desc: "Live screen-share — we walk you through FCP so you can manage your catalog and navigate it confidently.",
-  },
-  {
-    title: "eBuy Portal Walkthrough",
-    desc: "Personal training on GSA eBuy — how agencies post RFQs, how to respond, and how to turn small buys into revenue.",
-  },
-  {
     title: "GSA Terminology & Processes",
     desc: "We demystify SINs, mods, refreshes, mass mods, IFF, C&P reporting — everything you need to understand.",
   },
-  {
-    title: "eLibrary & SAM.gov Review",
-    desc: "We walk through what buyers see on your GSA eLibrary profile and SAM.gov — what to optimize and watch for.",
-  },
-];
+  export default function Enroll() {
+    return (
+      <>
+        <Helmet>
+          <title>Get Started — $999 FCP Baseline Upload & Training | GSA Managers Inc.</title>
+          <meta name="description" content="The most affordable way to get on the GSA Schedule. $999 FCP Baseline Upload & Training, plus full-service submission and contract management options." />
+        </Helmet>
 
-const annualDeliverables = [
-  {
-    title: "GSA Modifications",
-    desc: "Major and minor mods handled — new SINs, labor categories, pricing updates, EPA adjustments, and all GSA-initiated changes.",
-  },
-  {
-    title: "FCP Catalog Maintenance",
-    desc: "Ongoing uploads, pricing updates, and product/service changes submitted and approved on your behalf.",
-  },
-  {
-    title: "Sales Reporting",
-    desc: "Monthly and quarterly IFF reporting submitted on time. Full compliance, no missed deadlines.",
-  },
-  {
-    title: "Mass Modifications & Refreshes",
-    desc: "Every GSA refresh reviewed, analyzed, and accepted. No modification ever missed.",
-  },
-  {
-    title: "eBuy & GSA Advantage!",
-    desc: "Both portals kept current, accurate, and optimized for visibility to federal buyers year-round.",
-  },
-  {
-    title: "SAM.gov Renewal",
-    desc: "Annual registration renewed before it ever lapses. No contract risk, no last-minute scrambling.",
-  },
-];
+        {/* HERO */}
+        <section className="bg-gov-navy px-5 py-16 text-center lg:py-20">
+          <div className="mx-auto max-w-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-300">
+              <Zap size={12} />
+              $999 New Contractor Special
+            </div>
+            <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              The Easiest Way to Get on the GSA Schedule
+            </h1>
+            <p className="mt-6 text-lg text-blue-100 leading-relaxed">
+              Start with the $999 FCP Baseline Upload & Training, or request full-service submission or ongoing management. No long-term contracts, no hidden fees—just honest, expert help.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
+              <Button href="#plans" size="lg" className="bg-white text-gov-navy hover:bg-blue-100">
+                Get Started for $999
+                <ArrowRight size={18} className="ml-2" />
+              </Button>
+              <Button href="#contact" variant="secondary" size="lg">
+                Request Full-Service Help
+              </Button>
+            </div>
+          </div>
+        </section>
 
-const steps = [
-  {
-    title: "Secure checkout & confirmation",
-    desc: "Pay via Stripe. You'll receive a receipt immediately and a booking link to schedule your intro meeting.",
-  },
-  {
-    title: "Intake & onboarding email",
-    desc: "We send a short intake form to collect your contract details and catalog data so we can hit the ground running.",
-  },
-  {
-    title: "Catalog data review",
-    desc: "We review your product/service data, pricing structure, and SIN alignment before touching anything in FCP.",
-  },
-  {
-    title: "Upload & validation fixes",
-    desc: "We build your catalog file, submit it to FCP, and clear any validation errors until it's live and approved.",
-  },
-  {
-    title: "Live 1-on-1 training session",
-    desc: "A dedicated walkthrough of every GSA portal — FCP, eBuy, Advantage!, eLibrary, SAM.gov. You'll understand your contract when we're done.",
-  },
-];
+        {/* PLANS */}
+        <section id="plans" className="bg-white py-16">
+          <div className="mx-auto max-w-4xl px-5">
+            <h2 className="font-display text-3xl font-bold text-slate-900 mb-8 text-center">
+              Choose Your GSA Path
+            </h2>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {Object.entries(PLANS).map(([key, plan]) => (
+                <Card key={key} className="p-8 flex flex-col items-start justify-between" hover>
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <CheckCircle size={24} className="text-blue-600" />
+                      <span className="text-xs font-bold uppercase tracking-widest text-blue-400">
+                        {plan.label}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-2xl text-slate-900 mb-2">
+                      {plan.name}
+                    </h3>
+                    <p className="text-slate-600 mb-4">
+                      {plan.cadence}
+                    </p>
+                  </div>
+                  <div className="mt-4 flex flex-col gap-2 w-full">
+                    {plan.stripe_mode === "payment" ? (
+                      <Button size="md" className="w-full bg-gov-navy text-white hover:bg-blue-900">
+                        Get Started for ${plan.price}
+                      </Button>
+                    ) : (
+                      <Button size="md" className="w-full bg-blue-100 text-gov-navy hover:bg-blue-200">
+                        Request Info
+                      </Button>
+                    )}
+                    <span className="text-xs text-slate-400 mt-1">{plan.note}</span>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
 
-const transitionItems = [
-  "Contract modifications when you add SINs, pricing, or labor categories",
-  "Quarterly IFF sales reporting to stay compliant",
-  "Mass modifications from GSA that require review and acceptance",
-  "Ongoing catalog updates on Advantage! and FCP",
-  "SAM.gov annual renewal so your registration never lapses",
-  "5-year option renewal when your contract period comes up",
-];
-
-const fitYes = [
-  "A company that already holds a GSA Schedule",
-  "A new contractor who needs to get your catalog uploaded",
-  "A team without internal GSA expertise managing compliance",
-  "A business that wants its contract compliant and competitive without hiring a full-time person",
-];
-
-const fitNo = [
-  "Don't yet have an awarded GSA Schedule",
-  "Are expecting guaranteed government sales as a result of the service",
-  "Are looking for proposal writing or BD services — that's a separate engagement",
-];
-
-const faqs = [
-  {
-    q: "Do you guarantee government sales?",
-    a: "No. We manage your contract — compliance, catalog, reporting, and modifications. What you do with a healthy, active schedule is up to you. We keep the vehicle running; you drive it.",
-  },
-  {
-    q: "Do you work with services, products, or both?",
-    a: "Both. Whether your schedule covers professional services, products, IT, or a combination — the FCP process and management requirements apply the same way. We handle all of it.",
-  },
-  {
-    q: "How fast are catalog uploads completed?",
-    a: "Typically within 7 business days of receiving your catalog data. The timeline depends on the complexity of your offerings and how quickly validation issues can be resolved.",
-  },
-  {
-    q: "Do we still control our own contract?",
-    a: "Yes — always. We act as your authorized representative and manage the administrative workload on your behalf. You approve anything significant.",
-  },
-  {
-    q: "What portals do you work in?",
-    a: "FAS Catalog Platform (FCP), GSA Advantage!, GSA eBuy, GSA eLibrary, SAM.gov, and the eMod system for modifications. We navigate all of them on your behalf.",
-  },
+        {/* DELIVERABLES */}
+        <section className="bg-slate-50 py-16">
+          <div className="mx-auto max-w-4xl px-5">
+            <h2 className="font-display text-3xl font-bold text-slate-900 mb-8 text-center">
+              What You Get
+            </h2>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {deliverables.map((item, idx) => (
+                <Card key={item.title} className="p-8 flex flex-col items-start justify-between" hover>
+                  <div>
+                    <h3 className="font-bold text-lg text-slate-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-600 mb-4">
+                      {item.desc}
+                    </p>
+                    <ul className="list-disc list-inside text-slate-600 text-sm mt-2">
+                      {item.items.map((it) => (
+                        <li key={it}>{it}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
   {
     q: "Can we upgrade to annual management after the catalog upload?",
     a: "Yes — and many clients do. After the catalog is live and you've gone through the training, you'll have a clear picture of what ongoing management involves. Upgrading is straightforward.",
