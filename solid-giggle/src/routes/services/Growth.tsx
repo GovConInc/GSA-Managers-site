@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { 
-  ArrowRight, CheckCircle, Clock, BarChart3, 
+  ArrowRight, CheckCircle, Clock, BarChart, 
   Calendar, Phone, Mail, Shield, Check, FileText,
   MessageSquare, ChevronDown, ChevronRight,
   Timer, Lightbulb, Star, Users, Target,
@@ -264,7 +264,7 @@ export default function GrowthProgram() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-500/20 text-sm text-rose-200 mb-6 border border-rose-400/30">
-                <BarChart3 size={16} />
+                <BarChart size={16} />
                 Marketing Program
               </div>
 

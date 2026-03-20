@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import {
   FileText, Download, CheckCircle, Building2, User, Mail, Phone,
-  Calendar, DollarSign, ArrowRight, ArrowLeft, Rocket, BarChart3,
+  Calendar, DollarSign, ArrowRight, ArrowLeft, Rocket, BarChart,
   Crown, Shield, Settings, RefreshCw, Sparkles, Eye, Send, Edit3,
   Plus, Trash2, Clock, Target, Layers, Check, AlertCircle
 } from "lucide-react";
@@ -74,7 +74,7 @@ const marketingPrograms = [
     duration: '6 Months',
     price: 6500,
     category: 'program' as const,
-    icon: BarChart3,
+    icon: BarChart,
     color: 'rose',
     popular: true,
     description: 'Everything in FedStart plus Federal Bid Portal access, 2 email marketing campaigns, unlimited RFP reviews, and dedicated capture support.',

@@ -11,7 +11,7 @@ import {
   FileText,
   Zap,
   Users,
-  BarChart3,
+  BarChart,
   RefreshCw,
   BookOpen,
   Settings,

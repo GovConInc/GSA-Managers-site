@@ -172,7 +172,7 @@ const gsaBenefits = [
 const contractManagementServices = [
   {
     title: "Sales Reporting",
-    icon: BarChart3,
+    icon: BarChart,
     description: "Quarterly IFF reporting and contractor sales data submission",
     tasks: [
       "Calculate Industrial Funding Fee (0.75%)",

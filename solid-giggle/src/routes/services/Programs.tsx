@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { 
   ArrowRight, CheckCircle, Clock, Target, Rocket, 
-  Calendar, Phone, Mail, BarChart3, Crown, ChevronDown,
+  Calendar, Phone, Mail, BarChart, Crown, ChevronDown,
   Zap, Shield, Star, TrendingUp, Check, FileText,
   Users, Database, MessageSquare, ClipboardCheck, Award,
   Building2, Briefcase, Globe, Search, PieChart, 
@@ -303,7 +303,7 @@ const marketingPrograms = [
     tagline: 'Scale Your Pipeline',
     duration: '6 Months',
     price: 6500,
-    icon: BarChart3,
+    icon: BarChart,
     gradient: 'from-rose-600 to-rose-800',
     bgLight: 'bg-rose-50',
     text: 'text-rose-600',
