@@ -20,30 +20,38 @@ import Card from "../components/Card";
 import { cn } from "../components/cn";
 import { BRAND } from "../lib/constants";
 
-// ENROLL PAGE DATA — $999 SPECIAL, SUBMISSION, MANAGEMENT
+// ENROLL PAGE DATA
 const PLANS = {
-  fcp: {
-    label: "New Contractor Special",
-    name: "$999 FCP Baseline Upload + Training",
-    price: 999,
+  fcpOnly: {
+    label: "FCP Catalog Baseline Only",
+    name: "FCP Catalog Baseline Upload",
+    price: 500,
     note: "billed once",
-    cadence: "One-time — $999",
+    cadence: "One-time — $500",
+    stripe_mode: "payment" as const,
+  },
+  newVendor: {
+    label: "New Vendor Special",
+    name: "$1,450 New Vendor Special",
+    price: 1450,
+    note: "billed once",
+    cadence: "One-time — $1,450",
     stripe_mode: "payment" as const,
   },
   submission: {
     label: "Full-Service Submission",
     name: "GSA Schedule Submission",
-    price: 0,
-    note: "Custom quote",
-    cadence: "Award or No Fee",
+    price: 4500,
+    note: "Starting at",
+    cadence: "45-Day Guarantee",
     stripe_mode: "contact" as const,
   },
   management: {
     label: "Contract Management",
-    name: "GSA MAS Management",
-    price: 0,
-    note: "Custom quote",
-    cadence: "No long-term contract",
+    name: "Annual GSA Contract Management",
+    price: 6500,
+    note: "billed annually",
+    cadence: "Annual — $6,500",
     stripe_mode: "contact" as const,
   },
 } as const;
@@ -55,153 +63,63 @@ const CALENDLY_URL = "https://calendar.app.google/EA6JzEhbNTH6AM6S8";
 /* ─── SECTION DATA ─── */
 const deliverables = [
   {
-    title: "$999 FCP Baseline Upload & Training",
-    desc: "We upload your catalog to the FAS Catalog Platform (FCP) and provide live, 1-on-1 training so you can manage your contract with confidence. No hidden fees, no upsells—just a simple, affordable start.",
+    title: "$500 FCP Catalog Baseline Only",
+    desc: "Catalog Baseline upload within GSA requirement of 30 days. Includes QA and roadmap & technical consultations.",
+    items: [
+      "FCP Catalog Baseline Upload (30 Days)",
+      "Product Listing & Offer Pricing QA",
+      "Roadmap Consultations",
+      "Technical Consultations"
+    ]
+  },
+  {
+    title: "$1,450 New Vendor Special",
+    desc: "Includes the Catalog Baseline upload within 30 days, specialized 1-on-1 training for all GSA-related websites and processes, and complimentary 90-day contract management.",
     items: [
       "Full FCP Catalog Upload",
-      "GSA Advantage! Setup",
-      "1-on-1 FCP Platform Training",
-      "eBuy Portal Walkthrough"
+      "Specialized 1-1 Training (All GSA Sites)",
+      "Process & Understanding Guide",
+      "90-Day Contract Management (Initiation)"
     ]
   },
   {
-    title: "GSA Schedule Submission (Award or No Fee)",
-    desc: "We handle your entire GSA MAS application from start to finish: eligibility, document prep, eOffer, negotiations, and award. If you don't get awarded, you don't pay.",
+    title: "GSA Schedule Submission ($4,500+)",
+    desc: "Professional GSA MAS Submissions with a 45-day guarantee. Speak to our specialists to see if you qualify.",
     items: [
-      "Eligibility review & roadmap",
-      "Document preparation",
+      "Eligibility review & qualification",
+      "Complete document preparation",
       "eOffer portal management",
-      "Negotiation & award support"
+      "Guaranteed Submission (45 Days)"
     ]
   },
   {
-    title: "GSA MAS Contract Management",
-    desc: "Ongoing compliance, modifications, quarterly sales reporting, and catalog updates. No long-term contracts—get help when you need it.",
+    title: "GSA Contract Management ($6,500/yr)",
+    desc: "Annual support for GSA Contractors including modifications, reporting, SAM registration, and expert guidance.",
     items: [
-      "Quarterly sales reporting",
-      "Mass mod acceptance",
-      "Catalog updates",
-      "CO communications & compliance"
+      "FCP Baseline Upload & Revisions",
+      "Major, Minor & Mass Modifications",
+      "eBuy & Advantage! Management",
+      "Recurring Guidance & Training"
     ]
   }
 ];
-    title: "GSA Terminology & Processes",
-    desc: "We demystify SINs, mods, refreshes, mass mods, IFF, C&P reporting — everything you need to understand.",
+
+/* ─── FAQ DATA ─── */
+const faqs = [
+  {
+    q: "How long does the FCP Baseline Upload take?",
+    a: "We guarantee completion within the GSA required 30 days of receiving your full catalog data."
   },
-  export default function Enroll() {
-    return (
-      <>
-        <Helmet>
-          <title>Get Started — $999 FCP Baseline Upload & Training | GSA Managers Inc.</title>
-          <meta name="description" content="The most affordable way to get on the GSA Schedule. $999 FCP Baseline Upload & Training, plus full-service submission and contract management options." />
-        </Helmet>
-
-        {/* HERO */}
-        <section className="bg-gov-navy px-5 py-16 text-center lg:py-20">
-          <div className="mx-auto max-w-2xl">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-300">
-              <Zap size={12} />
-              $999 New Contractor Special
-            </div>
-            <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              The Easiest Way to Get on the GSA Schedule
-            </h1>
-            <p className="mt-6 text-lg text-blue-100 leading-relaxed">
-              Start with the $999 FCP Baseline Upload & Training, or request full-service submission or ongoing management. No long-term contracts, no hidden fees—just honest, expert help.
-            </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
-              <Button href="#plans" size="lg" className="bg-white text-gov-navy hover:bg-blue-100">
-                Get Started for $999
-                <ArrowRight size={18} className="ml-2" />
-              </Button>
-              <Button href="#contact" variant="secondary" size="lg">
-                Request Full-Service Help
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* PLANS */}
-        <section id="plans" className="bg-white py-16">
-          <div className="mx-auto max-w-4xl px-5">
-            <h2 className="font-display text-3xl font-bold text-slate-900 mb-8 text-center">
-              Choose Your GSA Path
-            </h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {Object.entries(PLANS).map(([key, plan]) => (
-                <Card key={key} className="p-8 flex flex-col items-start justify-between" hover>
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <CheckCircle size={24} className="text-blue-600" />
-                      <span className="text-xs font-bold uppercase tracking-widest text-blue-400">
-                        {plan.label}
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-2xl text-slate-900 mb-2">
-                      {plan.name}
-                    </h3>
-                    <p className="text-slate-600 mb-4">
-                      {plan.cadence}
-                    </p>
-                  </div>
-                  <div className="mt-4 flex flex-col gap-2 w-full">
-                    {plan.stripe_mode === "payment" ? (
-                      <Button size="md" className="w-full bg-gov-navy text-white hover:bg-blue-900">
-                        Get Started for ${plan.price}
-                      </Button>
-                    ) : (
-                      <Button size="md" className="w-full bg-blue-100 text-gov-navy hover:bg-blue-200">
-                        Request Info
-                      </Button>
-                    )}
-                    <span className="text-xs text-slate-400 mt-1">{plan.note}</span>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* DELIVERABLES */}
-        <section className="bg-slate-50 py-16">
-          <div className="mx-auto max-w-4xl px-5">
-            <h2 className="font-display text-3xl font-bold text-slate-900 mb-8 text-center">
-              What You Get
-            </h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {deliverables.map((item, idx) => (
-                <Card key={item.title} className="p-8 flex flex-col items-start justify-between" hover>
-                  <div>
-                    <h3 className="font-bold text-lg text-slate-900 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-600 mb-4">
-                      {item.desc}
-                    </p>
-                    <ul className="list-disc list-inside text-slate-600 text-sm mt-2">
-                      {item.items.map((it) => (
-                        <li key={it}>{it}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-      </>
-    );
-  }
   {
     q: "Can we upgrade to annual management after the catalog upload?",
-    a: "Yes — and many clients do. After the catalog is live and you've gone through the training, you'll have a clear picture of what ongoing management involves. Upgrading is straightforward.",
-  },
+    a: "Yes — and many clients do. After the catalog is live and you've gone through the training, you'll have a clear picture of what ongoing management involves. Upgrading is straightforward."
+  }
 ];
 
 /* ─── MAIN COMPONENT ─── */
 export default function Enroll() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [currentPlan, setCurrentPlan] = useState<PlanKey>("fcp");
+  const [currentPlan, setCurrentPlan] = useState<PlanKey>("fcpOnly");
   const [annualPlan, setAnnualPlan] = useState<"annual" | "monthly">("annual");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -657,7 +575,7 @@ export default function Enroll() {
       </section>
 
       {/* ═══ WHO THIS IS FOR ═══ */}
-      <section className="border-t border-slate-200 bg-slate-50 py-16">
+      <section className="border-t border-slate-200 bg-blue-50 py-16">
         <div className="mx-auto max-w-2xl px-5">
           <p className="text-xs font-bold uppercase tracking-widest text-gov-blue">Is This Right for You?</p>
           <h2 className="mt-3 font-display text-2xl font-black text-gov-navy">Who This Is For</h2>

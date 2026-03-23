@@ -23,7 +23,7 @@ export default function SearchContracts() {
         </div>
       </Section>
 
-      <Section className="bg-slate-50">
+      <Section className="bg-blue-50">
         <ContractDataExplorer />
       </Section>
     </>

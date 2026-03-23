@@ -80,7 +80,7 @@ export default function InformationBids() {
       </Section>
       
       {/* ===== SEARCH SOURCES ===== */}
-      <Section className="bg-slate-50">
+      <Section className="bg-blue-50">
         <div className="text-center mb-12">
             <h2 className="font-display text-3xl font-bold text-slate-900">
                 Where to Find Bids
@@ -169,7 +169,7 @@ export default function InformationBids() {
       </Section>
 
       {/* ===== BID/NO-BID ===== */}
-      <Section title="The Bid / No-Bid Decision" kicker="Strategy is Everything" className="bg-slate-50">
+      <Section title="The Bid / No-Bid Decision" kicker="Strategy is Everything" className="bg-blue-50">
         <Card className="p-8" hover={false}>
           <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
             <div>

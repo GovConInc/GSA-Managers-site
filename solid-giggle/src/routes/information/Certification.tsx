@@ -67,7 +67,7 @@ export default function InformationCertification() {
       </Section>
 
       {/* ===== MARKET OPPORTUNITY ===== */}
-      <Section className="bg-slate-50">
+      <Section className="bg-blue-50">
         <div className="text-center mb-12">
             <h2 className="font-display text-3xl font-bold text-slate-900">
               The Power of Set-Asides: A $160B+ Market
@@ -133,7 +133,7 @@ export default function InformationCertification() {
       </Section>
 
       {/* ===== PROCESS ===== */}
-      <Section title="Our 14-Day Fast-Track Certification" kicker="Accelerated Process" className="bg-slate-50">
+      <Section title="Our 14-Day Fast-Track Certification" kicker="Accelerated Process" className="bg-blue-50">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {([
               { title: "Eligibility Review", desc: "We confirm you qualify and identify the highest-impact certifications for your business.", timeline: "Days 1-2" },

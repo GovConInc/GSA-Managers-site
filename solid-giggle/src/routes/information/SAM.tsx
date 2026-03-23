@@ -34,7 +34,7 @@ export default function InformationSAM() {
       </Section>
 
       {/* ===== REGISTRATION OVERVIEW ===== */}
-      <Section className="bg-slate-50">
+      <Section className="bg-blue-50">
         <div className="text-center mb-12">
             <h2 className="font-display text-3xl font-bold text-slate-900">
                 The Three Pillars of Registration
@@ -101,7 +101,7 @@ export default function InformationSAM() {
       </Section>
 
       {/* ===== DSBS DEEP DIVE ===== */}
-      <Section title="DSBS: Your Small Business Marketing Tool" kicker="Dynamic Small Business Search" className="bg-slate-50">
+      <Section title="DSBS: Your Small Business Marketing Tool" kicker="Dynamic Small Business Search" className="bg-blue-50">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
             <Card className="p-6 order-2 lg:order-1" hover={false}>
                 <h3 className="font-semibold text-slate-800 mb-3">Profile Optimization Checklist</h3>

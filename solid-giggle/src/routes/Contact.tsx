@@ -72,7 +72,7 @@ export default function Contact() {
       </Section>
       
       {/* ===== CONTACT FORM & INFO ===== */}
-      <Section className="bg-slate-50">
+      <Section className="bg-blue-50">
         <div className="grid gap-12 lg:grid-cols-3">
           {/* Form */}
           <div className="lg:col-span-2">
@@ -171,7 +171,7 @@ export default function Contact() {
                   href={LINKS.booking}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-6 w-full bg-white text-blue-600 hover:bg-slate-100"
+                  className="mt-6 w-full bg-white text-brand-blue hover:bg-slate-100"
                 >
                   Book Your Free Call
                   <ArrowRight size={16} className="ml-2"/>

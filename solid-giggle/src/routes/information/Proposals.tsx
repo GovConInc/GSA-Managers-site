@@ -53,7 +53,7 @@ export default function InformationProposals() {
       </Section>
 
       {/* ===== COLOR TEAMS ===== */}
-      <Section className="bg-slate-50">
+      <Section className="bg-blue-50">
         <div className="text-center mb-12">
             <h2 className="font-display text-3xl font-bold text-slate-900">
                 The Shipley Color Team Review Process

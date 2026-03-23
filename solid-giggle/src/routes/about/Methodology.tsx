@@ -4,7 +4,7 @@ export default function AboutMethodology() {
     <>
       <Helmet>
         <title>Our Approach — GSA Managers Inc.</title>
-        <meta name="description" content="How GSA Managers Inc. delivers honest, expert help for GSA Schedule submissions, contract management, and the $999 New Contractor Special." />
+        <meta name="description" content="How GSA Managers Inc. delivers honest, expert help for GSA Schedule submissions, contract management, and the $500 FCP Catalog Baseline Only." />
       </Helmet>
       <Section className="py-16">
         <div className="mx-auto max-w-3xl px-5">
@@ -14,7 +14,7 @@ export default function AboutMethodology() {
           </p>
           <ul className="list-disc list-inside text-slate-700 space-y-4 mb-8">
             <li>
-              <span className="font-bold text-gov-navy">$999 FCP Baseline Upload & Training:</span> We upload your catalog to the FAS Catalog Platform and provide live, 1-on-1 training so you can manage your contract with confidence. No hidden fees, no upsells—just a simple, affordable start.
+              <span className="font-bold text-gov-navy">$500 FCP Catalog Baseline Only:</span> We upload your catalog to the FAS Catalog Platform quickly and affordably. For specialized training and guidance, explore our New Vendor Special.
             </li>
             <li>
               <span className="font-bold text-gov-navy">GSA Schedule Submission (Award or No Fee):</span> We handle your entire GSA MAS application from start to finish. If you don’t get awarded, you don’t pay.

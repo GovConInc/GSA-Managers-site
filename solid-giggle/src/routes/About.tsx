@@ -124,57 +124,19 @@ export default function About() {
         </div>
       </Section>
       
-      {/* ===== TEAM ===== */}
-      <Section title="Meet Our Leadership" kicker="Expert Team">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {team.map((member, idx) => (
-                  <motion.div
-                    <Section>
-                      <div className="max-w-3xl mx-auto text-center">
-                        <p className="text-sm font-bold uppercase tracking-wider text-blue-600">About GSA Managers Inc.</p>
-                        <h2 className="mt-3 font-display text-3xl font-bold text-slate-900">
-                          GSA Schedules. No Confusion. No Overpriced Fees.
-                        </h2>
-                        <div className="mt-6 space-y-4 text-slate-600">
-                          <p>
-                            We exist for one reason: to make GSA Schedules simple, affordable, and effective for small businesses. No generic consulting, no bait-and-switch—just real expertise and honest support.
-                          </p>
-                          <p>
-                            Our three core services are:
-                          </p>
-                          <ul className="list-disc list-inside text-left mx-auto max-w-xl">
-                            <li><b>GSA Schedule Submissions:</b> Full-service application, eOffer, and award. Award or no fee.</li>
-                            <li><b>GSA MAS Contract Management:</b> Ongoing compliance, modifications, and reporting. No long-term contracts.</li>
-                            <li><b>New Contractor Special ($999):</b> FCP Baseline Upload & Training. The most affordable way to get started.</li>
-                          </ul>
-                          <p>
-                            You work directly with an expert. We move fast, communicate clearly, and deliver on our promises—every time.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="max-w-2xl mx-auto mt-12">
-                        <Card className="p-8" hover>
-                          <h3 className="font-bold text-slate-900 text-lg mb-2">Why GSA Managers?</h3>
-                          <ul className="space-y-3 text-slate-600">
-                            {values.map((v) => (
-                              <li key={v.title} className="flex items-start gap-3">
-                                <v.icon size={20} className="mt-1 text-blue-600" />
-                                <div>
-                                  <span className="font-semibold text-slate-900">{v.title}:</span> {v.description}
-                                </div>
-                              </li>
-                            ))}
-                          </ul>
-                        </Card>
-                      </div>
-                    </Section>
-                >
-                  Book Now
-                  <ArrowRight size={18} className="ml-2" />
-                </LinkButton>
-              </Card>
-            </div>
-          </div>
+      {/* ===== FINAL CTA ===== */}
+      <Section title="Ready to Optimize Your Contract?" kicker="Take Action">
+        <Card className="p-8 lg:p-12 bg-gov-navy text-white text-center border-white/20" hover={false}>
+          <h3 className="font-display text-3xl font-bold mb-4">
+            Let's Talk About Your GSA Strategy
+          </h3>
+          <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+            Stop guessing and start winning. We offer straightforward advice and proven results.
+          </p>
+          <LinkButton href={LINKS.booking} size="lg" target="_blank" rel="noreferrer">
+            Schedule a Free Consultation
+            <ArrowRight size={18} className="ml-2" />
+          </LinkButton>
         </Card>
       </Section>
     </>

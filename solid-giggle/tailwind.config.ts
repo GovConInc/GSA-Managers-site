@@ -12,6 +12,9 @@ export default {
     },
     extend: {
       colors: {
+        "brand-dark": "#001f3f",
+        "brand-blue": "#0052cc",
+        "brand-sky": "#66ccff",
         "gov-navy": "#0a1628",
         "gov-crimson": "#111827",
         "gov-blue": "#1e3a5f",

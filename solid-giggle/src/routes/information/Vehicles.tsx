@@ -63,7 +63,7 @@ export default function InformationVehicles() {
       </Section>
       
       {/* ===== WHAT IS A VEHICLE ===== */}
-      <Section className="bg-slate-50">
+      <Section className="bg-blue-50">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
               <h2 className="font-display text-3xl font-bold text-slate-900">
