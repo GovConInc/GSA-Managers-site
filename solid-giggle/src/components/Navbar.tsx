@@ -1,163 +1,67 @@
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { LinkButton } from "./Button";
 import { BRAND, LINKS } from "../lib/constants";
 import { cn } from "./cn";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
-
-type NavItem = { label: string; to: string; children?: NavItem[] };
+import { Menu, X, Phone } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
     setOpen(false);
-    setOpenDropdown(null);
   }, [location]);
 
-  const primary: NavItem[] = useMemo(
-    () => [
-      { label: "Home", to: "/" },
-      {
-        label: "Information",
-        to: "/information",
-        children: [
-          { label: "SAM, DSBS & FEMA Guide", to: "/information/sam-dsbs-fema" },
-          { label: "Certification Data", to: "/information/certification-data" },
-          { label: "Finding Government Bids", to: "/information/finding-bids" },
-          { label: "Writing Proposals 101", to: "/information/writing-proposals" },
-          { label: "Contract Vehicles 101", to: "/information/contract-vehicles" },
-          { label: "Contract Award History", to: "/information/search-contracts" },
-        ],
-      },
-      {
-        label: "Services",
-        to: "/services",
-        children: [
-          { label: "GSA Schedule Services", to: "/services/gsa-contractors" },
-          { label: "Federal Contractor Programs", to: "/services/programs" },
-          { label: "Certifications & Compliance", to: "/services/compliance-capture" },
-          { label: "Proposal Writing That Wins", to: "/services/proposal-writing" },
-        ],
-      },
-      {
-        label: "About Us",
-        to: "/about",
-        children: [
-          { label: "About Us", to: "/about" },
-          { label: "Our Methodology", to: "/about/methodology" },
-        ],
-      },
-      { label: "Contact Us", to: "/contact" },
-    ],
-    []
-  );
-
-  const toggleMobileDropdown = (label: string) => {
-    setOpenDropdown(openDropdown === label ? null : label);
-  };
+  const links = [
+    { label: "Home", to: "/" },
+    { label: "Services", to: "/services/gsa-contractors" },
+    { label: "About", to: "/about" },
+    { label: "Contact", to: "/contact" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-      {/* Top bar */}
-      <div className="bg-secondary/50 border-b border-border">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-2 lg:px-8">
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <a href={`tel:${BRAND.phone}`} className="flex items-center gap-1.5 hover:text-foreground transition">
-              <Phone size={12} />
-              {BRAND.phone}
-            </a>
-            <span className="hidden sm:inline text-border">|</span>
-            <a href={`mailto:${BRAND.email}`} className="hidden sm:block hover:text-foreground transition">
-              {BRAND.email}
-            </a>
-          </div>
-          <div className="text-xs text-muted-foreground">
-            {BRAND.location}
-          </div>
-        </div>
-      </div>
-
-      {/* Main nav */}
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-5 py-4 lg:px-8">
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         {/* Logo */}
-        <NavLink to="/" className="flex items-center group">
+        <NavLink to="/" className="flex items-center">
           <img
             src="/logo.png"
-            alt="GSA Managers Inc."
-            className="h-10 w-auto transition-opacity group-hover:opacity-80"
+            alt={BRAND.name}
+            className="h-10 w-auto"
           />
         </NavLink>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-1 lg:flex">
-          {primary.map((x) => {
-            const isActiveParent = x.children 
-              ? location.pathname.startsWith(x.to) 
-              : location.pathname === x.to;
-            
-            if (x.children) {
-              return (
-                <div key={x.label} className="group relative">
-                  <NavLink
-                    to={x.to}
-                    className={cn(
-                      "flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold rounded-lg transition-all",
-                      isActiveParent 
-                        ? "text-primary" 
-                        : "text-foreground hover:text-primary hover:bg-secondary"
-                    )}
-                  >
-                    {x.label}
-                    <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
-                  </NavLink>
-                  <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                    <div className="w-60 rounded-xl border border-border bg-background p-2 shadow-xl shadow-shadow">
-                      {x.children.map((child) => (
-                        <NavLink
-                          key={child.to}
-                          to={child.to}
-                          className={({ isActive }) =>
-                            cn(
-                              "block rounded-lg px-4 py-2.5 text-sm font-medium transition-all",
-                              isActive
-                                ? "text-primary font-bold bg-secondary"
-                                : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                            )
-                          }
-                        >
-                          {child.label}
-                        </NavLink>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-            return (
-              <NavLink
-                key={x.to}
-                to={x.to}
-                className={({ isActive }) =>
-                  cn(
-                    "px-4 py-2.5 text-sm font-semibold rounded-lg transition-all",
-                    isActive 
-                      ? "text-primary" 
-                      : "text-foreground hover:text-primary hover:bg-secondary"
-                  )
-                }
-                end={x.to === "/"}
-              >
-                {x.label}
-              </NavLink>
-            );
-          })}
+        <nav className="hidden items-center gap-8 lg:flex">
+          {links.map((x) => (
+            <NavLink
+              key={x.to}
+              to={x.to}
+              className={({ isActive }) =>
+                cn(
+                  "text-sm font-medium tracking-wide transition-colors",
+                  isActive
+                    ? "text-brand-blue"
+                    : "text-navy hover:text-brand-blue"
+                )
+              }
+              end={x.to === "/"}
+            >
+              {x.label}
+            </NavLink>
+          ))}
         </nav>
 
-        {/* CTA Button */}
-        <div className="hidden lg:block">
+        {/* CTA + Phone */}
+        <div className="hidden lg:flex items-center gap-5">
+          <a
+            href={`tel:${BRAND.phone}`}
+            className="flex items-center gap-2 text-sm text-navy/70 hover:text-brand-blue transition-colors"
+          >
+            <Phone size={14} />
+            {BRAND.phone}
+          </a>
           <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" size="md">
             Book a Call
           </LinkButton>
@@ -165,7 +69,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="focus-ring flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-navy lg:hidden"
           onClick={() => setOpen((s) => !s)}
           aria-label="Toggle navigation"
         >
@@ -175,69 +79,34 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="border-t border-border bg-background lg:hidden">
-          <div className="mx-auto w-full max-w-7xl px-5 py-4">
-            <div className="grid gap-1">
-              {primary.map((x) => {
-                if (x.children) {
-                  const isExpanded = openDropdown === x.label;
-                  return (
-                    <div key={x.label} className="rounded-xl border border-border overflow-hidden">
-                      <button
-                        onClick={() => toggleMobileDropdown(x.label)}
-                        className="flex w-full items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground bg-card"
-                      >
-                        {x.label}
-                        <ChevronDown 
-                          size={18} 
-                          className={cn(
-                            "text-muted-foreground transition-transform",
-                            isExpanded && "rotate-180"
-                          )} 
-                        />
-                      </button>
-                      {isExpanded && (
-                        <div className="border-t border-border bg-secondary/30 px-2 py-2">
-                          {x.children.map(child => (
-                            <NavLink
-                              key={child.to}
-                              to={child.to}
-                              className={({ isActive }) =>
-                                cn(
-                                  "block rounded-lg px-4 py-2.5 text-sm font-medium transition",
-                                  isActive 
-                                    ? "text-primary bg-background" 
-                                    : "text-muted-foreground hover:text-foreground hover:bg-background/50"
-                                )
-                              }
-                            >
-                              {child.label}
-                            </NavLink>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
+        <div className="border-t border-slate-100 bg-white lg:hidden">
+          <div className="mx-auto w-full max-w-7xl px-5 py-4 space-y-1">
+            {links.map((x) => (
+              <NavLink
+                key={x.to}
+                to={x.to}
+                className={({ isActive }) =>
+                  cn(
+                    "block rounded-lg px-4 py-3 text-sm font-medium transition-colors",
+                    isActive
+                      ? "text-brand-blue bg-blue-50"
+                      : "text-navy hover:bg-slate-50"
+                  )
                 }
-                return (
-                  <NavLink
-                    key={x.to}
-                    to={x.to}
-                    className={({ isActive }) =>
-                      cn(
-                        "rounded-xl border px-4 py-3.5 text-sm font-semibold transition",
-                        isActive
-                          ? "border-primary/30 bg-secondary text-primary font-bold"
-                          : "border-border bg-card text-foreground hover:bg-secondary/50"
-                      )
-                    }
-                    end={x.to === "/"}
-                  >
-                    {x.label}
-                  </NavLink>
-                );
-              })}
-              <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="mt-3">
+                end={x.to === "/"}
+              >
+                {x.label}
+              </NavLink>
+            ))}
+            <div className="pt-3 space-y-3">
+              <a
+                href={`tel:${BRAND.phone}`}
+                className="flex items-center gap-2 px-4 text-sm text-navy/70"
+              >
+                <Phone size={14} />
+                {BRAND.phone}
+              </a>
+              <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="w-full">
                 Book a Call
               </LinkButton>
             </div>

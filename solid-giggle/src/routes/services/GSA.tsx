@@ -274,9 +274,9 @@ export default function ServicesGSA() {
 
   const getStatusColor = (status: string) => {
     switch(status) {
-      case "kickoff": return "bg-gov-blue";
+      case "kickoff": return "bg-navy-light";
       case "prep": return "bg-gov-gold";
-      case "review": return "bg-gov-crimson";
+      case "review": return "bg-navy";
       case "final": return "bg-purple-500";
       case "submit": return "bg-gov-green";
       default: return "bg-slate-400";
@@ -302,15 +302,15 @@ export default function ServicesGSA() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 rounded-full bg-blue-600/10 px-4 py-1.5 text-sm font-semibold text-blue-600 mb-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-brand-blue/10 px-4 py-1.5 text-sm font-semibold text-brand-blue mb-6">
                 <Award size={16} />
                 GSA Schedule Services
               </div>
               
-              <h1 className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              <h1 className="font-display text-4xl font-bold tracking-tight text-navy sm:text-5xl lg:text-6xl">
                 The GSA Schedule.
                 <br />
-                <span className="text-blue-600">Done Right. Done Fast.</span>
+                <span className="text-brand-blue">Done Right. Done Fast.</span>
               </h1>
 
               <p className="mt-6 text-lg text-slate-700 leading-relaxed">
@@ -367,7 +367,7 @@ export default function ServicesGSA() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {heroStats.slice(0, 2).map(stat => (
                   <Card key={stat.label} className="p-4 bg-white/80 backdrop-blur-sm" hover={false}>
-                    <div className="font-display text-3xl font-bold text-blue-600">{stat.value}</div>
+                    <div className="font-display text-3xl font-bold text-brand-blue">{stat.value}</div>
                     <div className="text-sm text-slate-600 font-medium">{stat.label}</div>
                   </Card>
                 ))}
@@ -394,7 +394,7 @@ export default function ServicesGSA() {
                 className={cn(
                   "flex items-center gap-2.5 px-5 py-3 rounded-full font-semibold transition-all w-full sm:w-auto text-sm",
                   activeTab === tab.id
-                    ? tab.urgent ? "bg-red-600 text-white shadow-lg ring-4 ring-red-600/20" : "bg-blue-600 text-white shadow-lg ring-4 ring-blue-600/20"
+                    ? tab.urgent ? "bg-red-600 text-white shadow-lg ring-4 ring-red-600/20" : "bg-brand-blue text-white shadow-lg ring-4 ring-blue-600/20"
                     : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
                 )}
               >
