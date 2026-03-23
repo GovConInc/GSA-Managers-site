@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { 
-  ArrowRight, CheckCircle, Clock, Target, Rocket, 
+  ArrowRight, CheckCircle, Clock, Target, Rocket,
   Calendar, Phone, Mail, TrendingUp, Crown, ChevronDown,
-  Zap, Shield, Star, TrendingUp, Check, FileText,
+  Zap, Shield, Star, Check, FileText,
   Users, Database, MessageSquare, ClipboardCheck, Award,
   Building2, Briefcase, Globe, Search, PieChart, 
   ChevronRight, Layers, Handshake, CircleDollarSign,
@@ -136,10 +136,10 @@ const marketingPrograms = [
     price: 3200,
     icon: Rocket,
     gradient: 'from-blue-600 to-blue-800',
-    bgLight: 'bg-blue-50',
-    text: 'text-blue-600',
+    bgLight: 'bg-slate-50',
+    text: 'text-brand-blue',
     border: 'border-blue-200',
-    bg: 'bg-blue-600',
+    bg: 'bg-brand-blue',
     idealFor: 'New contractors entering the federal market',
     overview: 'Everything you need to become a qualified, visible federal contractor. We handle all your registrations, certifications, and create your first marketing foundation — so you can start pursuing contracts within 30 days.',
     csCoverage: [
@@ -800,9 +800,9 @@ const stats = [
 // ============================================
 
 const getColorClasses = (color: string) => ({
-  bg: color === 'blue' ? 'bg-blue-600' : color === 'emerald' ? 'bg-emerald-600' : color === 'rose' ? 'bg-rose-600' : color === 'amber' ? 'bg-amber-500' : 'bg-purple-600',
-  bgLight: color === 'blue' ? 'bg-blue-50' : color === 'emerald' ? 'bg-emerald-50' : color === 'rose' ? 'bg-rose-50' : color === 'amber' ? 'bg-amber-50' : 'bg-purple-50',
-  text: color === 'blue' ? 'text-blue-600' : color === 'emerald' ? 'text-emerald-600' : color === 'rose' ? 'text-rose-600' : color === 'amber' ? 'text-amber-600' : 'text-purple-600',
+  bg: color === 'blue' ? 'bg-brand-blue' : color === 'emerald' ? 'bg-emerald-600' : color === 'rose' ? 'bg-rose-600' : color === 'amber' ? 'bg-amber-500' : 'bg-purple-600',
+  bgLight: color === 'blue' ? 'bg-slate-50' : color === 'emerald' ? 'bg-emerald-50' : color === 'rose' ? 'bg-rose-50' : color === 'amber' ? 'bg-amber-50' : 'bg-purple-50',
+  text: color === 'blue' ? 'text-brand-blue' : color === 'emerald' ? 'text-emerald-600' : color === 'rose' ? 'text-rose-600' : color === 'amber' ? 'text-amber-600' : 'text-purple-600',
   border: color === 'blue' ? 'border-blue-200' : color === 'emerald' ? 'border-emerald-200' : color === 'rose' ? 'border-rose-200' : color === 'amber' ? 'border-amber-200' : 'border-purple-200',
   gradient: color === 'blue' ? 'from-blue-500 to-blue-700' : color === 'emerald' ? 'from-emerald-500 to-emerald-700' : color === 'rose' ? 'from-rose-500 to-rose-700' : color === 'amber' ? 'from-amber-400 to-orange-600' : 'from-purple-500 to-purple-700',
 });
@@ -826,8 +826,8 @@ export default function Programs() {
       {/* ===== HERO ===== */}
       <Section>
         <div className="text-center">
-            <p className="text-sm font-bold uppercase tracking-wider text-blue-600">Our Programs</p>
-            <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+            <p className="text-sm font-bold uppercase tracking-wider text-brand-blue">Our Programs</p>
+            <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-navy sm:text-6xl">
               From Compliant to Competitive to Prime.
             </h1>
             <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-600 leading-relaxed">
@@ -848,7 +848,7 @@ export default function Programs() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <Card className={`p-8 h-full flex flex-col relative overflow-hidden ${program.id === activeProgram ? `border-2 border-blue-500 ring-4 ring-blue-500/10` : ''}`} hover>
-                    {program.popular && <div className="absolute top-0 right-8 -mr-4 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-b-lg">MOST POPULAR</div>}
+                    {program.popular && <div className="absolute top-0 right-8 -mr-4 bg-brand-blue text-white text-xs font-bold px-4 py-1 rounded-b-lg">MOST POPULAR</div>}
                     <div className="flex-grow">
                         <div className="flex items-center gap-3">
                             <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${program.bgLight} ${program.text}`}>
@@ -860,7 +860,7 @@ export default function Programs() {
                     </div>
                     <div className="mt-6">
                         <div className="text-sm text-slate-500">{program.duration} Program</div>
-                        <div className="font-display text-4xl font-bold text-slate-900">${program.price.toLocaleString()}</div>
+                        <div className="font-display text-4xl font-bold text-navy">${program.price.toLocaleString()}</div>
                         <p className="text-xs text-slate-500 mt-1">{program.idealFor}</p>
                         <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="w-full mt-6" variant={program.id === activeProgram ? 'primary' : 'secondary'}>
                             Get Started with {program.name}
@@ -878,7 +878,7 @@ export default function Programs() {
               <table className="w-full min-w-[800px] text-sm">
                   <thead>
                       <tr className="border-b border-slate-200">
-                          <th className="text-left font-bold text-slate-900 p-4">Feature</th>
+                          <th className="text-left font-bold text-navy p-4">Feature</th>
                           {marketingPrograms.map(p => (
                               <th key={p.id} className={`p-4 text-center ${p.text}`}>
                                   <div className="font-display text-lg">{p.name}</div>
@@ -909,7 +909,7 @@ export default function Programs() {
       </Section>
 
        {/* ===== CTA ===== */}
-      <Section title="Ready to Build Your Federal Practice?" kicker="Get Started" dark>
+      <Section title="Ready to Build Your Federal Practice?" kicker="Get Started">
         <Card className="p-8 bg-white/5 border-white/10" hover={false}>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>

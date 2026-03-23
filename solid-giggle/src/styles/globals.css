@@ -2,68 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Modern Styles ===== */
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 200 50% 12%;
+    --foreground: 214 60% 14%;
 
     --card: 0 0% 100%;
-    --card-foreground: 200 50% 12%;
+    --card-foreground: 214 60% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 200 50% 12%;
+    --popover-foreground: 214 60% 14%;
 
-    --primary: 220 100% 38%;
+    --primary: 213 75% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 200 100% 90%;
-    --secondary-foreground: 220 100% 38%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 214 60% 14%;
 
-    --muted: 210 14% 83%;
-    --muted-foreground: 215 14% 34%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 190 100% 50%;
-    --accent-foreground: 200 50% 12%;
+    --accent: 207 70% 55%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 14% 89%;
-    --input: 210 14% 95%;
-    --ring: 220 100% 38%;
+    --border: 210 20% 91%;
+    --input: 210 20% 95%;
+    --ring: 213 75% 40%;
 
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 200 50% 8%;
-    --foreground: 200 100% 92%;
-
-    --card: 200 50% 10%;
-    --card-foreground: 200 100% 92%;
-
-    --popover: 200 50% 10%;
-    --popover-foreground: 200 100% 92%;
-
-    --primary: 220 100% 50%;
-    --primary-foreground: 200 50% 5%;
-
-    --secondary: 220 50% 25%;
-    --secondary-foreground: 200 100% 92%;
-
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 32.6% 64.5%;
-
-    --accent: 190 100% 50%;
-    --accent-foreground: 200 50% 8%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 220 100% 50%;
   }
 
   html {
@@ -71,30 +40,20 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-white text-foreground font-sans antialiased;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display text-primary-foreground;
-  }
-
-  h1 {
-    @apply text-4xl font-bold;
-  }
-
-  h2 {
-    @apply text-3xl font-semibold;
-  }
-
-  h3 {
-    @apply text-2xl font-semibold;
+    @apply font-display;
+    color: #0B1C3D;
   }
 
   a {
-    @apply text-gov-sky hover:underline;
+    @apply transition-colors;
+    text-decoration: none;
   }
 
   #root {
@@ -102,16 +61,10 @@
     display: flex;
     flex-direction: column;
   }
-
 }
 
 @layer utilities {
-  .bg-grid {
-    background-image: linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
   .input-field {
-    @apply mt-2 block w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-sm transition placeholder:text-slate-400 focus:border-brand-blue focus:outline-none focus:ring-4 focus:ring-brand-blue/10;
+    @apply mt-2 block w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm transition placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20;
   }
 }

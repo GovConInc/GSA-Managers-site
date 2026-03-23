@@ -58,8 +58,8 @@ export default function ServicesCertifications() {
       <Section>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-sm font-bold uppercase tracking-wider text-blue-600">Compliance & Certification Services</p>
-              <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+              <p className="text-sm font-bold uppercase tracking-wider text-brand-blue">Compliance & Certification Services</p>
+              <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-navy sm:text-5xl">
                 The Foundation of Federal Contracting.
               </h1>
               <p className="mt-6 text-lg text-slate-600 leading-relaxed">
@@ -82,7 +82,7 @@ export default function ServicesCertifications() {
                             <AlertTriangle size={24}/>
                         </div>
                         <div>
-                            <h3 className="font-bold text-slate-900 text-lg">The Compliance Trap</h3>
+                            <h3 className="font-bold text-navy text-lg">The Compliance Trap</h3>
                             <p className="text-slate-600 mt-2">
                                 An expired SAM registration or a missing certification can cost you millions. A single mistake can make you ineligible for an entire year. Don't leave it to chance.
                             </p>
@@ -96,7 +96,7 @@ export default function ServicesCertifications() {
       {/* ===== SERVICES GRID ===== */}
       <Section className="bg-slate-50">
         <div className="text-center mb-12">
-            <h2 className="font-display text-3xl font-bold text-slate-900">
+            <h2 className="font-display text-3xl font-bold text-navy">
                 Our Core Compliance Services
             </h2>
             <p className="mt-4 mx-auto max-w-2xl text-slate-600">
@@ -116,17 +116,17 @@ export default function ServicesCertifications() {
                 <Card className="p-6 h-full flex flex-col" hover>
                     <div className="flex-grow">
                         <div className="flex items-start justify-between">
-                             <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-600/10 text-blue-600">
+                             <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue">
                                 <service.icon size={28} />
                             </div>
                             {service.critical && <span className="text-xs font-bold px-2 py-1 rounded-full bg-red-100 text-red-700">Critical</span>}
                         </div>
-                        <h3 className="mt-4 font-bold text-lg text-slate-900">{service.name}</h3>
+                        <h3 className="mt-4 font-bold text-lg text-navy">{service.name}</h3>
                         <p className="mt-2 text-sm text-slate-600">{service.description}</p>
                     </div>
                     <div className="mt-4 pt-4 border-t border-slate-200">
                         <div className="text-xs text-slate-500 font-semibold">Timeline</div>
-                        <div className="font-bold text-blue-600">{service.timeline}</div>
+                        <div className="font-bold text-brand-blue">{service.timeline}</div>
                     </div>
                 </Card>
               </motion.div>
@@ -159,10 +159,10 @@ export default function ServicesCertifications() {
                         <div key={item.title}>
                             <div className="flex justify-between items-center mb-1">
                                 <span className="text-sm font-medium text-slate-700">{item.title}</span>
-                                <span className="text-sm font-semibold text-blue-600">{item.goal}</span>
+                                <span className="text-sm font-semibold text-brand-blue">{item.goal}</span>
                             </div>
                             <div className="w-full bg-slate-200 rounded-full h-2.5">
-                                <div className="bg-blue-600 h-2.5 rounded-full" style={{width: `${parseFloat(item.goal) * 5}%`}}></div>
+                                <div className="bg-brand-blue h-2.5 rounded-full" style={{width: `${parseFloat(item.goal) * 5}%`}}></div>
                             </div>
                         </div>
                     ))}
@@ -172,7 +172,7 @@ export default function ServicesCertifications() {
       </Section>
 
       {/* ===== CTA ===== */}
-      <Section title="Ready to Get Compliant and Certified?" kicker="Take Action" dark>
+      <Section title="Ready to Get Compliant and Certified?" kicker="Take Action">
         <Card className="p-8 bg-white/5 border-white/10" hover={false}>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
