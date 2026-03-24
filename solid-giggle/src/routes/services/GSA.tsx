@@ -407,16 +407,399 @@ export default function ServicesGSA() {
             ))}
         </div>
         
-        {/* Render active tab content */}
-        <div>
-          {/* ... FCP Content ... */}
-          {/* ... Submission Content ... */}
-          {/* ... Management Content ... */}
-          {/* ... Benefits Content ... */}
-        </div>
+        {/* ── TAB CONTENT ── */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+        >
+          {/* ═══ FCP BASELINE TAB ═══ */}
+          {activeTab === "fcp" && (
+            <div id="fcp-service">
+              <div className="grid gap-8 lg:grid-cols-5">
+                {/* Left — Info */}
+                <div className="lg:col-span-3 space-y-6">
+                  <Card className="p-8 border-red-200 bg-red-50/30" hover={false}>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100">
+                        <AlertTriangle size={20} className="text-red-600" />
+                      </div>
+                      <h3 className="font-display text-xl font-bold text-navy">
+                        FCP Catalog Baseline Upload
+                      </h3>
+                    </div>
+                    <p className="text-slate-600 leading-relaxed">
+                      GSA retired SIP and transitioned to the <strong>Federal Catalog Platform (FCP)</strong>.
+                      Without an FCP Baseline Upload your products are <strong>invisible</strong> on GSA Advantage —
+                      meaning agencies can't find or buy from you. We upload your catalog within the GSA-mandated
+                      30-day window and ensure every line item is compliant.
+                    </p>
+                  </Card>
+
+                  <h4 className="font-display text-lg font-bold text-navy">What's Included</h4>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {[
+                      { title: "FCP Catalog Upload", desc: "Full baseline upload within 30 days" },
+                      { title: "Pricing QA", desc: "Product listing & offer pricing review" },
+                      { title: "Roadmap Consultations", desc: "Strategic guidance for your catalog" },
+                      { title: "Technical Consultations", desc: "Resolve SIN & product issues" },
+                    ].map((item) => (
+                      <Card key={item.title} className="p-5 flex items-start gap-3" hover>
+                        <CheckCircle size={18} className="text-brand-blue mt-0.5 shrink-0" />
+                        <div>
+                          <p className="font-semibold text-navy text-sm">{item.title}</p>
+                          <p className="text-xs text-slate-500 mt-0.5">{item.desc}</p>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right — Pricing Card */}
+                <div className="lg:col-span-2">
+                  <Card className="p-8 sticky top-28 border-2 border-brand-blue/20" hover={false}>
+                    <p className="text-xs font-bold uppercase tracking-widest text-red-600 mb-2">Urgent</p>
+                    <div className="flex items-baseline gap-1 mb-1">
+                      <span className="font-display text-4xl font-bold text-navy">$500</span>
+                      <span className="text-sm text-slate-500">flat fee</span>
+                    </div>
+                    <p className="text-sm text-slate-500 mb-6">One-time · Delivered within 30 days</p>
+                    <LinkButton href="/order" size="lg" className="w-full mb-3">
+                      Order FCP Upload
+                      <ArrowRight size={16} className="ml-2" />
+                    </LinkButton>
+                    <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" variant="secondary" size="md" className="w-full">
+                      Talk to a Specialist
+                    </LinkButton>
+                    <div className="mt-6 border-t border-slate-100 pt-4 space-y-2">
+                      {["30-day delivery guarantee", "Full compliance review", "No hidden fees"].map((t) => (
+                        <div key={t} className="flex items-center gap-2 text-xs text-slate-600">
+                          <CheckCircle size={14} className="text-brand-blue shrink-0" />
+                          {t}
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ═══ SUBMISSION TAB ═══ */}
+          {activeTab === "submission" && (
+            <div>
+              <div className="grid gap-8 lg:grid-cols-5">
+                {/* Left — Timeline */}
+                <div className="lg:col-span-3">
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    Our accelerated 30-day submission process is built on the <strong>"Holy Trinity"</strong> review — Admin,
+                    Technical, and Pricing volumes — that anticipates Contracting Officer concerns <em>before</em> you
+                    submit. Click each phase to explore the details.
+                  </p>
+
+                  <div className="space-y-3">
+                    {timeline.map((step, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveTimeline(idx)}
+                        className={cn(
+                          "w-full text-left rounded-xl border-2 p-5 transition-all",
+                          activeTimeline === idx
+                            ? "border-brand-blue bg-brand-blue/[0.03] shadow-md"
+                            : "border-slate-100 bg-white hover:border-slate-200"
+                        )}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className={cn(
+                            "flex h-10 w-10 items-center justify-center rounded-full text-white text-xs font-bold shrink-0",
+                            getStatusColor(step.status)
+                          )}>
+                            {idx + 1}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <h4 className="font-display font-bold text-navy">{step.task}</h4>
+                              <span className="text-xs font-semibold text-brand-blue whitespace-nowrap">{step.phase}</span>
+                            </div>
+                            <p className="text-sm text-slate-500 mt-0.5">{step.desc}</p>
+                          </div>
+                          <ChevronRight size={16} className={cn(
+                            "text-slate-300 transition-transform shrink-0",
+                            activeTimeline === idx && "rotate-90 text-brand-blue"
+                          )} />
+                        </div>
+
+                        {activeTimeline === idx && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            transition={{ duration: 0.25 }}
+                            className="mt-4 ml-14 grid gap-2 sm:grid-cols-2"
+                          >
+                            {step.details.map((d) => (
+                              <div key={d} className="flex items-start gap-2 text-sm text-slate-600">
+                                <CheckCircle size={14} className="text-brand-blue mt-0.5 shrink-0" />
+                                {d}
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right — Pricing Card */}
+                <div className="lg:col-span-2">
+                  <Card className="p-8 sticky top-28 border-2 border-brand-blue/20" hover={false}>
+                    <p className="text-xs font-bold uppercase tracking-widest text-brand-blue mb-2">Full-Service</p>
+                    <div className="flex items-baseline gap-1 mb-1">
+                      <span className="text-sm text-slate-500">Starting at</span>
+                      <span className="font-display text-4xl font-bold text-navy">$4,500</span>
+                    </div>
+                    <p className="text-sm text-slate-500 mb-6">One-time · 45-Day Submission Guarantee</p>
+                    <LinkButton href="/order" size="lg" className="w-full mb-3">
+                      Get Started
+                      <ArrowRight size={16} className="ml-2" />
+                    </LinkButton>
+                    <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" variant="secondary" size="md" className="w-full">
+                      Book a Free Consultation
+                    </LinkButton>
+                    <div className="mt-6 border-t border-slate-100 pt-4 space-y-2">
+                      {["45-day submission guarantee", "98% approval rate", "Complete document prep", "eOffer portal management"].map((t) => (
+                        <div key={t} className="flex items-center gap-2 text-xs text-slate-600">
+                          <CheckCircle size={14} className="text-brand-blue shrink-0" />
+                          {t}
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ═══ MANAGEMENT TAB ═══ */}
+          {activeTab === "management" && (
+            <div>
+              <div className="grid gap-8 lg:grid-cols-5">
+                {/* Left — Service Cards */}
+                <div className="lg:col-span-3">
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    Maintaining a GSA Schedule takes 10+ hours a month. We handle every modification, report, and
+                    compliance requirement so you never risk penalties, missed option renewals, or contract cancellation.
+                  </p>
+
+                  <div className="space-y-3">
+                    {contractManagementServices.map((svc, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveManagement(idx)}
+                        className={cn(
+                          "w-full text-left rounded-xl border-2 p-5 transition-all",
+                          activeManagement === idx
+                            ? "border-brand-blue bg-brand-blue/[0.03] shadow-md"
+                            : "border-slate-100 bg-white hover:border-slate-200"
+                        )}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className={cn(
+                            "flex h-10 w-10 items-center justify-center rounded-lg shrink-0",
+                            activeManagement === idx ? "bg-brand-blue text-white" : "bg-slate-100 text-slate-400"
+                          )}>
+                            <svc.icon size={20} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-display font-bold text-navy">{svc.title}</h4>
+                            <p className="text-sm text-slate-500 mt-0.5">{svc.description}</p>
+                          </div>
+                          <ChevronRight size={16} className={cn(
+                            "text-slate-300 transition-transform shrink-0",
+                            activeManagement === idx && "rotate-90 text-brand-blue"
+                          )} />
+                        </div>
+
+                        {activeManagement === idx && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            transition={{ duration: 0.25 }}
+                            className="mt-4 ml-14"
+                          >
+                            <div className="grid gap-2 sm:grid-cols-2 mb-3">
+                              {svc.tasks.map((t) => (
+                                <div key={t} className="flex items-start gap-2 text-sm text-slate-600">
+                                  <CheckCircle size={14} className="text-brand-blue mt-0.5 shrink-0" />
+                                  {t}
+                                </div>
+                              ))}
+                            </div>
+                            <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-2.5 text-sm text-green-800">
+                              <strong>Benefit:</strong> {svc.benefit}
+                            </div>
+                          </motion.div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Benefits Checklist */}
+                  <div className="mt-8 rounded-xl bg-slate-50 border border-slate-200 p-6">
+                    <h4 className="font-display font-bold text-navy mb-4">What You Get</h4>
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      {managementBenefits.map((b) => (
+                        <div key={b} className="flex items-center gap-2 text-sm text-slate-700">
+                          <CheckCircle size={14} className="text-brand-blue shrink-0" />
+                          {b}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right — Pricing Card */}
+                <div className="lg:col-span-2">
+                  <Card className="p-8 sticky top-28 border-2 border-brand-blue/20" hover={false}>
+                    <p className="text-xs font-bold uppercase tracking-widest text-brand-blue mb-2">Annual Plan</p>
+                    <div className="flex items-baseline gap-1 mb-1">
+                      <span className="font-display text-4xl font-bold text-navy">$6,500</span>
+                      <span className="text-sm text-slate-500">/ year</span>
+                    </div>
+                    <p className="text-sm text-slate-500 mb-6">Billed annually · Cancel anytime</p>
+                    <LinkButton href="/order" size="lg" className="w-full mb-3">
+                      Order Management
+                      <ArrowRight size={16} className="ml-2" />
+                    </LinkButton>
+                    <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" variant="secondary" size="md" className="w-full">
+                      Learn More on a Call
+                    </LinkButton>
+                    <div className="mt-6 border-t border-slate-100 pt-4 space-y-2">
+                      {["Full compliance coverage", "Dedicated account manager", "No long-term lock-in", "SAM + Advantage + eBuy"].map((t) => (
+                        <div key={t} className="flex items-center gap-2 text-xs text-slate-600">
+                          <CheckCircle size={14} className="text-brand-blue shrink-0" />
+                          {t}
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ═══ WHY GSA TAB ═══ */}
+          {activeTab === "benefits" && (
+            <div>
+              <p className="text-slate-600 mb-8 leading-relaxed max-w-3xl">
+                The GSA Multiple Award Schedule is the government's preferred procurement vehicle.
+                Here's why thousands of companies compete for a spot — and why you should too.
+              </p>
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {gsaBenefits.map((b, idx) => (
+                  <motion.div
+                    key={b.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.07, duration: 0.4 }}
+                  >
+                    <Card className="p-6 h-full flex flex-col" hover>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-blue/10">
+                          <b.icon size={20} className="text-brand-blue" />
+                        </div>
+                        <div>
+                          <span className="font-display text-2xl font-bold text-brand-blue">{b.stat}</span>
+                          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">{b.statLabel}</p>
+                        </div>
+                      </div>
+                      <h4 className="font-display text-lg font-bold text-navy mb-2">{b.title}</h4>
+                      <p className="text-sm text-slate-500 leading-relaxed">{b.desc}</p>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-10 text-center">
+                <LinkButton href="/order" size="lg">
+                  Start Your GSA Journey
+                  <ArrowRight size={18} className="ml-2" />
+                </LinkButton>
+              </div>
+            </div>
+          )}
+        </motion.div>
       </Section>
 
-      {/* ... (rest of the page components, using the new modern style) ... */}
+      {/* ===== FAQ ===== */}
+      <section className="bg-white py-20">
+        <div className="mx-auto w-full max-w-3xl px-5 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">Common Questions</p>
+            <h2 className="mt-2 font-display text-3xl font-bold text-navy sm:text-4xl">FAQ</h2>
+          </div>
+          <div className="space-y-3">
+            {faqs.map((faq, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                className={cn(
+                  "w-full text-left rounded-xl border-2 p-5 transition-all",
+                  activeFaq === idx
+                    ? "border-brand-blue bg-brand-blue/[0.02]"
+                    : "border-slate-100 hover:border-slate-200"
+                )}
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <h4 className="font-semibold text-navy text-sm">{faq.q}</h4>
+                  <ChevronRight size={16} className={cn(
+                    "text-slate-300 transition-transform shrink-0",
+                    activeFaq === idx && "rotate-90 text-brand-blue"
+                  )} />
+                </div>
+                {activeFaq === idx && (
+                  <motion.p
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    transition={{ duration: 0.25 }}
+                    className="mt-3 text-sm text-slate-600 leading-relaxed"
+                  >
+                    {faq.a}
+                  </motion.p>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FINAL CTA ===== */}
+      <section className="bg-navy py-20">
+        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8 text-center">
+          <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
+            Ready to Get on the GSA Schedule?
+          </h2>
+          <p className="mt-4 mx-auto max-w-2xl text-white/60 text-lg">
+            Whether you need a $500 FCP upload or full-service submission and management — we've got you covered.
+          </p>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
+            <LinkButton href="/order" size="lg">
+              Place Your Order
+              <ArrowRight size={18} className="ml-2" />
+            </LinkButton>
+            <LinkButton
+              href={LINKS.booking}
+              target="_blank"
+              rel="noreferrer"
+              size="lg"
+              variant="ghost"
+              className="text-white border-2 border-white/20 hover:bg-white/10"
+            >
+              Schedule a Free Call
+            </LinkButton>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
