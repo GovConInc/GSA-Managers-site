@@ -62,8 +62,8 @@ export default function Navbar() {
             <Phone size={14} />
             {BRAND.phone}
           </a>
-          <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" size="md">
-            Book a Call
+          <LinkButton href="/order" size="md">
+            Order Now
           </LinkButton>
         </div>
 
@@ -106,8 +106,8 @@ export default function Navbar() {
                 <Phone size={14} />
                 {BRAND.phone}
               </a>
-              <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="w-full">
-                Book a Call
+              <LinkButton href="/order" className="w-full">
+                Order Now
               </LinkButton>
             </div>
           </div>

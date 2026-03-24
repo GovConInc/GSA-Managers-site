@@ -10,6 +10,9 @@ import ServicesPrograms from "./routes/services/Programs";
 import ServicesCompliance from "./routes/services/Compliance";
 import ServicesProposalWriting from "./routes/services/ProposalWriting";
 
+// Order
+import Order from "./routes/Order";
+
 // About & Contact
 import About from "./routes/About";
 import Contact from "./routes/Contact";
@@ -26,6 +29,9 @@ export default function App() {
         <Route path="/services/programs" element={<ServicesPrograms />} />
         <Route path="/services/compliance-capture" element={<ServicesCompliance />} />
         <Route path="/services/proposal-writing" element={<ServicesProposalWriting />} />
+
+        {/* Order Page */}
+        <Route path="/order" element={<Order />} />
 
         {/* Enroll Page */}
         <Route path="/enroll" element={<Enroll />} />
