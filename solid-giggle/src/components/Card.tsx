@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, HTMLAttributes } from "react";
 import { cn } from "./cn";
 
 export default function Card({
@@ -6,26 +6,28 @@ export default function Card({
   className,
   hover = true,
   variant = "default",
+  ...rest
 }: {
   children: ReactNode;
   className?: string;
   hover?: boolean;
   variant?: "default" | "elevated" | "outlined";
-}) {
+} & Omit<HTMLAttributes<HTMLDivElement>, "className">) {
   const variants: Record<string, string> = {
-    default: "border border-border bg-card shadow-soft",
-    elevated: "bg-card shadow-xl shadow-shadow",
-    outlined: "border-2 border-border bg-card",
+    default: "border border-slate-100 bg-white shadow-soft",
+    elevated: "bg-white shadow-lg",
+    outlined: "border border-slate-200 bg-white",
   };
 
   return (
     <div
       className={cn(
-        "rounded-2xl transition-all duration-300",
+        "rounded-xl transition-all duration-300",
         variants[variant],
-        hover && "hover:scale-[1.02] hover:shadow-lg hover:border-primary",
+        hover && "hover:shadow-glow hover:border-brand-blue/20",
         className
       )}
+      {...rest}
     >
       {children}
     </div>

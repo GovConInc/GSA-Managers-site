@@ -74,8 +74,8 @@ export default function ServicesProposalWriting() {
       <Section>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-sm font-bold uppercase tracking-wider text-blue-600">Proposal Writing Services</p>
-              <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+              <p className="text-sm font-bold uppercase tracking-wider text-brand-blue">Proposal Writing Services</p>
+              <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-navy sm:text-5xl">
                 We Write Proposals That Win.
               </h1>
               <p className="mt-6 text-lg text-slate-600 leading-relaxed">
@@ -91,11 +91,11 @@ export default function ServicesProposalWriting() {
             <div className="lg:pl-8">
                 <Card className="p-8" hover>
                     <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600/10 text-blue-600 shrink-0">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue shrink-0">
                             <Sparkles size={24}/>
                         </div>
                         <div>
-                            <h3 className="font-bold text-slate-900 text-lg">The GSA Managers Difference</h3>
+                            <h3 className="font-bold text-navy text-lg">The GSA Managers Difference</h3>
                             <p className="text-slate-600 mt-2">
                                 Our writers have sat on evaluation panels. We know how proposals are scored and what evaluators look for. We build that insider knowledge into every proposal we touch.
                             </p>
@@ -109,7 +109,7 @@ export default function ServicesProposalWriting() {
       {/* ===== OUR APPROACH ===== */}
       <Section className="bg-slate-50">
         <div className="text-center mb-12">
-            <h2 className="font-display text-3xl font-bold text-slate-900">
+            <h2 className="font-display text-3xl font-bold text-navy">
                 Our Winning Approach
             </h2>
             <p className="mt-4 mx-auto max-w-2xl text-slate-600">
@@ -127,10 +127,10 @@ export default function ServicesProposalWriting() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <Card className="p-6 h-full text-center" hover>
-                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-600/10 text-blue-600">
+                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
                         <item.icon size={32} />
                     </div>
-                    <h3 className="mt-4 font-bold text-lg text-slate-900">{item.principle}</h3>
+                    <h3 className="mt-4 font-bold text-lg text-navy">{item.principle}</h3>
                     <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
                 </Card>
               </motion.div>
@@ -152,10 +152,10 @@ export default function ServicesProposalWriting() {
                 <Card className="p-8 h-full flex flex-col" hover>
                     <div className="flex-grow">
                         <div className="flex items-center gap-4 mb-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600/10 text-blue-600 shrink-0">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue shrink-0">
                                 <service.icon size={24} />
                             </div>
-                            <h3 className="font-bold text-slate-900 text-lg">{service.name}</h3>
+                            <h3 className="font-bold text-navy text-lg">{service.name}</h3>
                         </div>
                         <p className="text-slate-600">{service.description}</p>
                         <div className="mt-4 p-4 bg-slate-50 rounded-lg border border-slate-200">
@@ -167,11 +167,11 @@ export default function ServicesProposalWriting() {
                         <div className="flex justify-between items-baseline">
                             <div>
                                 <div className="text-sm text-slate-500">Starting at</div>
-                                <div className="font-display text-3xl font-bold text-slate-900">{service.price}</div>
+                                <div className="font-display text-3xl font-bold text-navy">{service.price}</div>
                             </div>
                             <div>
                                 <div className="text-sm text-slate-500">Timeline</div>
-                                <div className="font-bold text-blue-600">{service.timeline}</div>
+                                <div className="font-bold text-brand-blue">{service.timeline}</div>
                             </div>
                         </div>
                          <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="w-full mt-4" variant={service.id === 'full' ? 'primary' : 'secondary'}>
@@ -185,7 +185,7 @@ export default function ServicesProposalWriting() {
       </Section>
       
       {/* ===== CTA ===== */}
-      <Section title="Have an RFP on Your Desk?" kicker="Let's Win It Together" dark>
+      <Section title="Have an RFP on Your Desk?" kicker="Let's Win It Together">
         <Card className="p-8 bg-white/5 border-white/10" hover={false}>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
