@@ -15,6 +15,32 @@ export async function onRequestPost(context) {
       });
     }
 
+    // Optional: Log to Google Sheets if a webhook URL is configured
+    const googleSheetsWebhookUrl = context.env.GOOGLE_SHEETS_WEBHOOK_URL;
+    if (googleSheetsWebhookUrl) {
+      try {
+        await fetch(googleSheetsWebhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            company,
+            phone,
+            cage,
+            interest,
+            bestTime,
+            date: new Date().toISOString()
+          }),
+        });
+      } catch (sheetErr) {
+        console.error("Failed to post to Google Sheets webhook:", sheetErr);
+        // Continue even if sheet logging fails
+      }
+    }
+
     const resendApiKey = context.env.RESEND_API_KEY;
     const toEmail = context.env.CONTACT_TO_EMAIL || "Info@GSAManagers.com";
 
