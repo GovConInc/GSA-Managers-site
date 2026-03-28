@@ -12,11 +12,28 @@ export default {
     },
     extend: {
       colors: {
-        "navy": "#0B1C3D",
-        "navy-light": "#122B5C",
-        "brand-blue": "#1A5FAF",
-        "brand-sky": "#3B8ED4",
-        "brand-light": "#6CB4E8",
+        /* Warm authority palette */
+        surface: "#FAFAF8",
+        ink: {
+          DEFAULT: "#1A1A1A",
+          light: "#6B6B6B",
+          muted: "#9CA3AF",
+        },
+        navy: {
+          DEFAULT: "#1E3A5F",
+          light: "#2B4F7E",
+          dark: "#0F2440",
+        },
+        cta: {
+          DEFAULT: "#D97706",
+          hover: "#B45309",
+        },
+        warm: {
+          border: "#E8E5E0",
+          100: "#F5F0EB",
+          50: "#FAFAF8",
+        },
+        /* Keep system tokens for shadcn compatibility */
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -57,28 +74,22 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ['"DM Serif Display"', "Georgia", "serif"],
-        sans: ['"DM Sans"', "system-ui", "sans-serif"],
+        display: ['"Source Serif 4"', "Georgia", "serif"],
+        sans: ['"Inter"', "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 2px 15px -3px rgba(11, 28, 61, 0.08)",
-        glow: "0 0 30px -8px rgba(26, 95, 175, 0.15)",
-        "elevated": "0 8px 30px -4px rgba(11, 28, 61, 0.12)",
-        "card": "0 1px 3px rgba(11, 28, 61, 0.06), 0 1px 2px rgba(11, 28, 61, 0.04)",
+        soft: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03)",
+        card: "0 4px 20px -2px rgba(0,0,0,0.06)",
+        elevated: "0 8px 30px -4px rgba(0,0,0,0.1)",
       },
       keyframes: {
         "fade-in-up": {
-          from: { opacity: "0", transform: "translateY(20px)" },
+          from: { opacity: "0", transform: "translateY(16px)" },
           to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "shimmer": {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
         },
       },
       animation: {
         "fade-in-up": "fade-in-up 0.5s ease-out forwards",
-        "shimmer": "shimmer 3s ease-in-out infinite",
       },
     },
   },

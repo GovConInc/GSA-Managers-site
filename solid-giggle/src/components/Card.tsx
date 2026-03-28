@@ -4,7 +4,7 @@ import { cn } from "./cn";
 export default function Card({
   children,
   className,
-  hover = true,
+  hover = false,
   variant = "default",
   ...rest
 }: {
@@ -14,9 +14,9 @@ export default function Card({
   variant?: "default" | "elevated" | "outlined";
 } & Omit<HTMLAttributes<HTMLDivElement>, "className">) {
   const variants: Record<string, string> = {
-    default: "border border-slate-100 bg-white shadow-soft",
-    elevated: "bg-white shadow-lg",
-    outlined: "border border-slate-200 bg-white",
+    default: "border border-warm-border bg-white",
+    elevated: "bg-white shadow-card",
+    outlined: "border border-warm-border bg-transparent",
   };
 
   return (
@@ -24,7 +24,7 @@ export default function Card({
       className={cn(
         "rounded-xl transition-all duration-300",
         variants[variant],
-        hover && "hover:shadow-glow hover:border-brand-blue/20",
+        hover && "hover:shadow-card hover:-translate-y-0.5",
         className
       )}
       {...rest}

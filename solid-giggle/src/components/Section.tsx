@@ -23,17 +23,17 @@ export default function Section({
       id={id}
       className={cn("py-20", className)}
     >
-      <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
         <div className={cn(
           center ? "flex flex-col gap-2 items-center text-center" : "flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between"
         )}>
           <div>
             {kicker && (
-              <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">
+              <p className="text-sm font-medium uppercase tracking-widest text-cta">
                 {kicker}
               </p>
             )}
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl text-navy">
+            <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl text-ink">
               {title}
             </h2>
           </div>
