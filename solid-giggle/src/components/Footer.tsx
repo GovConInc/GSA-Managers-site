@@ -4,55 +4,51 @@ import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-white">
-      <div className="mx-auto w-full max-w-7xl px-5 py-16 lg:px-8">
+    <footer className="bg-ink text-white">
+      <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
           <div className="lg:col-span-1">
             <img
               src="/logo.png"
               alt={BRAND.name}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-9 w-auto brightness-0 invert"
             />
-            <p className="mt-4 text-sm text-white/60 leading-relaxed">
-              Expert GSA Schedule consulting — from submission and award to catalog management and ongoing compliance.
+            <p className="mt-5 text-sm text-white/50 leading-relaxed max-w-xs">
+              Expert GSA Schedule consulting — from submission to ongoing compliance and contract management.
             </p>
           </div>
 
-          {/* Services */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/40">Services</p>
-            <div className="mt-4 space-y-2.5 text-sm">
-              <Link to="/services/gsa-contractors" className="block text-white/70 hover:text-white transition-colors">GSA Schedule Services</Link>
-              <Link to="/services/programs" className="block text-white/70 hover:text-white transition-colors">Federal Programs</Link>
-              <Link to="/services/compliance-capture" className="block text-white/70 hover:text-white transition-colors">Compliance & Capture</Link>
-              <Link to="/services/proposal-writing" className="block text-white/70 hover:text-white transition-colors">Proposal Writing</Link>
+            <p className="text-xs font-medium uppercase tracking-widest text-white/30 mb-4">Services</p>
+            <div className="space-y-3 text-sm">
+              <Link to="/services/gsa-contractors#submission" className="block text-white/60 hover:text-white transition-colors">GSA MAS Submission</Link>
+              <Link to="/services/gsa-contractors#management" className="block text-white/60 hover:text-white transition-colors">Contract Management</Link>
+              <Link to="/services/gsa-contractors#new-vendor" className="block text-white/60 hover:text-white transition-colors">New Vendor Special</Link>
+              <Link to="/services/gsa-contractors#fcp" className="block text-white/60 hover:text-white transition-colors">FCP Catalog Baseline</Link>
             </div>
           </div>
 
-          {/* Company */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/40">Company</p>
-            <div className="mt-4 space-y-2.5 text-sm">
-              <Link to="/about" className="block text-white/70 hover:text-white transition-colors">About Us</Link>
-              <Link to="/contact" className="block text-white/70 hover:text-white transition-colors">Contact</Link>
-              <Link to="/enroll" className="block text-white/70 hover:text-white transition-colors">Get Started</Link>
+            <p className="text-xs font-medium uppercase tracking-widest text-white/30 mb-4">Company</p>
+            <div className="space-y-3 text-sm">
+              <Link to="/about" className="block text-white/60 hover:text-white transition-colors">About Us</Link>
+              <Link to="/contact" className="block text-white/60 hover:text-white transition-colors">Contact</Link>
+              <Link to="/order" className="block text-white/60 hover:text-white transition-colors">Get Started</Link>
             </div>
           </div>
 
-          {/* Contact */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/40">Contact</p>
-            <div className="mt-4 space-y-3 text-sm">
-              <a href={`tel:${BRAND.phone}`} className="flex items-center gap-2.5 text-white/70 hover:text-white transition-colors">
+            <p className="text-xs font-medium uppercase tracking-widest text-white/30 mb-4">Contact</p>
+            <div className="space-y-3 text-sm">
+              <a href={`tel:${BRAND.phone}`} className="flex items-center gap-2.5 text-white/60 hover:text-white transition-colors">
                 <Phone size={14} />
                 {BRAND.phone}
               </a>
-              <a href={`mailto:${BRAND.email}`} className="flex items-center gap-2.5 text-white/70 hover:text-white transition-colors">
+              <a href={`mailto:${BRAND.email}`} className="flex items-center gap-2.5 text-white/60 hover:text-white transition-colors">
                 <Mail size={14} />
                 {BRAND.email}
               </a>
-              <div className="flex items-center gap-2.5 text-white/70">
+              <div className="flex items-center gap-2.5 text-white/60">
                 <MapPin size={14} />
                 {BRAND.location}
               </div>
@@ -62,7 +58,7 @@ export default function Footer() {
               href={LINKS.booking}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand-blue px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-blue/90"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-white/10 border border-white/10 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/20"
             >
               Book a Call
               <ArrowUpRight size={14} />
@@ -71,11 +67,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto w-full max-w-7xl px-5 py-5 lg:px-8">
-          <div className="text-xs text-white/40">
-            © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+        <div className="mx-auto w-full max-w-7xl px-6 py-5 lg:px-8">
+          <div className="text-xs text-white/30">
+            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </div>
         </div>
       </div>
