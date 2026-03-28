@@ -63,15 +63,22 @@ export default {
       boxShadow: {
         soft: "0 2px 15px -3px rgba(11, 28, 61, 0.08)",
         glow: "0 0 30px -8px rgba(26, 95, 175, 0.15)",
+        "elevated": "0 8px 30px -4px rgba(11, 28, 61, 0.12)",
+        "card": "0 1px 3px rgba(11, 28, 61, 0.06), 0 1px 2px rgba(11, 28, 61, 0.04)",
       },
       keyframes: {
         "fade-in-up": {
           from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
       },
       animation: {
         "fade-in-up": "fade-in-up 0.5s ease-out forwards",
+        "shimmer": "shimmer 3s ease-in-out infinite",
       },
     },
   },
