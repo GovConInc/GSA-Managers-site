@@ -67,4 +67,15 @@
   .input-field {
     @apply mt-2 block w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm transition placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20;
   }
+
+  .gradient-mesh {
+    background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(26, 95, 175, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 80% 50%, rgba(59, 142, 212, 0.05) 0%, transparent 70%);
+  }
+
+  .gradient-mesh-dark {
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26, 95, 175, 0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(18, 43, 92, 0.3) 0%, transparent 70%),
+                #0B1C3D;
+  }
 }

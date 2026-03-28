@@ -60,8 +60,8 @@ const services = [
     id: "gsa-submission",
     icon: Award,
     name: "GSA Schedule Submission",
-    price: 4500_00,
-    displayPrice: "Starting at $4,500",
+    price: 4995_00,
+    displayPrice: "Starting at $4,995",
     description:
       "Professional GSA MAS Submissions with a guarantee of submission within 45 days. Speak to our specialists to see if you qualify.",
     features: [
@@ -76,8 +76,8 @@ const services = [
     id: "contract-management",
     icon: Shield,
     name: "GSA Contract Management",
-    price: 6500_00,
-    displayPrice: "$6,500 / year",
+    price: 4995_00,
+    displayPrice: "Starting at $4,995 / year",
     description:
       "Annual support including FCP catalog revisions, modifications, eBuy & Advantage! management, recurring expert guidance, and SAM Registration.",
     features: [
