@@ -280,7 +280,7 @@ export default function Order() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h1 className="font-display text-3xl font-bold text-navy sm:text-4xl">
+            <h1 className="font-display text-3xl font-bold text-brand sm:text-4xl">
               Place Your Order
             </h1>
             <p className="mt-3 text-slate-500">
@@ -305,7 +305,7 @@ export default function Order() {
                 <span
                   className={cn(
                     "text-sm font-medium hidden sm:inline",
-                    step === s ? "text-navy" : "text-slate-400"
+                    step === s ? "text-brand" : "text-slate-400"
                   )}
                 >
                   {s === "select" ? "Services" : s === "details" ? "Details" : "Payment"}
@@ -349,7 +349,7 @@ export default function Order() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-3">
-                            <h3 className="font-display text-lg font-bold text-navy">
+                            <h3 className="font-display text-lg font-bold text-brand">
                               {svc.name}
                             </h3>
                             <span className="text-sm font-bold text-brand-blue whitespace-nowrap">
@@ -392,7 +392,7 @@ export default function Order() {
                     <p className="text-sm text-slate-500">
                       {form.selectedServices.length} service{form.selectedServices.length > 1 ? "s" : ""} selected
                     </p>
-                    <p className="text-2xl font-bold text-navy">{totalDisplay}</p>
+                    <p className="text-2xl font-bold text-brand">{totalDisplay}</p>
                   </div>
                   <Button
                     size="lg"
@@ -415,78 +415,78 @@ export default function Order() {
               transition={{ duration: 0.3 }}
             >
               <Card className="p-8">
-                <h2 className="font-display text-xl font-bold text-navy mb-6">
+                <h2 className="font-display text-xl font-bold text-brand mb-6">
                   Your Information
                 </h2>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-navy mb-1.5">
+                    <label className="block text-sm font-medium text-brand mb-1.5">
                       Company Name *
                     </label>
                     <input
                       type="text"
                       value={form.companyName}
                       onChange={(e) => updateField("companyName", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-navy outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                       placeholder="Acme Corp"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-navy mb-1.5">
+                    <label className="block text-sm font-medium text-brand mb-1.5">
                       Contact Name *
                     </label>
                     <input
                       type="text"
                       value={form.contactName}
                       onChange={(e) => updateField("contactName", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-navy outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                       placeholder="John Smith"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-navy mb-1.5">
+                    <label className="block text-sm font-medium text-brand mb-1.5">
                       Email *
                     </label>
                     <input
                       type="email"
                       value={form.email}
                       onChange={(e) => updateField("email", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-navy outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                       placeholder="john@acmecorp.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-navy mb-1.5">
+                    <label className="block text-sm font-medium text-brand mb-1.5">
                       Phone *
                     </label>
                     <input
                       type="tel"
                       value={form.phone}
                       onChange={(e) => updateField("phone", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-navy outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                       placeholder="(555) 123-4567"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-navy mb-1.5">
+                    <label className="block text-sm font-medium text-brand mb-1.5">
                       UEI / DUNS Number
                     </label>
                     <input
                       type="text"
                       value={form.dunsUei}
                       onChange={(e) => updateField("dunsUei", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-navy outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                       placeholder="Optional"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-navy mb-1.5">
+                    <label className="block text-sm font-medium text-brand mb-1.5">
                       Existing GSA Contract? *
                     </label>
                     <select
                       value={form.existingGsa}
                       onChange={(e) => updateField("existingGsa", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-navy outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue bg-white"
+                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue bg-white"
                     >
                       <option value="">Select...</option>
                       <option value="yes">Yes</option>
@@ -495,27 +495,27 @@ export default function Order() {
                   </div>
                   {form.existingGsa === "yes" && (
                     <div>
-                      <label className="block text-sm font-medium text-navy mb-1.5">
+                      <label className="block text-sm font-medium text-brand mb-1.5">
                         GSA Contract Number
                       </label>
                       <input
                         type="text"
                         value={form.gsaContractNumber}
                         onChange={(e) => updateField("gsaContractNumber", e.target.value)}
-                        className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-navy outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                        className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                         placeholder="GS-XXF-XXXXX"
                       />
                     </div>
                   )}
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-navy mb-1.5">
+                    <label className="block text-sm font-medium text-brand mb-1.5">
                       Additional Notes
                     </label>
                     <textarea
                       value={form.notes}
                       onChange={(e) => updateField("notes", e.target.value)}
                       rows={3}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-navy outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue resize-none"
+                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue resize-none"
                       placeholder="Anything else we should know..."
                     />
                   </div>
@@ -523,16 +523,16 @@ export default function Order() {
 
                 {/* Order Summary */}
                 <div className="mt-8 rounded-lg bg-slate-50 p-5 border border-slate-200">
-                  <h3 className="text-sm font-bold text-navy mb-3">Order Summary</h3>
+                  <h3 className="text-sm font-bold text-brand mb-3">Order Summary</h3>
                   {selectedItems.map((svc) => (
                     <div key={svc.id} className="flex justify-between text-sm py-1.5">
                       <span className="text-slate-600">{svc.name}</span>
-                      <span className="font-medium text-navy">{svc.displayPrice}</span>
+                      <span className="font-medium text-brand">{svc.displayPrice}</span>
                     </div>
                   ))}
                   <div className="border-t border-slate-200 mt-3 pt-3 flex justify-between">
-                    <span className="font-bold text-navy">Total</span>
-                    <span className="font-bold text-navy text-lg">{totalDisplay}</span>
+                    <span className="font-bold text-brand">Total</span>
+                    <span className="font-bold text-brand text-lg">{totalDisplay}</span>
                   </div>
                 </div>
 
@@ -561,7 +561,7 @@ export default function Order() {
               transition={{ duration: 0.3 }}
             >
               <Card className="p-8">
-                <h2 className="font-display text-xl font-bold text-navy mb-2">
+                <h2 className="font-display text-xl font-bold text-brand mb-2">
                   Secure Payment
                 </h2>
                 <p className="text-sm text-slate-500 mb-6">
@@ -577,7 +577,7 @@ export default function Order() {
                       </p>
                       <p className="text-sm text-slate-500 mt-1">{form.companyName}</p>
                     </div>
-                    <p className="text-2xl font-bold text-navy">{totalDisplay}</p>
+                    <p className="text-2xl font-bold text-brand">{totalDisplay}</p>
                   </div>
                 </div>
 
@@ -654,7 +654,7 @@ export default function Order() {
               <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-50 mb-6">
                 <CheckCircle2 size={40} className="text-green-500" />
               </div>
-              <h2 className="font-display text-2xl font-bold text-navy mb-3">
+              <h2 className="font-display text-2xl font-bold text-brand mb-3">
                 Order Confirmed!
               </h2>
               <p className="text-slate-500 max-w-md mx-auto mb-2">

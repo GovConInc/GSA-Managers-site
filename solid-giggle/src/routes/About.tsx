@@ -40,7 +40,7 @@ export default function About() {
       <section className="bg-white py-20">
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">About Us</p>
-          <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-navy sm:text-5xl">
+          <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-brand sm:text-5xl">
             Federal Strategists, Not Just Consultants.
           </h1>
           <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-500 leading-relaxed">
@@ -60,7 +60,7 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">Our Story</p>
-              <h2 className="mt-3 font-display text-3xl font-bold text-navy">
+              <h2 className="mt-3 font-display text-3xl font-bold text-brand">
                 Founded on a Singular Focus
               </h2>
               <div className="mt-6 space-y-4 text-slate-500 leading-relaxed">
@@ -104,7 +104,7 @@ export default function About() {
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">What We Believe</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-navy sm:text-4xl">Our Core Values</h2>
+            <h2 className="mt-2 font-display text-3xl font-bold text-brand sm:text-4xl">Our Core Values</h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, idx) => (
@@ -119,7 +119,7 @@ export default function About() {
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10">
                     <value.icon size={22} className="text-brand-blue" />
                   </div>
-                  <h3 className="mt-4 text-lg font-bold text-navy">{value.title}</h3>
+                  <h3 className="mt-4 text-lg font-bold text-brand">{value.title}</h3>
                   <p className="mt-2 text-sm text-slate-500">{value.description}</p>
                 </Card>
               </motion.div>
@@ -129,7 +129,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-20">
+      <section className="bg-brand py-20">
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8 text-center">
           <h2 className="font-display text-3xl font-bold text-white">
             Let's Talk About Your GSA Strategy

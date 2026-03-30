@@ -59,7 +59,7 @@ export default function ServicesCertifications() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-sm font-bold uppercase tracking-wider text-brand-blue">Compliance & Certification Services</p>
-              <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-navy sm:text-5xl">
+              <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-brand sm:text-5xl">
                 The Foundation of Federal Contracting.
               </h1>
               <p className="mt-6 text-lg text-slate-600 leading-relaxed">
@@ -82,7 +82,7 @@ export default function ServicesCertifications() {
                             <AlertTriangle size={24}/>
                         </div>
                         <div>
-                            <h3 className="font-bold text-navy text-lg">The Compliance Trap</h3>
+                            <h3 className="font-bold text-brand text-lg">The Compliance Trap</h3>
                             <p className="text-slate-600 mt-2">
                                 An expired SAM registration or a missing certification can cost you millions. A single mistake can make you ineligible for an entire year. Don't leave it to chance.
                             </p>
@@ -96,7 +96,7 @@ export default function ServicesCertifications() {
       {/* ===== SERVICES GRID ===== */}
       <Section className="bg-slate-50">
         <div className="text-center mb-12">
-            <h2 className="font-display text-3xl font-bold text-navy">
+            <h2 className="font-display text-3xl font-bold text-brand">
                 Our Core Compliance Services
             </h2>
             <p className="mt-4 mx-auto max-w-2xl text-slate-600">
@@ -121,7 +121,7 @@ export default function ServicesCertifications() {
                             </div>
                             {service.critical && <span className="text-xs font-bold px-2 py-1 rounded-full bg-red-100 text-red-700">Critical</span>}
                         </div>
-                        <h3 className="mt-4 font-bold text-lg text-navy">{service.name}</h3>
+                        <h3 className="mt-4 font-bold text-lg text-brand">{service.name}</h3>
                         <p className="mt-2 text-sm text-slate-600">{service.description}</p>
                     </div>
                     <div className="mt-4 pt-4 border-t border-slate-200">

@@ -827,7 +827,7 @@ export default function Programs() {
       <Section>
         <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-wider text-brand-blue">Our Programs</p>
-            <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-navy sm:text-6xl">
+            <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-brand sm:text-6xl">
               From Compliant to Competitive to Prime.
             </h1>
             <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-600 leading-relaxed">
@@ -860,7 +860,7 @@ export default function Programs() {
                     </div>
                     <div className="mt-6">
                         <div className="text-sm text-slate-500">{program.duration} Program</div>
-                        <div className="font-display text-4xl font-bold text-navy">${program.price.toLocaleString()}</div>
+                        <div className="font-display text-4xl font-bold text-brand">${program.price.toLocaleString()}</div>
                         <p className="text-xs text-slate-500 mt-1">{program.idealFor}</p>
                         <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="w-full mt-6" variant={program.id === activeProgram ? 'primary' : 'secondary'}>
                             Get Started with {program.name}
@@ -878,7 +878,7 @@ export default function Programs() {
               <table className="w-full min-w-[800px] text-sm">
                   <thead>
                       <tr className="border-b border-slate-200">
-                          <th className="text-left font-bold text-navy p-4">Feature</th>
+                          <th className="text-left font-bold text-brand p-4">Feature</th>
                           {marketingPrograms.map(p => (
                               <th key={p.id} className={`p-4 text-center ${p.text}`}>
                                   <div className="font-display text-lg">{p.name}</div>

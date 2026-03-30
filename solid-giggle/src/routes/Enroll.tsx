@@ -218,32 +218,32 @@ export default function Enroll() {
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 border-2 border-emerald-200">
             <CheckCircle className="text-emerald-600" size={32} />
           </div>
-          <h2 className="font-display text-3xl font-bold text-navy">You're in. Let's go.</h2>
+          <h2 className="font-display text-3xl font-bold text-brand">You're in. Let's go.</h2>
           <p className="mt-4 text-slate-600">{successMsg || "Payment confirmed. Book your intro meeting below and we'll get to work immediately."}</p>
 
           <button
             onClick={() => window.open(CALENDLY_URL, "_blank")}
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-navy px-8 py-4 text-base font-bold text-white transition hover:bg-slate-800"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-4 text-base font-bold text-white transition hover:bg-slate-800"
           >
             Book Your Intro Meeting <ArrowRight size={18} />
           </button>
           <p className="mt-3 text-xs text-slate-400">Welcome packet sent automatically once you book.</p>
 
           <Card className="mt-8 overflow-hidden text-left" hover={false}>
-            <div className="bg-navy px-5 py-3 text-xs font-bold uppercase tracking-widest text-white">
+            <div className="bg-brand px-5 py-3 text-xs font-bold uppercase tracking-widest text-white">
               What Happens Next
             </div>
             {[
               { num: "✓", style: "bg-emerald-600 text-white", title: "Payment received", desc: "Check your inbox for the Stripe receipt." },
-              { num: "2", style: "bg-navy text-white", title: "Book your meeting above", desc: "Google Meet — pick any open slot." },
-              { num: "3", style: "bg-slate-100 text-navy", title: "Onboarding & intake", desc: "We send a short intake form. Work starts within 24 hours." },
+              { num: "2", style: "bg-brand text-white", title: "Book your meeting above", desc: "Google Meet — pick any open slot." },
+              { num: "3", style: "bg-slate-100 text-brand", title: "Onboarding & intake", desc: "We send a short intake form. Work starts within 24 hours." },
             ].map((s) => (
               <div key={s.title} className="flex gap-3 border-b border-slate-100 px-5 py-3 last:border-b-0">
                 <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold", s.style)}>
                   {s.num}
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-navy">{s.title}</div>
+                  <div className="text-sm font-bold text-brand">{s.title}</div>
                   <div className="text-xs text-slate-500">{s.desc}</div>
                 </div>
               </div>
@@ -263,7 +263,7 @@ export default function Enroll() {
       </Helmet>
 
       {/* ═══ HERO ═══ */}
-      <section className="bg-navy px-5 py-16 text-center lg:py-20">
+      <section className="bg-brand px-5 py-16 text-center lg:py-20">
         <div className="mx-auto max-w-2xl">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-300">
             <Zap size={12} />
@@ -279,7 +279,7 @@ export default function Enroll() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <button
               onClick={() => openModal("fcp")}
-              className="inline-flex items-center gap-2 rounded-xl bg-navy px-7 py-3.5 text-sm font-extrabold text-white transition hover:bg-red-700 active:scale-[.98]"
+              className="inline-flex items-center gap-2 rounded-xl bg-brand px-7 py-3.5 text-sm font-extrabold text-white transition hover:bg-red-700 active:scale-[.98]"
             >
               Upload My Catalog & Get Training
             </button>
@@ -297,7 +297,7 @@ export default function Enroll() {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-2xl px-5">
           <p className="text-xs font-bold uppercase tracking-widest text-gov-blue">The Reality</p>
-          <h2 className="mt-3 font-display text-2xl font-black text-navy sm:text-3xl">
+          <h2 className="mt-3 font-display text-2xl font-black text-brand sm:text-3xl">
             Winning a GSA Schedule Is Only the Beginning
           </h2>
           <p className="mt-3 text-slate-500">
@@ -308,14 +308,14 @@ export default function Enroll() {
             {problems.map((p) => (
               <div key={p} className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3.5">
                 <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-100">
-                  <X size={10} className="text-navy" />
+                  <X size={10} className="text-brand" />
                 </div>
                 <p className="text-sm font-medium text-slate-700 leading-snug">{p}</p>
               </div>
             ))}
           </div>
 
-          <p className="mt-7 border-l-[3px] border-gov-crimson pl-4 text-base font-bold text-navy leading-relaxed">
+          <p className="mt-7 border-l-[3px] border-gov-crimson pl-4 text-base font-bold text-brand leading-relaxed">
             Most companies win a Schedule and then have no idea how to actually operate it. That's exactly what we fix.
           </p>
         </div>
@@ -324,12 +324,12 @@ export default function Enroll() {
       {/* ═══ RISK ═══ */}
       <section className="border-y border-slate-200 bg-slate-50 py-14">
         <div className="mx-auto max-w-2xl px-5">
-          <p className="text-xs font-bold uppercase tracking-widest text-navy">What Happens When a GSA Contract Is Mismanaged</p>
-          <h2 className="mt-3 font-display text-2xl font-black text-navy">The Cost of Doing Nothing</h2>
+          <p className="text-xs font-bold uppercase tracking-widest text-brand">What Happens When a GSA Contract Is Mismanaged</p>
+          <h2 className="mt-3 font-display text-2xl font-black text-brand">The Cost of Doing Nothing</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {risks.map((r) => (
               <div key={r.title} className="rounded-xl border border-slate-200 border-t-[3px] border-t-gov-crimson bg-white p-5">
-                <h4 className="text-sm font-bold text-navy">{r.title}</h4>
+                <h4 className="text-sm font-bold text-brand">{r.title}</h4>
                 <p className="mt-1.5 text-xs text-slate-500 leading-relaxed">{r.desc}</p>
               </div>
             ))}
@@ -341,16 +341,16 @@ export default function Enroll() {
       <section id="entry-offer" className="scroll-mt-16 bg-white py-16">
         <div className="mx-auto max-w-2xl px-5">
           <p className="text-xs font-bold uppercase tracking-widest text-gov-blue">Start Here</p>
-          <h2 className="mt-3 font-display text-2xl font-black text-navy sm:text-3xl">
+          <h2 className="mt-3 font-display text-2xl font-black text-brand sm:text-3xl">
             Catalog Upload + 1-on-1 GSA Training
           </h2>
           <p className="mt-3 mb-8 text-slate-500">
             Get your catalog live and understand exactly how your contract works — from someone who does this every day.
           </p>
 
-          <div className="overflow-hidden rounded-2xl border-2 border-gov-navy shadow-lg shadow-gov-navy/10">
+          <div className="overflow-hidden rounded-2xl border-2 border-gov-brand shadow-lg shadow-gov-brand/10">
             {/* Header */}
-            <div className="flex flex-wrap items-center justify-between gap-4 bg-navy px-7 py-6">
+            <div className="flex flex-wrap items-center justify-between gap-4 bg-brand px-7 py-6">
               <div>
                 <h3 className="text-lg font-black text-white sm:text-xl">New Contractor Catalog Upload + Training</h3>
                 <p className="mt-1 text-sm text-blue-300">Everything you need to go from awarded to operational.</p>
@@ -363,9 +363,9 @@ export default function Enroll() {
 
             {/* Body */}
             <div className="p-7">
-              <div className="mb-6 rounded-xl border-l-[3px] border-gov-navy bg-slate-50 p-4 text-sm text-slate-700 leading-relaxed">
+              <div className="mb-6 rounded-xl border-l-[3px] border-gov-brand bg-slate-50 p-4 text-sm text-slate-700 leading-relaxed">
                 This isn't just a catalog upload. By the time we're done,{" "}
-                <strong className="text-navy">you understand your contract</strong> — what every portal does, what every term means, what you need to do and when.
+                <strong className="text-brand">you understand your contract</strong> — what every portal does, what every term means, what you need to do and when.
               </div>
 
               <div className="mb-7 grid gap-2.5 sm:grid-cols-2">
@@ -375,7 +375,7 @@ export default function Enroll() {
                       <CheckCircle size={10} className="text-emerald-600" />
                     </div>
                     <div className="text-sm">
-                      <strong className="block text-navy">{d.title}</strong>
+                      <strong className="block text-brand">{d.title}</strong>
                       <span className="text-xs text-slate-500 leading-snug">{d.desc}</span>
                     </div>
                   </div>
@@ -385,7 +385,7 @@ export default function Enroll() {
               <div className="border-t border-slate-200 pt-6">
                 <button
                   onClick={() => openModal("fcp")}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-navy px-6 py-4 text-base font-extrabold text-white transition hover:bg-red-700 active:scale-[.98]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-4 text-base font-extrabold text-white transition hover:bg-red-700 active:scale-[.98]"
                 >
                   Start Catalog Upload — $1,200 <ArrowRight size={18} />
                 </button>
@@ -425,7 +425,7 @@ export default function Enroll() {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-2xl px-5">
           <p className="text-xs font-bold uppercase tracking-widest text-gov-blue">No Guesswork</p>
-          <h2 className="mt-3 font-display text-2xl font-black text-navy">What Happens After You Enroll</h2>
+          <h2 className="mt-3 font-display text-2xl font-black text-brand">What Happens After You Enroll</h2>
           <p className="mt-3 text-slate-500">This is what the process looks like from the moment you pay.</p>
 
           <div className="relative mt-8">
@@ -434,11 +434,11 @@ export default function Enroll() {
             <div className="space-y-7">
               {steps.map((s, idx) => (
                 <div key={s.title} className="relative flex gap-5">
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-extrabold text-white">
+                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-extrabold text-white">
                     {idx + 1}
                   </div>
                   <div className="pt-2">
-                    <h4 className="text-sm font-bold text-navy">{s.title}</h4>
+                    <h4 className="text-sm font-bold text-brand">{s.title}</h4>
                     <p className="mt-1 text-xs text-slate-500 leading-relaxed">{s.desc}</p>
                   </div>
                 </div>
@@ -452,7 +452,7 @@ export default function Enroll() {
       <section className="border-y border-slate-200 bg-slate-50 py-14">
         <div className="mx-auto max-w-2xl px-5">
           <p className="text-xs font-bold uppercase tracking-widest text-gov-blue">What Comes Next</p>
-          <h2 className="mt-3 font-display text-2xl font-black text-navy">
+          <h2 className="mt-3 font-display text-2xl font-black text-brand">
             Most Contractors Continue With Ongoing Management
           </h2>
           <p className="mt-3 text-slate-500">
@@ -461,12 +461,12 @@ export default function Enroll() {
           <div className="mt-5 space-y-2">
             {transitionItems.map((t) => (
               <div key={t} className="flex items-center gap-2.5 text-sm text-slate-600">
-                <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-navy" />
+                <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
                 {t}
               </div>
             ))}
           </div>
-          <p className="mt-6 border-l-[3px] border-gov-navy pl-4 text-base font-bold text-navy leading-relaxed">
+          <p className="mt-6 border-l-[3px] border-gov-brand pl-4 text-base font-bold text-brand leading-relaxed">
             That's why many clients move directly into Annual GSA Management after the initial upload.
           </p>
         </div>
@@ -476,7 +476,7 @@ export default function Enroll() {
       <section id="annual-offer" className="scroll-mt-16 bg-white py-16">
         <div className="mx-auto max-w-2xl px-5">
           <p className="text-xs font-bold uppercase tracking-widest text-gov-blue">Full-Service Option</p>
-          <h2 className="mt-3 font-display text-2xl font-black text-navy sm:text-3xl">
+          <h2 className="mt-3 font-display text-2xl font-black text-brand sm:text-3xl">
             Annual GSA Schedule Management
           </h2>
           <p className="mt-3 mb-8 text-slate-500">
@@ -513,7 +513,7 @@ export default function Enroll() {
                       <CheckCircle size={10} className="text-emerald-600" />
                     </div>
                     <div className="text-sm">
-                      <strong className="block text-navy">{d.title}</strong>
+                      <strong className="block text-brand">{d.title}</strong>
                       <span className="text-xs text-slate-500 leading-snug">{d.desc}</span>
                     </div>
                   </div>
@@ -521,7 +521,7 @@ export default function Enroll() {
               </div>
 
               <div className="border-t border-slate-200 pt-6">
-                <p className="mb-3 text-sm font-bold text-navy">Choose your billing preference:</p>
+                <p className="mb-3 text-sm font-bold text-brand">Choose your billing preference:</p>
 
                 {/* Plan Toggle */}
                 <div className="mb-5 grid grid-cols-2 gap-3">
@@ -530,14 +530,14 @@ export default function Enroll() {
                     className={cn(
                       "rounded-xl border-2 p-4 text-left transition",
                       annualPlan === "annual"
-                        ? "border-gov-navy shadow-sm shadow-gov-navy/10"
+                        ? "border-gov-brand shadow-sm shadow-gov-brand/10"
                         : "border-slate-200 hover:border-slate-300"
                     )}
                   >
-                    <div className={cn("text-[10px] font-bold uppercase tracking-widest", annualPlan === "annual" ? "text-navy" : "text-slate-400")}>
+                    <div className={cn("text-[10px] font-bold uppercase tracking-widest", annualPlan === "annual" ? "text-brand" : "text-slate-400")}>
                       Pay annually
                     </div>
-                    <div className="mt-1 text-xl font-black text-navy">$5,200</div>
+                    <div className="mt-1 text-xl font-black text-brand">$5,200</div>
                     <div className="mt-0.5 text-xs text-slate-500">Best value — save $740/yr</div>
                   </button>
                   <button
@@ -545,14 +545,14 @@ export default function Enroll() {
                     className={cn(
                       "rounded-xl border-2 p-4 text-left transition",
                       annualPlan === "monthly"
-                        ? "border-gov-navy shadow-sm shadow-gov-navy/10"
+                        ? "border-gov-brand shadow-sm shadow-gov-brand/10"
                         : "border-slate-200 hover:border-slate-300"
                     )}
                   >
-                    <div className={cn("text-[10px] font-bold uppercase tracking-widest", annualPlan === "monthly" ? "text-navy" : "text-slate-400")}>
+                    <div className={cn("text-[10px] font-bold uppercase tracking-widest", annualPlan === "monthly" ? "text-brand" : "text-slate-400")}>
                       Pay monthly
                     </div>
-                    <div className="mt-1 text-xl font-black text-navy">
+                    <div className="mt-1 text-xl font-black text-brand">
                       $495<span className="text-sm font-semibold">/mo</span>
                     </div>
                     <div className="mt-0.5 text-xs text-slate-500">$5,940/yr — flexible commitment</div>
@@ -561,7 +561,7 @@ export default function Enroll() {
 
                 <button
                   onClick={() => openModal("mgmt")}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-navy px-6 py-4 text-base font-extrabold text-white transition hover:bg-slate-800 active:scale-[.98]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-4 text-base font-extrabold text-white transition hover:bg-slate-800 active:scale-[.98]"
                 >
                   Start Annual Management <ArrowRight size={18} />
                 </button>
@@ -578,11 +578,11 @@ export default function Enroll() {
       <section className="border-t border-slate-200 bg-slate-50 py-16">
         <div className="mx-auto max-w-2xl px-5">
           <p className="text-xs font-bold uppercase tracking-widest text-gov-blue">Is This Right for You?</p>
-          <h2 className="mt-3 font-display text-2xl font-black text-navy">Who This Is For</h2>
+          <h2 className="mt-3 font-display text-2xl font-black text-brand">Who This Is For</h2>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             <Card className="p-6" hover={false}>
-              <h4 className="mb-4 text-sm font-extrabold text-navy">This is a fit if you are…</h4>
+              <h4 className="mb-4 text-sm font-extrabold text-brand">This is a fit if you are…</h4>
               <ul className="space-y-2">
                 {fitYes.map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-slate-600 leading-snug">
@@ -595,11 +595,11 @@ export default function Enroll() {
               </ul>
             </Card>
             <Card className="p-6" hover={false}>
-              <h4 className="mb-4 text-sm font-extrabold text-navy">This is not a fit if you…</h4>
+              <h4 className="mb-4 text-sm font-extrabold text-brand">This is not a fit if you…</h4>
               <ul className="space-y-2">
                 {fitNo.map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-slate-600 leading-snug">
-                    <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-red-100 text-[10px] font-bold text-navy">
+                    <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-red-100 text-[10px] font-bold text-brand">
                       ✕
                     </div>
                     {item}
@@ -615,7 +615,7 @@ export default function Enroll() {
       <section className="border-t border-slate-200 bg-white py-16">
         <div className="mx-auto max-w-2xl px-5">
           <p className="text-xs font-bold uppercase tracking-widest text-gov-blue">Common Questions</p>
-          <h2 className="mt-3 font-display text-2xl font-black text-navy">Before You Enroll</h2>
+          <h2 className="mt-3 font-display text-2xl font-black text-brand">Before You Enroll</h2>
 
           <div className="mt-8 space-y-1">
             {faqs.map((f, idx) => {
@@ -624,7 +624,7 @@ export default function Enroll() {
                 <div key={idx} className="overflow-hidden rounded-xl border border-slate-200 bg-white">
                   <button
                     onClick={() => setExpandedFaq(open ? null : idx)}
-                    className="flex w-full items-center justify-between gap-3 p-4 text-left text-sm font-semibold text-navy transition hover:bg-slate-50"
+                    className="flex w-full items-center justify-between gap-3 p-4 text-left text-sm font-semibold text-brand transition hover:bg-slate-50"
                   >
                     {f.q}
                     <span className={cn("text-lg text-slate-400 transition-transform", open && "rotate-45")}>+</span>
@@ -642,7 +642,7 @@ export default function Enroll() {
       </section>
 
       {/* ═══ FINAL CTA ═══ */}
-      <section className="bg-navy px-5 py-16 text-center">
+      <section className="bg-brand px-5 py-16 text-center">
         <h2 className="font-display text-2xl font-black text-white sm:text-3xl">
           Get Your GSA Contract Running Correctly
         </h2>
@@ -652,7 +652,7 @@ export default function Enroll() {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => openModal("fcp")}
-            className="rounded-xl bg-navy px-8 py-4 text-sm font-extrabold text-white transition hover:bg-red-700"
+            className="rounded-xl bg-brand px-8 py-4 text-sm font-extrabold text-white transition hover:bg-red-700"
           >
             Start Catalog Upload — $1,200
           </button>
@@ -674,7 +674,7 @@ export default function Enroll() {
         >
           <div className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl">
             {/* Modal Header */}
-            <div className="flex items-center justify-between bg-navy px-6 py-5">
+            <div className="flex items-center justify-between bg-brand px-6 py-5">
               <div>
                 <h3 className="text-base font-extrabold text-white">{plan.name}</h3>
                 <p className="mt-0.5 text-xs text-blue-300">{plan.cadence}</p>
@@ -697,11 +697,11 @@ export default function Enroll() {
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="Acme Federal LLC"
                     className={cn(
-                      "w-full rounded-lg border-[1.5px] px-3 py-2.5 text-sm outline-none transition focus:border-gov-navy",
+                      "w-full rounded-lg border-[1.5px] px-3 py-2.5 text-sm outline-none transition focus:border-gov-brand",
                       errors.company ? "border-gov-crimson" : "border-slate-200"
                     )}
                   />
-                  {errors.company && <p className="mt-0.5 text-[11px] text-navy">Required</p>}
+                  {errors.company && <p className="mt-0.5 text-[11px] text-brand">Required</p>}
                 </div>
                 <div>
                   <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-600">
@@ -713,11 +713,11 @@ export default function Enroll() {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Jane Smith"
                     className={cn(
-                      "w-full rounded-lg border-[1.5px] px-3 py-2.5 text-sm outline-none transition focus:border-gov-navy",
+                      "w-full rounded-lg border-[1.5px] px-3 py-2.5 text-sm outline-none transition focus:border-gov-brand",
                       errors.name ? "border-gov-crimson" : "border-slate-200"
                     )}
                   />
-                  {errors.name && <p className="mt-0.5 text-[11px] text-navy">Required</p>}
+                  {errors.name && <p className="mt-0.5 text-[11px] text-brand">Required</p>}
                 </div>
               </div>
 
@@ -731,11 +731,11 @@ export default function Enroll() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="jane@acmefederal.com"
                   className={cn(
-                    "w-full rounded-lg border-[1.5px] px-3 py-2.5 text-sm outline-none transition focus:border-gov-navy",
+                    "w-full rounded-lg border-[1.5px] px-3 py-2.5 text-sm outline-none transition focus:border-gov-brand",
                     errors.email ? "border-gov-crimson" : "border-slate-200"
                   )}
                 />
-                {errors.email && <p className="mt-0.5 text-[11px] text-navy">Valid email required</p>}
+                {errors.email && <p className="mt-0.5 text-[11px] text-brand">Valid email required</p>}
               </div>
 
               <div className="mb-3 grid grid-cols-2 gap-2.5">
@@ -749,11 +749,11 @@ export default function Enroll() {
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="(555) 000-0000"
                     className={cn(
-                      "w-full rounded-lg border-[1.5px] px-3 py-2.5 text-sm outline-none transition focus:border-gov-navy",
+                      "w-full rounded-lg border-[1.5px] px-3 py-2.5 text-sm outline-none transition focus:border-gov-brand",
                       errors.phone ? "border-gov-crimson" : "border-slate-200"
                     )}
                   />
-                  {errors.phone && <p className="mt-0.5 text-[11px] text-navy">Required</p>}
+                  {errors.phone && <p className="mt-0.5 text-[11px] text-brand">Required</p>}
                 </div>
                 <div>
                   <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-slate-600">
@@ -764,7 +764,7 @@ export default function Enroll() {
                     value={contract}
                     onChange={(e) => setContract(e.target.value)}
                     placeholder="GS-00F-XXXXX"
-                    className="w-full rounded-lg border-[1.5px] border-slate-200 px-3 py-2.5 text-sm outline-none transition focus:border-gov-navy"
+                    className="w-full rounded-lg border-[1.5px] border-slate-200 px-3 py-2.5 text-sm outline-none transition focus:border-gov-brand"
                   />
                 </div>
               </div>
@@ -775,10 +775,10 @@ export default function Enroll() {
               <div className="mb-4 flex items-center justify-between rounded-xl border-[1.5px] border-slate-200 bg-slate-50 px-4 py-3">
                 <div>
                   <div className="text-xs text-slate-500">{plan.label}</div>
-                  <div className="text-sm font-bold text-navy">{plan.name}</div>
+                  <div className="text-sm font-bold text-brand">{plan.name}</div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xl font-black text-navy">
+                  <div className="text-xl font-black text-brand">
                     ${plan.price.toLocaleString()}
                     {currentPlan === "monthly" && <span className="text-sm font-semibold">/mo</span>}
                   </div>
@@ -792,8 +792,8 @@ export default function Enroll() {
                 className={cn(
                   "flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-extrabold text-white transition active:scale-[.98] disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400",
                   currentPlan === "fcp"
-                    ? "bg-navy hover:bg-red-700"
-                    : "bg-navy hover:bg-slate-800"
+                    ? "bg-brand hover:bg-red-700"
+                    : "bg-brand hover:bg-slate-800"
                 )}
               >
                 {submitting ? "Redirecting to checkout…" : "Pay & Get Started →"}

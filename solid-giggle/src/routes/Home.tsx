@@ -157,7 +157,7 @@ export default function Home() {
                       <span className="text-sm font-medium text-ink-muted">{svc.price}</span>
                     </div>
 
-                    <h3 className="font-display text-xl font-semibold text-ink mb-2 group-hover:text-navy transition-colors">
+                    <h3 className="font-display text-xl font-semibold text-ink mb-2 group-hover:text-brand transition-colors">
                       {svc.title}
                     </h3>
                     <p className="text-ink-light leading-relaxed mb-6">
@@ -167,13 +167,13 @@ export default function Home() {
                     <div className="space-y-2 mb-6">
                       {svc.features.map((f) => (
                         <div key={f} className="flex items-center gap-2.5 text-sm text-ink-light">
-                          <CheckCircle2 size={15} className="text-navy shrink-0" />
+                          <CheckCircle2 size={15} className="text-brand shrink-0" />
                           {f}
                         </div>
                       ))}
                     </div>
 
-                    <span className="inline-flex items-center gap-2 text-sm font-medium text-navy group-hover:gap-3 transition-all">
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-brand group-hover:gap-3 transition-all">
                       View details
                       <ArrowRight size={14} />
                     </span>
@@ -259,7 +259,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.06, duration: 0.4 }}
               >
-                <div className="font-display text-3xl font-semibold text-navy">{item.stat}</div>
+                <div className="font-display text-3xl font-semibold text-brand">{item.stat}</div>
                 <h4 className="mt-2 font-display text-lg font-semibold text-ink">{item.label}</h4>
                 <p className="mt-2 text-ink-light leading-relaxed">{item.detail}</p>
               </motion.div>

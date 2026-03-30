@@ -29,7 +29,7 @@ const stages = [
     details: ["Opportunity Pipeline", "Relationship Building", "Bid/No-Bid Analysis", "Teaming Partners"],
     icon: Target,
     emphasized: true,
-    color: "navy",
+    color: "brand",
     number: "03",
   },
   {

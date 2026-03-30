@@ -75,12 +75,12 @@ const allServices: ServiceData[] = [
     ganttUnit: "Day",
     ganttTotal: 30,
     ganttPhases: [
-      { label: "Kickoff & Strategy", start: 0, duration: 2, color: "bg-navy", details: ["Business capabilities review", "Target SIN identification", "Communication cadence setup", "Milestone expectations"] },
-      { label: "Document Collection", start: 2, duration: 6, color: "bg-navy-light", details: ["Federal tax returns (2yr min)", "Financial statements", "Past performance narratives", "Commercial price lists"] },
+      { label: "Kickoff & Strategy", start: 0, duration: 2, color: "bg-brand", details: ["Business capabilities review", "Target SIN identification", "Communication cadence setup", "Milestone expectations"] },
+      { label: "Document Collection", start: 2, duration: 6, color: "bg-brand-light", details: ["Federal tax returns (2yr min)", "Financial statements", "Past performance narratives", "Commercial price lists"] },
       { label: "eOffer Preparation", start: 8, duration: 5, color: "bg-sky-600", details: ["SAM.gov verification", "FAS ID creation", "SIN justification", "Portal data entry"] },
       { label: "Holy Trinity Review", start: 13, duration: 2, color: "bg-amber-600", details: ["Admin completeness check", "Technical validation", "Pricing verification", "Cross-volume consistency"] },
-      { label: "Price & Tech Deep Dive", start: 15, duration: 5, color: "bg-navy", details: ["CSP analysis", "Price escalation", "Labor category descriptions", "Technical narrative refinement"] },
-      { label: "Final Polish", start: 20, duration: 5, color: "bg-navy-light", details: ["Document formatting", "Signature verification", "Attachment checklist", "Quality audit"] },
+      { label: "Price & Tech Deep Dive", start: 15, duration: 5, color: "bg-brand", details: ["CSP analysis", "Price escalation", "Labor category descriptions", "Technical narrative refinement"] },
+      { label: "Final Polish", start: 20, duration: 5, color: "bg-brand-light", details: ["Document formatting", "Signature verification", "Attachment checklist", "Quality audit"] },
       { label: "GSA Submission", start: 25, duration: 5, color: "bg-emerald-600", details: ["eOffer package upload", "Confirmation receipt", "CO assignment notification", "Clarification prep"] },
     ],
     cta: "Get Started",
@@ -109,11 +109,11 @@ const allServices: ServiceData[] = [
     ganttUnit: "Month",
     ganttTotal: 12,
     ganttPhases: [
-      { label: "Baseline Audit & Setup", start: 0, duration: 1, color: "bg-navy", details: ["Contract health assessment", "Catalog review", "Compliance gap analysis", "Account setup"] },
+      { label: "Baseline Audit & Setup", start: 0, duration: 1, color: "bg-brand", details: ["Contract health assessment", "Catalog review", "Compliance gap analysis", "Account setup"] },
       { label: "Q1 Sales Report & IFF", start: 0, duration: 3, color: "bg-sky-600", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Transaction record maintenance", "Discrepancy resolution"] },
       { label: "Catalog Management", start: 1, duration: 11, color: "bg-amber-600", details: ["Product/service updates", "Pricing modifications", "New SIN additions", "Refresh submissions"] },
       { label: "Q2 Sales Report & IFF", start: 3, duration: 3, color: "bg-sky-600", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Mid-year reconciliation", "Discrepancy resolution"] },
-      { label: "Modifications & Compliance", start: 2, duration: 8, color: "bg-navy-light", details: ["Address/POC updates", "Scope expansions", "TDR monitoring", "Price reduction compliance"] },
+      { label: "Modifications & Compliance", start: 2, duration: 8, color: "bg-brand-light", details: ["Address/POC updates", "Scope expansions", "TDR monitoring", "Price reduction compliance"] },
       { label: "Q3 Sales Report & IFF", start: 6, duration: 3, color: "bg-sky-600", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Year-to-date analysis", "Discrepancy resolution"] },
       { label: "Q4 Report & Option Review", start: 9, duration: 3, color: "bg-emerald-600", details: ["Final quarterly report", "Annual reconciliation", "Option year assessment", "Renewal preparation"] },
     ],
@@ -144,8 +144,8 @@ const allServices: ServiceData[] = [
     ganttTotal: 16,
     ganttPhases: [
       { label: "FCP Catalog Upload", start: 0, duration: 4, color: "bg-amber-600", details: ["Catalog data gathering", "Product listing QA", "Pricing review", "FCP upload & validation"] },
-      { label: "Platform Training", start: 2, duration: 4, color: "bg-navy", details: ["GSA Advantage walkthrough", "eBuy training", "FCP navigation", "Account configuration"] },
-      { label: "Process Onboarding", start: 4, duration: 3, color: "bg-navy-light", details: ["Sales reporting training", "Compliance overview", "Modification process", "Documentation handoff"] },
+      { label: "Platform Training", start: 2, duration: 4, color: "bg-brand", details: ["GSA Advantage walkthrough", "eBuy training", "FCP navigation", "Account configuration"] },
+      { label: "Process Onboarding", start: 4, duration: 3, color: "bg-brand-light", details: ["Sales reporting training", "Compliance overview", "Modification process", "Documentation handoff"] },
       { label: "90-Day Management", start: 4, duration: 12, color: "bg-emerald-600", details: ["Ongoing compliance monitoring", "First quarterly report prep", "Catalog maintenance", "Issue resolution support"] },
     ],
     cta: "Get Started",
@@ -172,7 +172,7 @@ const allServices: ServiceData[] = [
     ganttUnit: "Day",
     ganttTotal: 30,
     ganttPhases: [
-      { label: "Catalog Audit", start: 0, duration: 5, color: "bg-navy", details: ["Existing catalog review", "Data format assessment", "Gap identification", "Upload plan creation"] },
+      { label: "Catalog Audit", start: 0, duration: 5, color: "bg-brand", details: ["Existing catalog review", "Data format assessment", "Gap identification", "Upload plan creation"] },
       { label: "Data Prep & Pricing QA", start: 5, duration: 8, color: "bg-sky-600", details: ["Product listing cleanup", "Pricing validation", "SIN mapping verification", "Offer structure review"] },
       { label: "FCP Upload & Validation", start: 13, duration: 10, color: "bg-amber-600", details: ["Baseline upload to FCP", "System validation checks", "Error resolution", "Listing confirmation"] },
       { label: "Compliance & Go-Live", start: 23, duration: 7, color: "bg-emerald-600", details: ["Final compliance check", "GSA Advantage visibility", "Roadmap consultation", "Handoff documentation"] },
@@ -279,7 +279,7 @@ function GanttChart({ service }: { service: ServiceData }) {
                     <div className="grid grid-cols-2 gap-x-6 gap-y-2 py-3 px-3">
                       {phase.details.map((d) => (
                         <div key={d} className="flex items-center gap-2 text-sm text-ink-light">
-                          <CheckCircle size={13} className="text-navy shrink-0" />
+                          <CheckCircle size={13} className="text-brand shrink-0" />
                           {d}
                         </div>
                       ))}
@@ -451,7 +451,7 @@ export default function ServicesGSA() {
                   <div className="mt-8 grid gap-3 sm:grid-cols-2">
                     {svc.features.map((f) => (
                       <div key={f} className="flex items-start gap-2.5 text-ink-light">
-                        <CheckCircle size={16} className="text-navy mt-0.5 shrink-0" />
+                        <CheckCircle size={16} className="text-brand mt-0.5 shrink-0" />
                         {f}
                       </div>
                     ))}
@@ -489,7 +489,7 @@ export default function ServicesGSA() {
                     <div className="mt-8 pt-6 border-t border-warm-border space-y-3">
                       {svc.features.slice(0, 4).map((f) => (
                         <div key={f} className="flex items-center gap-2.5 text-sm text-ink-light">
-                          <CheckCircle size={14} className="text-navy shrink-0" />
+                          <CheckCircle size={14} className="text-brand shrink-0" />
                           {f}
                         </div>
                       ))}
@@ -536,7 +536,7 @@ export default function ServicesGSA() {
                     <b.icon size={20} className="text-ink-light" />
                   </div>
                   <div>
-                    <span className="font-display text-2xl font-semibold text-navy">{b.stat}</span>
+                    <span className="font-display text-2xl font-semibold text-brand">{b.stat}</span>
                     <p className="text-[10px] uppercase tracking-widest text-ink-muted font-medium">{b.statLabel}</p>
                   </div>
                 </div>
@@ -564,7 +564,7 @@ export default function ServicesGSA() {
                 className={cn(
                   "w-full text-left rounded-xl border p-6 transition-all duration-200",
                   activeFaq === idx
-                    ? "border-navy/20 bg-white shadow-soft"
+                    ? "border-brand/20 bg-white shadow-soft"
                     : "border-warm-border bg-white hover:border-ink/10"
                 )}
               >
@@ -572,7 +572,7 @@ export default function ServicesGSA() {
                   <h4 className="font-medium text-ink">{faq.q}</h4>
                   <ChevronDown size={16} className={cn(
                     "text-ink-muted transition-transform shrink-0",
-                    activeFaq === idx && "rotate-180 text-navy"
+                    activeFaq === idx && "rotate-180 text-brand"
                   )} />
                 </div>
                 <AnimatePresence>

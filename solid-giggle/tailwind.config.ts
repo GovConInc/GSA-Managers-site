@@ -12,26 +12,26 @@ export default {
     },
     extend: {
       colors: {
-        /* Warm authority palette */
-        surface: "#FAFAF8",
+        /* Warm, welcoming palette */
+        surface: "#FFFDF9",
         ink: {
-          DEFAULT: "#1A1A1A",
-          light: "#6B6B6B",
-          muted: "#9CA3AF",
+          DEFAULT: "#433E38",
+          light: "#7A736A",
+          muted: "#A8A29A",
         },
-        navy: {
-          DEFAULT: "#1E3A5F",
-          light: "#2B4F7E",
-          dark: "#0F2440",
+        brand: {
+          DEFAULT: "#E76F51",
+          light: "#F4A261",
+          dark: "#D1492E",
         },
         cta: {
-          DEFAULT: "#D97706",
-          hover: "#B45309",
+          DEFAULT: "#2A9D8F",
+          hover: "#21867A",
         },
         warm: {
-          border: "#E8E5E0",
-          100: "#F5F0EB",
-          50: "#FAFAF8",
+          border: "#EFEBE1",
+          100: "#F7F3E8",
+          50: "#FFFDF9",
         },
         /* Keep system tokens for shadcn compatibility */
         border: "hsl(var(--border))",
@@ -74,8 +74,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        display: ['"Source Serif 4"', "Georgia", "serif"],
-        sans: ['"Inter"', "system-ui", "sans-serif"],
+        display: ['"Nunito"', "system-ui", "sans-serif"],
+        sans: ['"Nunito"', "system-ui", "sans-serif"],
       },
       boxShadow: {
         soft: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03)",

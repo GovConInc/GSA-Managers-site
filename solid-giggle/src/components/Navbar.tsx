@@ -90,7 +90,7 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   cn(
                     "block rounded-lg px-4 py-3 text-sm font-medium transition-colors",
-                    isActive ? "text-navy bg-navy/5" : "text-ink hover:bg-surface"
+                    isActive ? "text-brand bg-brand/5" : "text-ink hover:bg-surface"
                   )
                 }
                 end={x.to === "/"}

@@ -14,7 +14,7 @@ export default function NotFound() {
           <span className="font-display text-4xl font-bold text-brand-blue">404</span>
         </div>
 
-        <h1 className="font-display text-3xl font-bold text-navy">Page not found</h1>
+        <h1 className="font-display text-3xl font-bold text-brand">Page not found</h1>
 
         <p className="mt-4 text-slate-500">
           The page you're looking for doesn't exist or has been moved.
@@ -30,7 +30,7 @@ export default function NotFound() {
           </Link>
           <button
             onClick={() => window.history.back()}
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-navy transition hover:border-brand-blue hover:text-brand-blue"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-brand transition hover:border-brand-blue hover:text-brand-blue"
           >
             <ArrowLeft size={16} />
             Go back

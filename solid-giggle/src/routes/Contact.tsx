@@ -61,7 +61,7 @@ export default function Contact() {
       <section className="bg-white py-20">
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">Contact Us</p>
-          <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-navy sm:text-5xl">
+          <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-brand sm:text-5xl">
             Let's Build Your GSA Strategy.
           </h1>
           <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-500 leading-relaxed">
@@ -77,7 +77,7 @@ export default function Contact() {
             {/* Form */}
             <div className="lg:col-span-2">
               <Card className="p-8" hover={false}>
-                <h2 className="text-xl font-bold text-navy">Send Us a Message</h2>
+                <h2 className="text-xl font-bold text-brand">Send Us a Message</h2>
                 <p className="mt-1 text-sm text-slate-500">
                   We respond to all inquiries within one business day.
                 </p>
@@ -85,33 +85,33 @@ export default function Contact() {
                 <form className="mt-8 space-y-5" onSubmit={onSubmit}>
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-navy">Full Name *</label>
+                      <label htmlFor="name" className="block text-sm font-medium text-brand">Full Name *</label>
                       <input id="name" name="name" type="text" value={formData.name} onChange={handleInputChange} required className="input-field" placeholder="John Doe" />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-navy">Email Address *</label>
+                      <label htmlFor="email" className="block text-sm font-medium text-brand">Email Address *</label>
                       <input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required className="input-field" placeholder="you@company.com" />
                     </div>
                   </div>
 
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-navy">Company Name</label>
+                      <label htmlFor="company" className="block text-sm font-medium text-brand">Company Name</label>
                       <input id="company" name="company" type="text" value={formData.company} onChange={handleInputChange} className="input-field" placeholder="Acme Inc." />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-navy">Phone Number</label>
+                      <label htmlFor="phone" className="block text-sm font-medium text-brand">Phone Number</label>
                       <input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} className="input-field" placeholder="(555) 123-4567" />
                     </div>
                   </div>
 
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="cage" className="block text-sm font-medium text-navy">CAGE Code (Optional)</label>
+                      <label htmlFor="cage" className="block text-sm font-medium text-brand">CAGE Code (Optional)</label>
                       <input id="cage" name="cage" type="text" value={formData.cage} onChange={handleInputChange} className="input-field" placeholder="e.g. 1A2B3" maxLength={5} />
                     </div>
                     <div>
-                      <label htmlFor="interest" className="block text-sm font-medium text-navy">Primary Interest</label>
+                      <label htmlFor="interest" className="block text-sm font-medium text-brand">Primary Interest</label>
                       <select id="interest" name="interest" value={formData.interest} onChange={handleInputChange} className="input-field">
                         <option>General Inquiry</option>
                         <option>FCP Baseline Package</option>
@@ -123,7 +123,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="bestTime" className="block text-sm font-medium text-navy">Best Time to Contact</label>
+                    <label htmlFor="bestTime" className="block text-sm font-medium text-brand">Best Time to Contact</label>
                     <select id="bestTime" name="bestTime" value={formData.bestTime} onChange={handleInputChange} className="input-field">
                       <option>Anytime</option>
                       <option>Morning (8am-12pm)</option>
@@ -145,7 +145,7 @@ export default function Contact() {
             {/* Sidebar */}
             <div className="space-y-5">
               <Card className="p-6" hover={false}>
-                <h3 className="text-lg font-bold text-navy mb-4">Direct Contact</h3>
+                <h3 className="text-lg font-bold text-brand mb-4">Direct Contact</h3>
                 <div className="space-y-3">
                   <a href={`tel:${BRAND.phone}`} className="flex items-center gap-3 text-sm text-slate-500 hover:text-brand-blue transition-colors">
                     <Phone size={16} className="text-brand-blue" />
@@ -162,7 +162,7 @@ export default function Contact() {
                 </div>
               </Card>
 
-              <Card className="p-6 bg-navy text-white border-0" hover={false}>
+              <Card className="p-6 bg-brand text-white border-0" hover={false}>
                 <h3 className="font-bold text-lg">Ready for a Strategy Call?</h3>
                 <p className="mt-2 text-sm text-white/60">
                   The fastest way to get answers is a free, 15-minute readiness call. No pressure, just a clear plan.
