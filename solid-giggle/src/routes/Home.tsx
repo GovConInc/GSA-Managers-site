@@ -8,7 +8,7 @@ import {
   Rocket,
   Award,
   Users,
-  DollarSign,
+  Phone,
 } from "lucide-react";
 import Card from "../components/Card";
 import { LinkButton } from "../components/Button";
@@ -16,44 +16,36 @@ import { BRAND, LINKS } from "../lib/constants";
 
 const coreServices = [
   {
-    icon: Award,
-    title: "GSA Schedule Submissions",
-    subtitle: "Starting at $4,500",
+    icon: FileText,
+    title: "FCP Catalog Upload",
     description:
-      "Professional GSA MAS Submissions with a guarantee of submission within 45 days. Speak to our specialists to see if you qualify.",
-    guarantee: "45-Day Submission Guarantee",
-    link: "/enroll",
-    cta: "Get Started",
-  },
-  {
-    icon: Shield,
-    title: "GSA Contract Management",
-    subtitle: "$6,500 / Year",
-    description:
-      "Annual support including FCP catalog revisions, Major/Minor mods, Mass Mods, eBuy & Advantage! management, recurring expert guidance, and SAM Registration.",
-    guarantee: "Full Compliance, Zero Stress",
-    link: "/enroll",
-    cta: "Learn More",
+      "Your catalog uploaded to the new Federal Catalog Platform within 30 days. Includes full quality review and technical support.",
+    link: "/order",
+    cta: "Order Now",
   },
   {
     icon: Rocket,
-    title: "New Vendor Special",
-    subtitle: "$1,450 Package",
+    title: "New Vendor Package",
     description:
-      "FCP Catalog Baseline upload within 30 days, specialized 1-on-1 training for all GSA websites and processes, plus complimentary 90-day GSA Contract Management.",
-    guarantee: "Comprehensive Onboarding",
-    link: "/enroll",
+      "Everything a new GSA contractor needs: catalog upload, one-on-one training on every GSA website, and 90 days of contract support.",
+    link: "/order",
     cta: "Get Started",
   },
   {
-    icon: FileText,
-    title: "FCP Catalog Baseline",
-    subtitle: "Flat $500",
+    icon: Award,
+    title: "GSA Schedule Submission",
     description:
-      "Catalog Baseline upload within the GSA requirement of 30 days. Includes Product Listing & Offer Pricing QA, plus roadmap and technical consultations.",
-    guarantee: "Fast, Compliant Upload",
-    link: "/enroll",
-    cta: "Upload Catalog",
+      "We prepare and submit your complete GSA application. You get a dedicated specialist and a 45-day submission guarantee.",
+    link: "/order",
+    cta: "Learn More",
+  },
+  {
+    icon: Shield,
+    title: "Contract Management",
+    description:
+      "Annual support that covers modifications, sales reporting, catalog updates, SAM registration, and everything in between.",
+    link: "/order",
+    cta: "Learn More",
   },
 ];
 
@@ -62,40 +54,40 @@ const howItWorks = [
     number: "01",
     title: "Free Strategy Call",
     description:
-      "A no-pressure consultation to map your business to the right GSA path. Honest advice, clear action plan — no sales pitch.",
-    icon: Users,
+      "We talk through your goals, review your eligibility, and give you an honest recommendation. No pressure, no sales pitch.",
+    icon: Phone,
   },
   {
     number: "02",
-    title: "Choose Your Service",
+    title: "Pick Your Service",
     description:
-      "Pick the level of support you need — from the $500 FCP Baseline to full-service GSA submission and ongoing management.",
-    icon: DollarSign,
+      "Choose the level of help you need. Every option has a clear scope and a fixed price so there are no surprises.",
+    icon: Users,
   },
   {
     number: "03",
-    title: "Get Results",
+    title: "We Do the Work",
     description:
-      "We do the work, keep you informed, and deliver on our promises. You get a compliant, revenue-ready GSA contract — fast.",
+      "Our team handles the details, keeps you updated, and delivers results. You stay focused on running your business.",
     icon: CheckCircle2,
   },
 ];
 
-const trustMetrics = [
+const trustPoints = [
   {
-    stat: "$500",
-    label: "FCP Catalog Baseline",
-    detail: "The most affordable way to meet the 30-day GSA FCP requirement.",
+    stat: "45 Days",
+    label: "Submission Guarantee",
+    detail: "Your GSA application submitted within 45 days or we make it right.",
   },
   {
     stat: "100%",
-    label: "Award or No Fee",
-    detail: "If we can't get you awarded, you don't pay for full-service submissions.",
+    label: "No Award, No Fee",
+    detail: "If your full-service submission doesn't get awarded, you don't pay.",
   },
   {
-    stat: "Zero",
+    stat: "No",
     label: "Long-Term Contracts",
-    detail: "No lock-in. Get the help you need, when you need it.",
+    detail: "Month-to-month support. Stay because it works, not because you're locked in.",
   },
 ];
 
@@ -104,11 +96,11 @@ export default function Home() {
     <>
       <Helmet>
         <title>
-          {BRAND.name} — GSA Schedule Experts: Submissions, Management & FCP Uploads
+          {BRAND.name} — GSA Schedule Experts
         </title>
         <meta
           name="description"
-          content="GSA Schedule submissions, contract management, and FCP Baseline Uploads. Expert help, transparent pricing, and real results."
+          content="GSA Schedule submissions, contract management, and FCP catalog uploads. Clear pricing, real results, no long-term contracts."
         />
         <link rel="canonical" href="https://gsamanagers.com/" />
       </Helmet>
@@ -123,13 +115,14 @@ export default function Home() {
             className="text-center"
           >
             <h1 className="font-display text-4xl font-bold tracking-tight sm:text-6xl text-navy">
-              GSA's don't manage themselves.
+              Your GSA Schedule, Handled.
             </h1>
             <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-500 leading-relaxed">
-              The websites are frustrating, the processes for simple changes are not as they appear, and ensuring your catalog is properly maintained is critical to your success as a GSA Contractor. We take care of that for you.
+              The portals are confusing, the processes are slow, and one mistake can cost you your contract.
+              We take care of it so you can focus on your business.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row justify-center">
-              <LinkButton href="/enroll" size="lg">
+              <LinkButton href="/order" size="lg">
                 Get Started
                 <ArrowRight size={18} className="ml-2" />
               </LinkButton>
@@ -145,11 +138,12 @@ export default function Home() {
       <section className="bg-slate-50 py-20">
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="font-display text-3xl font-bold text-navy sm:text-4xl">
-              Our Services
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">What We Do</p>
+            <h2 className="mt-2 font-display text-3xl font-bold text-navy sm:text-4xl">
+              Simple Services, Clear Results
             </h2>
             <p className="mt-4 mx-auto max-w-2xl text-slate-500">
-              Clear options. No hidden fees. No long-term contracts. Just results.
+              Every service has a fixed scope and a clear price. No hidden fees, no surprises.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
@@ -167,23 +161,19 @@ export default function Home() {
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-blue/10">
                         <svc.icon size={20} className="text-brand-blue" />
                       </div>
-                      <span className="text-xs font-bold uppercase tracking-widest text-brand-blue">
-                        {svc.subtitle}
-                      </span>
+                      <h3 className="font-display text-xl font-bold text-navy">
+                        {svc.title}
+                      </h3>
                     </div>
-                    <h3 className="font-display text-xl font-bold text-navy mb-2">
-                      {svc.title}
-                    </h3>
                     <p className="text-slate-500 text-sm leading-relaxed">
                       {svc.description}
                     </p>
                   </div>
-                  <div className="mt-6 flex items-center justify-between">
+                  <div className="mt-6">
                     <LinkButton href={svc.link} size="sm">
                       {svc.cta}
                       <ArrowRight size={14} className="ml-1.5" />
                     </LinkButton>
-                    <span className="text-xs text-slate-400">{svc.guarantee}</span>
                   </div>
                 </Card>
               </motion.div>
@@ -196,9 +186,9 @@ export default function Home() {
       <section className="bg-white py-20">
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">Simple & Transparent</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">How It Works</p>
             <h2 className="mt-2 font-display text-3xl font-bold text-navy sm:text-4xl">
-              How It Works
+              Three Steps. That's It.
             </h2>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
@@ -211,8 +201,8 @@ export default function Home() {
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
                 className="text-center"
               >
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue/10 mb-5">
-                  <step.icon size={24} className="text-brand-blue" />
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white font-bold text-lg mb-5">
+                  {step.number}
                 </div>
                 <h4 className="font-display text-lg font-bold text-navy mb-2">
                   {step.title}
@@ -226,36 +216,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== TRUST METRICS ===== */}
+      {/* ===== TRUST / WHY US ===== */}
       <section className="bg-slate-50 py-20">
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="font-display text-3xl font-bold text-navy sm:text-4xl">
-              Why GSA Managers?
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">Why Us</p>
+            <h2 className="mt-2 font-display text-3xl font-bold text-navy sm:text-4xl">
+              Built on Trust, Not Contracts
             </h2>
-            <p className="mt-4 mx-auto max-w-2xl text-slate-500">
-              Transparency, results, and your business first.
-            </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            {trustMetrics.map((tm, idx) => (
+            {trustPoints.map((tp, idx) => (
               <motion.div
-                key={tm.label}
+                key={tp.label}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="text-center"
               >
-                <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-blue/10 mb-5">
-                  <span className="text-xl font-bold text-brand-blue">{tm.stat}</span>
-                </div>
-                <h4 className="font-display text-lg font-bold text-navy mb-2">
-                  {tm.label}
-                </h4>
-                <p className="text-slate-500 text-sm leading-relaxed">
-                  {tm.detail}
-                </p>
+                <Card className="p-8 h-full text-center" hover>
+                  <div className="font-display text-3xl font-bold text-brand-blue mb-2">{tp.stat}</div>
+                  <h4 className="font-display text-lg font-bold text-navy mb-2">
+                    {tp.label}
+                  </h4>
+                  <p className="text-slate-500 text-sm leading-relaxed">
+                    {tp.detail}
+                  </p>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -269,11 +256,11 @@ export default function Home() {
             Ready to Get Started?
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-white/60 text-lg">
-            Stop guessing and start winning. Straightforward advice and proven results.
+            Pick a service, place your order, and let us handle the rest.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
-            <LinkButton href="/enroll" size="lg">
-              View Plans & Enroll
+            <LinkButton href="/order" size="lg">
+              Place Your Order
               <ArrowRight size={18} className="ml-2" />
             </LinkButton>
             <LinkButton

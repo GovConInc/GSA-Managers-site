@@ -8,23 +8,23 @@ import { BRAND, LINKS } from "../lib/constants";
 const values = [
   {
     icon: Target,
-    title: "GSA Focused",
-    description: "We only do GSA Schedules. No distractions, no generic consulting — just deep expertise in what matters to you.",
+    title: "GSA Only",
+    description: "We don't dabble in everything. GSA Schedules are all we do, which means we know the system inside and out.",
   },
   {
     icon: Users,
-    title: "Personal Service",
-    description: "You work directly with an expert, not a call center or junior staff. Every client gets white-glove support.",
+    title: "Direct Access",
+    description: "You work with a real expert, not a call center. Every client gets hands-on, personalized support.",
   },
   {
     icon: Award,
-    title: "Transparent Pricing",
-    description: "No hidden fees, no long-term contracts. You always know exactly what you're getting and what it costs.",
+    title: "No Surprises",
+    description: "Clear pricing, no hidden fees, no long-term contracts. You know exactly what you're getting.",
   },
   {
     icon: Zap,
-    title: "Fast Results",
-    description: "We move quickly, communicate clearly, and deliver on our promises. Your time is valuable — we respect it.",
+    title: "We Move Fast",
+    description: "We communicate clearly, deliver on time, and don't waste your time. Simple as that.",
   },
 ];
 
@@ -32,8 +32,8 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About {BRAND.name} — GSA Schedule Experts</title>
-        <meta name="description" content="Learn about GSA Managers Inc., our story, our values, and the expert team dedicated to helping you succeed with GSA contracts." />
+        <title>About Us — {BRAND.name}</title>
+        <meta name="description" content="Learn about GSA Managers Inc. and the team dedicated to helping you succeed with GSA contracts." />
       </Helmet>
 
       {/* Hero */}
@@ -41,10 +41,11 @@ export default function About() {
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">About Us</p>
           <h1 className="mt-4 font-display text-4xl font-bold tracking-tight text-navy sm:text-5xl">
-            Federal Strategists, Not Just Consultants.
+            We Know GSA. That's All We Do.
           </h1>
           <p className="mt-6 mx-auto max-w-3xl text-lg text-slate-500 leading-relaxed">
-            The GSA Schedule is a powerful tool, but it's worthless if left to gather dust. We transform your schedule from a compliance checkbox into your most powerful federal revenue engine.
+            A GSA Schedule is only valuable if someone is actively managing it. We turn your schedule from a
+            dusty checkbox into your biggest source of federal revenue.
           </p>
         </div>
       </section>
@@ -61,17 +62,22 @@ export default function About() {
             >
               <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">Our Story</p>
               <h2 className="mt-3 font-display text-3xl font-bold text-navy">
-                Founded on a Singular Focus
+                Built on One Idea
               </h2>
               <div className="mt-6 space-y-4 text-slate-500 leading-relaxed">
                 <p>
-                  Based in {BRAND.location}, {BRAND.name} was built to solve one problem: too many companies struggle to manage their GSA Schedule effectively. This singular focus means we know the GSA portal, the contracting officers, and the compliance pitfalls better than anyone.
+                  Based in {BRAND.location}, {BRAND.name} was started because too many companies were struggling
+                  with their GSA Schedules. The portals are confusing, the rules keep changing, and most
+                  consultants try to do too much instead of doing one thing well.
                 </p>
                 <p>
-                  The federal landscape is always shifting — FCP transitions, Mass Mods, new reporting requirements. We handle this complexity, keeping your schedule clean, your catalog current, and your contract ready for opportunities.
+                  We decided to focus on GSA and nothing else. That means we know the portals, we know the
+                  contracting officers, and we know exactly what trips people up — from FCP transitions to Mass
+                  Mods to quarterly reporting.
                 </p>
                 <p>
-                  Our founder, {BRAND.founder}, has guided companies across dozens of industries through the entire GSA lifecycle. That hands-on experience is the foundation of our process and the core of our guaranteed results.
+                  Our founder, {BRAND.founder}, has helped companies across dozens of industries through every
+                  stage of the GSA lifecycle. That hands-on experience is the backbone of everything we do.
                 </p>
               </div>
             </motion.div>
@@ -85,9 +91,9 @@ export default function About() {
             >
               {([
                 { value: "15+", label: "Years Experience" },
-                { value: "99%", label: "Approval Rate" },
-                { value: "$640M", label: "Largest Win Supported" },
+                { value: "98%", label: "Approval Rate" },
                 { value: "500+", label: "Schedules Managed" },
+                { value: "80+", label: "Active Clients" },
               ]).map((stat) => (
                 <Card key={stat.label} className="p-6 text-center" hover>
                   <div className="font-display text-3xl font-bold text-brand-blue">{stat.value}</div>
@@ -103,8 +109,8 @@ export default function About() {
       <section className="bg-white py-20">
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
           <div className="text-center mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">What We Believe</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-navy sm:text-4xl">Our Core Values</h2>
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-blue">How We Work</p>
+            <h2 className="mt-2 font-display text-3xl font-bold text-navy sm:text-4xl">What We Stand For</h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, idx) => (
@@ -132,14 +138,14 @@ export default function About() {
       <section className="bg-navy py-20">
         <div className="mx-auto w-full max-w-7xl px-5 lg:px-8 text-center">
           <h2 className="font-display text-3xl font-bold text-white">
-            Let's Talk About Your GSA Strategy
+            Let's Talk About Your GSA Goals
           </h2>
           <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
-            Stop guessing and start winning. We offer straightforward advice and proven results.
+            Honest advice, clear next steps, zero pressure.
           </p>
           <div className="mt-8">
             <LinkButton href={LINKS.booking} size="lg" target="_blank" rel="noreferrer">
-              Schedule a Free Consultation
+              Book a Free Call
               <ArrowRight size={18} className="ml-2" />
             </LinkButton>
           </div>
