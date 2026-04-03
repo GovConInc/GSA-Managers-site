@@ -512,6 +512,7 @@ export default function Order() {
                       Existing GSA Contract? *
                     </label>
                     <select
+                      aria-label="Existing GSA Contract?"
                       value={form.existingGsa}
                       onChange={(e) => updateField("existingGsa", e.target.value)}
                       className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors appearance-none"

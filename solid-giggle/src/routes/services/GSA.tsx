@@ -220,12 +220,15 @@ function GanttChart({ service }: { service: ServiceData }) {
       {/* Timeline ruler */}
       <div className="relative h-4 mb-2">
         {markers.map((m) => (
+          // eslint-disable-next-line react/style-prop-object
           <span
             key={m}
             className="absolute text-[11px] text-ink-muted font-medium"
-            style={{ left: `${(m / unitCount) * 100}%`, transform: "translateX(-50%)" }}
+            style={{ left: `${(m / unitCount) * 100}%` }}
           >
-            {m === 0 ? "Start" : `${service.ganttUnit} ${m}`}
+            <span className="relative -translate-x-1/2">
+              {m === 0 ? "Start" : `${service.ganttUnit} ${m}`}
+            </span>
           </span>
         ))}
       </div>
@@ -254,6 +257,7 @@ function GanttChart({ service }: { service: ServiceData }) {
                     phase.color,
                     isHovered ? "shadow-elevated ring-2 ring-white" : ""
                   )}
+                  /* eslint-disable-next-line react/style-prop-object */
                   style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
                   initial={{ scaleX: 0, originX: 0 }}
                   whileInView={{ scaleX: 1 }}
@@ -295,6 +299,7 @@ function GanttChart({ service }: { service: ServiceData }) {
       {/* Bottom ticks */}
       <div className="relative h-3 mt-3">
         {markers.map((m) => (
+          // eslint-disable-next-line react/style-prop-object
           <div
             key={m}
             className="absolute w-px h-2 bg-warm-border"
@@ -636,56 +641,50 @@ export default function ServicesGSA() {
             ))}
           </div>
         </div>
-      </section>
-
       {/* ──────── CTA ──────── */}
-      <section className="bg-white py-24 lg:py-32">
-        <div className="mx-auto w-full max-w-5xl px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-3xl bg-surface border border-warm-border p-10 md:p-16 text-center shadow-elevated relative overflow-hidden"
-          >
-            <div className="absolute top-0 left-0 p-8 opacity-5 pointer-events-none">
-               <Award size={160} />
-            </div>
-            <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none translate-y-1/4 translate-x-1/4">
-               <Rocket size={160} />
-            </div>
-            
-            <div className="relative z-10 max-w-2xl mx-auto">
-              <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
-                Ready to get on the <br className="hidden sm:block"/> GSA Schedule?
-              </h2>
-              <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
-                Whether you need a $500 FCP upload or full-service submission and management — we've got you covered.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <LinkButton
-                  href="/order"
-                  size="lg"
-                  className="shadow-md hover:shadow-lg transition-shadow"
-                >
-                  Place Your Order
-                  <ArrowRight size={18} className="ml-2" />
-                </LinkButton>
-                <LinkButton
-                  href={LINKS.booking}
-                  target="_blank"
-                  rel="noreferrer"
-                  size="lg"
-                  variant="secondary"
-                  className="bg-white"
-                >
-                  Schedule a Free Call
-                </LinkButton>
-              </div>
-            </div>
-          </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="rounded-3xl bg-surface border border-warm-border p-10 md:p-16 text-center shadow-elevated relative overflow-hidden mt-24"
+      >
+        <div className="absolute top-0 left-0 p-8 opacity-5 pointer-events-none">
+          <Award size={160} />
         </div>
-      </section>
-    </div>
+        <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none translate-y-1/4 translate-x-1/4">
+          <Rocket size={160} />
+        </div>
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
+            Ready to get on the <br className="hidden sm:block"/> GSA Schedule?
+          </h2>
+          <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
+            Whether you need a $500 FCP upload or full-service submission and management — we've got you covered.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <LinkButton
+              href="/order"
+              size="lg"
+              className="shadow-md hover:shadow-lg transition-shadow"
+            >
+              Place Your Order
+              <ArrowRight size={18} className="ml-2" />
+            </LinkButton>
+            <LinkButton
+              href={LINKS.booking}
+              target="_blank"
+              rel="noreferrer"
+              size="lg"
+              variant="secondary"
+              className="bg-white"
+            >
+              Schedule a Free Call
+            </LinkButton>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  </div>
   );
 }

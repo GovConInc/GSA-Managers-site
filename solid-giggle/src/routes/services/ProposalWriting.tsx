@@ -10,10 +10,12 @@ import {
   Eye,
   Sparkles,
 } from "lucide-react";
+
 import Card from "../../components/Card";
 import { LinkButton } from "../../components/Button";
 import { LINKS } from "../../lib/constants";
 import { motion } from "framer-motion";
+import Section from "../../components/Section";
 
 const services = [
   {
@@ -21,6 +23,7 @@ const services = [
     name: "Full Proposal Writing",
     icon: FileText,
     timeline: "2-4 Weeks",
+    price: "$3,500+",
     description:
       "We manage the entire proposal from start to finish — breaking down the RFP, writing every section, and submitting a compliant, ready-to-win document.",
     idealFor: "Complex RFPs, first-time bidders, or teams that need extra hands.",
@@ -30,6 +33,7 @@ const services = [
     name: "Red Team Review",
     icon: Users,
     timeline: "3-5 Days",
+    price: "$1,200+",
     description:
       "We review your near-final proposal the way a government evaluator would — scoring it, finding gaps, and telling you exactly what to fix before you submit.",
     idealFor: "Teams that write their own proposals but want an expert second opinion.",
@@ -39,6 +43,7 @@ const services = [
     name: "Past Performance Volume",
     icon: Award,
     timeline: "1-2 Weeks",
+    price: "$950+",
     description:
       "We help you pick the right projects and write them up in a way that maximizes your evaluation score.",
     idealFor: "Companies with strong experience that need help putting it on paper.",
@@ -115,37 +120,30 @@ export default function ServicesProposalWriting() {
       </section>
 
       {/* ===== OUR APPROACH ===== */}
-      <Section className="bg-slate-50">
-        <div className="text-center mb-12">
-            <h2 className="font-display text-3xl font-bold text-navy">
-                Our Winning Approach
-            </h2>
-            <p className="mt-4 mx-auto max-w-2xl text-slate-600">
-              Four principles guide everything we write.
-            </p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {approach.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-              >
-                <Card className="p-6 h-full text-center" hover>
-                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
-                        <item.icon size={32} />
-                    </div>
-                    <h3 className="mt-4 font-bold text-lg text-navy">{item.principle}</h3>
-                    <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+      <Section className="bg-slate-50" title="Our Winning Approach" center>
+        <p className="mt-4 mx-auto max-w-2xl text-slate-600">
+          Four principles guide everything we write.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-10">
+          {approach.map((item, idx) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+            >
+              <Card className="p-6 h-full text-center" hover>
+                <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
+                  <item.icon size={32} />
+                </div>
+                <h3 className="mt-4 font-bold text-lg text-navy">{item.title}</h3>
+                <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
+              </Card>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </Section>
 
       {/* ===== SERVICES ===== */}
       <section className="bg-white py-20">
