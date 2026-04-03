@@ -110,17 +110,35 @@ export async function onRequestPost(context) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "orders@gsamanagers.com",
+          from: "GSA Managers <info@gsamanagers.com>",
           to: order.email,
-          subject: `Order Confirmed — GSA Managers Inc.`,
+          subject: `Welcome to GSA Managers! (Order Receipt)`,
           html: `
-            <h2>Thank you for your order, ${order.contactName}!</h2>
-            <p>We've received your payment of <strong>${totalDisplay}</strong> for the following services:</p>
-            <p>${services}</p>
-            <p>Our team will be in touch within 1 business day to get started.</p>
-            <br/>
-            <p>— GSA Managers Inc.</p>
-            <p>(813) 665-0308 | Info@GSAManagers.com</p>
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+              <h2 style="color: #2A9D8F;">Welcome to GSA Managers!</h2>
+              <p>Hi ${order.contactName},</p>
+              <p>Thank you for choosing GSA Managers. We are thrilled to partner with <strong>${order.companyName}</strong>!</p>
+              <p>Our team has received your order and payment. One of our onboarding specialists will be reaching out to you within <strong>1 business day</strong> to schedule your kickoff call and get things moving.</p>
+              
+              <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
+              
+              <h3 style="color: #433E38;">Your Receipt</h3>
+              <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px;">
+                <p style="margin: 0 0 10px 0;"><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+                <p style="margin: 0 0 10px 0;"><strong>Services Ordered:</strong><br/> ${services}</p>
+                <p style="margin: 0 0 10px 0;"><strong>Total Paid:</strong> ${totalDisplay}</p>
+                <p style="margin: 0; font-size: 12px; color: #888;"><strong>Transaction ID:</strong> ${paymentData.payment?.id}</p>
+              </div>
+
+              <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
+              
+              <p>If you have any immediate questions, feel free to reply directly to this email or call us at <strong>(813) 665-0308</strong>.</p>
+              <p>We look forward to working with you!</p>
+              <br/>
+              <p style="margin: 0;">Best regards,</p>
+              <p style="margin: 5px 0 0 0;"><strong>The GSA Managers Team</strong></p>
+              <p style="margin: 5px 0 0 0; font-size: 12px; color: #888;"><a href="https://gsamanagers.com" style="color: #2A9D8F;">gsamanagers.com</a></p>
+            </div>
           `,
         }),
       }).catch((err) => console.error("Failed to send confirmation email:", err));

@@ -329,28 +329,45 @@ export default function ServicesGSA() {
   }, [location.hash]);
 
   return (
-    <>
+    <div className="bg-surface selection:bg-brand/20 selection:text-ink">
       <Helmet>
         <title>GSA Schedule Services — Submissions, Management & FCP | GSA Managers</title>
         <meta name="description" content="Get on the GSA Schedule in 4–6 months. Full-service submissions starting at $4,995, annual management, FCP uploads, and new vendor onboarding." />
       </Helmet>
 
       {/* ──────── HERO ──────── */}
-      <section className="bg-surface">
-        <div className="mx-auto w-full max-w-7xl px-6 pt-20 pb-12 lg:px-8 lg:pt-28 lg:pb-16">
+      <section className="relative overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-24">
+        {/* Decorative background element */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-warm-100 via-surface to-surface -z-10" />
+        <div className="absolute right-0 top-0 -translate-y-12 translate-x-1/3 opacity-20 pointer-events-none -z-10">
+          <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" className="text-warm-border"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+
+        <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="max-w-3xl"
           >
-            <p className="text-sm font-medium uppercase tracking-widest text-cta mb-5">
-              GSA Schedule Services
-            </p>
-            <h1 className="font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl lg:text-6xl lg:leading-[1.1]">
-              Every stage of your GSA journey. Covered.
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-warm-border shadow-sm mb-6">
+              <span className="flex h-2 w-2 rounded-full bg-cta"></span>
+              <span className="text-xs font-semibold uppercase tracking-wide text-ink-light">
+                GSA Schedule Services
+              </span>
+            </div>
+            
+            <h1 className="font-display text-4xl font-bold leading-tight text-ink sm:text-5xl lg:text-[4rem] lg:leading-[1.05]">
+              Every stage of your GSA journey. <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cta">Covered.</span>
             </h1>
-            <p className="mt-6 text-lg text-ink-light leading-relaxed max-w-2xl">
+            <p className="mt-6 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl">
               From first submission to ongoing compliance — pick the service that fits, and we'll handle the rest. Transparent pricing. No lock-in.
             </p>
           </motion.div>
@@ -359,8 +376,8 @@ export default function ServicesGSA() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.12 }}
-            className="mt-10 flex flex-wrap gap-2"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-12 flex flex-wrap gap-3"
           >
             {allServices.map((svc) => {
               const isActive = activeService === svc.id;
@@ -372,13 +389,13 @@ export default function ServicesGSA() {
                     sectionRefs.current[svc.id]?.scrollIntoView({ behavior: "smooth", block: "start" });
                   }}
                   className={cn(
-                    "flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200",
+                    "flex items-center gap-2.5 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-sm",
                     isActive
-                      ? "bg-ink text-white"
-                      : "bg-white text-ink-light border border-warm-border hover:border-ink/20 hover:text-ink"
+                      ? "bg-ink text-white shadow-md ring-2 ring-ink/20 ring-offset-2 ring-offset-surface"
+                      : "bg-white text-ink-light border border-warm-border hover:border-ink/30 hover:text-ink hover:shadow-md"
                   )}
                 >
-                  <svc.icon size={15} />
+                  <svc.icon size={16} className={isActive ? "text-brand-light" : "text-ink-muted"} />
                   {svc.title}
                 </button>
               );
@@ -388,12 +405,15 @@ export default function ServicesGSA() {
       </section>
 
       {/* ──────── FCP ALERT ──────── */}
-      <div className="bg-red-600">
-        <div className="mx-auto w-full max-w-7xl px-6 py-3 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="bg-gradient-to-r from-red-600 to-red-700 shadow-inner relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div className="mx-auto w-full max-w-7xl px-6 py-4 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
           <div className="flex items-center gap-3 text-white">
-            <AlertTriangle size={16} className="shrink-0" />
-            <p className="text-sm">
-              <strong>SIP is retired. FCP is mandatory.</strong>{" "}
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20">
+              <AlertTriangle size={18} />
+            </div>
+            <p className="text-sm md:text-base text-white/90">
+              <strong className="text-white">SIP is retired. FCP is mandatory.</strong>{" "}
               Without an FCP Baseline Upload, your catalog is invisible on GSA Advantage.
             </p>
           </div>
@@ -402,7 +422,7 @@ export default function ServicesGSA() {
               setActiveService("fcp");
               sectionRefs.current.fcp?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className="shrink-0 rounded-lg bg-white px-4 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50 transition-colors"
+            className="shrink-0 rounded-full bg-white px-5 py-2 text-sm font-bold text-red-600 hover:bg-red-50 hover:shadow-md transition-all active:scale-95"
           >
             Fix it for $500 &rarr;
           </button>
@@ -416,80 +436,86 @@ export default function ServicesGSA() {
           id={svc.id}
           ref={(el) => { sectionRefs.current[svc.id] = el; }}
           className={cn(
-            "py-24 lg:py-32 scroll-mt-16",
+            "py-24 lg:py-32 scroll-mt-20 border-b border-warm-border last:border-b-0 relative",
             svcIdx % 2 === 0 ? "bg-white" : "bg-surface"
           )}
         >
+          {svcIdx % 2 !== 0 && (
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
+          )}
           <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-3">
+            <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
               {/* Content — 2 cols */}
               <div className="lg:col-span-2">
                 <motion.div
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5 }}
                 >
                   {/* Header */}
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-surface border border-warm-border shrink-0">
-                      <svc.icon size={20} className="text-ink-light" />
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-5 mb-8">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-surface border border-warm-border shadow-sm shrink-0">
+                      <svc.icon size={26} className="text-ink" />
                     </div>
                     <div>
-                      <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl leading-tight">
+                      <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
                         {svc.title}
                       </h2>
-                      <p className="text-sm text-ink-muted mt-1">{svc.tagline}</p>
+                      <p className="text-brand font-semibold mt-1.5 text-lg">{svc.tagline}</p>
                     </div>
                   </div>
 
-                  <p className="text-ink-light text-lg leading-relaxed max-w-2xl">
+                  <p className="text-ink-light text-lg leading-relaxed max-w-2xl mb-10">
                     {svc.description}
                   </p>
 
                   {/* Features */}
-                  <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  <div className="grid gap-4 sm:grid-cols-2 mb-10">
                     {svc.features.map((f) => (
-                      <div key={f} className="flex items-start gap-2.5 text-ink-light">
-                        <CheckCircle size={16} className="text-brand mt-0.5 shrink-0" />
+                      <div key={f} className="flex items-start gap-3 text-ink-light font-medium bg-warm-100/50 p-3 rounded-lg border border-warm-border/50">
+                        <CheckCircle size={18} className="text-cta mt-0.5 shrink-0" />
                         {f}
                       </div>
                     ))}
                   </div>
 
-                  {/* Gantt Chart */}
-                  <GanttChart service={svc} />
+                  {/* Gantt Chart (Only for new GSA Submissions) */}
+                  {svc.id === "submission" && <GanttChart service={svc} />}
                 </motion.div>
               </div>
 
               {/* Pricing card — 1 col */}
               <div className="lg:col-span-1">
                 <motion.div
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="sticky top-24"
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="sticky top-28"
                 >
-                  <div className="rounded-xl border border-warm-border bg-white p-8">
-                    <p className="text-xs font-medium uppercase tracking-widest text-ink-muted mb-3">
+                  <div className="rounded-2xl border border-warm-border bg-white p-8 shadow-elevated relative overflow-hidden">
+                    {/* Top gradient highlight */}
+                    <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-brand to-cta" />
+                    
+                    <p className="text-xs font-bold uppercase tracking-widest text-ink-muted mb-3 mt-2">
                       {svc.priceNote}
                     </p>
-                    <div className="font-display text-4xl font-semibold text-ink mb-8">
+                    <div className="font-display text-5xl font-bold text-ink mb-8">
                       {svc.price}
                     </div>
-                    <LinkButton href={svc.ctaHref} size="lg" className="w-full mb-3">
+                    <LinkButton href={svc.ctaHref} size="lg" className="w-full mb-4 shadow-md hover:shadow-lg transition-shadow">
                       {svc.cta}
-                      <ArrowRight size={15} className="ml-2" />
+                      <ArrowRight size={18} className="ml-2" />
                     </LinkButton>
-                    <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" variant="secondary" size="md" className="w-full">
+                    <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" variant="secondary" size="md" className="w-full bg-surface">
                       Talk to a Specialist
                     </LinkButton>
 
                     <div className="mt-8 pt-6 border-t border-warm-border space-y-3">
                       {svc.features.slice(0, 4).map((f) => (
-                        <div key={f} className="flex items-center gap-2.5 text-sm text-ink-light">
-                          <CheckCircle size={14} className="text-brand shrink-0" />
+                        <div key={f} className="flex items-center gap-3 text-sm text-ink-light font-medium">
+                          <CheckCircle size={16} className="text-cta shrink-0" />
                           {f}
                         </div>
                       ))}
@@ -503,45 +529,53 @@ export default function ServicesGSA() {
       ))}
 
       {/* ──────── WHY GSA ──────── */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-24 lg:py-32 bg-white relative">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl mb-16"
-          >
-            <p className="text-sm font-medium uppercase tracking-widest text-cta mb-3">Why It Matters</p>
-            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl leading-tight">
-              Why get on the GSA Schedule?
-            </h2>
-            <p className="mt-4 text-ink-light text-lg leading-relaxed">
-              The Multiple Award Schedule is the government's preferred procurement vehicle. Here's what it unlocks.
-            </p>
-          </motion.div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+              className="max-w-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-warm-100 border border-warm-border mb-6">
+                <span className="text-xs font-semibold uppercase tracking-wide text-brand">Why It Matters</span>
+              </div>
+              <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl leading-tight">
+                Why get on the GSA Schedule?
+              </h2>
+              <p className="mt-6 text-ink-light text-lg leading-relaxed">
+                The Multiple Award Schedule is the government's preferred procurement vehicle. Here's what it unlocks for your business.
+              </p>
+            </motion.div>
+          </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {gsaBenefits.map((b, idx) => (
               <motion.div
                 key={b.title}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05, duration: 0.4 }}
-                className="rounded-xl border border-warm-border bg-white p-6 hover:shadow-card hover:-translate-y-0.5 transition-all duration-300"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="group relative rounded-2xl border border-warm-border bg-white p-8 hover:shadow-elevated hover:border-brand/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface">
-                    <b.icon size={20} className="text-ink-light" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface border border-warm-border shadow-sm group-hover:bg-brand group-hover:border-brand transition-colors">
+                      <b.icon size={22} className="text-ink group-hover:text-white transition-colors" />
+                    </div>
+                    <div className="text-right">
+                      <span className="font-display text-3xl font-bold text-brand">{b.stat}</span>
+                      <p className="text-[11px] uppercase tracking-wider text-ink-muted font-bold mt-0.5">{b.statLabel}</p>
+                    </div>
                   </div>
-                  <div>
-                    <span className="font-display text-2xl font-semibold text-brand">{b.stat}</span>
-                    <p className="text-[10px] uppercase tracking-widest text-ink-muted font-medium">{b.statLabel}</p>
-                  </div>
+                  <h4 className="font-display text-xl font-bold text-ink mb-3 group-hover:text-brand transition-colors">{b.title}</h4>
+                  <p className="text-ink-light leading-relaxed">{b.desc}</p>
                 </div>
-                <h4 className="font-display text-lg font-semibold text-ink mb-2">{b.title}</h4>
-                <p className="text-ink-light leading-relaxed">{b.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -549,40 +583,50 @@ export default function ServicesGSA() {
       </section>
 
       {/* ──────── FAQ ──────── */}
-      <section className="py-24 lg:py-32 bg-surface">
+      <section className="py-24 lg:py-32 bg-surface relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-warm-100/50 via-surface to-surface -z-10" />
         <div className="mx-auto w-full max-w-3xl px-6 lg:px-8">
-          <div className="mb-14">
-            <p className="text-sm font-medium uppercase tracking-widest text-cta mb-3">Common Questions</p>
-            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl leading-tight">FAQ</h2>
+          <div className="mb-16 text-center">
+            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">Common Questions</h2>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {faqs.map((faq, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
                 className={cn(
-                  "w-full text-left rounded-xl border p-6 transition-all duration-200",
+                  "w-full text-left rounded-2xl border p-6 lg:p-8 transition-all duration-300",
                   activeFaq === idx
-                    ? "border-brand/20 bg-white shadow-soft"
-                    : "border-warm-border bg-white hover:border-ink/10"
+                    ? "border-brand bg-white shadow-md"
+                    : "border-warm-border bg-white hover:border-brand/30 hover:shadow-soft"
                 )}
               >
-                <div className="flex items-center justify-between gap-4">
-                  <h4 className="font-medium text-ink">{faq.q}</h4>
-                  <ChevronDown size={16} className={cn(
-                    "text-ink-muted transition-transform shrink-0",
-                    activeFaq === idx && "rotate-180 text-brand"
-                  )} />
+                <div className="flex items-center justify-between gap-6">
+                  <h4 className={cn(
+                    "font-display text-lg font-bold transition-colors",
+                    activeFaq === idx ? "text-brand" : "text-ink"
+                  )}>
+                    {faq.q}
+                  </h4>
+                  <div className={cn(
+                    "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors",
+                    activeFaq === idx ? "bg-brand/10 text-brand" : "bg-surface text-ink-muted"
+                  )}>
+                    <ChevronDown size={18} className={cn(
+                      "transition-transform duration-300",
+                      activeFaq === idx && "rotate-180"
+                    )} />
+                  </div>
                 </div>
                 <AnimatePresence>
                   {activeFaq === idx && (
                     <motion.p
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="mt-4 text-ink-light leading-relaxed"
+                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                      animate={{ opacity: 1, height: "auto", marginTop: 16 }}
+                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="text-ink-light text-lg leading-relaxed overflow-hidden"
                     >
                       {faq.a}
                     </motion.p>
@@ -595,44 +639,53 @@ export default function ServicesGSA() {
       </section>
 
       {/* ──────── CTA ──────── */}
-      <section className="py-24 lg:py-32 bg-ink">
-        <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
+      <section className="bg-white py-24 lg:py-32">
+        <div className="mx-auto w-full max-w-5xl px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="max-w-2xl"
+            className="rounded-3xl bg-surface border border-warm-border p-10 md:p-16 text-center shadow-elevated relative overflow-hidden"
           >
-            <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl leading-tight">
-              Ready to get on the GSA Schedule?
-            </h2>
-            <p className="mt-4 text-white/50 text-lg leading-relaxed">
-              Whether you need a $500 FCP upload or full-service submission and management — we've got you.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <LinkButton
-                href="/order"
-                size="lg"
-                className="bg-white text-ink hover:bg-white/90"
-              >
-                Place Your Order
-                <ArrowRight size={16} className="ml-2" />
-              </LinkButton>
-              <LinkButton
-                href={LINKS.booking}
-                target="_blank"
-                rel="noreferrer"
-                size="lg"
-                variant="ghost"
-                className="text-white/70 border border-white/20 hover:text-white hover:bg-white/10"
-              >
-                Schedule a Free Call
-              </LinkButton>
+            <div className="absolute top-0 left-0 p-8 opacity-5 pointer-events-none">
+               <Award size={160} />
+            </div>
+            <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none translate-y-1/4 translate-x-1/4">
+               <Rocket size={160} />
+            </div>
+            
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
+                Ready to get on the <br className="hidden sm:block"/> GSA Schedule?
+              </h2>
+              <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
+                Whether you need a $500 FCP upload or full-service submission and management — we've got you covered.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <LinkButton
+                  href="/order"
+                  size="lg"
+                  className="shadow-md hover:shadow-lg transition-shadow"
+                >
+                  Place Your Order
+                  <ArrowRight size={18} className="ml-2" />
+                </LinkButton>
+                <LinkButton
+                  href={LINKS.booking}
+                  target="_blank"
+                  rel="noreferrer"
+                  size="lg"
+                  variant="secondary"
+                  className="bg-white"
+                >
+                  Schedule a Free Call
+                </LinkButton>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

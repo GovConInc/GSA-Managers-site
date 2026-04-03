@@ -25,6 +25,16 @@ const SQUARE_ENV = import.meta.env.VITE_SQUARE_ENV === "production" ? "productio
 /* ─── SERVICES / PRODUCTS ─── */
 const services = [
   {
+    id: "test-payment",
+    icon: ShoppingCart,
+    name: "Test Connection",
+    price: 100, // $1.00 (Square minimum is generally $1.00 for live transactions, though sandbox allows anything)
+    displayPrice: "$1.00",
+    description: "Use this to test the checkout flow, Square API, and Resend email delivery.",
+    features: ["Verifies Square Token", "Verifies Backend", "Sends Test Emails"],
+    type: "one-time" as const,
+  },
+  {
     id: "fcp-baseline",
     icon: FileText,
     name: "FCP Catalog Baseline",
@@ -262,7 +272,7 @@ export default function Order() {
   }
 
   return (
-    <>
+    <div className="bg-surface selection:bg-brand/20 selection:text-ink min-h-screen">
       <Helmet>
         <title>Order — {BRAND.name}</title>
         <meta
@@ -271,7 +281,9 @@ export default function Order() {
         />
       </Helmet>
 
-      <section className="bg-white py-16 lg:py-24">
+      <section className="relative overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-24">
+        {/* Decorative background element */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-warm-100 via-surface to-surface -z-10" />
         <div className="mx-auto w-full max-w-4xl px-5 lg:px-8">
           {/* Header */}
           <motion.div
@@ -280,38 +292,44 @@ export default function Order() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h1 className="font-display text-3xl font-bold text-brand sm:text-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-warm-border shadow-sm mb-6">
+              <span className="flex h-2 w-2 rounded-full bg-cta"></span>
+              <span className="text-xs font-semibold uppercase tracking-wide text-ink-light">
+                Secure Checkout
+              </span>
+            </div>
+            <h1 className="font-display text-3xl font-bold text-ink sm:text-5xl lg:text-6xl tracking-tight">
               Place Your Order
             </h1>
-            <p className="mt-3 text-slate-500">
+            <p className="mt-4 text-lg text-ink-light max-w-2xl mx-auto">
               Select your services, enter your details, and check out securely.
             </p>
           </motion.div>
 
           {/* Step Indicator */}
-          <div className="flex items-center justify-center gap-2 mb-12">
+          <div className="flex items-center justify-center gap-3 mb-12">
             {(["select", "details", "payment"] as const).map((s, idx) => (
-              <div key={s} className="flex items-center gap-2">
+              <div key={s} className="flex items-center gap-3">
                 <div
                   className={cn(
-                    "flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold transition-colors",
+                    "flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold transition-all duration-300",
                     step === s || (["select", "details", "payment"].indexOf(step) > idx)
-                      ? "bg-brand-blue text-white"
-                      : "bg-slate-100 text-slate-400"
+                      ? "bg-brand text-white shadow-md ring-2 ring-brand/20 ring-offset-2 ring-offset-surface"
+                      : "bg-white text-ink-muted border border-warm-border"
                   )}
                 >
                   {idx + 1}
                 </div>
                 <span
                   className={cn(
-                    "text-sm font-medium hidden sm:inline",
-                    step === s ? "text-brand" : "text-slate-400"
+                    "text-sm font-bold hidden sm:inline uppercase tracking-wider transition-colors",
+                    step === s ? "text-brand" : "text-ink-muted"
                   )}
                 >
                   {s === "select" ? "Services" : s === "details" ? "Details" : "Payment"}
                 </span>
                 {idx < 2 && (
-                  <div className="w-8 sm:w-16 h-px bg-slate-200 mx-1" />
+                  <div className="w-8 sm:w-16 h-px bg-warm-border mx-2" />
                 )}
               </div>
             ))}
@@ -324,82 +342,89 @@ export default function Order() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="grid gap-4">
+              <div className="grid gap-5">
                 {services.map((svc) => {
                   const selected = form.selectedServices.includes(svc.id);
                   return (
-                    <Card
+                    <div
                       key={svc.id}
                       className={cn(
-                        "p-6 cursor-pointer border-2 transition-all",
+                        "p-6 sm:p-8 cursor-pointer rounded-2xl border transition-all duration-300 relative overflow-hidden group",
                         selected
-                          ? "border-brand-blue bg-brand-blue/[0.02]"
-                          : "border-transparent hover:border-slate-200"
+                          ? "border-brand bg-white shadow-elevated ring-1 ring-brand"
+                          : "border-warm-border bg-white hover:border-brand/30 hover:shadow-soft"
                       )}
                       onClick={() => toggleService(svc.id)}
                     >
-                      <div className="flex items-start gap-4">
+                      {selected && (
+                        <div className="absolute inset-0 bg-gradient-to-br from-brand/5 to-transparent pointer-events-none" />
+                      )}
+                      <div className="flex items-start gap-5 relative z-10">
                         <div
                           className={cn(
-                            "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors",
-                            selected ? "bg-brand-blue text-white" : "bg-slate-100 text-slate-400"
+                            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-colors shadow-sm",
+                            selected ? "bg-brand text-white" : "bg-surface text-ink-muted border border-warm-border group-hover:bg-brand/5 group-hover:text-brand"
                           )}
                         >
-                          <svc.icon size={20} />
+                          <svc.icon size={24} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-3">
-                            <h3 className="font-display text-lg font-bold text-brand">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                            <h3 className={cn(
+                              "font-display text-xl font-bold transition-colors",
+                              selected ? "text-brand" : "text-ink group-hover:text-brand"
+                            )}>
                               {svc.name}
                             </h3>
-                            <span className="text-sm font-bold text-brand-blue whitespace-nowrap">
+                            <span className="text-sm font-bold text-ink bg-warm-100 px-3 py-1 rounded-full border border-warm-border whitespace-nowrap">
                               {svc.displayPrice}
                             </span>
                           </div>
-                          <p className="mt-1 text-sm text-slate-500">{svc.description}</p>
-                          <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
+                          <p className="text-ink-light leading-relaxed mb-4">{svc.description}</p>
+                          <div className="grid gap-2 sm:grid-cols-2 pt-4 border-t border-warm-border/50">
                             {svc.features.map((f) => (
-                              <li key={f} className="flex items-center gap-2 text-xs text-slate-600">
+                              <div key={f} className="flex items-start gap-2.5 text-sm font-medium text-ink-light">
                                 <CheckCircle2
-                                  size={14}
-                                  className={selected ? "text-brand-blue" : "text-slate-300"}
+                                  size={16}
+                                  className={selected ? "text-cta shrink-0 mt-0.5" : "text-ink-muted shrink-0 mt-0.5"}
                                 />
                                 {f}
-                              </li>
+                              </div>
                             ))}
-                          </ul>
+                          </div>
                         </div>
                         <div
                           className={cn(
-                            "flex h-6 w-6 shrink-0 items-center justify-center rounded border-2 transition-colors mt-1",
+                            "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 transition-colors mt-1 shadow-sm",
                             selected
-                              ? "border-brand-blue bg-brand-blue"
-                              : "border-slate-300 bg-white"
+                              ? "border-brand bg-brand"
+                              : "border-warm-border bg-white"
                           )}
                         >
                           {selected && <CheckCircle2 size={14} className="text-white" />}
                         </div>
                       </div>
-                    </Card>
+                    </div>
                   );
                 })}
               </div>
 
               {/* Order Summary Bar */}
               {form.selectedServices.length > 0 && (
-                <div className="mt-8 flex items-center justify-between rounded-lg bg-slate-50 p-5 border border-slate-200">
-                  <div>
-                    <p className="text-sm text-slate-500">
+                <div className="mt-10 flex flex-col sm:flex-row items-center justify-between rounded-2xl bg-white p-6 sm:p-8 border border-warm-border shadow-elevated gap-6">
+                  <div className="text-center sm:text-left">
+                    <p className="text-sm font-bold uppercase tracking-widest text-ink-muted mb-1">
                       {form.selectedServices.length} service{form.selectedServices.length > 1 ? "s" : ""} selected
                     </p>
-                    <p className="text-2xl font-bold text-brand">{totalDisplay}</p>
+                    <p className="text-3xl font-display font-bold text-ink">{totalDisplay}</p>
                   </div>
                   <Button
                     size="lg"
                     onClick={() => setStep("details")}
                     disabled={!canProceedToDetails()}
+                    className="w-full sm:w-auto shadow-md hover:shadow-lg transition-shadow"
                   >
-                    Continue
+                    Continue to Details
                     <ArrowRight size={18} className="ml-2" />
                   </Button>
                 </div>
@@ -414,79 +439,82 @@ export default function Order() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="p-8">
-                <h2 className="font-display text-xl font-bold text-brand mb-6">
+              <div className="rounded-3xl border border-warm-border bg-white p-8 sm:p-10 shadow-elevated relative overflow-hidden">
+                {/* Top gradient highlight */}
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-brand to-cta" />
+                
+                <h2 className="font-display text-2xl font-bold text-ink mb-8">
                   Your Information
                 </h2>
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-6 sm:grid-cols-2">
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-brand mb-1.5">
+                    <label className="block text-sm font-bold text-ink mb-2">
                       Company Name *
                     </label>
                     <input
                       type="text"
                       value={form.companyName}
                       onChange={(e) => updateField("companyName", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors"
                       placeholder="Acme Corp"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-brand mb-1.5">
+                    <label className="block text-sm font-bold text-ink mb-2">
                       Contact Name *
                     </label>
                     <input
                       type="text"
                       value={form.contactName}
                       onChange={(e) => updateField("contactName", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors"
                       placeholder="John Smith"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-brand mb-1.5">
+                    <label className="block text-sm font-bold text-ink mb-2">
                       Email *
                     </label>
                     <input
                       type="email"
                       value={form.email}
                       onChange={(e) => updateField("email", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors"
                       placeholder="john@acmecorp.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-brand mb-1.5">
+                    <label className="block text-sm font-bold text-ink mb-2">
                       Phone *
                     </label>
                     <input
                       type="tel"
                       value={form.phone}
                       onChange={(e) => updateField("phone", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors"
                       placeholder="(555) 123-4567"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-brand mb-1.5">
+                    <label className="block text-sm font-bold text-ink mb-2">
                       UEI / DUNS Number
                     </label>
                     <input
                       type="text"
                       value={form.dunsUei}
                       onChange={(e) => updateField("dunsUei", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                      className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors"
                       placeholder="Optional"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-brand mb-1.5">
+                    <label className="block text-sm font-bold text-ink mb-2">
                       Existing GSA Contract? *
                     </label>
                     <select
                       value={form.existingGsa}
                       onChange={(e) => updateField("existingGsa", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue bg-white"
+                      className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors appearance-none"
                     >
                       <option value="">Select...</option>
                       <option value="yes">Yes</option>
@@ -495,61 +523,64 @@ export default function Order() {
                   </div>
                   {form.existingGsa === "yes" && (
                     <div>
-                      <label className="block text-sm font-medium text-brand mb-1.5">
+                      <label className="block text-sm font-bold text-ink mb-2">
                         GSA Contract Number
                       </label>
                       <input
                         type="text"
                         value={form.gsaContractNumber}
                         onChange={(e) => updateField("gsaContractNumber", e.target.value)}
-                        className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                        className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors"
                         placeholder="GS-XXF-XXXXX"
                       />
                     </div>
                   )}
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-brand mb-1.5">
+                    <label className="block text-sm font-bold text-ink mb-2">
                       Additional Notes
                     </label>
                     <textarea
                       value={form.notes}
                       onChange={(e) => updateField("notes", e.target.value)}
-                      rows={3}
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-brand outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue resize-none"
+                      rows={4}
+                      className="w-full rounded-xl border border-warm-border bg-surface px-4 py-3.5 text-ink outline-none focus:border-brand focus:ring-1 focus:ring-brand resize-none transition-colors"
                       placeholder="Anything else we should know..."
                     />
                   </div>
                 </div>
 
                 {/* Order Summary */}
-                <div className="mt-8 rounded-lg bg-slate-50 p-5 border border-slate-200">
-                  <h3 className="text-sm font-bold text-brand mb-3">Order Summary</h3>
-                  {selectedItems.map((svc) => (
-                    <div key={svc.id} className="flex justify-between text-sm py-1.5">
-                      <span className="text-slate-600">{svc.name}</span>
-                      <span className="font-medium text-brand">{svc.displayPrice}</span>
-                    </div>
-                  ))}
-                  <div className="border-t border-slate-200 mt-3 pt-3 flex justify-between">
-                    <span className="font-bold text-brand">Total</span>
-                    <span className="font-bold text-brand text-lg">{totalDisplay}</span>
+                <div className="mt-10 rounded-2xl bg-warm-100/50 p-6 sm:p-8 border border-warm-border">
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-ink-muted mb-4">Order Summary</h3>
+                  <div className="space-y-3">
+                    {selectedItems.map((svc) => (
+                      <div key={svc.id} className="flex justify-between items-center text-sm">
+                        <span className="font-semibold text-ink">{svc.name}</span>
+                        <span className="font-bold text-brand">{svc.displayPrice}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-warm-border mt-4 pt-4 flex justify-between items-center">
+                    <span className="font-bold text-ink">Total Due Today</span>
+                    <span className="font-display font-bold text-ink text-2xl">{totalDisplay}</span>
                   </div>
                 </div>
 
-                <div className="mt-6 flex gap-3 justify-between">
-                  <Button variant="secondary" onClick={() => setStep("select")}>
-                    Back
+                <div className="mt-8 flex flex-col-reverse sm:flex-row gap-4 justify-between">
+                  <Button variant="secondary" onClick={() => setStep("select")} className="w-full sm:w-auto bg-surface">
+                    Back to Services
                   </Button>
                   <Button
                     size="lg"
                     onClick={() => setStep("payment")}
                     disabled={!canProceedToPayment()}
+                    className="w-full sm:w-auto shadow-md hover:shadow-lg transition-shadow"
                   >
                     Proceed to Payment
                     <ArrowRight size={18} className="ml-2" />
                   </Button>
                 </div>
-              </Card>
+              </div>
             </motion.div>
           )}
 
@@ -560,67 +591,76 @@ export default function Order() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="p-8">
-                <h2 className="font-display text-xl font-bold text-brand mb-2">
+              <div className="rounded-3xl border border-warm-border bg-white p-8 sm:p-10 shadow-elevated relative overflow-hidden">
+                {/* Top gradient highlight */}
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-brand to-cta" />
+                
+                <h2 className="font-display text-2xl font-bold text-ink mb-2">
                   Secure Payment
                 </h2>
-                <p className="text-sm text-slate-500 mb-6">
+                <p className="text-ink-light mb-8 flex items-center gap-2">
+                  <Shield size={16} className="text-cta" />
                   Powered by Square. Your card information is encrypted and never stored on our servers.
                 </p>
 
                 {/* Order Summary */}
-                <div className="rounded-lg bg-slate-50 p-5 border border-slate-200 mb-6">
-                  <div className="flex justify-between items-center">
+                <div className="rounded-2xl bg-warm-100/50 p-6 sm:p-8 border border-warm-border mb-8">
+                  <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                     <div>
-                      <p className="text-sm text-slate-500">
+                      <p className="font-semibold text-ink mb-1">
                         {selectedItems.map((s) => s.name).join(" + ")}
                       </p>
-                      <p className="text-sm text-slate-500 mt-1">{form.companyName}</p>
+                      <p className="text-sm text-ink-light">Billed to: <span className="font-medium text-ink">{form.companyName}</span></p>
                     </div>
-                    <p className="text-2xl font-bold text-brand">{totalDisplay}</p>
+                    <div className="text-left sm:text-right">
+                      <p className="text-xs font-bold uppercase tracking-widest text-ink-muted mb-1">Total Due</p>
+                      <p className="font-display font-bold text-ink text-3xl">{totalDisplay}</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Square Card Element */}
                 {!SQUARE_APP_ID || !SQUARE_LOCATION_ID ? (
-                  <div className="rounded-lg border-2 border-dashed border-slate-200 p-8 text-center">
-                    <ShoppingCart size={32} className="mx-auto text-slate-300 mb-3" />
-                    <p className="text-sm text-slate-500 mb-1">
+                  <div className="rounded-2xl border-2 border-dashed border-warm-border p-10 text-center bg-surface">
+                    <ShoppingCart size={40} className="mx-auto text-ink-muted mb-4" />
+                    <p className="font-bold text-ink mb-2">
                       Payment processing is being configured.
                     </p>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-sm text-ink-light">
                       Square credentials will be set via Cloudflare environment variables.
                     </p>
                   </div>
                 ) : (
-                  <div className="mb-6">
+                  <div className="mb-8">
                     <div
                       id="square-card-container"
-                      className="min-h-[60px] rounded-lg border border-slate-200 p-1"
+                      className="min-h-[60px] rounded-xl border border-warm-border p-2 bg-surface shadow-inner"
                     />
                     {!cardReady && (
-                      <div className="flex items-center justify-center gap-2 py-4 text-sm text-slate-400">
-                        <Loader2 size={16} className="animate-spin" />
-                        Loading payment form...
+                      <div className="flex items-center justify-center gap-2 py-6 text-sm font-medium text-ink-light bg-white rounded-lg border border-warm-border/50">
+                        <Loader2 size={16} className="animate-spin text-brand" />
+                        Loading secure payment form...
                       </div>
                     )}
                   </div>
                 )}
 
                 {error && (
-                  <div className="rounded-lg bg-red-50 border border-red-200 p-3 mb-4">
-                    <p className="text-sm text-red-700">{error}</p>
+                  <div className="rounded-xl bg-red-50 border border-red-200 p-4 mb-6 flex items-start gap-3">
+                    <Shield size={18} className="text-red-500 shrink-0 mt-0.5" />
+                    <p className="text-sm font-medium text-red-800">{error}</p>
                   </div>
                 )}
 
-                <div className="mt-6 flex gap-3 justify-between">
-                  <Button variant="secondary" onClick={() => setStep("details")}>
-                    Back
+                <div className="mt-8 flex flex-col-reverse sm:flex-row gap-4 justify-between">
+                  <Button variant="secondary" onClick={() => setStep("details")} className="w-full sm:w-auto bg-surface">
+                    Back to Details
                   </Button>
                   <Button
                     size="lg"
                     onClick={handlePayment}
                     disabled={loading || (!cardReady && !!SQUARE_APP_ID)}
+                    className="w-full sm:w-auto shadow-md hover:shadow-lg transition-shadow bg-cta hover:bg-cta-hover text-white"
                   >
                     {loading ? (
                       <>
@@ -629,17 +669,17 @@ export default function Order() {
                       </>
                     ) : (
                       <>
-                        Pay {totalDisplay}
-                        <Shield size={16} className="ml-2" />
+                        Pay {totalDisplay} Securely
+                        <Shield size={16} className="ml-2 opacity-80" />
                       </>
                     )}
                   </Button>
                 </div>
 
-                <p className="mt-4 text-center text-xs text-slate-400">
+                <p className="mt-6 text-center text-xs font-medium text-ink-muted">
                   By completing this purchase you agree to {BRAND.name}'s terms of service.
                 </p>
-              </Card>
+              </div>
             </motion.div>
           )}
 
@@ -649,34 +689,39 @@ export default function Order() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="text-center py-12"
+              className="text-center py-12 px-6"
             >
-              <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-50 mb-6">
-                <CheckCircle2 size={40} className="text-green-500" />
+              <div className="inline-flex h-24 w-24 items-center justify-center rounded-full bg-green-50 mb-8 ring-8 ring-green-50/50">
+                <CheckCircle2 size={48} className="text-green-500" />
               </div>
-              <h2 className="font-display text-2xl font-bold text-brand mb-3">
-                Order Confirmed!
+              <h2 className="font-display text-4xl font-bold text-ink mb-4">
+                Payment Successful!
               </h2>
-              <p className="text-slate-500 max-w-md mx-auto mb-2">
-                Thank you, {form.contactName}. We've received your order and will be in touch
-                within 1 business day to get started.
+              <p className="text-lg text-ink-light max-w-md mx-auto mb-3">
+                Thank you, <span className="font-bold text-ink">{form.contactName}</span>. We've received your order and will be in touch within 1 business day to kick things off.
               </p>
-              <p className="text-sm text-slate-400">
-                A confirmation email has been sent to {form.email}.
+              <p className="text-sm font-medium text-ink-muted">
+                A confirmation receipt has been sent to {form.email}.
               </p>
-              <div className="mt-8">
+              
+              <div className="mt-12 p-6 rounded-2xl bg-surface border border-warm-border max-w-sm mx-auto">
+                <p className="text-sm font-bold uppercase tracking-widest text-brand mb-2">Next Steps</p>
+                <p className="text-sm text-ink-light">Look out for an email from our onboarding team to schedule your kickoff call.</p>
+              </div>
+
+              <div className="mt-10">
                 <a
                   href="/"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue hover:underline"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-ink hover:text-brand transition-colors"
                 >
-                  Return to Home
-                  <ArrowRight size={14} />
+                  Return to Homepage
+                  <ArrowRight size={16} />
                 </a>
               </div>
             </motion.div>
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 }
