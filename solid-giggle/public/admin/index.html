@@ -43,6 +43,11 @@
     .res .copy{margin-top:8px;padding:8px 20px;background:#4a7cff;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
     .res .exp{margin-top:8px;font-size:12px;color:#8896b0}
     .another{margin-top:12px;padding:10px 24px;background:none;border:1px solid #dde1e8;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:#3a4560}
+    .appHidden{display:none}
+    .titleSection{text-align:center;margin-bottom:36px}
+    .sectionLabel{font-size:13px;font-weight:700;color:#4a7cff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+    .sqboxInput{border-color:rgba(0,106,255,.2)}
+    .marginBottom{margin-bottom:10px}
     @media(max-width:640px){.grid,.progs{grid-template-columns:1fr}.wrap{padding:12px}}
   </style>
 </head>
@@ -57,10 +62,10 @@
 </div>
 
 <!-- GENERATOR -->
-<div id="app" style="display:none">
+<div id="app" class="appHidden">
   <div class="wrap">
-    <div style="text-align:center;margin-bottom:36px">
-      <div style="font-size:13px;font-weight:700;color:#4a7cff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">PROPOSAL GENERATOR</div>
+    <div class="titleSection">
+      <div class="sectionLabel">PROPOSAL GENERATOR</div>
       <h1>Create a Client Proposal</h1>
       <p class="desc">Fill out the details. Click Generate. Send the link to your client.</p>
     </div>
@@ -108,7 +113,7 @@
           <span>Square Checkout</span>
         </div>
         <label>Square Checkout Link</label>
-        <input id="square_checkout_link" placeholder="https://square.link/u/XXXXXXXXX" style="border-color:rgba(0,106,255,.2)">
+        <input id="square_checkout_link" placeholder="https://square.link/u/XXXXXXXXX" class="sqboxInput">
         <div class="tip">Create this in Square Dashboard → Online Checkout → Checkout Links</div>
       </div>
     </div>
@@ -135,7 +140,7 @@
 
     <div class="res" id="res">
       <h4>✅ Proposal Created</h4>
-      <div style="margin-bottom:10px">Send this link to your client:</div>
+      <div class="marginBottom">Send this link to your client:</div>
       <input id="resurl" readonly onclick="this.select()">
       <button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('resurl').value).then(function(){document.querySelector('.copy').textContent='Copied!';setTimeout(function(){document.querySelector('.copy').textContent='Copy Link'},2000)})">Copy Link</button>
       <div class="exp" id="resexp"></div>
