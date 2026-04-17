@@ -1,65 +1,49 @@
-// GET /api/proposals/:token  — Fetch proposal for client viewer
-// POST /api/proposals/:token — Sign the proposal
-
 export async function onRequestGet(context) {
-  const { env, params } = context;
-  const token = params.token.join("");
+  try {
+    var env = context.env;
+    var token = context.params.token;
+    if (Array.isArray(token)) token = token.join("");
 
-  const data = await env.PROPOSALS.get(`proposal:${token}`);
+    if (!env.PROPOSALS) return json({ error: "KV not bound" }, 500);
 
-  if (!data) {
-    return new Response(JSON.stringify({
-      error: "not_found",
-      message: "This proposal has expired or does not exist.",
-    }), {
-      status: 404,
-      headers: { "Content-Type": "application/json" },
-    });
+    var data = await env.PROPOSALS.get("proposal:" + token);
+    if (!data) return json({ error: "not_found", message: "This proposal has expired or does not exist." }, 404);
+
+    return new Response(data, { status: 200, headers: { "Content-Type": "application/json" } });
+  } catch (err) {
+    return json({ error: "Server error: " + err.message }, 500);
   }
-
-  return new Response(data, {
-    headers: { "Content-Type": "application/json" },
-  });
 }
 
 export async function onRequestPost(context) {
-  const { env, params, request } = context;
-  const token = params.token.join("");
+  try {
+    var env = context.env;
+    var request = context.request;
+    var token = context.params.token;
+    if (Array.isArray(token)) token = token.join("");
 
-  const data = await env.PROPOSALS.get(`proposal:${token}`);
+    if (!env.PROPOSALS) return json({ error: "KV not bound" }, 500);
 
-  if (!data) {
-    return new Response(JSON.stringify({ error: "Proposal not found or expired" }), {
-      status: 404,
-      headers: { "Content-Type": "application/json" },
-    });
+    var data = await env.PROPOSALS.get("proposal:" + token);
+    if (!data) return json({ error: "Proposal not found or expired" }, 404);
+
+    var proposal = JSON.parse(data);
+    if (proposal.status === "signed") return json({ error: "Already signed" }, 409);
+
+    var body = await request.json();
+    proposal.status = "signed";
+    proposal.clientSignature = body.clientSignature;
+    proposal.signedAt = new Date().toISOString();
+
+    // Re-store WITHOUT TTL — signed = permanent
+    await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal));
+
+    return json({ success: true, signedAt: proposal.signedAt });
+  } catch (err) {
+    return json({ error: "Server error: " + err.message }, 500);
   }
+}
 
-  const proposal = JSON.parse(data);
-
-  if (proposal.status === "signed") {
-    return new Response(JSON.stringify({ error: "Already signed" }), {
-      status: 409,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  const body = await request.json();
-
-  proposal.status = "signed";
-  proposal.clientSignature = body.clientSignature;
-  proposal.signedAt = new Date().toISOString();
-
-  // Re-store WITHOUT TTL so signed proposals live forever
-  await env.PROPOSALS.put(
-    `proposal:${token}`,
-    JSON.stringify(proposal)
-  );
-
-  return new Response(JSON.stringify({
-    success: true,
-    signedAt: proposal.signedAt,
-  }), {
-    headers: { "Content-Type": "application/json" },
-  });
+function json(data, status) {
+  return new Response(JSON.stringify(data), { status: status || 200, headers: { "Content-Type": "application/json" } });
 }
