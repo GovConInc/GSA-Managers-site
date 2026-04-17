@@ -6,7 +6,7 @@
 **Problem**: The API was only pulling data from 2024 because the fiscal year calculation was incorrect.
 
 **Solution**: 
-- Updated date range calculation to properly handle fiscal years (October - September)
+- Updated date range calculation to prroperly handle fiscal years (October - September)
 - For "1 Year View": Pulls data from the current fiscal year start date (Oct 1st of previous year if before Oct, current year if Oct or later)
 - For "5 Year View": Pulls data from 5 fiscal years back
 
