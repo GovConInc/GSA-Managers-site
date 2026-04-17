@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Proposal | GSA Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#3a4560}
+
+    .loading{display:flex;align-items:center;justify-content:center;min-height:100vh;font-size:16px;color:#8896b0}
+    .err-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:40px}
+    .err-page h1{font-size:28px;color:#1a2744;margin-bottom:12px}
+    .err-page p{font-size:16px;color:#8896b0;max-width:420px}
+
+    .exp-bar{padding:10px 24px;text-align:center;font-size:13px;font-weight:600;background:#fffcf0;color:#8b6914;border-bottom:1px solid #f0e6c0}
+    .exp-bar.dead{background:#fff0f0;color:#c0392b;border-color:#fdd}
+
+    .cover{background:linear-gradient(170deg,#1a2744,#263a5e);padding:72px 32px 60px;position:relative;overflow:hidden}
+    .orb{position:absolute;border-radius:50%}
+    .o1{width:500px;height:500px;top:-20%;right:-10%;background:rgba(74,124,255,.08)}
+    .o2{width:400px;height:400px;bottom:-30%;left:-5%;background:rgba(74,124,255,.05)}
+    .ci{max-width:900px;margin:0 auto;position:relative}
+    .badge{display:inline-block;background:rgba(74,124,255,.2);padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;color:#8cb4ff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px}
+    .cover h1{font-size:38px;font-weight:800;color:#fff;line-height:1.15;margin-bottom:16px}
+    .sub{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:36px}
+    .sub strong{color:#fff}
+    .meta{display:flex;gap:36px;flex-wrap:wrap}
+    .mi label{display:block;font-size:11px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+    .mi span{font-size:15px;color:#fff;font-weight:600}
+
+    .sec{max-width:900px;margin:0 auto;padding:56px 32px}
+    .sl{font-size:14px;font-weight:600;color:#4a7cff;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+    .sec h2{font-size:28px;font-weight:800;color:#1a2744;margin-bottom:20px;line-height:1.25}
+    .sec p{font-size:16px;line-height:1.75;margin-bottom:16px}
+    .dv{height:1px;background:linear-gradient(90deg,transparent,#dde1e8,transparent);margin:0 32px}
+    .bl{background:#f7f8fc}
+
+    .st{width:100%;border-collapse:collapse;font-size:15px}
+    .st thead th{padding:16px 24px;background:#1a2744;color:#fff;font-weight:700;text-align:left}
+    .st thead th:last-child{text-align:right}
+    .st td{padding:16px 24px;border-bottom:1px solid #f0f1f5}
+    .st td:last-child{text-align:right;font-weight:700;color:#1a2744}
+
+    .tc{background:#fff;border-radius:14px;padding:24px 28px;border:1px solid #e8ecf2;margin-bottom:16px}
+    .tc h3{font-size:15px;font-weight:700;color:#1a2744;margin-bottom:10px}
+    .tc p,.tc li{font-size:14px;line-height:1.7;margin:0}
+    .tc ul{padding-left:20px;margin-top:8px}
+    .tc li{margin-bottom:4px}
+
+    .ab{background:rgba(74,124,255,.06);border-radius:14px;padding:24px 28px;border-left:4px solid #4a7cff;font-size:14px;line-height:1.7;margin:24px 0}
+
+    .sg{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:32px 0}
+    .sb{background:#fff;border-radius:18px;padding:32px;border:1px solid #e8ecf2;position:relative;overflow:hidden}
+    .sb .st1{position:absolute;top:0;left:0;right:0;height:4px;background:#4a7cff}
+    .sb .st2{position:absolute;top:0;left:0;right:0;height:4px;background:#1a2744}
+    .rl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px;margin-top:8px}
+    .rl1{color:#4a7cff}.rl2{color:#1a2744}
+
+    .sc{width:100%;height:120px;border-radius:12px;border:2px dashed #dde1e8;background:#fafbfc;cursor:crosshair;touch-action:none;display:block}
+    .sc.done{border:2px solid #4a7cff;background:#f8faff;cursor:default}
+    .scw{position:relative;margin-bottom:12px}
+    .sph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;color:#b0b8cc;font-size:14px}
+    .sbg{position:absolute;top:8px;right:8px;background:#4a7cff;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px}
+    .sbg2{background:#1a2744}
+
+    .sbt{display:flex;gap:10px}
+    .sbt button{padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+    .bcl{border:1px solid #dde1e8;background:#fff;color:#3a4560}
+    .bcf{border:none;background:#4a7cff;color:#fff;font-weight:700}
+    .bcf:disabled{background:#dde1e8;color:#8896b0;cursor:not-allowed}
+
+    .sn{font-size:16px;font-weight:700;color:#1a2744;margin-top:8px}
+    .sti{font-size:13px;color:#3a4560;margin-top:2px}
+    .sd{margin-top:20px;border-bottom:1px solid #e8ecf2;padding-bottom:8px}
+    .sdl{font-size:11px;color:#8896b0;margin-top:6px;font-weight:600}
+
+    .fa{text-align:center;margin:32px 0}
+    .bf{padding:16px 48px;border-radius:14px;border:none;background:linear-gradient(135deg,#4a7cff,#3358d4);color:#fff;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(74,124,255,.3)}
+    .bf:disabled{opacity:.5;cursor:not-allowed}
+
+    .ps{text-align:center;padding:40px 0;border-top:1px solid #e8ecf2;margin-top:32px}
+    .ps h3{font-size:22px;font-weight:800;color:#1a2744;margin:8px 0}
+    .ps p{font-size:15px;color:#3a4560;margin-bottom:28px}
+    .psb{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+    .ba{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none}
+    .bo{border:1px solid #e8ecf2;background:#fff;color:#1a2744}
+    .bsq{border:none;background:#006aff;color:#fff;box-shadow:0 4px 16px rgba(0,106,255,.25)}
+
+    .ft{background:#1a2744;padding:28px;text-align:center;font-size:13px;color:rgba(255,255,255,.4)}
+
+    .nb{/* no-print utility */}
+    .tb{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #e8ecf2;padding:12px 32px;display:flex;justify-content:space-between;align-items:center}
+
+    @media print{.nb{display:none!important}.cover{padding:48px 32px 36px}}
+    @media(max-width:640px){.sg{grid-template-columns:1fr}.cover h1{font-size:26px}.meta{gap:20px}.sec{padding:40px 20px}}
+  </style>
+</head>
+<body>
+<div id="app"><div class="loading">Loading proposal...</div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function(){
+  var P=new URLSearchParams(window.location.search),token=P.get("id");
+  if(!token)return err("No Proposal ID","Check the link you received and try again.");
+
+  fetch("/api/proposals/"+token).then(function(r){
+    if(!r.ok)throw new Error(r.status==404?"expired":"error");
+    return r.json();
+  }).then(render).catch(function(e){
+    if(e.message==="expired")err("This Proposal Has Expired","The link is no longer active. Please contact us for a new proposal link.");
+    else err("Something Went Wrong","We couldn't load this proposal. Please try again or contact us.");
+  });
+
+  function err(t,m){document.getElementById("app").innerHTML='<div class="err-page"><div style="font-size:48px;margin-bottom:20px">📄</div><h1>'+t+'</h1><p>'+m+'</p></div>';}
+
+  function esc(s){if(!s)return"";var d=document.createElement("div");d.textContent=s;return d.innerHTML;}
+  function fdate(iso){if(!iso)return"";try{return new Date(iso).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});}catch(e){return iso;}}
+
+  var PROGS={gsa_submission:"GSA Submission Program",annual_management:"GSA Annual Management Program",gsa_modification:"GSA Modification Program",new_contractor_fcp:"GSA New Contractor FCP Program"};
+
+  function render(p){
+    var signed=p.status==="signed";
+    var exp=new Date(p.expiresAt),now=new Date(),diff=exp-now;
+    var hrs=Math.max(0,Math.floor(diff/36e5)),mins=Math.max(0,Math.floor((diff%36e5)/6e4));
+    var dead=diff<=0&&!signed;
+    var prog=PROGS[p.programType]||p.programType;
+
+    document.getElementById("app").innerHTML=
+    (!signed?'<div class="exp-bar nb'+(dead?' dead':'')+'">'+
+      (dead?'This proposal has expired. Please contact us for a new link.':
+      'This proposal link expires in '+hrs+'h '+mins+'m')+'</div>':'')+
+
+    '<div class="tb nb"><div style="display:flex;align-items:center;gap:12px">'+
+      '<span style="font-size:14px;font-weight:700;color:#1a2744">Service Proposal</span>'+
+      (signed?'<span style="background:#e8f5e9;color:#2e7d32;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px">SIGNED</span>':'')+
+    '</div><div style="display:flex;gap:10px">'+
+      '<button onclick="window.print()" class="ba bo nb" style="padding:8px 18px;font-size:13px">Print</button>'+
+      (signed?'<button onclick="dlPDF()" class="ba nb" style="padding:8px 18px;font-size:13px;border:none;background:#4a7cff;color:#fff">PDF</button>':'')+
+    '</div></div>'+
+
+    '<div id="pc">'+
+    '<div class="cover"><div class="orb o1"></div><div class="orb o2"></div><div class="ci">'+
+      '<div class="badge">'+esc(prog)+'</div>'+
+      '<h1>Service Proposal &amp; Agreement</h1>'+
+      '<div class="sub">Prepared for <strong>'+esc(p.clientName)+'</strong></div>'+
+      '<div class="meta">'+
+        '<div class="mi"><label>Prepared By</label><span>'+esc(p.providerCompany)+'</span></div>'+
+        '<div class="mi"><label>Date</label><span>'+fdate(p.createdAt)+'</span></div>'+
+        '<div class="mi"><label>CAGE Code</label><span>'+esc(p.cageCode)+'</span></div>'+
+        '<div class="mi"><label>Program</label><span>'+esc(prog)+'</span></div>'+
+      '</div>'+
+    '</div></div>'+
+
+    '<div class="dv"></div>'+
+
+    '<div class="sec"><div class="sl">Agreement Summary</div><h2>Engagement Terms</h2>'+
+      '<div style="border-radius:18px;border:1px solid #e8ecf2;overflow:hidden;margin-top:24px">'+
+        '<table class="st"><thead><tr><th>Description</th><th>Details</th></tr></thead><tbody>'+
+        '<tr><td>Client</td><td>'+esc(p.clientName)+'</td></tr>'+
+        '<tr><td>CAGE Code</td><td>'+esc(p.cageCode)+'</td></tr>'+
+        '<tr><td>Program</td><td>'+esc(prog)+'</td></tr>'+
+        '<tr><td>Term</td><td>'+esc(p.termLength)+'</td></tr>'+
+        '<tr><td>Investment</td><td>'+esc(p.price)+'</td></tr>'+
+        '<tr><td>Payment Terms</td><td>'+esc(p.paymentTerms)+'</td></tr>'+
+      '</tbody></table></div>'+
+    '</div>'+
+
+    '<div class="dv"></div>'+
+
+    '<div class="bl"><div class="sec"><div class="sl">Terms &amp; Acceptance</div><h2>Agreement</h2>'+
+
+      '<div class="tc"><h3>Service Term</h3><p>This engagement covers a period of '+esc(p.termLength)+' beginning on the date of execution. Services will be delivered according to the scope, schedule, and structure described in the full proposal document.</p></div>'+
+
+      '<div class="tc"><h3>Client Responsibilities</h3><p>The client is responsible for providing timely access to required documentation, credentials, and internal approvals. Delays in client-side responsiveness may impact project timelines. The client is also responsible for maintaining accurate SAM.gov registration and providing truthful representations regarding eligibility and compliance status.</p></div>'+
+
+      '<div class="tc"><h3>Payment Terms</h3><p>The total program fee of '+esc(p.price)+' is '+esc((p.paymentTerms||"").toLowerCase())+'. Payment constitutes acceptance of the terms outlined in this agreement.</p></div>'+
+
+      '<div class="ab">By signing below, the authorized representative of '+esc(p.clientName)+' confirms acceptance of the full scope, terms, pricing, and conditions outlined in this proposal and authorizes '+esc(p.providerCompany)+' to begin work under the '+esc(prog)+'.</div>'+
+
+      '<div class="sl" style="margin-top:32px">Signatures</div>'+
+      '<div class="sg">'+
+
+        '<div class="sb"><div class="st1"></div>'+
+          '<div class="rl rl1">Client — '+esc(p.contactName)+(p.contactTitle?', '+esc(p.contactTitle):'')+'</div>'+
+          '<div class="scw">'+
+            '<canvas id="sc" class="sc'+(signed?' done':'')+'" width="600" height="240"></canvas>'+
+            (!signed&&!dead?'<div class="sph" id="sph">Sign here</div>':'')+
+            (signed?'<div class="sbg">SIGNED ✓</div>':'')+
+          '</div>'+
+          (!signed&&!dead?'<div class="sbt" id="sbt"><button class="bcl" onclick="clrSig()">Clear</button><button class="bcf" id="bcf" disabled onclick="cfmSig()">Confirm Signature</button></div>':'')+
+          '<div class="sn">'+esc(p.contactName||"[Name]")+'</div>'+
+          '<div class="sti">'+esc(p.contactTitle||"[Title]")+', '+esc(p.clientName)+'</div>'+
+          '<div class="sd"></div><div class="sdl">'+(signed?fdate(p.signedAt):'Date')+'</div>'+
+        '</div>'+
+
+        '<div class="sb"><div class="st2"></div>'+
+          '<div class="rl rl2">Provider — '+esc(p.providerSigner)+(p.providerTitle?', '+esc(p.providerTitle):'')+'</div>'+
+          '<div class="scw">'+
+            '<canvas id="sp" class="sc done" width="600" height="240"></canvas>'+
+            '<div class="sbg sbg2">PRE-SIGNED</div>'+
+          '</div>'+
+          '<div class="sn">'+esc(p.providerSigner||"[Name]")+'</div>'+
+          '<div class="sti">'+esc(p.providerTitle||"[Title]")+', '+esc(p.providerCompany)+'</div>'+
+          '<div class="sd"></div><div class="sdl">'+fdate(p.createdAt)+'</div>'+
+        '</div>'+
+
+      '</div>'+
+
+      (!signed&&!dead?'<div class="fa nb" id="fa" style="display:none"><button class="bf" id="bf" onclick="finalize()">Finalize Agreement</button><div style="font-size:12px;color:#8896b0;margin-top:10px">Your signature has been captured. Click to lock this agreement.</div></div>':'')+
+
+      (signed?'<div class="ps"><div style="font-size:24px">✅</div><h3>Agreement Signed</h3><p>Executed on '+fdate(p.signedAt)+'. Download your copy or proceed to payment.</p><div class="psb nb">'+
+        '<button onclick="dlPDF()" class="ba bo">⬇ Download PDF</button>'+
+        '<button onclick="window.print()" class="ba bo">🖨 Print</button>'+
+        (p.squareLink?'<a href="'+esc(p.squareLink)+'" target="_blank" class="ba bsq">💳 Pay with Square</a>':'')+
+      '</div></div>':'')+
+
+    '</div></div>'+
+
+    '<div class="ft">'+esc(p.providerCompany)+' · Confidential · '+fdate(p.createdAt)+' · Ref: '+esc(p.cageCode)+'</div>'+
+    '</div>';
+
+    // Draw provider pre-signature
+    var sp=document.getElementById("sp");
+    if(sp){var x=sp.getContext("2d");sp.width=sp.offsetWidth*2;sp.height=sp.offsetHeight*2;x.scale(2,2);x.strokeStyle="#1a2744";x.lineWidth=2;x.beginPath();x.moveTo(20,80);x.quadraticCurveTo(80,30,160,70);x.quadraticCurveTo(200,90,240,60);x.stroke();}
+
+    // Load saved signature if signed
+    if(signed&&p.clientSignature){
+      var cv=document.getElementById("sc");
+      if(cv){var cx=cv.getContext("2d");var im=new Image();im.onload=function(){cv.width=cv.offsetWidth*2;cv.height=cv.offsetHeight*2;cx.drawImage(im,0,0,cv.width,cv.height);};im.src=p.clientSignature;}
+    }
+
+    // Set up drawing if not signed
+    if(!signed&&!dead) setupSig();
+
+    window._tok=token;
+    window._p=p;
+  }
+
+  var drawing=false,hasC=false,confirmed=false;
+
+  function setupSig(){
+    var cv=document.getElementById("sc");if(!cv)return;
+    var ctx=cv.getContext("2d");
+    cv.width=cv.offsetWidth*2;cv.height=cv.offsetHeight*2;
+    ctx.scale(2,2);ctx.strokeStyle="#1a2744";ctx.lineWidth=2;ctx.lineCap="round";ctx.lineJoin="round";
+
+    function gp(e){var r=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};}
+
+    cv.addEventListener("mousedown",function(e){if(confirmed)return;drawing=true;hasC=true;var p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);var ph=document.getElementById("sph");if(ph)ph.remove();document.getElementById("bcf").disabled=false;});
+    cv.addEventListener("mousemove",function(e){if(!drawing||confirmed)return;var p=gp(e);ctx.lineTo(p.x,p.y);ctx.stroke();});
+    cv.addEventListener("mouseup",function(){drawing=false;});
+    cv.addEventListener("mouseleave",function(){drawing=false;});
+
+    cv.addEventListener("touchstart",function(e){e.preventDefault();if(confirmed)return;drawing=true;hasC=true;var p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);var ph=document.getElementById("sph");if(ph)ph.remove();document.getElementById("bcf").disabled=false;});
+    cv.addEventListener("touchmove",function(e){e.preventDefault();if(!drawing||confirmed)return;var p=gp(e);ctx.lineTo(p.x,p.y);ctx.stroke();});
+    cv.addEventListener("touchend",function(){drawing=false;});
+  }
+
+  window.clrSig=function(){
+    if(confirmed)return;
+    var cv=document.getElementById("sc"),ctx=cv.getContext("2d");
+    ctx.clearRect(0,0,cv.width,cv.height);hasC=false;
+    document.getElementById("bcf").disabled=true;
+  };
+
+  window.cfmSig=function(){
+    if(!hasC)return;confirmed=true;
+    document.getElementById("sc").classList.add("done");
+    document.getElementById("sbt").style.display="none";
+    var fa=document.getElementById("fa");if(fa)fa.style.display="block";
+  };
+
+  window.finalize=async function(){
+    var btn=document.getElementById("bf");btn.disabled=true;btn.textContent="Signing...";
+    var sig=document.getElementById("sc").toDataURL("image/png");
+    try{
+      var res=await fetch("/api/proposals/"+window._tok,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clientSignature:sig})});
+      if(!res.ok){var e=await res.json();alert(e.error||"Something went wrong.");btn.disabled=false;btn.textContent="Finalize Agreement";return;}
+      window.location.reload();
+    }catch(e){alert("Network error. Please try again.");btn.disabled=false;btn.textContent="Finalize Agreement";}
+  };
+
+  window.dlPDF=function(){
+    var el=document.getElementById("pc");
+    var nb=document.querySelectorAll(".nb");nb.forEach(function(x){x.style.display="none";});
+    var p=window._p;
+    var fn="GSA_Proposal_"+(p.cageCode||"draft").replace(/\s+/g,"_")+"_"+(p.clientName||"client").replace(/[^a-zA-Z0-9]/g,"_")+".pdf";
+    html2pdf().set({margin:[.4,.4,.4,.4],filename:fn,image:{type:"jpeg",quality:.95},html2canvas:{scale:2,useCORS:true,scrollY:0},jsPDF:{unit:"in",format:"letter",orientation:"portrait"},pagebreak:{mode:["css","legacy"]}}).from(el).save().then(function(){nb.forEach(function(x){x.style.display="";});});
+  };
+})();
+</script>
+</body>
+</html>
