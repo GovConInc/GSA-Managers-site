@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && xcopy /E /I /Y functions dist\\_functions",
+    "build": "vite build && cp -r functions dist/_functions",
     "preview": "vite preview",
     "lint": "eslint ."
   },
