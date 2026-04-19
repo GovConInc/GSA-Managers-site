@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Create Proposal | GSA Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Plus Jakarta Sans',sans-serif;background:#f4f5fa;color:#3a4560}
+.gate{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:16px}.gate h2{font-size:24px;color:#1a2744}.gate input{padding:14px 20px;border:1px solid #dde1e8;border-radius:12px;font-size:16px;width:300px;text-align:center;font-family:inherit}.gate button{padding:14px 36px;background:#4a7cff;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit}.gate .er{color:#c0392b;font-size:14px;display:none}
+.wrap{max-width:740px;margin:40px auto;padding:0 20px 60px}h1{font-size:28px;color:#1a2744;margin-bottom:6px}
+.card{background:#fff;border-radius:16px;padding:28px;border:1px solid #e8ecf2;margin-bottom:20px}.card h3{font-size:18px;font-weight:700;color:#1a2744;margin-bottom:4px}.card .su{font-size:13px;color:#8896b0;margin-bottom:18px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.full{grid-column:1/-1}
+label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5px}input,select,textarea{width:100%;padding:11px 14px;border:1px solid #dde1e8;border-radius:10px;font-size:14px;font-family:inherit;background:#fafbfc;outline:none}textarea{min-height:100px;resize:vertical}
+.progs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.prog{padding:16px;border-radius:12px;border:2px solid #e8ecf2;cursor:pointer;transition:all .2s}.prog.on{border-color:#4a7cff;background:rgba(74,124,255,.06)}.prog b{font-size:14px;color:#1a2744;display:block}.prog.on b{color:#4a7cff}.prog span{font-size:12px;color:#8896b0}
+.sqbox{margin-top:18px;padding:18px;background:rgba(0,106,255,.04);border-radius:12px;border:1px solid rgba(0,106,255,.12)}.sqbox .sqh{display:flex;align-items:center;gap:8px;margin-bottom:10px}.sqbox .sqh b{font-size:14px;color:#006aff}.sqbox .tip{font-size:11px;color:#8896b0;margin-top:6px}
+.disc{margin-top:18px;padding:18px;background:rgba(46,125,50,.04);border-radius:12px;border:1px solid rgba(46,125,50,.12)}.disc b{font-size:14px;color:#2e7d32;display:block;margin-bottom:10px}
+.gen{width:100%;padding:16px;background:linear-gradient(135deg,#4a7cff,#3358d4);color:#fff;border:none;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(74,124,255,.3);margin-top:8px}.gen:disabled{opacity:.6;cursor:not-allowed}
+.res{display:none;margin-top:24px;padding:24px;background:#f0fff4;border:1px solid #c6f6d5;border-radius:14px}.res h4{font-weight:700;color:#2e7d32;margin-bottom:8px;font-size:16px}.res input{background:#fff;border:1px solid #c6f6d5;cursor:text;margin-top:4px}.res .copy{margin-top:8px;padding:8px 20px;background:#4a7cff;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}.res .exp{margin-top:8px;font-size:12px;color:#8896b0}.res .sq{margin-top:6px;font-size:13px;color:#006aff;font-weight:600}
+.another{margin-top:12px;padding:10px 24px;background:none;border:1px solid #dde1e8;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:#3a4560}
+@media(max-width:640px){.g2,.g3,.progs{grid-template-columns:1fr}.wrap{padding:0 12px 40px}}
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+  <h2>Proposal Generator</h2>
+  <input type="password" id="pw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')tryLogin()">
+  <button onclick="tryLogin()">Enter</button>
+  <div class="er" id="er">Incorrect password</div>
+</div>
+<div id="app" style="display:none"><div class="wrap">
+  <div style="text-align:center;margin:40px 0 36px"><div style="font-size:13px;font-weight:700;color:#4a7cff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">PROPOSAL GENERATOR</div><h1>Create a Client Proposal</h1><p style="color:#8896b0;font-size:15px;margin-top:4px">Fill out the details. Click Generate. Send the link.</p></div>
+
+  <div class="card"><h3>Client Information</h3><div class="su">Who is this for?</div>
+    <div class="g2">
+      <div><label>Legal Company Name *</label><input id="client_legal_name"></div>
+      <div><label>Contact Name</label><input id="client_contact_name"></div>
+      <div><label>Contact Title</label><input id="client_contact_title"></div>
+      <div><label>Email</label><input id="client_email"></div>
+      <div><label>Phone</label><input id="client_phone"></div>
+      <div><label>CAGE Code / UEI</label><input id="client_uei"></div>
+      <div class="full"><label>Current GSA Status</label><select id="client_gsa_status"><option value="">Select...</option><option value="no_contract">No GSA Contract</option><option value="pending">Application Pending</option><option value="recently_awarded">Recently Awarded</option><option value="active">Active MAS Holder</option><option value="needs_modification">Active — Needs Modifications</option></select></div>
+    </div>
+  </div>
+
+  <div class="card"><h3>Service Program</h3><div class="su">Which program fits?</div>
+    <div class="progs" id="progs">
+      <div class="prog on" data-v="annual_management" onclick="pickP(this)"><b>GSA Annual Management</b><span>Year-round contract support</span></div>
+      <div class="prog" data-v="gsa_submission" onclick="pickP(this)"><b>GSA Submission Program</b><span>Initial offer support</span></div>
+      <div class="prog" data-v="gsa_modification" onclick="pickP(this)"><b>GSA Modification Program</b><span>Targeted contract changes</span></div>
+      <div class="prog" data-v="new_contractor_fcp" onclick="pickP(this)"><b>GSA New Contractor FCP</b><span>Post-award activation</span></div>
+    </div>
+    <input type="hidden" id="program_type" value="annual_management">
+  </div>
+
+  <div class="card"><h3>Program Options</h3><div class="su">Customize scope caps and included items.</div>
+    <div class="g3">
+      <div><label>Major Mods Included</label><input id="major_mods_included" value="2"></div>
+      <div><label>Training Sessions</label><input id="training_sessions" value="2"></div>
+      <div><label>Calls Per Month</label><input id="calls_per_month" value="1"></div>
+      <div><label>Reporting Cadence</label><input id="reporting_support" value="Quarterly"></div>
+      <div><label>SAM Support</label><select id="sam_support"><option value="yes">Included</option><option value="no">Not included</option></select></div>
+      <div><label>eBuy / Advantage Support</label><select id="ebuy_support"><option value="yes">Included</option><option value="no">Not included</option></select></div>
+    </div>
+  </div>
+
+  <div class="card"><h3>Pricing &amp; Payment</h3><div class="su">Service fee, term, discounts, and payment setup.</div>
+    <div class="g2">
+      <div><label>Price</label><input id="price" placeholder="$14,400"></div>
+      <div><label>Term Length</label><input id="term_length" value="12 months"></div>
+      <div><label>Payment Terms</label><input id="payment_terms" value="Due upon execution"></div>
+    </div>
+    <div class="disc">
+      <b>💰 Discount (optional — leave blank to hide)</b>
+      <div class="g2">
+        <div><label>Discount Amount</label><input id="discount_amount" placeholder="$1,200"></div>
+        <div><label>Discount Label</label><input id="discount_label" placeholder="e.g. Early signup discount"></div>
+      </div>
+    </div>
+    <div class="sqbox">
+      <div class="sqh"><b>◼ Square Checkout</b></div>
+      <label>Square Checkout Link (optional — auto-generates if blank and Square is configured)</label>
+      <input id="square_checkout_link" placeholder="https://square.link/u/... or leave blank for auto">
+      <div class="tip">If you've set SQUARE_ACCESS_TOKEN and SQUARE_LOCATION_ID in Cloudflare, this generates automatically from the price. Otherwise, paste a link from Square Dashboard.</div>
+    </div>
+  </div>
+
+  <div class="card"><h3>Your Details</h3><div class="su">Who prepared this?</div>
+    <div class="g2">
+      <div><label>Your Company Name</label><input id="provider_company"></div>
+      <div><label>Your Name</label><input id="provider_signer_name"></div>
+      <div><label>Your Title</label><input id="provider_signer_title"></div>
+    </div>
+  </div>
+
+  <div class="card"><h3>Meeting Notes &amp; Intelligence</h3><div class="su">Paste Google Meet notes, client complaints, goals, concerns. All optional.</div>
+    <div style="margin-bottom:14px"><label>Raw Meeting Notes</label><textarea id="meeting_notes" placeholder="Paste everything here..."></textarea></div>
+    <div class="g2">
+      <div><label>Known Pain Points</label><textarea id="known_pain_points" style="min-height:70px" placeholder="Key frustrations..."></textarea></div>
+      <div><label>Priority Goals</label><textarea id="priority_goals" style="min-height:70px" placeholder="What they want to achieve..."></textarea></div>
+      <div><label>Objections / Concerns</label><textarea id="objections" style="min-height:70px" placeholder="Budget concerns, hesitations..."></textarea></div>
+      <div><label>Urgency</label><select id="urgency"><option value="standard">Standard</option><option value="moderate">Moderate — Has a timeline</option><option value="high">High — Deadline-driven</option><option value="critical">Critical — Needs to move now</option></select></div>
+    </div>
+  </div>
+
+  <button class="gen" id="genbtn" onclick="generate()">Generate Proposal →</button>
+
+  <div class="res" id="res">
+    <h4>✅ Proposal Created</h4>
+    <div style="margin-bottom:6px">Send this link to your client:</div>
+    <input id="resurl" readonly onclick="this.select()">
+    <button class="copy" onclick="cpLink()">Copy Link</button>
+    <div class="sq" id="ressq" style="display:none"></div>
+    <div class="exp" id="resexp"></div>
+    <button class="another" onclick="document.getElementById('res').style.display='none'">Create Another</button>
+  </div>
+</div></div>
+
+<script>
+var KEY="";
+function tryLogin(){KEY=document.getElementById("pw").value;if(!KEY){document.getElementById("er").style.display="block";return;}document.getElementById("gate").style.display="none";document.getElementById("app").style.display="block";sessionStorage.setItem("ak",KEY);}
+if(sessionStorage.getItem("ak")){KEY=sessionStorage.getItem("ak");document.getElementById("gate").style.display="none";document.getElementById("app").style.display="block";}
+function pickP(el){document.querySelectorAll(".prog").forEach(function(p){p.classList.remove("on")});el.classList.add("on");document.getElementById("program_type").value=el.getAttribute("data-v");}
+function cpLink(){navigator.clipboard.writeText(document.getElementById("resurl").value).then(function(){var b=document.querySelector(".copy");b.textContent="Copied!";setTimeout(function(){b.textContent="Copy Link"},2000)});}
+
+async function generate(){
+  var btn=document.getElementById("genbtn");btn.disabled=true;btn.textContent="Creating...";
+  var ids=["client_legal_name","client_contact_name","client_contact_title","client_email","client_phone","client_uei","client_gsa_status","program_type","price","term_length","payment_terms","square_checkout_link","discount_amount","discount_label","provider_company","provider_signer_name","provider_signer_title","meeting_notes","known_pain_points","priority_goals","objections","urgency","major_mods_included","training_sessions","calls_per_month","reporting_support","sam_support","ebuy_support"];
+  var data={};ids.forEach(function(id){var el=document.getElementById(id);if(el)data[id]=el.value;});
+  if(!data.client_legal_name){alert("Client name is required.");btn.disabled=false;btn.textContent="Generate Proposal →";return;}
+  try{
+    var res=await fetch("/api/proposals",{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Key":KEY},body:JSON.stringify(data)});
+    var j=await res.json();
+    if(j.error==="Unauthorized"){alert("Wrong admin password. Refresh and try again.");sessionStorage.removeItem("ak");btn.disabled=false;btn.textContent="Generate Proposal →";return;}
+    if(j.success){
+      document.getElementById("res").style.display="block";
+      document.getElementById("resurl").value=j.url;
+      document.getElementById("resexp").textContent="Expires: "+new Date(j.expiresAt).toLocaleString();
+      if(j.squareLink){document.getElementById("ressq").style.display="block";document.getElementById("ressq").textContent="Square link: "+j.squareLink;}
+      else{document.getElementById("ressq").style.display="none";}
+    }else{alert("Error: "+(j.error||"Unknown"));}
+  }catch(e){alert("Network error: "+e.message);}
+  btn.disabled=false;btn.textContent="Generate Proposal →";
+}
+</script>
+</body>
+</html>
