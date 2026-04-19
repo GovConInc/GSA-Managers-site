@@ -6,7 +6,7 @@ The Contract Data Explorer integrates with BigQuery to fetch federal contract aw
 ## Prerequisites
 - A Google Cloud Project with BigQuery access
 - A service account with BiSgQuery Read permissions
-- The service account's JSON key file
+- The service account's JSON key filef
 
 ## Setup Steps
 
