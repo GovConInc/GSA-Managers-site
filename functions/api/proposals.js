@@ -1,3 +1,7 @@
+export async function onRequestGet(context) {
+  return json({ error: "This endpoint only accepts POST requests. Use the admin form at /admin/" }, 405);
+}
+
 export async function onRequestPost(context) {
   try {
     const { env, request } = context;
