@@ -128,7 +128,7 @@ async function generate(){
   var data={};ids.forEach(function(id){var el=document.getElementById(id);if(el)data[id]=el.value;});
   if(!data.client_legal_name){alert("Client name is required.");btn.disabled=false;btn.textContent="Generate Proposal →";return;}
   try{
-    var res=await fetch("/api/proposals",{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Key":KEY},body:JSON.stringify(data)});
+    var res=await fetch("/api/",{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Key":KEY},body:JSON.stringify(data)});
     var j=await res.json();
     if(j.error==="Unauthorized"){alert("Wrong admin password. Refresh and try again.");sessionStorage.removeItem("ak");btn.disabled=false;btn.textContent="Generate Proposal →";return;}
     if(j.success){
