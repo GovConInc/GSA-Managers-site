@@ -88,6 +88,8 @@ export async function onRequestPost(context) {
       trainingSessions: fd.training_sessions || "2",
       callsPerMonth: fd.calls_per_month || "1",
       reportingCadence: fd.reporting_support || "Quarterly",
+      samSupport: fd.sam_support || "yes",
+      eBuySupport: fd.ebuy_support || "yes",
       meetingNotes: fd.meeting_notes || "",
       priorityGoals: fd.priority_goals || "",
       knownPainPoints: fd.known_pain_points || "",

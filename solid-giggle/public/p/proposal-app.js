@@ -51,10 +51,25 @@ h+="</div></div></div>";
 // B7 Timeline
 h+='<div class="dv"></div><div class="bl"><div class="sec"><div class="sl">Timeline & Service Map</div>';
 if(prog.timeline==="gantt"){
+  var numMods=Math.min(Math.max(parseInt(p.majorMods)||2,1),12);
+  var numTraining=Math.min(Math.max(parseInt(p.trainingSessions)||2,1),12);
+  var numAdvisory=Math.min(Math.max(Math.round(parseFloat(p.callsPerMonth||1)*12),1),12);
+  var cad=(p.reportingCadence||"Quarterly").toLowerCase();
+  var numCompliance=cad.indexOf("month")>=0?12:cad.indexOf("semi")>=0?2:cad.indexOf("annual")>=0||cad.indexOf("year")>=0?1:4;
+  var eBuyOn=(p.eBuySupport||"yes")==="yes";
+  function spreadMonths(n){var arr=[0,0,0,0,0,0,0,0,0,0,0,0];for(var j=0;j<n;j++){arr[(2+Math.floor(j*12/n))%12]=1;}return arr;}
+  var ganttRows=prog.gantt.map(function(row){
+    if(row.l==="Modifications")return{l:row.l,c:row.c,m:spreadMonths(numMods)};
+    if(row.l==="Training & Maint")return{l:row.l,c:row.c,m:spreadMonths(numTraining)};
+    if(row.l==="Advisory")return{l:row.l,c:row.c,m:spreadMonths(numAdvisory)};
+    if(row.l==="Compliance")return{l:row.l,c:row.c,m:spreadMonths(numCompliance)};
+    if(row.l==="eBuy / Advantage")return{l:row.l,c:row.c,m:eBuyOn?spreadMonths(2):[0,0,0,0,0,0,0,0,0,0,0,0]};
+    return row;
+  });
   h+='<h2>12-Month Service Timeline</h2><p>Hover over any active block to see planned activities for that month.</p><div class="tl-gantt"><table><thead><tr><th>Service Area</th>';
   prog.months.forEach(function(m){h+="<th>"+m+"</th>"});
   h+="</tr></thead><tbody>";
-  prog.gantt.forEach(function(cat,ri){h+="<tr><td><span style=\"display:inline-block;width:10px;height:10px;border-radius:3px;background:"+cat.c+";margin-right:10px;vertical-align:middle\"></span>"+E(cat.l)+"</td>";cat.m.forEach(function(a,ci){h+='<td onmouseenter="gH('+ri+","+ci+',1)" onmouseleave="gH('+ri+","+ci+',0)"><div class="bar" id="gb-'+ri+"-"+ci+'" style="background:'+(a?cat.c:"#f0f1f5")+";opacity:"+(a?.85:.3)+'"></div>'+(a?'<div class="tip" id="gt-'+ri+"-"+ci+'"><div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:3px;text-transform:uppercase;letter-spacing:.08em">'+prog.months[ci]+" · "+E(cat.l)+"</div>"+prog.mdata[ci].join(" · ")+"</div>":"")+"</td>"});h+="</tr>"});
+  ganttRows.forEach(function(cat,ri){h+="<tr><td><span style=\"display:inline-block;width:10px;height:10px;border-radius:3px;background:"+cat.c+";margin-right:10px;vertical-align:middle\"></span>"+E(cat.l)+"</td>";cat.m.forEach(function(a,ci){h+='<td onmouseenter="gH('+ri+","+ci+',1)" onmouseleave="gH('+ri+","+ci+',0)"><div class="bar" id="gb-'+ri+"-"+ci+'" style="background:'+(a?cat.c:"#f0f1f5")+";opacity:"+(a?.85:.3)+'"></div>'+(a?'<div class="tip" id="gt-'+ri+"-"+ci+'"><div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:3px;text-transform:uppercase;letter-spacing:.08em">'+prog.months[ci]+" · "+E(cat.l)+"</div>"+prog.mdata[ci].join(" · ")+"</div>":"")+"</td>"});h+="</tr>"});
   h+='</tbody></table></div><div class="qgrid">';
   [{q:"Q1",t:"Foundation & Planning",d:"Baseline, catalog audit, compliance alignment."},{q:"Q2",t:"Active Support & Growth",d:"Mods, eBuy engagement, strategic positioning."},{q:"Q3",t:"Review & Optimize",d:"Mid-year corrections, training, catalog refresh."},{q:"Q4",t:"Renewal & Strategy",d:"Option year prep, annual strategy, next-year roadmap."}].forEach(function(q){h+='<div class="qc"><div class="qq">'+q.q+'</div><div class="qt">'+E(q.t)+'</div><div class="qd">'+E(q.d)+"</div></div>"});
   h+="</div>";
