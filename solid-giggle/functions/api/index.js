@@ -97,7 +97,11 @@ export async function onRequestPost(context) {
       signedAt: null,
     };
 
-    await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal), { expirationTtl: 172800 });
+    try {
+      await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal), { expirationTtl: 172800 });
+    } catch (kvErr) {
+      return json({ error: "Failed to save proposal: " + kvErr.message }, 500);
+    }
 
     var siteUrl = env.SITE_URL || "https://gsamanager.com";
 
