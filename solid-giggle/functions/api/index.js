@@ -94,6 +94,15 @@ export async function onRequestPost(context) {
       priorityGoals: fd.priority_goals || "",
       knownPainPoints: fd.known_pain_points || "",
       urgency: fd.urgency || "standard",
+      customStepDurs: (function(){
+        var any=false;
+        var durs=[1,2,3,4,5,6].map(function(n){
+          var v=(fd["step_"+n+"_dur"]||"").trim();
+          if(v)any=true;
+          return v||null;
+        });
+        return any?durs:null;
+      })(),
       customPhases: (function(){
         var defs=[
           {ph:"Phase 1",pct:25},{ph:"Phase 2",pct:50},{ph:"Phase 3",pct:75},{ph:"Phase 4",pct:100}

@@ -102,6 +102,17 @@ label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5
     </div>
   </div>
 
+  <div class="card" id="step-card" style="display:none"><h3>Modification Step Durations</h3><div class="su">Override the default timeline for each step. Leave blank to use defaults.</div>
+    <div class="g2">
+      <div><label>Step 1 — Assessment</label><input id="step_1_dur" placeholder="3-5 days"></div>
+      <div><label>Step 2 — Documentation</label><input id="step_2_dur" placeholder="5-10 days"></div>
+      <div><label>Step 3 — Internal Review</label><input id="step_3_dur" placeholder="2-3 days"></div>
+      <div><label>Step 4 — Submission</label><input id="step_4_dur" placeholder="1-2 days"></div>
+      <div><label>Step 5 — Review Period</label><input id="step_5_dur" placeholder="Varies"></div>
+      <div><label>Step 6 — Approval & Verification</label><input id="step_6_dur" placeholder="1-3 days"></div>
+    </div>
+  </div>
+
   <div class="card" id="phase-card"><h3>Engagement Timeline Phases</h3><div class="su">Override the default phase titles, periods, and bullet points. Leave blank to use defaults.</div>
     <div style="display:grid;gap:20px">
       <div style="padding:16px;border-radius:12px;border-left:4px solid #ff9800;background:rgba(255,152,0,.04)">
@@ -156,12 +167,12 @@ label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5
 var KEY="";
 function tryLogin(){KEY=document.getElementById("pw").value;if(!KEY){document.getElementById("er").style.display="block";return;}document.getElementById("gate").style.display="none";document.getElementById("app").style.display="block";sessionStorage.setItem("ak",KEY);}
 if(sessionStorage.getItem("ak")){KEY=sessionStorage.getItem("ak");document.getElementById("gate").style.display="none";document.getElementById("app").style.display="block";}
-function pickP(el){document.querySelectorAll(".prog").forEach(function(p){p.classList.remove("on")});el.classList.add("on");var v=el.getAttribute("data-v");document.getElementById("program_type").value=v;document.getElementById("phase-card").style.display=v==="annual_management"?"block":"none";}
+function pickP(el){document.querySelectorAll(".prog").forEach(function(p){p.classList.remove("on")});el.classList.add("on");var v=el.getAttribute("data-v");document.getElementById("program_type").value=v;document.getElementById("phase-card").style.display=v==="annual_management"?"block":"none";document.getElementById("step-card").style.display=v==="gsa_modification"?"block":"none";}
 function cpLink(){navigator.clipboard.writeText(document.getElementById("resurl").value).then(function(){var b=document.querySelector(".copy");b.textContent="Copied!";setTimeout(function(){b.textContent="Copy Link"},2000)});}
 
 async function generate(){
   var btn=document.getElementById("genbtn");btn.disabled=true;btn.textContent="Creating...";
-  var ids=["client_legal_name","client_contact_name","client_contact_title","client_email","client_phone","client_uei","client_gsa_status","program_type","price","term_length","payment_terms","square_checkout_link","discount_amount","discount_label","provider_company","provider_signer_name","provider_signer_title","meeting_notes","known_pain_points","priority_goals","objections","urgency","major_mods_included","training_sessions","calls_per_month","reporting_support","sam_support","ebuy_support","phase_1_title","phase_1_dur","phase_1_items","phase_2_title","phase_2_dur","phase_2_items","phase_3_title","phase_3_dur","phase_3_items","phase_4_title","phase_4_dur","phase_4_items"];
+  var ids=["client_legal_name","client_contact_name","client_contact_title","client_email","client_phone","client_uei","client_gsa_status","program_type","price","term_length","payment_terms","square_checkout_link","discount_amount","discount_label","provider_company","provider_signer_name","provider_signer_title","meeting_notes","known_pain_points","priority_goals","objections","urgency","major_mods_included","training_sessions","calls_per_month","reporting_support","sam_support","ebuy_support","phase_1_title","phase_1_dur","phase_1_items","phase_2_title","phase_2_dur","phase_2_items","phase_3_title","phase_3_dur","phase_3_items","phase_4_title","phase_4_dur","phase_4_items","step_1_dur","step_2_dur","step_3_dur","step_4_dur","step_5_dur","step_6_dur"];
   var data={};ids.forEach(function(id){var el=document.getElementById(id);if(el)data[id]=el.value;});
   if(!data.client_legal_name){alert("Client name is required.");btn.disabled=false;btn.textContent="Generate Proposal →";return;}
   try{
