@@ -102,6 +102,43 @@ label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5
     </div>
   </div>
 
+  <div class="card" id="phase-card"><h3>Engagement Timeline Phases</h3><div class="su">Override the default phase titles, periods, and bullet points. Leave blank to use defaults.</div>
+    <div style="display:grid;gap:20px">
+      <div style="padding:16px;border-radius:12px;border-left:4px solid #ff9800;background:rgba(255,152,0,.04)">
+        <div style="font-size:12px;font-weight:700;color:#ff9800;margin-bottom:10px">PHASE 1 — Initiation & Foundation</div>
+        <div class="g2">
+          <div><label>Phase Title</label><input id="phase_1_title" placeholder="Initiation & Foundation"></div>
+          <div><label>Duration Label</label><input id="phase_1_dur" placeholder="Months 1–3"></div>
+          <div class="full"><label>Bullet Items (one per line)</label><textarea id="phase_1_items" style="min-height:80px" placeholder="Engagement kickoff & Authorized Negotiator setup&#10;Contract health audit & document review&#10;Catalog baseline review & alignment&#10;First modification submitted"></textarea></div>
+        </div>
+      </div>
+      <div style="padding:16px;border-radius:12px;border-left:4px solid #4a7cff;background:rgba(74,124,255,.04)">
+        <div style="font-size:12px;font-weight:700;color:#4a7cff;margin-bottom:10px">PHASE 2 — Active Modifications</div>
+        <div class="g2">
+          <div><label>Phase Title</label><input id="phase_2_title" placeholder="Active Modifications"></div>
+          <div><label>Duration Label</label><input id="phase_2_dur" placeholder="Months 4–6"></div>
+          <div class="full"><label>Bullet Items (one per line)</label><textarea id="phase_2_items" style="min-height:80px" placeholder="Modification submissions & milestone tracking&#10;Advisory calls & strategic planning&#10;eBuy & Advantage engagement&#10;Catalog updates & compliance monitoring"></textarea></div>
+        </div>
+      </div>
+      <div style="padding:16px;border-radius:12px;border-left:4px solid #7c5cff;background:rgba(124,92,255,.04)">
+        <div style="font-size:12px;font-weight:700;color:#7c5cff;margin-bottom:10px">PHASE 3 — Optimization & Training</div>
+        <div class="g2">
+          <div><label>Phase Title</label><input id="phase_3_title" placeholder="Optimization & Training"></div>
+          <div><label>Duration Label</label><input id="phase_3_dur" placeholder="Months 7–9"></div>
+          <div class="full"><label>Bullet Items (one per line)</label><textarea id="phase_3_items" style="min-height:80px" placeholder="Training sessions & team onboarding&#10;Mid-engagement review & ISS reporting&#10;Catalog refresh & optimization&#10;Compliance review & GSA audit preparation"></textarea></div>
+        </div>
+      </div>
+      <div style="padding:16px;border-radius:12px;border-left:4px solid #2e4a8f;background:rgba(46,74,143,.04)">
+        <div style="font-size:12px;font-weight:700;color:#2e4a8f;margin-bottom:10px">PHASE 4 — Review & Renewal</div>
+        <div class="g2">
+          <div><label>Phase Title</label><input id="phase_4_title" placeholder="Review & Renewal"></div>
+          <div><label>Duration Label</label><input id="phase_4_dur" placeholder="Months 10–12"></div>
+          <div class="full"><label>Bullet Items (one per line)</label><textarea id="phase_4_items" style="min-height:80px" placeholder="Annual review & contract health assessment&#10;Option year & renewal planning&#10;Year-end ISS reporting&#10;Contract continuation roadmap"></textarea></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <button class="gen" id="genbtn" onclick="generate()">Generate Proposal →</button>
 
   <div class="res" id="res">
@@ -119,12 +156,12 @@ label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5
 var KEY="";
 function tryLogin(){KEY=document.getElementById("pw").value;if(!KEY){document.getElementById("er").style.display="block";return;}document.getElementById("gate").style.display="none";document.getElementById("app").style.display="block";sessionStorage.setItem("ak",KEY);}
 if(sessionStorage.getItem("ak")){KEY=sessionStorage.getItem("ak");document.getElementById("gate").style.display="none";document.getElementById("app").style.display="block";}
-function pickP(el){document.querySelectorAll(".prog").forEach(function(p){p.classList.remove("on")});el.classList.add("on");document.getElementById("program_type").value=el.getAttribute("data-v");}
+function pickP(el){document.querySelectorAll(".prog").forEach(function(p){p.classList.remove("on")});el.classList.add("on");var v=el.getAttribute("data-v");document.getElementById("program_type").value=v;document.getElementById("phase-card").style.display=v==="annual_management"?"block":"none";}
 function cpLink(){navigator.clipboard.writeText(document.getElementById("resurl").value).then(function(){var b=document.querySelector(".copy");b.textContent="Copied!";setTimeout(function(){b.textContent="Copy Link"},2000)});}
 
 async function generate(){
   var btn=document.getElementById("genbtn");btn.disabled=true;btn.textContent="Creating...";
-  var ids=["client_legal_name","client_contact_name","client_contact_title","client_email","client_phone","client_uei","client_gsa_status","program_type","price","term_length","payment_terms","square_checkout_link","discount_amount","discount_label","provider_company","provider_signer_name","provider_signer_title","meeting_notes","known_pain_points","priority_goals","objections","urgency","major_mods_included","training_sessions","calls_per_month","reporting_support","sam_support","ebuy_support"];
+  var ids=["client_legal_name","client_contact_name","client_contact_title","client_email","client_phone","client_uei","client_gsa_status","program_type","price","term_length","payment_terms","square_checkout_link","discount_amount","discount_label","provider_company","provider_signer_name","provider_signer_title","meeting_notes","known_pain_points","priority_goals","objections","urgency","major_mods_included","training_sessions","calls_per_month","reporting_support","sam_support","ebuy_support","phase_1_title","phase_1_dur","phase_1_items","phase_2_title","phase_2_dur","phase_2_items","phase_3_title","phase_3_dur","phase_3_items","phase_4_title","phase_4_dur","phase_4_items"];
   var data={};ids.forEach(function(id){var el=document.getElementById(id);if(el)data[id]=el.value;});
   if(!data.client_legal_name){alert("Client name is required.");btn.disabled=false;btn.textContent="Generate Proposal →";return;}
   try{

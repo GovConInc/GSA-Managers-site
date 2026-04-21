@@ -94,6 +94,22 @@ export async function onRequestPost(context) {
       priorityGoals: fd.priority_goals || "",
       knownPainPoints: fd.known_pain_points || "",
       urgency: fd.urgency || "standard",
+      customPhases: (function(){
+        var defs=[
+          {ph:"Phase 1",pct:25},{ph:"Phase 2",pct:50},{ph:"Phase 3",pct:75},{ph:"Phase 4",pct:100}
+        ];
+        var any=false;
+        var phases=defs.map(function(d,i){
+          var n=i+1;
+          var t=(fd["phase_"+n+"_title"]||"").trim();
+          var dur=(fd["phase_"+n+"_dur"]||"").trim();
+          var raw=(fd["phase_"+n+"_items"]||"").trim();
+          var items=raw?raw.split("\n").map(function(s){return s.trim();}).filter(Boolean):null;
+          if(t||dur||items)any=true;
+          return {ph:d.ph,t:t||null,dur:dur||null,items:items,pct:d.pct};
+        });
+        return any?phases:null;
+      })(),
       formData: fd,
       clientSignature: null,
       signedAt: null,
