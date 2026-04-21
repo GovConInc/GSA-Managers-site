@@ -59,40 +59,35 @@ if(prog.timeline==="engagement"){
   var eBuyOn=(p.eBuySupport||"yes")==="yes";
   function sm(n,s){s=s||0;var a=[0,0,0,0,0,0,0,0,0,0,0,0];for(var j=0;j<n;j++){var x=s+(n>1?Math.round(j*(11-s)/(n-1)):0);a[Math.min(11,x)]=1;}return a;}
   var rows=[
-    {l:"Catalog Mgmt",   i:"📦",c:"#4a7cff",m:[1,0,0,1,0,0,1,0,0,1,0,0]},
-    {l:"Modifications",  i:"🔧",c:"#3358d4",m:sm(numMods,1)},
-    {l:"Compliance",     i:"📊",c:"#6b93ff",m:sm(numCmp,2)},
-    {l:"Advisory",       i:"💡",c:"#7c5cff",m:sm(numAdv,0)},
-    {l:"eBuy & Advantage",i:"🛒",c:"#5a85ff",m:eBuyOn?sm(2,4):[0,0,0,0,0,0,0,0,0,0,0,0]},
+    {l:"Catalog Mgmt",      i:"📦",c:"#4a7cff",m:[1,0,0,1,0,0,1,0,0,1,0,0]},
+    {l:"Modifications",     i:"🔧",c:"#3358d4",m:sm(numMods,1)},
+    {l:"Compliance",        i:"📊",c:"#5a85ff",m:sm(numCmp,2)},
+    {l:"Advisory",          i:"💡",c:"#7c5cff",m:sm(numAdv,0)},
+    {l:"eBuy & Advantage",  i:"🛒",c:"#4a7cff",m:eBuyOn?sm(2,4):[0,0,0,0,0,0,0,0,0,0,0,0]},
     {l:"Training & Support",i:"🎓",c:"#ff6b6b",m:sm(numTrn,1)}
   ];
-  var LW=148;
+  var LW=170; var CW=52;
   h+='<h2>Contract Engagement Timeline</h2>';
-  h+='<p style="margin-bottom:20px;color:#3a4560">Month 1 begins at engagement start. Modifications sequence from Month 2. Hover any event for details.</p>';
-  h+='<div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="min-width:600px">';
-  // Phase ribbon
-  h+='<div style="display:flex;gap:3px;margin-left:'+LW+'px;margin-bottom:8px">';
-  [{lbl:"INITIATION",sub:"Mo 1",flex:1,c:"#c84b00",bg:"rgba(255,152,0,.1)",b:"rgba(255,152,0,.45)"},{lbl:"ACTIVE MODIFICATIONS",sub:"Mo 2–6",flex:5,c:"#1055b0",bg:"rgba(74,124,255,.07)",b:"rgba(74,124,255,.3)"},{lbl:"OPTIMIZATION",sub:"Mo 7–9",flex:3,c:"#5b1490",bg:"rgba(124,92,255,.07)",b:"rgba(124,92,255,.3)"},{lbl:"REVIEW & RENEWAL",sub:"Mo 10–12",flex:3,c:"#1a3268",bg:"rgba(46,74,143,.07)",b:"rgba(46,74,143,.3)"}].forEach(function(ph){
-    h+='<div style="flex:'+ph.flex+' '+ph.flex+' 0;background:'+ph.bg+';border:1px solid '+ph.b+';border-radius:7px;padding:5px 4px;text-align:center;overflow:hidden">';
-    h+='<div style="font-size:9px;font-weight:800;color:'+ph.c+';text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+ph.lbl+'</div>';
-    h+='<div style="font-size:10px;color:'+ph.c+';opacity:.6;margin-top:1px">'+ph.sub+'</div>';
-    h+='</div>';
-  });
-  h+='</div>';
-  // Month header
-  h+='<div style="display:flex;align-items:center;margin-bottom:10px">';
-  h+='<div style="width:'+LW+'px;flex-shrink:0;font-size:11px;font-weight:600;color:#aab2c0;text-align:right;padding-right:14px">Service</div>';
+  h+='<p style="margin-bottom:24px;color:#8896b0;font-size:14px">Month 1 is engagement start. Hover any marker for scheduled activities.</p>';
+  h+='<div style="overflow-x:auto;-webkit-overflow-scrolling:touch">';
+  h+='<div style="min-width:'+(LW+CW*12)+'px">';
+  // Month header row
+  h+='<div style="display:flex;align-items:center;padding-bottom:12px;border-bottom:2px solid #f0f1f5;margin-bottom:6px">';
+  h+='<div style="width:'+LW+'px;flex-shrink:0"></div>';
   for(var mi=1;mi<=12;mi++){
-    h+='<div style="flex:1;text-align:center"><div style="width:30px;height:30px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;'+(mi===1?'background:#ff9800;color:#fff;box-shadow:0 3px 10px rgba(255,152,0,.35)':'background:#eef0f6;color:#8896b0')+'">'+mi+'</div></div>';
+    var m1=mi===1;
+    h+='<div style="width:'+CW+'px;flex-shrink:0;text-align:center">';
+    h+='<div style="'+(m1?'width:36px;height:36px;background:#ff9800;color:#fff;border-radius:50%;font-size:13px;font-weight:800;box-shadow:0 4px 12px rgba(255,152,0,.3)':'font-size:13px;font-weight:700;color:#b0b8cc;padding:8px 0')+';display:flex;align-items:center;justify-content:center;margin:0 auto">'+mi+'</div>';
+    h+='</div>';
   }
   h+='</div>';
   // Service rows
   rows.forEach(function(row,ri){
     var mc=0;
-    h+='<div style="display:flex;align-items:center;margin-bottom:2px;border-radius:10px;padding:2px 0" onmouseenter="this.style.background=\'#f7f8fd\'" onmouseleave="this.style.background=\'\'">';
-    h+='<div style="width:'+LW+'px;flex-shrink:0;display:flex;align-items:center;gap:7px;padding:0 12px 0 4px">';
-    h+='<span style="font-size:16px;line-height:1">'+row.i+'</span>';
-    h+='<span style="font-size:12px;font-weight:600;color:#3a4560;line-height:1.3">'+E(row.l)+'</span>';
+    h+='<div style="display:flex;align-items:center;padding:10px 0;'+(ri<rows.length-1?'border-bottom:1px solid #f4f5f9':'')+'">';
+    h+='<div style="width:'+LW+'px;flex-shrink:0;display:flex;align-items:center;gap:10px">';
+    h+='<span style="font-size:18px;line-height:1;opacity:.85">'+row.i+'</span>';
+    h+='<span style="font-size:13px;font-weight:600;color:#1a2744">'+E(row.l)+'</span>';
     h+='</div>';
     for(var ci=0;ci<12;ci++){
       var isInit=(row.l==="Modifications"&&ci===0);
@@ -100,28 +95,22 @@ if(prog.timeline==="engagement"){
       var tid="et-"+ri+"-"+ci;
       if(active&&row.l==="Modifications"&&!isInit)mc++;
       var bg=isInit?"#ff9800":row.c;
-      var lbl=isInit?"K":row.l==="Modifications"?String(mc):"✓";
-      h+='<div style="flex:1;text-align:center;position:relative" onmouseenter="eH(\''+tid+'\',1)" onmouseleave="eH(\''+tid+'\',0)">';
+      var lbl=isInit?"K":row.l==="Modifications"?String(mc):"";
+      h+='<div style="width:'+CW+'px;flex-shrink:0;text-align:center;position:relative" onmouseenter="eH(\''+tid+'\',1)" onmouseleave="eH(\''+tid+'\',0)">';
       if(active){
-        h+='<div style="width:28px;height:28px;border-radius:50%;background:'+bg+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin:0 auto;box-shadow:0 2px 7px rgba(0,0,0,.15);cursor:default">'+lbl+'</div>';
-        h+='<div id="'+tid+'" style="display:none;position:absolute;z-index:100;bottom:36px;left:50%;transform:translateX(-50%);background:#1a2744;color:#fff;border-radius:9px;padding:9px 12px;min-width:160px;max-width:220px;font-size:11px;line-height:1.6;box-shadow:0 6px 20px rgba(0,0,0,.22);pointer-events:none;text-align:left">';
-        h+='<div style="font-size:9px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.09em;margin-bottom:4px;font-weight:700">'+(isInit?"Month 1 · Kickoff":"Month "+(ci+1)+" · "+E(row.l))+'</div>';
-        h+=(isInit?"Engagement kickoff · Authorized Negotiator setup · Document audit · Catalog baseline review":prog.mdata[ci].join(" · "));
-        h+='<div style="position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #1a2744"></div></div>';
+        h+='<div style="width:36px;height:36px;border-radius:50%;background:'+bg+';margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.12)">'+lbl+'</div>';
+        h+='<div id="'+tid+'" style="display:none;position:absolute;z-index:100;bottom:44px;left:50%;transform:translateX(-50%);background:#1a2744;color:#fff;border-radius:10px;padding:10px 14px;min-width:170px;max-width:230px;font-size:11px;line-height:1.7;box-shadow:0 8px 24px rgba(0,0,0,.2);pointer-events:none;text-align:left;white-space:normal">';
+        h+='<div style="font-size:10px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;font-weight:700">'+(isInit?"Month 1 — Kickoff":"Month "+(ci+1)+" — "+E(row.l))+'</div>';
+        h+=(isInit?"Engagement kickoff · AN setup · Document audit · Catalog review":prog.mdata[ci].join(" · "));
+        h+='<div style="position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid #1a2744"></div>';
+        h+='</div>';
       } else {
-        h+='<div style="width:6px;height:6px;border-radius:50%;background:#dde1e8;margin:11px auto"></div>';
+        h+='<div style="width:8px;height:8px;border-radius:50%;background:#eaecf2;margin:14px auto"></div>';
       }
       h+='</div>';
     }
     h+='</div>';
-    if(ri<rows.length-1)h+='<div style="margin:0 0 2px '+LW+'px;border-bottom:1px solid #f2f3f7"></div>';
   });
-  // Legend
-  h+='<div style="display:flex;gap:18px;margin-top:16px;margin-left:'+LW+'px;flex-wrap:wrap">';
-  [{c:"#ff9800",l:"Kickoff (Mo 1)",sm:false},{c:"#3358d4",l:"Modification #",sm:false},{c:"#6b93ff",l:"Service Event",sm:false},{c:"#dde1e8",l:"Not Scheduled",sm:true}].forEach(function(lg){
-    h+='<div style="display:flex;align-items:center;gap:5px"><div style="width:'+(lg.sm?6:12)+'px;height:'+(lg.sm?6:12)+'px;border-radius:50%;background:'+lg.c+';'+(lg.sm?'margin:3px':'')+'"></div><span style="font-size:11px;color:#8896b0">'+lg.l+'</span></div>';
-  });
-  h+='</div>';
   h+='</div></div>';
 }else if(prog.timeline==="roadmap"){
   h+='<h2>Submission Roadmap</h2><p>Hover each phase to explore milestones. Timelines conditioned on client responsiveness.</p><div class="rm"><div class="ln"></div>';
