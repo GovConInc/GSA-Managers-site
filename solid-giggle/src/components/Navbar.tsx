@@ -71,8 +71,8 @@ export default function Navbar() {
             <Phone size={14} />
             {BRAND.phone}
           </a>
-          <LinkButton href="/order" size="sm">
-            Get Started
+          <LinkButton href="/contact" size="sm">
+            Contact Us
             <ArrowRight size={14} className="ml-1.5" />
           </LinkButton>
         </div>
@@ -112,8 +112,8 @@ export default function Navbar() {
                 <Phone size={14} />
                 {BRAND.phone}
               </a>
-              <LinkButton href="/order" className="w-full">
-                Get Started <ArrowRight size={14} className="ml-1.5" />
+              <LinkButton href="/contact" className="w-full">
+                Contact Us <ArrowRight size={14} className="ml-1.5" />
               </LinkButton>
             </div>
           </div>

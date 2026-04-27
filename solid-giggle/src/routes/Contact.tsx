@@ -177,6 +177,20 @@ export default function Contact() {
                   <ArrowRight size={14} className="ml-2" />
                 </LinkButton>
               </Card>
+
+              <Card className="p-6 border-brand-blue/20" hover={false}>
+                <h3 className="font-bold text-lg text-brand">Ready to Order?</h3>
+                <p className="mt-2 text-sm text-slate-500">
+                  Know what you need? Skip the call and head straight to our order page to get started right away.
+                </p>
+                <LinkButton
+                  href="/order"
+                  className="mt-5 w-full"
+                >
+                  Go to Order Page
+                  <ArrowRight size={14} className="ml-2" />
+                </LinkButton>
+              </Card>
             </div>
           </div>
         </div>
