@@ -388,9 +388,9 @@ export default function Home() {
       </section>
 
       {/* ── DIFFERENTIATORS ── */}
-      <section className="bg-ink py-24 text-white relative overflow-hidden">
+      <section className="bg-[#1E1A16] py-24 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_90%,rgba(216,137,58,0.12),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_90%,rgba(216,137,58,0.15),transparent)]" />
 
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 relative z-10">
           <motion.div
@@ -401,7 +401,7 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Why GSA Managers</p>
-            <h2 className="font-display text-3xl font-bold sm:text-4xl tracking-tight">
+            <h2 className="font-display text-3xl font-bold sm:text-4xl tracking-tight text-white">
               GSA Schedule expertise that delivers results.
             </h2>
           </motion.div>
@@ -432,7 +432,7 @@ export default function Home() {
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
                 className="rounded-2xl bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm p-8 text-center md:text-left"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cta/15 mb-5 mx-auto md:mx-0">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cta/20 mb-5 mx-auto md:mx-0">
                   <item.icon className="text-cta" size={22} />
                 </div>
                 <h4 className="font-display text-xl font-semibold text-white mb-3">{item.label}</h4>
