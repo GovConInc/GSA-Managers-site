@@ -6,7 +6,7 @@ The `functions/api/contact.ts` endpoint is configured to look for an environment
 
 ## Step 1: Create a Google Sheet
 
-1. Go to [Google Sheets](https://sheets.google.com/) and create a new blank spreadsheet.
+1. Go to [Google Sheets](https://sheets.google.com/) and crehtate a new blank spreadsheet.
 2. Name it something like "GSA Managers Contact Submissions".
 3. In the first row, add the following headers starting from column A to H:
    - **Date**
