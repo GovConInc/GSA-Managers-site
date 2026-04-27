@@ -23,7 +23,6 @@ const services = [
     name: "Full Proposal Writing",
     icon: FileText,
     timeline: "2-4 Weeks",
-    price: "$3,500+",
     description:
       "We manage the entire proposal from start to finish — breaking down the RFP, writing every section, and submitting a compliant, ready-to-win document.",
     idealFor: "Complex RFPs, first-time bidders, or teams that need extra hands.",
@@ -33,7 +32,6 @@ const services = [
     name: "Red Team Review",
     icon: Users,
     timeline: "3-5 Days",
-    price: "$1,200+",
     description:
       "We review your near-final proposal the way a government evaluator would — scoring it, finding gaps, and telling you exactly what to fix before you submit.",
     idealFor: "Teams that write their own proposals but want an expert second opinion.",
@@ -43,7 +41,6 @@ const services = [
     name: "Past Performance Volume",
     icon: Award,
     timeline: "1-2 Weeks",
-    price: "$950+",
     description:
       "We help you pick the right projects and write them up in a way that maximizes your evaluation score.",
     idealFor: "Companies with strong experience that need help putting it on paper.",
@@ -177,16 +174,7 @@ export default function ServicesProposalWriting() {
                         </div>
                     </div>
                     <div className="mt-6 pt-6 border-t border-slate-200">
-                        <div className="flex justify-between items-baseline">
-                            <div>
-                                <div className="text-sm text-slate-500">Starting at</div>
-                                <div className="font-display text-3xl font-bold text-navy">{service.price}</div>
-                            </div>
-                            <div>
-                                <div className="text-sm text-slate-500">Timeline</div>
-                                <div className="font-bold text-brand-blue">{service.timeline}</div>
-                            </div>
-                        </div>
+                        <div className="font-bold text-brand-blue">{service.timeline}</div>
                          <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="w-full mt-4" variant={service.id === 'full' ? 'primary' : 'secondary'}>
                             Get a Quote
                         </LinkButton>

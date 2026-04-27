@@ -133,7 +133,6 @@ const marketingPrograms = [
     name: 'FedStart',
     tagline: 'Your Compliance Foundation',
     duration: '3 Months',
-    price: 3200,
     icon: Rocket,
     gradient: 'from-blue-600 to-blue-800',
     bgLight: 'bg-slate-50',
@@ -305,7 +304,6 @@ const marketingPrograms = [
     name: 'Growth',
     tagline: 'Scale Your Pipeline',
     duration: '6 Months',
-    price: 6500,
     icon: TrendingUp,
     gradient: 'from-rose-600 to-rose-800',
     bgLight: 'bg-rose-50',
@@ -484,7 +482,6 @@ const marketingPrograms = [
     name: 'Prime',
     tagline: 'Full-Service Partnership',
     duration: '12 Months',
-    price: 15500,
     icon: Crown,
     gradient: 'from-amber-500 to-orange-600',
     bgLight: 'bg-amber-50',
@@ -680,7 +677,6 @@ const gsaServices = [
   {
     id: 'gsa-submission',
     name: 'GSA Schedule Submission',
-    price: 5500,
     timeline: '60-90 Days',
     icon: FileText,
     description: 'Complete GSA Multiple Award Schedule (MAS) application from initial assessment through contract award.',
@@ -711,7 +707,6 @@ const gsaServices = [
   {
     id: 'gsa-maintenance',
     name: 'GSA Schedule Maintenance',
-    price: 2500,
     timeline: 'Annual',
     icon: Settings,
     description: 'Keep your GSA Schedule compliant and competitive with ongoing management.',
@@ -729,7 +724,6 @@ const gsaServices = [
   {
     id: 'fcp-migration',
     name: 'FCP Baseline Migration',
-    price: 1500,
     timeline: '7-14 Days',
     icon: RefreshCw,
     description: 'Migrate from legacy SIP/EDI to the new FAS Catalog Platform (FCP) before your deadline.',
@@ -860,7 +854,6 @@ export default function Programs() {
                     </div>
                     <div className="mt-6">
                         <div className="text-sm text-slate-500">{program.duration} Program</div>
-                        <div className="font-display text-4xl font-bold text-brand">${program.price.toLocaleString()}</div>
                         <p className="text-xs text-slate-500 mt-1">{program.idealFor}</p>
                         <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" className="w-full mt-6" variant={program.id === activeProgram ? 'primary' : 'secondary'}>
                             Get Started with {program.name}
@@ -882,7 +875,6 @@ export default function Programs() {
                           {marketingPrograms.map(p => (
                               <th key={p.id} className={`p-4 text-center ${p.text}`}>
                                   <div className="font-display text-lg">{p.name}</div>
-                                  <div className="text-xs font-normal">${p.price.toLocaleString()}</div>
                               </th>
                           ))}
                       </tr>

@@ -38,8 +38,6 @@ interface ServiceData {
   icon: typeof Award;
   title: string;
   tagline: string;
-  price: string;
-  priceNote: string;
   description: string;
   features: string[];
   ganttLabel: string;
@@ -57,8 +55,6 @@ const allServices: ServiceData[] = [
     icon: Award,
     title: "GSA MAS Submission",
     tagline: "Full-service. 45-day guarantee.",
-    price: "$4,995",
-    priceNote: "Starting at · One-time",
     description:
       "We prepare and submit your complete GSA Multiple Award Schedule offer in 30 days or less. Our accelerated process is built on the \"Holy Trinity\" review — Admin, Technical, and Pricing volumes — that anticipates Contracting Officer concerns before you submit. 98% of our clients receive their award within 4–6 months.",
     features: [
@@ -91,8 +87,6 @@ const allServices: ServiceData[] = [
     icon: Shield,
     title: "Annual Contract Management",
     tagline: "Hands-off compliance. Cancel anytime.",
-    price: "$4,995",
-    priceNote: "Starting at · Per year",
     description:
       "Maintaining a GSA Schedule takes 10+ hours a month. We handle every modification, quarterly report, and compliance requirement so you never risk penalties, missed option renewals, or contract cancellation. One dedicated account manager. Full coverage. No lock-in.",
     features: [
@@ -125,8 +119,6 @@ const allServices: ServiceData[] = [
     icon: Rocket,
     title: "New Vendor Special",
     tagline: "The fast-start package.",
-    price: "$1,450",
-    priceNote: "One-time · Includes 90-day management",
     description:
       "Just got your GSA Schedule? This package gets you from award to operational in weeks, not months. We handle your FCP Catalog Baseline upload, walk you through every GSA website and process 1-on-1, and provide 90 days of complimentary contract management so nothing falls through the cracks.",
     features: [
@@ -156,8 +148,6 @@ const allServices: ServiceData[] = [
     icon: FileText,
     title: "FCP Catalog Baseline",
     tagline: "Meet the 30-day mandate.",
-    price: "$500",
-    priceNote: "Flat fee · Delivered within 30 days",
     description:
       "GSA retired SIP and transitioned to the Federal Catalog Platform (FCP). Without an FCP Baseline Upload, your products are invisible on GSA Advantage — meaning agencies can't find or buy from you. We upload your catalog within the GSA-mandated 30-day window and ensure every line item is compliant.",
     features: [
@@ -337,7 +327,7 @@ export default function ServicesGSA() {
     <div className="bg-surface selection:bg-brand/20 selection:text-ink">
       <Helmet>
         <title>GSA Schedule Services — Submissions, Management & FCP | GSA Managers</title>
-        <meta name="description" content="Get on the GSA Schedule in 4–6 months. Full-service submissions starting at $4,995, annual management, FCP uploads, and new vendor onboarding." />
+        <meta name="description" content="Get on the GSA Schedule in 4–6 months. Full-service submissions, annual management, FCP uploads, and new vendor onboarding." />
       </Helmet>
 
       {/* ──────── HERO ──────── */}
@@ -373,7 +363,7 @@ export default function ServicesGSA() {
               Every stage of your GSA journey. <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cta">Covered.</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl">
-              From first submission to ongoing compliance — pick the service that fits, and we'll handle the rest. Transparent pricing. No lock-in.
+              From first submission to ongoing compliance — pick the service that fits, and we'll handle the rest. No lock-in.
             </p>
           </motion.div>
 
@@ -429,7 +419,7 @@ export default function ServicesGSA() {
             }}
             className="shrink-0 rounded-full bg-white px-5 py-2 text-sm font-bold text-red-600 hover:bg-red-50 hover:shadow-md transition-all active:scale-95"
           >
-            Fix it for $500 &rarr;
+            Fix it now &rarr;
           </button>
         </div>
       </div>
@@ -490,7 +480,7 @@ export default function ServicesGSA() {
                 </motion.div>
               </div>
 
-              {/* Pricing card — 1 col */}
+              {/* CTA card — 1 col */}
               <div className="lg:col-span-1">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -503,12 +493,9 @@ export default function ServicesGSA() {
                     {/* Top gradient highlight */}
                     <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-brand to-cta" />
                     
-                    <p className="text-xs font-bold uppercase tracking-widest text-ink-muted mb-3 mt-2">
-                      {svc.priceNote}
-                    </p>
-                    <div className="font-display text-5xl font-bold text-ink mb-8">
-                      {svc.price}
-                    </div>
+                    <h3 className="font-display text-xl font-bold text-ink mb-4 mt-2">
+                      {svc.title}
+                    </h3>
                     <LinkButton href={svc.ctaHref} size="lg" className="w-full mb-4 shadow-md hover:shadow-lg transition-shadow">
                       {svc.cta}
                       <ArrowRight size={18} className="ml-2" />
@@ -660,7 +647,7 @@ export default function ServicesGSA() {
             Ready to get on the <br className="hidden sm:block"/> GSA Schedule?
           </h2>
           <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
-            Whether you need a $500 FCP upload or full-service submission and management — we've got you covered.
+            Whether you need an FCP upload or full-service submission and management — we've got you covered.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <LinkButton
