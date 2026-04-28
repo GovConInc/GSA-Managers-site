@@ -13,7 +13,7 @@ gsa_modification:{name:"GSA Modification Program",sub:"Targeted Contract Change 
 new_contractor_fcp:{name:"GSA New Contractor FCP Program",sub:"Post-Award Activation & Onboarding",pos:"A post-award activation program designed to help newly awarded contractors complete catalog baseline requirements, understand GSA systems, and establish a workable operating rhythm early.",pillars:[{i:"🏗️",t:"Baseline Setup",b:"Get your catalog live",d:"Complete FCP catalog baseline upload support including product/service data formatting, SIP preparation, and Advantage publishing."},{i:"📚",t:"Systems Onboarding",b:"Understand your tools",d:"Guided orientation to GSA systems including Advantage, eBuy, ISS, and contractor reporting requirements."},{i:"📐",t:"Catalog Quality",b:"Accurate from day one",d:"Data quality review and optimization to ensure your catalog entries meet GSA formatting and content standards."},{i:"🎓",t:"Training & Guidance",b:"Your team gets confident",d:"Hands-on training sessions covering catalog management, order processing expectations, and compliance basics."},{i:"📅",t:"Activation Planning",b:"Clear 90-day roadmap",d:"Structured 30/60/90-day plan to move from award to operational readiness with defined milestones."}],timeline:"activation",acts:[{per:"Days 1-30",t:"Foundation",s:"Setup & orientation",items:["Contract review and orientation","Catalog data collection","SIP formatting and prep","Systems access and setup"],pct:33},{per:"Days 31-60",t:"Build & Upload",s:"Go live on Advantage",items:["Baseline catalog upload","Quality review and corrections","Advantage publishing","Training session 1"],pct:66},{per:"Days 61-90",t:"Activate & Stabilize",s:"Operational readiness",items:["Catalog verification","Operational readiness check","Training session 2","Transition planning"],pct:100}],recurring:["Ongoing support during 90-day activation window","Email and phone access for questions","Check-in calls at 30, 60, and 90-day marks"],scope:["One complete catalog baseline upload","Up to [X] training sessions","One catalog quality review and correction cycle"],deliverables:["FCP baseline catalog package","Systems orientation guide","Catalog quality report","30/60/90-day activation roadmap","Training session materials and recaps"]}};
 
 function render(p){
-var signed=p.status==="signed",prog=PROGS[p.programType]||PROGS.annual_management;
+var signed=p.status==="signed",clientSigned=signed&&p.clientSignature,providerSigned=signed&&p.providerSignature,bothSigned=clientSigned&&providerSigned,prog=PROGS[p.programType]||PROGS.annual_management;
 var exp=new Date(p.expiresAt),now=new Date(),diff=exp-now,hrs=Math.max(0,Math.floor(diff/36e5)),mins=Math.max(0,Math.floor((diff%36e5)/6e4)),dead=diff<=0&&!signed;
 var mods=p.majorMods||"2",hasDisc=p.discountDisplay&&p.discountDisplay.length>0;
 var dp=hasDisc?p.finalPrice:p.price;
@@ -159,14 +159,24 @@ h+='<div class="ab"><strong>By signing below, the authorized representative of '
 
 // Sigs
 h+='<div class="sl" style="margin-top:32px">Signatures</div><div class="sg">';
-h+='<div class="sb"><div style="position:absolute;top:0;left:0;right:0;height:4px;background:#4a7cff"></div><div style="font-size:11px;font-weight:700;color:#4a7cff;letter-spacing:.12em;text-transform:uppercase;margin:8px 0 20px">Client — '+E(p.contactName)+(p.contactTitle?", "+E(p.contactTitle):"")+'</div><div style="position:relative;margin-bottom:12px"><canvas id="sc" class="sc'+(signed?" done":"")+'" width="600" height="240"></canvas>'+(!signed&&!dead?'<div id="sph" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;color:#b0b8cc;font-size:14px">Sign here</div>':"")+(signed?'<div style="position:absolute;top:8px;right:8px;background:#4a7cff;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px">SIGNED ✓</div>':"")+"</div>";
-if(!signed&&!dead)h+='<div class="sbtns" id="sbt"><button class="bcl" onclick="clrS()">Clear</button><button class="bcf" id="bcf" disabled onclick="cfmS()">Confirm Signature</button></div>';
-h+='<div style="font-size:16px;font-weight:700;color:#1a2744;margin-top:8px">'+E(p.contactName||"[Name]")+'</div><div style="font-size:13px;color:#3a4560;margin-top:2px">'+E(p.contactTitle||"[Title]")+", "+E(p.clientName)+'</div><div style="margin-top:20px;border-bottom:1px solid #e8ecf2;padding-bottom:8px"></div><div style="font-size:11px;color:#8896b0;margin-top:6px;font-weight:600">'+(signed?fd(p.signedAt):"Date")+"</div></div>";
-h+='<div class="sb"><div style="position:absolute;top:0;left:0;right:0;height:4px;background:#1a2744"></div><div style="font-size:11px;font-weight:700;color:#1a2744;letter-spacing:.12em;text-transform:uppercase;margin:8px 0 20px">Provider — '+E(p.providerSigner)+(p.providerTitle?", "+E(p.providerTitle):"")+'</div><div style="position:relative;margin-bottom:12px"><canvas id="sp" class="sc done" width="600" height="240"></canvas><div style="position:absolute;top:8px;right:8px;background:#1a2744;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px">PRE-SIGNED</div></div><div style="font-size:16px;font-weight:700;color:#1a2744;margin-top:8px">'+E(p.providerSigner||"[Name]")+'</div><div style="font-size:13px;color:#3a4560;margin-top:2px">'+E(p.providerTitle||"[Title]")+", "+E(p.providerCompany)+'</div><div style="margin-top:20px;border-bottom:1px solid #e8ecf2;padding-bottom:8px"></div><div style="font-size:11px;color:#8896b0;margin-top:6px;font-weight:600">'+fd(p.createdAt)+"</div></div></div>";
+h+='<div class="sb"><div style="position:absolute;top:0;left:0;right:0;height:4px;background:#4a7cff"></div><div style="font-size:11px;font-weight:700;color:#4a7cff;letter-spacing:.12em;text-transform:uppercase;margin:8px 0 20px">Client — '+E(p.contactName)+(p.contactTitle?", "+E(p.contactTitle):"")+'</div><div style="position:relative;margin-bottom:12px"><canvas id="sc" class="sc'+(clientSigned?" done":"")+'" width="600" height="240"></canvas>'+(!clientSigned&&!dead?'<div id="sph" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;color:#b0b8cc;font-size:14px">Sign here</div>':"")+(clientSigned?'<div style="position:absolute;top:8px;right:8px;background:#4a7cff;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px">SIGNED ✓</div>':"")+"</div>";
+if(!clientSigned&&!dead)h+='<div class="sbtns" id="sbt"><button class="bcl" onclick="clrS()">Clear</button><button class="bcf" id="bcf" disabled onclick="cfmS()">Confirm Signature</button></div>';
+h+='<div class="sig-name" style="font-size:16px;font-weight:700;color:#1a2744;margin-top:8px">'+E(p.contactName||"[Name]")+'</div><div class="sig-title" style="font-size:13px;color:#3a4560;margin-top:2px">'+E(p.contactTitle||"[Title]")+", "+E(p.clientName)+'</div><div style="margin-top:20px;border-bottom:1px solid #e8ecf2;padding-bottom:8px"></div><div style="font-size:11px;color:#8896b0;margin-top:6px;font-weight:600">'+(clientSigned?fd(p.signedAt):"Date")+"</div></div>";
+// Provider signature block
+h+='<div class="sb"><div style="position:absolute;top:0;left:0;right:0;height:4px;background:#1a2744"></div><div style="font-size:11px;font-weight:700;color:#1a2744;letter-spacing:.12em;text-transform:uppercase;margin:8px 0 20px">Provider — '+E(p.providerSigner)+(p.providerTitle?", "+E(p.providerTitle):"")+'</div><div style="position:relative;margin-bottom:12px"><canvas id="sp" class="sc'+(providerSigned?" done":"")+'" width="600" height="240"></canvas>'+(!providerSigned&&!dead?'<div id="sphp" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;color:#b0b8cc;font-size:14px">Sign here</div>':"")+(providerSigned?'<div style="position:absolute;top:8px;right:8px;background:#1a2744;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px">SIGNED ✓</div>':"")+"</div>";
+if(!providerSigned&&!dead)h+='<div class="sbtns" id="sbtp"><button class="bcl" onclick="clrSP()">Clear</button><button class="bcf" id="bcfp" disabled onclick="cfmSP()">Confirm Signature</button></div>';
+h+='<div class="sig-name" style="font-size:16px;font-weight:700;color:#1a2744;margin-top:8px">'+E(p.providerSigner||"[Name]")+'</div><div class="sig-title" style="font-size:13px;color:#3a4560;margin-top:2px">'+E(p.providerTitle||"[Title]")+", "+E(p.providerCompany)+'</div><div style="margin-top:20px;border-bottom:1px solid #e8ecf2;padding-bottom:8px"></div><div style="font-size:11px;color:#8896b0;margin-top:6px;font-weight:600">'+(providerSigned?fd(p.providerSignedAt||p.signedAt):"Date")+"</div></div></div>";
 
-if(!signed&&!dead)h+='<div style="text-align:center;margin:32px 0" class="nb" id="fa" style2="display:none"><button class="bf" id="bfn" onclick="fin()">Finalize Agreement</button><div style="font-size:12px;color:#8896b0;margin-top:10px">Your signature has been captured. Click to lock.</div></div>';
+if(!dead){
+  var needBoth=!clientSigned||!providerSigned;
+  h+='<div style="text-align:center;margin:32px 0" class="nb" id="fa" style="display:none"><button class="bf" id="bfn" onclick="fin()"' +(needBoth?' disabled':'')+ '>Finalize Agreement</button>';
+  if(!clientSigned)h+='<div style="font-size:12px;color:#8896b0;margin-top:10px">Client signature required.</div>';
+  if(!providerSigned)h+='<div style="font-size:12px;color:#8896b0;margin-top:10px">Provider signature required.</div>';
+  if(clientSigned&&providerSigned)h+='<div style="font-size:12px;color:#8896b0;margin-top:10px">Both signatures captured. Click to lock the agreement.</div>';
+  h+='</div>';
+}
 
-if(signed){
+if(bothSigned){
   h+='<div class="ps"><div style="font-size:24px">✅</div><h3>Agreement Signed</h3><p>Executed on '+fd(p.signedAt)+'.</p><div class="psb nb"><button onclick="dlPDF()" class="ba bo">⬇ Download PDF</button><button onclick="window.print()" class="ba bo">🖨 Print</button>';
   if(p.squareLink)h+='<a href="'+E(p.squareLink)+'" target="_blank" class="ba bsq">💳 Pay with Square</a>';
   h+="</div></div>";
@@ -177,12 +187,22 @@ h+='</div><div class="ft">'+E(p.providerCompany)+" · Confidential · "+fd(p.cre
 document.getElementById("app").innerHTML=h;
 
 // Apply saved edits if they exist
-if(p.editedContent){var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb,#pc .si span:last-child");els.forEach(function(el,i){var key="e"+i;if(p.editedContent[key]){el.textContent=p.editedContent[key]}})}
+if(p.editedContent){var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb");els.forEach(function(el,i){if(el.closest('.sb'))return;var key="e"+i;if(p.editedContent[key]){el.textContent=p.editedContent[key]}})}
 
 // Init canvases
-var sp=document.getElementById("sp");if(sp){var sx=sp.getContext("2d");var spDpr=window.devicePixelRatio||1;var spW=sp.offsetWidth;var spH=sp.offsetHeight;sp.width=spW*spDpr;sp.height=spH*spDpr;sx.scale(spDpr,spDpr);sx.strokeStyle="#1a2744";sx.lineWidth=2.2;sx.lineCap="round";sx.lineJoin="round";sx.beginPath();sx.moveTo(18,95);sx.bezierCurveTo(22,68,38,52,58,62);sx.bezierCurveTo(72,70,68,88,52,92);sx.bezierCurveTo(40,95,32,82,42,72);sx.moveTo(62,78);sx.bezierCurveTo(78,48,98,38,118,52);sx.bezierCurveTo(128,58,122,72,112,68);sx.moveTo(128,62);sx.bezierCurveTo(148,32,178,22,208,42);sx.bezierCurveTo(218,48,212,62,202,58);sx.bezierCurveTo(192,54,198,42,212,48);sx.moveTo(218,52);sx.bezierCurveTo(232,38,252,32,272,42);sx.bezierCurveTo(282,48,278,58,268,55);sx.moveTo(52,108);sx.bezierCurveTo(82,102,142,98,232,102);sx.stroke();}
-if(signed&&p.clientSignature){var cv=document.getElementById("sc");if(cv){var cx=cv.getContext("2d");var im=new Image();im.onload=function(){var dpr=window.devicePixelRatio||1;cv.width=cv.offsetWidth*dpr;cv.height=cv.offsetHeight*dpr;cx.scale(dpr,dpr);cx.drawImage(im,0,0,cv.offsetWidth,cv.offsetHeight)};im.src=p.clientSignature}}
-if(!signed&&!dead){setupSig();var fa=document.getElementById("fa");if(fa)fa.style.display="none";}
+
+// Restore client signature if signed
+if(clientSigned){var cv=document.getElementById("sc");if(cv){var cx=cv.getContext("2d");var im=new Image();im.onload=function(){var dpr=window.devicePixelRatio||1;cv.width=cv.offsetWidth*dpr;cv.height=cv.offsetHeight*dpr;cx.scale(dpr,dpr);cx.drawImage(im,0,0,cv.offsetWidth,cv.offsetHeight)};im.src=p.clientSignature}}
+
+// Restore provider signature if signed
+if(providerSigned){var pv=document.getElementById("sp");if(pv){var px=pv.getContext("2d");var pim=new Image();pim.onload=function(){var dpr=window.devicePixelRatio||1;pv.width=pv.offsetWidth*dpr;pv.height=pv.offsetHeight*dpr;px.scale(dpr,dpr);px.drawImage(pim,0,0,pv.offsetWidth,pv.offsetHeight)};pim.src=p.providerSignature}}
+
+// Setup signature pads if not signed
+if(!dead){
+  if(!clientSigned){setupSig("sc","sph","bcf","sbt");}
+  if(!providerSigned){setupSig("sp","sphp","bcfp","sbtp");}
+  var fa=document.getElementById("fa");if(fa)fa.style.display="none";
+}
 window._tok=token;window._p=p;
 }
 
@@ -194,8 +214,9 @@ window.toggleEdit=function(){
   var on=!window._editOn;window._editOn=on;
   var btn=document.getElementById("editbtn");
   if(btn){btn.textContent=on?"🔒 Lock":"✏ Edit";btn.style.background=on?"#fff3cd":"";}
-  var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb,#pc .si span:last-child");
+  var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb");
   els.forEach(function(el){
+    if(el.closest('.sb'))return;
     el.contentEditable=on?"true":"false";
     el.style.outline=on?"1px dashed rgba(74,124,255,.5)":"";
     el.style.borderRadius=on?"3px":"";
@@ -211,16 +232,48 @@ window.saveProposalEdits=async function(){var editedContent=window.captureEdited
 // Gantt hover (legacy)
 window.gH=function(r,c,on){var b=document.getElementById("gb-"+r+"-"+c),t=document.getElementById("gt-"+r+"-"+c);if(b){if(on){b.classList.add("active");b.style.boxShadow="0 2px 8px rgba(0,0,0,.15)"}else{b.classList.remove("active");b.style.boxShadow="none"}}if(t)t.style.display=on?"block":"none"};
 
-// Signature
-var drw=false,hasC=false,cfmd=false;
-function setupSig(){var cv=document.getElementById("sc");if(!cv)return;var ctx=cv.getContext("2d");var dpr=window.devicePixelRatio||1;var W=cv.offsetWidth;var H=cv.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);ctx.strokeStyle="#1a2744";ctx.lineWidth=2;ctx.lineCap="round";ctx.lineJoin="round";function gp(e){var r=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return{x:(t.clientX-r.left)*(W/r.width),y:(t.clientY-r.top)*(H/r.height)}}
-cv.onmousedown=function(e){if(cfmd)return;drw=true;hasC=true;var p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);var ph=document.getElementById("sph");if(ph)ph.remove();document.getElementById("bcf").disabled=false};cv.onmousemove=function(e){if(!drw||cfmd)return;ctx.lineTo(gp(e).x,gp(e).y);ctx.stroke()};cv.onmouseup=cv.onmouseleave=function(){drw=false};
-cv.ontouchstart=function(e){e.preventDefault();if(cfmd)return;drw=true;hasC=true;var p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);var ph=document.getElementById("sph");if(ph)ph.remove();document.getElementById("bcf").disabled=false};cv.ontouchmove=function(e){e.preventDefault();if(!drw||cfmd)return;ctx.lineTo(gp(e).x,gp(e).y);ctx.stroke()};cv.ontouchend=function(){drw=false}}
-window.clrS=function(){if(cfmd)return;var cv=document.getElementById("sc");var dpr=window.devicePixelRatio||1;cv.width=cv.offsetWidth*dpr;cv.height=cv.offsetHeight*dpr;cv.getContext("2d").scale(dpr,dpr);hasC=false;document.getElementById("bcf").disabled=true};
-window.cfmS=function(){if(!hasC)return;cfmd=true;document.getElementById("sc").classList.add("done");document.getElementById("sbt").style.display="none";var fa=document.getElementById("fa");if(fa)fa.style.display="block"};
+// Signature pad system — supports both client and provider pads
+var sigState={sc:{drw:false,has:false,cfmd:false},sp:{drw:false,has:false,cfmd:false}};
+
+function setupSig(canvasId,placeholderId,confirmBtnId,btnRowId){
+  var cv=document.getElementById(canvasId);if(!cv)return;
+  var ctx=cv.getContext("2d");
+  var dpr=window.devicePixelRatio||1;
+  var W=cv.offsetWidth;var H=cv.offsetHeight;
+  cv.width=W*dpr;cv.height=H*dpr;
+  ctx.scale(dpr,dpr);
+  ctx.strokeStyle="#1a2744";ctx.lineWidth=2;ctx.lineCap="round";ctx.lineJoin="round";
+  var st=sigState[canvasId];
+  function gp(e){var r=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return{x:(t.clientX-r.left)*(W/r.width),y:(t.clientY-r.top)*(H/r.height)}}
+  cv.onmousedown=function(e){if(st.cfmd)return;st.drw=true;st.has=true;var p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);var ph=document.getElementById(placeholderId);if(ph)ph.remove();document.getElementById(confirmBtnId).disabled=false};
+  cv.onmousemove=function(e){if(!st.drw||st.cfmd)return;ctx.lineTo(gp(e).x,gp(e).y);ctx.stroke()};
+  cv.onmouseup=cv.onmouseleave=function(){st.drw=false};
+  cv.ontouchstart=function(e){e.preventDefault();if(st.cfmd)return;st.drw=true;st.has=true;var p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);var ph=document.getElementById(placeholderId);if(ph)ph.remove();document.getElementById(confirmBtnId).disabled=false};
+  cv.ontouchmove=function(e){e.preventDefault();if(!st.drw||st.cfmd)return;ctx.lineTo(gp(e).x,gp(e).y);ctx.stroke()};
+  cv.ontouchend=function(){st.drw=false};
+}
+
+window.clrS=function(){var st=sigState.sc;if(st.cfmd)return;var cv=document.getElementById("sc");var dpr=window.devicePixelRatio||1;cv.width=cv.offsetWidth*dpr;cv.height=cv.offsetHeight*dpr;cv.getContext("2d").scale(dpr,dpr);st.has=false;document.getElementById("bcf").disabled=true};
+window.clrSP=function(){var st=sigState.sp;if(st.cfmd)return;var cv=document.getElementById("sp");var dpr=window.devicePixelRatio||1;cv.width=cv.offsetWidth*dpr;cv.height=cv.offsetHeight*dpr;cv.getContext("2d").scale(dpr,dpr);st.has=false;document.getElementById("bcfp").disabled=true};
+
+window.cfmS=function(){var st=sigState.sc;if(!st.has)return;st.cfmd=true;document.getElementById("sc").classList.add("done");document.getElementById("sbt").style.display="none";checkBothSigned()};
+window.cfmSP=function(){var st=sigState.sp;if(!st.has)return;st.cfmd=true;document.getElementById("sp").classList.add("done");document.getElementById("sbtp").style.display="none";checkBothSigned()};
+
+function checkBothSigned(){
+  var cs=sigState.sc,ps=sigState.sp;
+  var fa=document.getElementById("fa");
+  var btn=document.getElementById("bfn");
+  if(cs.cfmd&&ps.cfmd){
+    if(fa)fa.style.display="block";
+    if(btn)btn.disabled=false;
+  }else{
+    if(fa)fa.style.display="none";
+    if(btn)btn.disabled=true;
+  }
+}
 window.showPayOverlay=function(url){var dp=window._p?(window._p.finalPrice||window._p.price||""):"";var ov=document.createElement("div");ov.id="pay-ov";ov.style.cssText="position:fixed;inset:0;background:rgba(10,20,50,.88);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px";ov.innerHTML='<div style="background:#fff;border-radius:20px;padding:40px 36px;max-width:480px;width:100%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.3)"><div style="font-size:56px;margin-bottom:16px">✅</div><div style="font-size:26px;font-weight:800;color:#1a2744;margin-bottom:8px">Agreement Signed!</div><div style="font-size:15px;color:#5a6a8a;margin-bottom:28px;line-height:1.5">Your agreement is executed. Complete your payment to get started.</div>'+(dp?'<div style="font-size:22px;font-weight:700;color:#1a2744;margin-bottom:20px">'+E(dp)+'</div>':'')+'<a href="'+E(url)+'" target="_blank" onclick="setTimeout(function(){location.reload()},800)" style="display:block;padding:18px;background:linear-gradient(135deg,#006aff,#0052cc);color:#fff;border-radius:14px;font-size:17px;font-weight:700;text-decoration:none;margin-bottom:14px;box-shadow:0 6px 24px rgba(0,106,255,.35)">💳 Pay Now'+(dp?' — '+E(dp):'')+'</a><button onclick="location.reload()" style="background:none;border:none;color:#8896b0;font-size:13px;cursor:pointer;font-family:inherit;text-decoration:underline">I\'ll pay later — view signed agreement</button></div>';document.body.appendChild(ov);};
 // Capture edited content from contentEditable elements
-window.captureEditedContent=function(){var edits={};var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb,#pc .si span:last-child");els.forEach(function(el,i){var txt=el.textContent||el.innerText||"";if(txt)edits["e"+i]=txt});return edits};
-window.fin=async function(){var btn=document.getElementById("bfn");btn.disabled=true;btn.textContent="Saving & Signing...";var sig=document.getElementById("sc").toDataURL("image/png");var editedContent=window.captureEditedContent();try{var res=await fetch("/api/proposals/"+window._tok,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clientSignature:sig,editedContent:editedContent})});if(!res.ok){var e=await res.json();alert(e.error||"Error");btn.disabled=false;btn.textContent="Finalize Agreement";return}var sq=window._p&&window._p.squareLink;if(sq){showPayOverlay(sq);}else{location.reload();}}catch(e){alert("Network error.");btn.disabled=false;btn.textContent="Finalize Agreement"}};
+window.captureEditedContent=function(){var edits={};var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb");els.forEach(function(el,i){if(el.closest('.sb'))return;var txt=el.textContent||el.innerText||"";if(txt)edits["e"+i]=txt});return edits};
+window.fin=async function(){var btn=document.getElementById("bfn");btn.disabled=true;btn.textContent="Saving & Signing...";var clientSig=document.getElementById("sc").toDataURL("image/png");var providerSig=document.getElementById("sp").toDataURL("image/png");var editedContent=window.captureEditedContent();try{var res=await fetch("/api/proposals/"+window._tok,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clientSignature:clientSig,providerSignature:providerSig,editedContent:editedContent})});if(!res.ok){var e=await res.json();alert(e.error||"Error");btn.disabled=false;btn.textContent="Finalize Agreement";return}var sq=window._p&&window._p.squareLink;if(sq){showPayOverlay(sq);}else{location.reload();}}catch(e){alert("Network error.");btn.disabled=false;btn.textContent="Finalize Agreement"}};
 window.dlPDF=function(){var el=document.getElementById("pc"),nb=document.querySelectorAll(".nb");nb.forEach(function(x){x.style.display="none"});var p=window._p;html2pdf().set({margin:[.4,.4,.4,.4],filename:"GSA_Proposal_"+(p.cageCode||"draft")+"_"+(p.clientName||"client").replace(/[^a-zA-Z0-9]/g,"_")+".pdf",image:{type:"jpeg",quality:.95},html2canvas:{scale:2,useCORS:true,scrollY:0},jsPDF:{unit:"in",format:"letter",orientation:"portrait"},pagebreak:{mode:["css","legacy"]}}).from(el).save().then(function(){nb.forEach(function(x){x.style.display=""})})};
 })();

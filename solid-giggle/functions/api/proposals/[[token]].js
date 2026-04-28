@@ -39,8 +39,14 @@ export async function onRequestPost(context) {
     // Handle signature finalization
     if (body.clientSignature) {
       if (proposal.status === "signed") return json({ error: "Already signed" }, 409);
-      proposal.status = "signed";
       proposal.clientSignature = body.clientSignature;
+    }
+    if (body.providerSignature) {
+      proposal.providerSignature = body.providerSignature;
+      proposal.providerSignedAt = new Date().toISOString();
+    }
+    if (body.clientSignature) {
+      proposal.status = "signed";
       proposal.signedAt = new Date().toISOString();
     }
 
