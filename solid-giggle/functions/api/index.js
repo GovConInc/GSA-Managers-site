@@ -62,11 +62,28 @@ export async function onRequestPost(context) {
       } catch (e) { /* Square failed, continue without */ }
     }
 
+    // Parse valid_days (default 30 days)
+    var validDays = parseInt(fd.valid_days) || 30;
+    var expiresAt;
+    var ttlSeconds;
+    if (validDays === 0) {
+      // Never expire — set far future date, no KV TTL
+      expiresAt = new Date(Date.now() + 365 * 10 * 3600000).toISOString(); // 10 years
+      ttlSeconds = 0; // no TTL
+    } else {
+      expiresAt = new Date(Date.now() + validDays * 24 * 3600000).toISOString();
+      ttlSeconds = validDays * 86400;
+    }
+
+    // Parse allow_edit flag
+    var allowEdit = (fd.allow_edit === "true" || fd.allow_edit === true || fd.allow_edit === "1" || fd.allow_edit === "on");
+
     var proposal = {
       token: token,
       status: "pending",
       createdAt: new Date().toISOString(),
-      expiresAt: new Date(Date.now() + 48 * 3600000).toISOString(),
+      expiresAt: expiresAt,
+      allowEdit: allowEdit,
       cageCode: fd.client_uei || "",
       clientName: fd.client_legal_name || "",
       contactName: fd.client_contact_name || "",
@@ -125,7 +142,11 @@ export async function onRequestPost(context) {
     };
 
     try {
-      await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal), { expirationTtl: 172800 });
+      var kvOpts = {};
+      if (ttlSeconds > 0) {
+        kvOpts.expirationTtl = ttlSeconds;
+      }
+      await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal), kvOpts);
     } catch (kvErr) {
       return json({ error: "Failed to save proposal: " + kvErr.message }, 500);
     }

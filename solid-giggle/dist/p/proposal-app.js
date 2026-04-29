@@ -1,6 +1,7 @@
 (function(){
 var P=new URLSearchParams(location.search),token=P.get("id");
 if(!token)return err("No Proposal ID","Check the link you received and try again.");
+var isAdminEdit=P.get("edit")==="1";
 fetch("/api/proposals/"+token).then(function(r){if(!r.ok)throw new Error(r.status==404?"expired":"error");return r.json()}).then(render).catch(function(e){e.message==="expired"?err("This Proposal Has Expired","The link is no longer active. Please contact us for a new proposal link."):err("Something Went Wrong","We couldn't load this proposal. Try again or contact us.")});
 
 function err(t,m){document.getElementById("app").innerHTML='<div class="ep"><div style="font-size:48px;margin-bottom:20px">📄</div><h1>'+t+'</h1><p>'+m+'</p></div>';}
@@ -14,6 +15,7 @@ new_contractor_fcp:{name:"GSA New Contractor FCP Program",sub:"Post-Award Activa
 
 function render(p){
 var signed=p.status==="signed",clientSigned=signed&&p.clientSignature,providerSigned=signed&&p.providerSignature,bothSigned=clientSigned&&providerSigned,prog=PROGS[p.programType]||PROGS.annual_management;
+var isLocked=p.locked===true;
 var exp=new Date(p.expiresAt),now=new Date(),diff=exp-now,hrs=Math.max(0,Math.floor(diff/36e5)),mins=Math.max(0,Math.floor((diff%36e5)/6e4)),dead=diff<=0&&!signed;
 var mods=p.majorMods||"2",hasDisc=p.discountDisplay&&p.discountDisplay.length>0;
 var dp=hasDisc?p.finalPrice:p.price;
@@ -21,8 +23,14 @@ var scope=prog.scope.map(function(s){return s.replace(/\[MODS\]/g,p.majorMods||"
 var h="";
 
 // Expiry + toolbar
-if(!signed)h+='<div class="xb nb'+(dead?" dead":"")+'">'+( dead?"This proposal has expired. Please contact us for a new link.":"This proposal link expires in "+hrs+"h "+mins+"m")+"</div>";
-h+='<div class="tb nb"><div style="display:flex;align-items:center;gap:12px"><span style="font-size:14px;font-weight:700;color:#1a2744">Service Proposal</span>'+(signed?'<span style="background:#e8f5e9;color:#2e7d32;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px">SIGNED</span>':"")+'</div><div style="display:flex;gap:10px">'+(!signed&&!dead?'<button onclick="toggleEdit()" id="editbtn" class="ba bo nb" style="padding:8px 16px;font-size:13px">✏ Edit</button>':'')+'<button onclick="window.print()" class="ba bo nb" style="padding:8px 16px;font-size:13px">Print</button>'+(signed?'<button onclick="dlPDF()" class="ba nb" style="padding:8px 16px;font-size:13px;border:none;background:#4a7cff;color:#fff">PDF</button>':"")+"</div></div>";
+if(!signed){
+  if(isLocked&&!dead)h+='<div class="xb nb" style="background:#e8f5e9;color:#2e7d32;border-color:#c8e6c9">This proposal has been finalized and is ready for your review and signature.</div>';
+  else h+='<div class="xb nb'+(dead?" dead":"")+'">'+( dead?"This proposal has expired. Please contact us for a new link.":"This proposal link expires in "+hrs+"h "+mins+"m")+"</div>";
+}
+var statusBadge=signed?'<span style="background:#e8f5e9;color:#2e7d32;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px">SIGNED</span>':isLocked&&!isAdminEdit?'<span style="background:#e8f5e9;color:#2e7d32;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px">READY TO SIGN</span>':isLocked&&isAdminEdit?'<span style="background:#fff3cd;color:#856404;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px">LOCKED</span>':"";
+var adminBtns="";
+if(!signed&&!dead&&isAdminEdit){if(isLocked){adminBtns='<button onclick="unlockProposal()" class="ba bo nb" style="padding:8px 16px;font-size:13px">Unlock to Edit</button>';}else{adminBtns='<button onclick="toggleEdit()" id="editbtn" class="ba bo nb" style="padding:8px 16px;font-size:13px">✏ Edit</button><button onclick="lockProposal()" class="ba nb" style="padding:8px 16px;font-size:13px;border:none;background:#2e7d32;color:#fff">Lock & Send</button>';}}
+h+='<div class="tb nb"><div style="display:flex;align-items:center;gap:12px"><span style="font-size:14px;font-weight:700;color:#1a2744">Service Proposal</span>'+statusBadge+'</div><div style="display:flex;gap:10px">'+adminBtns+'<button onclick="window.print()" class="ba bo nb" style="padding:8px 16px;font-size:13px">Print</button>'+(signed?'<button onclick="dlPDF()" class="ba nb" style="padding:8px 16px;font-size:13px;border:none;background:#4a7cff;color:#fff">PDF</button>':"")+"</div></div>";
 h+='<div id="pc">';
 
 // B1 Cover
@@ -30,6 +38,11 @@ h+='<div class="cover"><div class="orb o1"></div><div class="orb o2"></div><div 
 
 // B2 Exec Summary
 h+='<div class="dv"></div><div class="bl"><div class="sec"><div class="sl">Executive Summary</div><h2>Your Path Forward</h2><p>'+E(p.clientName)+" is at a point where structured, professional GSA support is no longer optional. This requires a disciplined approach to documentation, compliance, and strategic execution.</p><p>The "+E(prog.name)+" provides "+E(p.clientName)+" with a defined engagement structure, dedicated external support, and a clear operating framework that eliminates guesswork.</p></div></div>";
+
+// Key Outcomes bar
+h+='<div class="dv"></div><div class="sec"><div class="kss">';
+[{n:'End-to-End Support',d:'Every step from initial assessment through award and beyond — fully covered.'},{n:'Compliance-First',d:'Every deliverable built to GSA standards to eliminate rejection risk.'},{n:'Dedicated Team',d:'Direct access to your support team — not a helpdesk queue.'}].forEach(function(k){h+='<div class="ksc"><div class="ksn">'+E(k.n)+'</div><div class="ksd">'+E(k.d)+'</div></div>';});
+h+='</div></div>';
 
 // B4 Package
 h+='<div class="dv"></div><div class="sec"><div class="sl">Recommended Package</div><h2>'+E(prog.name)+"</h2><p>"+E(prog.pos)+'</p><div class="pp"><div class="ico">✦</div><div><div style="font-size:20px;font-weight:800;color:#1a2744">'+E(prog.name)+'</div><div style="font-size:14px;color:#3a4560;margin-top:2px">'+E(p.termLength)+" · "+E(dp)+"</div></div></div></div>";
@@ -134,6 +147,11 @@ h+='<div class="dv"></div><div class="sec"><div class="sl">Investment</div><h2>P
 if(hasDisc)h+='<tr class="disc-row"><td>'+E(p.discountLabel||"Discount")+"</td><td>"+E(p.discountDisplay)+'</td></tr><tr class="total-row"><td>Total Due</td><td>'+E(p.finalPrice)+"</td></tr>";
 h+="<tr><td>Payment Terms</td><td>"+E(p.paymentTerms)+'</td></tr></tbody></table></div><div class="vp"><h4>Why This Investment Makes Sense</h4><p>This program replaces the cost and risk of managing GSA operations without dedicated expertise. '+E(p.clientName)+" gets structured support, defined deliverables, and professional execution — less confusion, fewer missed obligations, and faster turnaround.</p></div></div>";
 
+// Next Steps
+h+='<div class="dv"></div><div class="bl"><div class="sec"><div class="sl">Getting Started</div><h2>What Happens Next</h2><div class="nss">';
+[{n:'01',t:'Sign This Proposal',d:'Review the terms below and execute the agreement. Once both signatures are captured, the engagement is locked in.'},{n:'02',t:'Kickoff Call — Within 48 Hours',d:'We schedule an onboarding call immediately after execution. Your team gets oriented and Phase 1 begins.'},{n:'03',t:'Work Begins',d:'No ramp-up delay. Your dedicated support team starts immediately with access to all necessary materials.'}].forEach(function(s){h+='<div class="nsc"><div class="nsn">'+E(s.n)+'</div><div class="nst">'+E(s.t)+'</div><div class="nsd">'+E(s.d)+'</div></div>';});
+h+='</div></div></div>';
+
 // B9 Why us
 h+='<div class="dv"></div><div class="bl"><div class="sec"><div class="sl">Why '+E(p.providerCompany)+'</div><h2>What Makes Us Different</h2><div class="wug">';
 [{i:"📊",t:"10+ Years of GSA Experience",d:"Deep operational knowledge of GSA systems, requirements, and contracting practices. We live inside these systems daily — no learning curve, just immediate expertise."},{i:"🎯",t:"Practical GSA Approach",d:"We focus on what actually works. No complexity for complexity's sake. Straightforward strategies and proven methods designed to move your contract forward fast."},{i:"🔄",t:"Always Up to Date",d:"Regulatory changes, policy updates, and GSA requirements. We monitor these so you don't have to. Your compliance stays current without your team's extra effort."},{i:"🤝",t:"Transparency & Routine Communication",d:"Regular scheduled meetings, clear status updates, and honest conversations. We adapt to your needs and keep you informed every step of the way."}].forEach(function(w){h+='<div class="wuc"><div style="font-size:24px;margin-bottom:10px">'+w.i+'</div><div style="font-size:16px;font-weight:700;color:#1a2744;margin-bottom:6px">'+E(w.t)+'</div><div style="font-size:14px;line-height:1.65">'+E(w.d)+"</div></div>"});
@@ -222,7 +240,7 @@ window.toggleEdit=function(){
     el.style.borderRadius=on?"3px":"";
     el.style.minHeight=on?"1em":"";
   });
-  if(on){var b=document.createElement("div");b.id="edit-notice";b.className="nb";b.style.cssText="position:fixed;bottom:20px;right:20px;background:#1a2744;color:#fff;padding:12px 16px;border-radius:10px;font-size:12px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;gap:10px;align-items:center";b.innerHTML='<span>✏ Edit mode — click any text to modify. Changes will be saved when you lock.</span><button onclick="saveProposalEdits()" style="background:#4a7cff;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">💾 Save Now</button>';document.body.appendChild(b);}
+  if(on){var b=document.createElement("div");b.id="edit-notice";b.className="nb";b.style.cssText="position:fixed;bottom:20px;right:20px;background:#1a2744;color:#fff;padding:12px 16px;border-radius:10px;font-size:12px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;gap:10px;align-items:center";b.innerHTML='<span>✏ Edit mode — click any text to modify.</span><button onclick="saveProposalEdits()" style="background:#4a7cff;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">💾 Save Draft</button><button onclick="lockProposal()" style="background:#2e7d32;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;margin-left:6px">Lock & Send</button>';document.body.appendChild(b);}
   else{var n=document.getElementById("edit-notice");if(n)n.remove();}
 };
 
@@ -275,5 +293,7 @@ window.showPayOverlay=function(url){var dp=window._p?(window._p.finalPrice||wind
 // Capture edited content from contentEditable elements
 window.captureEditedContent=function(){var edits={};var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb");els.forEach(function(el,i){if(el.closest('.sb'))return;var txt=el.textContent||el.innerText||"";if(txt)edits["e"+i]=txt});return edits};
 window.fin=async function(){var btn=document.getElementById("bfn");btn.disabled=true;btn.textContent="Saving & Signing...";var clientSig=document.getElementById("sc").toDataURL("image/png");var providerSig=document.getElementById("sp").toDataURL("image/png");var editedContent=window.captureEditedContent();try{var res=await fetch("/api/proposals/"+window._tok,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clientSignature:clientSig,providerSignature:providerSig,editedContent:editedContent})});if(!res.ok){var e=await res.json();alert(e.error||"Error");btn.disabled=false;btn.textContent="Finalize Agreement";return}var sq=window._p&&window._p.squareLink;if(sq){showPayOverlay(sq);}else{location.reload();}}catch(e){alert("Network error.");btn.disabled=false;btn.textContent="Finalize Agreement"}};
+window.lockProposal=async function(){var editedContent=window.captureEditedContent?window.captureEditedContent():{};var body={lock:true};if(Object.keys(editedContent).length)body.editedContent=editedContent;try{var res=await fetch("/api/proposals/"+window._tok,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});if(res.ok){location.reload();}else{alert("Error locking proposal.");}}catch(e){alert("Network error.");}};
+window.unlockProposal=async function(){try{var res=await fetch("/api/proposals/"+window._tok,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({unlock:true})});if(res.ok){location.reload();}else{alert("Error unlocking.");}}catch(e){alert("Network error.");}};
 window.dlPDF=function(){var el=document.getElementById("pc"),nb=document.querySelectorAll(".nb");nb.forEach(function(x){x.style.display="none"});var p=window._p;html2pdf().set({margin:[.4,.4,.4,.4],filename:"GSA_Proposal_"+(p.cageCode||"draft")+"_"+(p.clientName||"client").replace(/[^a-zA-Z0-9]/g,"_")+".pdf",image:{type:"jpeg",quality:.95},html2canvas:{scale:2,useCORS:true,scrollY:0},jsPDF:{unit:"in",format:"letter",orientation:"portrait"},pagebreak:{mode:["css","legacy"]}}).from(el).save().then(function(){nb.forEach(function(x){x.style.display=""})})};
 })();
