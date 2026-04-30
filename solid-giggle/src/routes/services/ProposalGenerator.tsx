@@ -25,12 +25,28 @@ interface ClientInfo {
   zip: string;
 }
 
+interface GanttPhase {
+  label: string;
+  start: number;
+  duration: number;
+  color: string;
+  details: string[];
+}
+
+interface GanttData {
+  label: string;
+  unit: string;
+  total: number;
+  phases: GanttPhase[];
+}
+
 interface SelectedService {
   id: string;
   name: string;
   price: number;
   category: 'program' | 'gsa' | 'addon';
   description?: string;
+  gantt?: GanttData;
 }
 
 interface ProposalData {
@@ -174,7 +190,21 @@ const gsaServices = [
       'SIN additions/deletions',
       'IFF reporting support',
       'Option period exercises'
-    ]
+    ],
+    gantt: {
+      label: 'Annual Modification & Compliance Cycle',
+      unit: 'Mo',
+      total: 12,
+      phases: [
+        { label: 'Baseline Audit & Setup', start: 0, duration: 1, color: 'bg-blue-600', details: ['Contract health assessment', 'SAM & DSBS review', 'Compliance gap analysis'] },
+        { label: 'Q1 IFF Sales Report', start: 0, duration: 3, color: 'bg-sky-500', details: ['Monthly/quarterly IFF calculation', 'Submit 72A sales report', 'Discrepancy resolution'] },
+        { label: 'Admin & Technical Mods', start: 1, duration: 5, color: 'bg-indigo-500', details: ['Address & POC updates', 'Name changes & novations', 'Technical scope revisions'] },
+        { label: 'Q2 IFF Sales Report', start: 3, duration: 3, color: 'bg-sky-500', details: ['Monthly/quarterly IFF calculation', 'Submit 72A sales report', 'Mid-year reconciliation'] },
+        { label: 'Major Mods & SIN Adds', start: 3, duration: 6, color: 'bg-amber-500', details: ['New SIN additions', 'Product & labor category additions', 'Pricing adjustments & CSP updates'] },
+        { label: 'Q3 IFF Sales Report', start: 6, duration: 3, color: 'bg-sky-500', details: ['Monthly/quarterly IFF calculation', 'Submit 72A sales report', 'Year-to-date analysis'] },
+        { label: 'Q4 Report & Option Review', start: 9, duration: 3, color: 'bg-emerald-600', details: ['Final IFF sales report', 'Annual reconciliation', 'Option year assessment & renewal prep'] },
+      ]
+    }
   },
   {
     id: 'fcp-migration',
@@ -190,7 +220,18 @@ const gsaServices = [
       'Compliance verification',
       'Platform training included',
       '7-day completion guarantee'
-    ]
+    ],
+    gantt: {
+      label: '7-Day FCP Migration Timeline',
+      unit: 'Day',
+      total: 7,
+      phases: [
+        { label: 'Catalog Audit', start: 0, duration: 1, color: 'bg-blue-600', details: ['Existing catalog review', 'Data format assessment', 'Gap identification'] },
+        { label: 'Data Prep & Pricing QA', start: 1, duration: 2, color: 'bg-sky-500', details: ['Product listing cleanup', 'Pricing validation', 'SIN mapping verification'] },
+        { label: 'FCP Upload & Validation', start: 3, duration: 2, color: 'bg-amber-500', details: ['Baseline upload to FCP', 'System validation checks', 'Error resolution'] },
+        { label: 'Compliance & Go-Live', start: 5, duration: 2, color: 'bg-emerald-600', details: ['Final compliance check', 'GSA Advantage visibility', 'Platform training handoff'] },
+      ]
+    }
   }
 ];
 
@@ -233,6 +274,94 @@ const paymentTermOptions = [
   '3 monthly installments',
   'Custom (specify in notes)'
 ];
+
+// ============================================
+// GANTT CHART COMPONENT
+// ============================================
+
+function ProposalGanttChart({ gantt }: { gantt: GanttData }) {
+  const unitCount = gantt.total;
+  const markers: number[] = [];
+  const step = unitCount <= 7 ? 1 : unitCount <= 12 ? 1 : 2;
+  for (let i = 0; i <= unitCount; i += step) markers.push(i);
+  if (markers[markers.length - 1] !== unitCount) markers.push(unitCount);
+
+  return (
+    <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5">
+      <h4 className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-5">
+        {gantt.label}
+      </h4>
+
+      {/* Timeline ruler */}
+      <div className="relative h-4 mb-2">
+        {markers.map((m) => (
+          <span
+            key={m}
+            className="absolute text-[11px] text-slate-400 font-medium"
+            style={{ left: `${(m / unitCount) * 100}%` }}
+          >
+            <span className="relative -translate-x-1/2">
+              {m === 0 ? "Start" : `${gantt.unit} ${m}`}
+            </span>
+          </span>
+        ))}
+      </div>
+
+      {/* Bars */}
+      <div className="space-y-2 mt-4">
+        {gantt.phases.map((phase, idx) => {
+          const leftPct = (phase.start / unitCount) * 100;
+          const widthPct = (phase.duration / unitCount) * 100;
+
+          return (
+            <div key={idx}>
+              <div className="relative h-9">
+                {/* Track */}
+                <div className="absolute inset-0 rounded-lg bg-slate-100 border border-slate-200/50" />
+                {/* Bar */}
+                <motion.div
+                  className={cn(
+                    "absolute top-0 h-full rounded-lg flex items-center px-3",
+                    phase.color
+                  )}
+                  style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
+                  initial={{ scaleX: 0, originX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.07, duration: 0.45 }}
+                >
+                  <span className="text-xs font-medium text-white truncate">
+                    {phase.label}
+                  </span>
+                </motion.div>
+              </div>
+              {/* Detail pills */}
+              <div className="flex flex-wrap gap-1.5 py-1.5 px-1">
+                {phase.details.map((d) => (
+                  <span key={d} className="inline-flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 rounded px-2 py-0.5">
+                    <CheckCircle size={10} className="text-emerald-500 shrink-0" />
+                    {d}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Bottom ticks */}
+      <div className="relative h-3 mt-2">
+        {markers.map((m) => (
+          <div
+            key={m}
+            className="absolute w-px h-2 bg-slate-300"
+            style={{ left: `${(m / unitCount) * 100}%` }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // ============================================
 // COMPONENT
@@ -281,7 +410,8 @@ export default function ProposalGenerator() {
             name: service.name,
             price: service.price,
             category: service.category,
-            description: service.description
+            description: service.description,
+            gantt: (service as any).gantt
           }]
         };
       }
@@ -679,6 +809,44 @@ export default function ProposalGenerator() {
                 'gsa': 'GSA Service',
                 'addon': 'Add-On Service'
               };
+              const fullSvc = [...marketingPrograms, ...gsaServices, ...addons].find(s => s.id === service.id);
+              const ganttHtml = service.gantt ? (() => {
+                const g = service.gantt!;
+                const step = g.total <= 7 ? 1 : g.total <= 12 ? 1 : 2;
+                const markers: number[] = [];
+                for (let i = 0; i <= g.total; i += step) markers.push(i);
+                if (markers[markers.length - 1] !== g.total) markers.push(g.total);
+                const colorMap: Record<string, string> = {
+                  'bg-blue-600': '#2563eb', 'bg-sky-500': '#0ea5e9', 'bg-amber-500': '#f59e0b',
+                  'bg-emerald-600': '#059669', 'bg-indigo-500': '#6366f1', 'bg-brand': '#d4893a',
+                  'bg-brand-light': '#e8a955',
+                };
+                return `
+                  <div style="margin-top:16px;padding:16px;border:1px solid #e2e8f0;border-radius:8px;background:#fafbfc">
+                    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:12px">${g.label}</div>
+                    <div style="position:relative;height:16px;margin-bottom:8px">
+                      ${markers.map(m => `<span style="position:absolute;left:${(m/g.total)*100}%;transform:translateX(-50%);font-size:11px;color:#94a3b8;font-weight:500">${m === 0 ? 'Start' : g.unit + ' ' + m}</span>`).join('')}
+                    </div>
+                    ${g.phases.map(phase => {
+                      const leftPct = (phase.start / g.total) * 100;
+                      const widthPct = (phase.duration / g.total) * 100;
+                      const barColor = colorMap[phase.color] || '#475569';
+                      return `
+                        <div style="margin-bottom:4px">
+                          <div style="position:relative;height:32px;border-radius:6px;background:#f1f5f9;border:1px solid #e2e8f0">
+                            <div style="position:absolute;left:${leftPct}%;width:${widthPct}%;height:100%;background:${barColor};border-radius:6px;display:flex;align-items:center;padding:0 10px">
+                              <span style="font-size:11px;font-weight:500;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${phase.label}</span>
+                            </div>
+                          </div>
+                          <div style="display:flex;flex-wrap:wrap;gap:4px;padding:4px 0">
+                            ${phase.details.map(d => `<span style="display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#64748b;background:#f1f5f9;border-radius:4px;padding:2px 6px"><span style="color:#10b981;font-size:10px">✓</span>${d}</span>`).join('')}
+                          </div>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
+                `;
+              })() : '';
               return `
                 <div class="service-item">
                   <div class="service-header">
@@ -689,6 +857,7 @@ export default function ProposalGenerator() {
                     <div class="service-price">${formatCurrency(service.price)}</div>
                   </div>
                   <div class="service-description">${service.description || ''}</div>
+                  ${ganttHtml}
                 </div>
               `;
             }).join('')}
@@ -1041,6 +1210,12 @@ export default function ProposalGenerator() {
                           {selected && <CheckCircle size={20} className="text-emerald-500" />}
                         </div>
                         <h4 className="font-bold text-slate-900 text-sm">{service.name}</h4>
+                        {(service as any).gantt && (
+                          <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 bg-emerald-50 rounded px-1.5 py-0.5 mt-1">
+                            <Clock size={10} />
+                            Timeline included
+                          </span>
+                        )}
                         <p className="text-xl font-bold text-slate-900 mt-2">
                           {formatCurrency(service.price)}
                           {(service as any).priceLabel && <span className="text-sm font-normal text-slate-500">{(service as any).priceLabel}</span>}
@@ -1263,9 +1438,16 @@ export default function ProposalGenerator() {
                   </div>
                   <div className="space-y-3">
                     {proposalData.services.map(service => (
-                      <div key={service.id} className="flex justify-between items-center">
-                        <span className="text-slate-700 text-sm">{service.name}</span>
-                        <span className="font-semibold text-slate-900">{formatCurrency(service.price)}</span>
+                      <div key={service.id}>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-700 text-sm">{service.name}</span>
+                          <span className="font-semibold text-slate-900">{formatCurrency(service.price)}</span>
+                        </div>
+                        {service.gantt && (
+                          <div className="mt-2">
+                            <ProposalGanttChart gantt={service.gantt} />
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -1418,6 +1600,11 @@ export default function ProposalGenerator() {
                           </div>
                           {service.description && (
                             <p className="text-slate-500 text-sm mt-3">{service.description}</p>
+                          )}
+                          {service.gantt && (
+                            <div className="mt-4">
+                              <ProposalGanttChart gantt={service.gantt} />
+                            </div>
                           )}
                         </div>
                       );

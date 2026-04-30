@@ -8,11 +8,14 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
-            <img
-              src="/logo.png"
-              alt={BRAND.name}
-              className="h-9 w-auto brightness-0 invert"
-            />
+            <div className="flex items-center gap-3">
+              <img
+                src="/logo.png"
+                alt={BRAND.name}
+                className="h-9 w-auto brightness-0 invert"
+              />
+              <span className="font-display text-lg font-bold text-white">{BRAND.name}</span>
+            </div>
             <p className="mt-5 text-sm text-white/50 leading-relaxed max-w-xs">
               Expert GSA Schedule consulting — from submission to ongoing compliance and contract management.
             </p>
@@ -70,7 +73,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto w-full max-w-7xl px-6 py-5 lg:px-8">
           <div className="text-xs text-white/30">
-            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved. Powered by GSA Support Center LLC.
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 export const BRAND = {
-  name: "GSA Managers Inc.",
+  name: "GSA Managers",
   tagline: "Expert GSA Schedule Consulting",
   phone: "(813) 665-0308",
   email: "Info@GSAManagers.com",

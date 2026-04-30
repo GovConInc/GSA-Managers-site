@@ -470,15 +470,13 @@ export default function Home() {
                   <ArrowRight size={18} className="ml-2" />
                 </LinkButton>
                 <LinkButton
-                  href={LINKS.booking}
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/contact"
                   size="lg"
                   variant="secondary"
                   className="bg-white"
                 >
                   <Phone size={18} className="mr-2 text-ink-light" />
-                  Schedule a Free Call
+                  Contact Us
                 </LinkButton>
               </div>
             </div>
