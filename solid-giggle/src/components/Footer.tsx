@@ -71,9 +71,12 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto w-full max-w-7xl px-6 py-5 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-6 py-5 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="text-xs text-white/30">
-            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved. Powered by GSA Support Center LLC.
+            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+          </div>
+          <div className="text-xs text-white/40 font-medium">
+            Powered by GSA Support Center LLC
           </div>
         </div>
       </div>
