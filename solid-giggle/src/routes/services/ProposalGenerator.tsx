@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { cn } from "../../components/cn";
 import { LinkButton } from "../../components/Button";
+import { motion } from "framer-motion";
 
 // ============================================
 // TYPES
@@ -333,6 +334,7 @@ function ProposalGanttChart({ gantt }: { gantt: GanttData }) {
       {/* Timeline ruler */}
       <div className="relative h-4 mb-2">
         {markers.map((m) => (
+          // eslint-disable-next-line react/style-prop-object
           <span
             key={m}
             className="absolute text-[11px] text-slate-400 font-medium"
@@ -357,6 +359,7 @@ function ProposalGanttChart({ gantt }: { gantt: GanttData }) {
                 {/* Track */}
                 <div className="absolute inset-0 rounded-lg bg-slate-100 border border-slate-200/50" />
                 {/* Bar */}
+                {/* eslint-disable-next-line react/style-prop-object */}
                 <motion.div
                   className={cn(
                     "absolute top-0 h-full rounded-lg flex items-center px-3",
@@ -390,6 +393,7 @@ function ProposalGanttChart({ gantt }: { gantt: GanttData }) {
       {/* Bottom ticks */}
       <div className="relative h-3 mt-2">
         {markers.map((m) => (
+          // eslint-disable-next-line react/style-prop-object
           <div
             key={m}
             className="absolute w-px h-2 bg-slate-300"
@@ -1337,6 +1341,7 @@ export default function ProposalGenerator() {
                       Proposal Valid For
                     </label>
                     <select
+                      title="Proposal valid for"
                       value={proposalData.validDays}
                       onChange={(e) => setProposalData(prev => ({ ...prev, validDays: Number(e.target.value) }))}
                       className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
@@ -1354,6 +1359,7 @@ export default function ProposalGenerator() {
                       Payment Terms
                     </label>
                     <select
+                      title="Payment terms"
                       value={proposalData.paymentTerms}
                       onChange={(e) => setProposalData(prev => ({ ...prev, paymentTerms: e.target.value }))}
                       className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
@@ -1375,6 +1381,7 @@ export default function ProposalGenerator() {
                       min="0"
                       max="25"
                       step="5"
+                      title="Discount percentage"
                       value={proposalData.discount}
                       onChange={(e) => setProposalData(prev => ({ ...prev, discount: Number(e.target.value) }))}
                       className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer"
