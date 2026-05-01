@@ -207,6 +207,44 @@ const gsaServices = [
     }
   },
   {
+    id: 'new-contractor-onboarding',
+    name: 'New Contractor Onboarding Program',
+    price: 3500,
+    category: 'gsa' as const,
+    icon: Rocket,
+    color: 'slate',
+    description: 'Our comprehensive 90-day program transitions your contract into the Baseline Modification phase with zero downtime and maximum compliance. We handle the heavy lifting so your team can focus on revenue.',
+    highlights: [
+      'Phase 1: Implementation & Launch (Days 1–30)',
+      'Authorized Negotiator modifications & catalog submission',
+      'GSA review process management',
+      'Weekly strategy & check-in calls',
+      'Phase 2: Management & Optimization (Days 31–60)',
+      'Minor modifications, Mass Mods & Sales Reporting',
+      'Hands-on eBuy & admin portal training',
+      'Bi-weekly consulting & full admin coverage',
+      'Phase 3: Strategy & Internal Scaling (Days 61–90)',
+      'Internal Management Written Plan development',
+      'Comprehensive SIN Assessment for growth',
+      'Advanced sales & admin training',
+      'Year-Round Managed Services included',
+      'Unlimited email & phone support',
+      'Compliance oversight: Mass Mods & Sales Reporting',
+      'Administrative maintenance for all minor mods',
+    ],
+    gantt: {
+      label: '90-Day Onboarding + Year-Round Managed Services',
+      unit: 'Day',
+      total: 90,
+      phases: [
+        { label: 'Phase 1: Implementation & Launch', start: 0, duration: 30, color: 'bg-blue-600', details: ['Authorized Negotiator modifications', 'Formal Catalog submission', 'GSA review process management', 'Weekly strategy & check-in calls', 'Goal: Pricelist posted to eLibrary & GSA Advantage'] },
+        { label: 'Phase 2: Management & Optimization', start: 30, duration: 30, color: 'bg-amber-500', details: ['Minor modifications (authorized reps, etc.)', 'Mass Mod processing', 'Sales Reporting setup', 'Hands-on eBuy & admin portal training', 'Bi-weekly consulting calls'] },
+        { label: 'Phase 3: Strategy & Scaling', start: 60, duration: 30, color: 'bg-emerald-600', details: ['Internal Management Written Plan', 'Comprehensive SIN Assessment', 'Advanced sales & admin training', 'Bi-weekly calls & ongoing advisory', 'Long-term internal success planning'] },
+        { label: 'Year-Round Managed Services', start: 0, duration: 90, color: 'bg-indigo-500', details: ['Unlimited email & phone support', 'Mass Mod compliance oversight', 'Mandatory Sales Reporting', 'Minor contract modification management'] },
+      ]
+    }
+  },
+  {
     id: 'fcp-migration',
     name: 'FCP Baseline Migration',
     price: 1500,
