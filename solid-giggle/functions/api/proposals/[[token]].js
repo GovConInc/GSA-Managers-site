@@ -44,6 +44,10 @@ export async function onRequestPost(context) {
     if (body.unlock === true) {
       proposal.locked = false;
       proposal.lockedAt = null;
+      proposal.editedContent = null; // clear saved edits so re-render shows original clean content
+    }
+    if (body.clearEdits === true) {
+      proposal.editedContent = null;
     }
 
     // Handle signature finalization
