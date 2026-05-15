@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3">
               <img
-                src="/logo.png"
+                src="/favicon.svg"
                 alt={BRAND.name}
                 className="h-9 w-auto brightness-0 invert"
               />

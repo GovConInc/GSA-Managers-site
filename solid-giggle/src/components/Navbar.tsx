@@ -30,20 +30,20 @@ export default function Navbar() {
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-brand/10 bg-white/96 shadow-[0_10px_30px_-24px_rgba(9,31,102,0.7)] backdrop-blur-md"
-          : "bg-white/88 backdrop-blur-sm"
+          ? "border-b border-warm-border/60 bg-surface/98 shadow-[0_8px_24px_-12px_rgba(23,52,96,0.12)] backdrop-blur-lg"
+          : "bg-surface/90 backdrop-blur-md"
       )}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3 lg:px-8 lg:py-4">
         <NavLink to="/" className="flex items-center">
           <img
-            src="/logo.png"
+            src="/favicon.svg"
             alt={BRAND.name}
-            className="h-14 w-auto drop-shadow-[0_8px_12px_rgba(18,107,214,0.18)] transition-transform duration-300 lg:h-16"
+            className="h-14 w-auto drop-shadow-[0_4px_12px_rgba(216,137,58,0.15)] transition-transform duration-300 lg:h-16"
           />
         </NavLink>
 
-        <nav className="hidden items-center gap-2 rounded-full border border-brand/10 bg-white/90 p-1.5 shadow-[0_8px_24px_-20px_rgba(9,31,102,0.8)] lg:flex">
+        <nav className="hidden items-center gap-2 rounded-full border border-warm-border/70 bg-surface/80 p-1.5 shadow-soft backdrop-blur-sm lg:flex">
           {links.map((x) => (
             <NavLink
               key={x.to}
@@ -52,8 +52,8 @@ export default function Navbar() {
                 cn(
                   "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-brand text-white shadow-soft"
-                    : "text-ink-light hover:bg-surface hover:text-ink"
+                    ? "bg-cta text-white shadow-soft"
+                    : "text-ink-light hover:bg-warm-100 hover:text-ink"
                 )
               }
               end={x.to === "/"}
@@ -78,7 +78,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand/15 bg-white text-ink shadow-soft lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-warm-border bg-surface text-ink shadow-soft lg:hidden"
           onClick={() => setOpen((s) => !s)}
           aria-label="Toggle navigation"
         >
@@ -87,7 +87,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-warm-border bg-white lg:hidden">
+        <div className="border-t border-warm-border bg-surface lg:hidden">
           <div className="mx-auto w-full max-w-7xl px-6 py-4 space-y-1">
             {links.map((x) => (
               <NavLink
@@ -96,7 +96,7 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   cn(
                     "block rounded-lg px-4 py-3 text-sm font-medium transition-colors",
-                    isActive ? "text-brand bg-brand/5" : "text-ink hover:bg-surface"
+                    isActive ? "text-cta bg-cta/5" : "text-ink hover:bg-warm-100"
                   )
                 }
                 end={x.to === "/"}

@@ -126,10 +126,79 @@ if(prog.timeline==="engagement"){
   });
   h+='</div></div>';
 }else if(prog.timeline==="roadmap"){
-  h+='<h2>'+(prog.rmTitle||"Submission Roadmap")+'</h2><p>'+(prog.rmSub||"Hover each phase to explore milestones. Timelines conditioned on client responsiveness.")+'</p><div class="rm"><div class="ln"></div>';
+  h+='<h2>'+(prog.rmTitle||"Submission Roadmap")+'</h2><p>'+(prog.rmSub||"Hover each phase to explore milestones. Timelines conditioned on client responsiveness.")+'</p>';
   var phases=p.customPhases?p.customPhases.map(function(cp,i){var d=prog.phases[i]||{};return{ph:d.ph,t:cp.t||d.t,dur:cp.dur||d.dur,items:cp.items&&cp.items.length?cp.items:d.items,pct:d.pct};}):prog.phases;
-  phases.forEach(function(ph,i){h+='<div class="rm-item"><div class="rm-dot">'+(i+1)+'</div><div class="rm-card"><div style="font-size:17px;font-weight:700;color:#1a2744">'+E(ph.t)+'</div><div style="font-size:12px;color:#8896b0;margin-top:2px">'+E(ph.ph)+" · "+E(ph.dur)+'</div><div class="rm-tags">';ph.items.forEach(function(it){h+='<span class="rm-tag">'+E(it)+"</span>"});h+='</div><div class="rm-bar"><div class="rm-fill" style="width:'+ph.pct+'%"></div></div></div></div>'});
-  h+="</div>";
+  // Phase colors
+  var pColors=["#4a7cff","#7c5cff","#ff6b6b","#2e7d32"];
+  var pColorsLight=["rgba(74,124,255,.08)","rgba(124,92,255,.08)","rgba(255,107,107,.08)","rgba(46,125,50,.08)"];
+  var pIcons=["🚀","⚙️","📈","🔄"];
+  // Parse month ranges from phase durations
+  var phaseMonths=[];
+  phases.forEach(function(ph){
+    var m=ph.dur.match(/(\d+)\s*[-–—]\s*(\d+)/);
+    if(m){phaseMonths.push({s:parseInt(m[1]),e:parseInt(m[2])});}
+    else{var s=ph.dur.match(/(\d+)/);if(s){phaseMonths.push({s:parseInt(s[1]),e:parseInt(s[1])});}else{phaseMonths.push({s:1,e:12});}}
+  });
+  // Build phase descriptions from items
+  var phaseDescs=phases.map(function(ph){return ph.items.join(". ")+".";});
+  // Month labels
+  var mLabels=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  // --- Visual Timeline Track ---
+  h+='<div class="tl-vis">';
+  // Month header
+  h+='<div class="tl-months">';
+  for(var mi=1;mi<=12;mi++){
+    var inPhase=-1;
+    for(var pi=0;pi<phaseMonths.length;pi++){if(mi>=phaseMonths[pi].s&&mi<=phaseMonths[pi].e){inPhase=pi;break;}}
+    var mStyle=inPhase>=0?'background:'+pColors[inPhase]+';color:#fff;font-weight:800;box-shadow:0 2px 8px '+pColors[inPhase]+'33;':'';
+    h+='<div class="tl-m" style="'+mStyle+'"><div class="tl-mn">'+mi+'</div><div class="tl-ml">'+mLabels[mi-1]+'</div></div>';
+  }
+  h+='</div>';
+  // Phase swim lanes
+  h+='<div class="tl-lanes">';
+  phases.forEach(function(ph,pi){
+    var pm=phaseMonths[pi];
+    var span=pm.e-pm.s+1;
+    var left=((pm.s-1)/12*100);
+    var width=(span/12*100);
+    h+='<div class="tl-lane" data-pi="'+pi+'">';
+    h+='<div class="tl-lane-label" style="color:'+pColors[pi]+'">'+pIcons[pi]+' '+E(ph.t)+'</div>';
+    h+='<div class="tl-lane-track">';
+    h+='<div class="tl-lane-bar" style="left:'+left+'%;width:'+width+'%;background:linear-gradient(90deg,'+pColors[pi]+','+pColors[pi]+'cc);"></div>';
+    // Milestone dots on the bar
+    ph.items.forEach(function(it,idx){
+      var dotPos=left+(idx/(ph.items.length-0.5))*width;
+      h+='<div class="tl-milestone" style="left:'+dotPos+'%;background:'+pColors[pi]+'" data-tip="'+E(it)+'"></div>';
+    });
+    h+='</div></div>';
+  });
+  h+='</div>';
+  // Phase detail cards (hover to expand)
+  h+='<div class="tl-cards">';
+  phases.forEach(function(ph,pi){
+    var pm=phaseMonths[pi];
+    h+='<div class="tl-card" data-pi="'+pi+'">';
+    h+='<div class="tl-card-accent" style="background:'+pColors[pi]+'"></div>';
+    h+='<div class="tl-card-head">';
+    h+='<div class="tl-card-icon" style="background:'+pColorsLight[pi]+';color:'+pColors[pi]+'">'+pIcons[pi]+'</div>';
+    h+='<div class="tl-card-meta"><div class="tl-card-title">'+E(ph.t)+'</div><div class="tl-card-dur">'+E(ph.ph)+' · '+E(ph.dur)+'</div></div>';
+    h+='<div class="tl-card-badge" style="background:'+pColorsLight[pi]+';color:'+pColors[pi]+'">'+(pm.s===pm.e?'Month '+pm.s:'Months '+pm.s+'–'+pm.e)+'</div>';
+    h+='</div>';
+    h+='<div class="tl-card-items">';
+    ph.items.forEach(function(it){h+='<div class="tl-card-item"><span class="tl-check" style="background:'+pColorsLight[pi]+';color:'+pColors[pi]+'">✓</span><span>'+E(it)+'</span></div>';});
+    h+='</div>';
+    h+='<div class="tl-card-prog"><div class="tl-card-prog-bar" style="width:'+ph.pct+'%;background:'+pColors[pi]+'"></div></div>';
+    h+='<div class="tl-card-pct" style="color:'+pColors[pi]+'">'+ph.pct+'% complete</div>';
+    h+='</div>';
+  });
+  h+='</div>';
+  // Connecting flow arrows between cards
+  h+='<div class="tl-flow">';
+  for(var fi=0;fi<phases.length-1;fi++){
+    h+='<div class="tl-flow-arrow" style="color:'+pColors[fi]+'">→</div>';
+  }
+  h+='</div>';
+  h+='</div>';
 }else if(prog.timeline==="workflow"){
   h+='<h2>Modification Workflow</h2><p>Hover each step to see what happens — and when.</p><div class="wf"><div class="ln"></div>';
   var customDurs=p.customStepDurs||[];
