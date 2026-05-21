@@ -293,7 +293,7 @@ h+='</div><div class="ft">'+E(p.providerCompany)+" · Confidential · "+fd(p.cre
 document.getElementById("app").innerHTML=h;
 
 // Assign stable IDs to editable elements so capture/restore uses IDs, not fragile positional indices
-(function(){var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb,#pc .scg .si span:last-child");els.forEach(function(el,i){if(!el.closest('.sb'))el.dataset.eid='e'+i;});})();
+(function(){var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb,#pc .scg .si > span:nth-child(2)");els.forEach(function(el,i){if(!el.closest('.sb'))el.dataset.eid='e'+i;});})();
 
 // Apply saved edits if they exist
 if(p.editedContent){var els=document.querySelectorAll("[data-eid]");els.forEach(function(el){var key=el.dataset.eid;if(p.editedContent[key]){el.textContent=p.editedContent[key]}})}
@@ -323,7 +323,7 @@ window.toggleEdit=function(){
   var on=!window._editOn;window._editOn=on;
   var btn=document.getElementById("editbtn");
   if(btn){btn.textContent=on?"🔒 Lock":"✏ Edit";btn.style.background=on?"#fff3cd":"";}
-  var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb,#pc .scg .si span:last-child");
+  var els=document.querySelectorAll("#pc h1,#pc h2,#pc h3,#pc h4,#pc p,#pc .pos-text,#pc .vp p,#pc .pcard .pd,#pc .pcard .pb,#pc .scg .si > span:nth-child(2)");
   els.forEach(function(el){
     if(el.closest('.sb'))return;
     el.contentEditable=on?"true":"false";
