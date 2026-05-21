@@ -38,9 +38,11 @@ export async function onRequestPost(context) {
       }
     }
 
+    var monthlyPayment = (fd.monthly_payment === true || fd.monthly_payment === "true" || fd.monthly_payment === "1" || fd.monthly_payment === "on");
+
     // Auto-generate Square checkout link
     var squareLink = fd.square_checkout_link || "";
-    if (!squareLink && priceCents > 0 && env.SQUARE_ACCESS_TOKEN && env.SQUARE_LOCATION_ID) {
+    if (!squareLink && !monthlyPayment && priceCents > 0 && env.SQUARE_ACCESS_TOKEN && env.SQUARE_LOCATION_ID) {
       try {
         var progNames = { annual_management: "GSA Annual Management", gsa_submission: "GSA Submission Program", gsa_modification: "GSA Modification Program", new_contractor_fcp: "GSA New Contractor FCP" };
         var sqRes = await fetch("https://connect.squareup.com/v2/online-checkout/payment-links", {
@@ -107,6 +109,7 @@ export async function onRequestPost(context) {
       reportingCadence: fd.reporting_support || "Quarterly",
       samSupport: fd.sam_support || "yes",
       eBuySupport: fd.ebuy_support || "yes",
+      monthlyPayment: monthlyPayment,
       meetingNotes: fd.meeting_notes || "",
       priorityGoals: fd.priority_goals || "",
       knownPainPoints: fd.known_pain_points || "",

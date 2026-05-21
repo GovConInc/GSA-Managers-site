@@ -54,6 +54,14 @@ const PLANS = {
     cadence: "Annual — $6,500",
     stripe_mode: "contact" as const,
   },
+  monthly: {
+    label: "Contract Management",
+    name: "Monthly GSA Contract Management",
+    price: 541.67,
+    note: "12 monthly payments — same total annual amount",
+    cadence: "Monthly — $541.67/mo",
+    stripe_mode: "contact" as const,
+  },
 } as const;
 
 type PlanKey = keyof typeof PLANS;
@@ -492,7 +500,7 @@ export default function Enroll() {
               </div>
               <div className="text-right">
                 <div className="text-3xl font-black text-white">
-                  {annualPlan === "annual" ? "$5,200" : "$495/mo"}
+                  {annualPlan === "annual" ? "$6,500" : "$541.67/mo"}
                 </div>
                 <div className="text-xs text-slate-500">
                   {annualPlan === "annual" ? "per year" : "per month"}
@@ -537,8 +545,8 @@ export default function Enroll() {
                     <div className={cn("text-[10px] font-bold uppercase tracking-widest", annualPlan === "annual" ? "text-brand" : "text-slate-400")}>
                       Pay annually
                     </div>
-                    <div className="mt-1 text-xl font-black text-brand">$5,200</div>
-                    <div className="mt-0.5 text-xs text-slate-500">Best value — save $740/yr</div>
+                    <div className="mt-1 text-xl font-black text-brand">$6,500</div>
+                    <div className="mt-0.5 text-xs text-slate-500">Same total annual amount with year-round coverage</div>
                   </button>
                   <button
                     onClick={() => setAnnualPlan("monthly")}
@@ -553,9 +561,9 @@ export default function Enroll() {
                       Pay monthly
                     </div>
                     <div className="mt-1 text-xl font-black text-brand">
-                      $495<span className="text-sm font-semibold">/mo</span>
+                      $541.67<span className="text-sm font-semibold">/mo</span>
                     </div>
-                    <div className="mt-0.5 text-xs text-slate-500">$5,940/yr — flexible commitment</div>
+                    <div className="mt-0.5 text-xs text-slate-500">$6,500/yr — same total annual amount, no lock-in</div>
                   </button>
                 </div>
 
@@ -660,7 +668,7 @@ export default function Enroll() {
             onClick={() => openModal("mgmt")}
             className="rounded-xl border-2 border-white/20 bg-white/10 px-8 py-4 text-sm font-semibold text-white transition hover:bg-white/15"
           >
-            Start Annual Management — $5,200
+            Start Annual Management — $6,500
           </button>
         </div>
       </section>

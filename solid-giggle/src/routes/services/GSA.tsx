@@ -88,7 +88,7 @@ const allServices: ServiceData[] = [
     title: "Annual Contract Management",
     tagline: "Hands-off compliance. Cancel anytime.",
     description:
-      "Maintaining a GSA Schedule takes 10+ hours a month. We handle every modification, sales report, and compliance requirement so you never risk penalties, missed option renewals, or contract cancellation. From monthly or quarterly IFF reporting to major SIN additions and mass modifications — one dedicated account manager covers it all. No lock-in.",
+      "Maintaining a GSA Schedule takes 10+ hours a month. We handle every modification, sales report, and compliance requirement so you never risk penalties, missed option renewals, or contract cancellation. From monthly or quarterly IFF reporting to major SIN additions and mass modifications — one dedicated account manager covers it all. No lock-in. This program is available as 12 equal monthly payments of the total annual amount.",
     features: [
       "Monthly or Quarterly IFF Sales Reporting",
       "SAM & DSBS Compliance",
