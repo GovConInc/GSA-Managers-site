@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { cn } from "../../components/cn";
 import { LinkButton } from "../../components/Button";
-import { motion } from "framer-motion";
 
 // ============================================
 // TYPES
@@ -26,21 +25,6 @@ interface ClientInfo {
   zip: string;
 }
 
-interface GanttPhase {
-  label: string;
-  start: number;
-  duration: number;
-  color: string;
-  details: string[];
-}
-
-interface GanttData {
-  label: string;
-  unit: string;
-  total: number;
-  phases: GanttPhase[];
-}
-
 interface SelectedService {
   id: string;
   name: string;
@@ -48,7 +32,6 @@ interface SelectedService {
   category: 'program' | 'gsa' | 'addon';
   description?: string;
   highlights?: string[];
-  gantt?: GanttData;
 }
 
 interface ProposalData {
@@ -187,16 +170,18 @@ const gsaServices = [
     color: 'slate',
     description: 'Full-service GSA contract management — we handle compliance, reporting, modifications, and portal management so you can focus on revenue.',
     highlights: [
-      'SAM.gov Registration & Ongoing Maintenance',
-      'GSA Advisor Scheduled Check-Ins (2x per month)',
-      'Monthly Sales Reporting (IFF / 72A submission)',
-      'Mass Modifications & Solicitation Refreshes (as needed)',
-      'FCP Catalog Product/Price Management (as needed)',
-      'Major Modifications — SIN adds, pricing, service/product updates (3x per year)',
-      'eBuy & GSA Advantage Management (as needed)',
-      'Needs Analysis — contract requirements & performance review',
-      'Administrative Modifications — POC updates, address changes, novations',
-      'Audits & GSA Review Support (5-year reviews & GSA-requested audits)',
+      'Day 1 — Kickoff: We launch your engagement, prepare the authorization modification, and begin removing the administrative burden from your team',
+      'Days 1–7 — GSA Assessment: While GSA approves the modification, we analyze your contract for compliance gaps, catalog issues, missed opportunities, and priority improvements',
+      'Day 4 — Action Plan: We present our findings and deliver a tailored plan for urgent fixes, strategic modifications, and ongoing monthly contract management',
+      'Day 7+ — Full-Service Management: We step in as your GSA management partner handling administration, updates, communications, and contract growth support',
+      'Ongoing — SAM.gov Registration & Maintenance',
+      'Ongoing — GSA Advisor Check-Ins (2x per month)',
+      'Ongoing — Monthly Sales Reporting (IFF / 72A submission)',
+      'Ongoing — Mass Modifications & Solicitation Refreshes (as needed)',
+      'Ongoing — FCP Catalog Product/Price Management (as needed)',
+      'Ongoing — Major Modifications: SIN adds, pricing, product/service updates (3x per year)',
+      'Ongoing — eBuy & GSA Advantage Management (as needed)',
+      'Ongoing — Audits & GSA Review Support (5-year reviews & GSA-requested audits)',
     ]
   },
   {
@@ -296,93 +281,6 @@ const paymentTermOptions = [
 // GANTT CHART COMPONENT
 // ============================================
 
-function ProposalGanttChart({ gantt }: { gantt: GanttData }) {
-  const unitCount = gantt.total;
-  const markers: number[] = [];
-  const step = unitCount <= 7 ? 1 : unitCount <= 12 ? 1 : 2;
-  for (let i = 0; i <= unitCount; i += step) markers.push(i);
-  if (markers[markers.length - 1] !== unitCount) markers.push(unitCount);
-
-  return (
-    <div className="mt-6 rounded-xl border border-slate-200 bg-white p-5">
-      <h4 className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-5">
-        {gantt.label}
-      </h4>
-
-      {/* Timeline ruler */}
-      <div className="relative h-4 mb-2">
-        {markers.map((m) => (
-          // eslint-disable-next-line react/style-prop-object
-          <span
-            key={m}
-            className="absolute text-[11px] text-slate-400 font-medium"
-            style={{ left: `${(m / unitCount) * 100}%` }}
-          >
-            <span className="relative -translate-x-1/2">
-              {m === 0 ? "Start" : `${gantt.unit} ${m}`}
-            </span>
-          </span>
-        ))}
-      </div>
-
-      {/* Bars */}
-      <div className="space-y-2 mt-4">
-        {gantt.phases.map((phase, idx) => {
-          const leftPct = (phase.start / unitCount) * 100;
-          const widthPct = (phase.duration / unitCount) * 100;
-
-          return (
-            <div key={idx}>
-              <div className="relative h-9">
-                {/* Track */}
-                <div className="absolute inset-0 rounded-lg bg-slate-100 border border-slate-200/50" />
-                {/* Bar */}
-                {/* eslint-disable-next-line react/style-prop-object */}
-                <motion.div
-                  className={cn(
-                    "absolute top-0 h-full rounded-lg flex items-center px-3",
-                    phase.color
-                  )}
-                  style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
-                  initial={{ scaleX: 0, originX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.07, duration: 0.45 }}
-                >
-                  <span className="text-xs font-medium text-white truncate">
-                    {phase.label}
-                  </span>
-                </motion.div>
-              </div>
-              {/* Detail pills */}
-              <div className="flex flex-wrap gap-1.5 py-1.5 px-1">
-                {phase.details.map((d) => (
-                  <span key={d} className="inline-flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 rounded px-2 py-0.5">
-                    <CheckCircle size={10} className="text-emerald-500 shrink-0" />
-                    {d}
-                  </span>
-                ))}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Bottom ticks */}
-      <div className="relative h-3 mt-2">
-        {markers.map((m) => (
-          // eslint-disable-next-line react/style-prop-object
-          <div
-            key={m}
-            className="absolute w-px h-2 bg-slate-300"
-            style={{ left: `${(m / unitCount) * 100}%` }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // ============================================
 // COMPONENT
 // ============================================
@@ -433,8 +331,7 @@ export default function ProposalGenerator() {
             price: service.price,
             category: service.category,
             description: service.description,
-            highlights: (service as any).highlights,
-            gantt: (service as any).gantt
+            highlights: (service as any).highlights
           }]
         };
       }
@@ -866,44 +763,6 @@ export default function ProposalGenerator() {
                 'gsa': 'GSA Service',
                 'addon': 'Add-On Service'
               };
-              const fullSvc = [...marketingPrograms, ...gsaServices, ...addons].find(s => s.id === service.id);
-              const ganttHtml = service.gantt ? (() => {
-                const g = service.gantt!;
-                const step = g.total <= 7 ? 1 : g.total <= 12 ? 1 : 2;
-                const markers: number[] = [];
-                for (let i = 0; i <= g.total; i += step) markers.push(i);
-                if (markers[markers.length - 1] !== g.total) markers.push(g.total);
-                const colorMap: Record<string, string> = {
-                  'bg-blue-600': '#2563eb', 'bg-sky-500': '#0ea5e9', 'bg-amber-500': '#f59e0b',
-                  'bg-emerald-600': '#059669', 'bg-indigo-500': '#6366f1', 'bg-brand': '#d4893a',
-                  'bg-brand-light': '#e8a955',
-                };
-                return `
-                  <div style="margin-top:16px;padding:16px;border:1px solid #e2e8f0;border-radius:8px;background:#fafbfc">
-                    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-bottom:12px">${g.label}</div>
-                    <div style="position:relative;height:16px;margin-bottom:8px">
-                      ${markers.map(m => `<span style="position:absolute;left:${(m/g.total)*100}%;transform:translateX(-50%);font-size:11px;color:#94a3b8;font-weight:500">${m === 0 ? 'Start' : g.unit + ' ' + m}</span>`).join('')}
-                    </div>
-                    ${g.phases.map(phase => {
-                      const leftPct = (phase.start / g.total) * 100;
-                      const widthPct = (phase.duration / g.total) * 100;
-                      const barColor = colorMap[phase.color] || '#475569';
-                      return `
-                        <div style="margin-bottom:4px">
-                          <div style="position:relative;height:32px;border-radius:6px;background:#f1f5f9;border:1px solid #e2e8f0">
-                            <div style="position:absolute;left:${leftPct}%;width:${widthPct}%;height:100%;background:${barColor};border-radius:6px;display:flex;align-items:center;padding:0 10px">
-                              <span style="font-size:11px;font-weight:500;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${phase.label}</span>
-                            </div>
-                          </div>
-                          <div style="display:flex;flex-wrap:wrap;gap:4px;padding:4px 0">
-                            ${phase.details.map(d => `<span style="display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#64748b;background:#f1f5f9;border-radius:4px;padding:2px 6px"><span style="color:#10b981;font-size:10px">✓</span>${d}</span>`).join('')}
-                          </div>
-                        </div>
-                      `;
-                    }).join('')}
-                  </div>
-                `;
-              })() : '';
               return `
                 <div class="service-item">
                   <div class="service-header">
@@ -919,7 +778,6 @@ export default function ProposalGenerator() {
                       ${service.highlights.map(h => `<li style="display:flex;align-items:flex-start;gap:6px;font-size:12px;color:#475569"><span style="color:#10b981;font-size:12px;margin-top:1px">✓</span>${h}</li>`).join('')}
                     </ul>
                   ` : ''}
-                  ${ganttHtml}
                 </div>
               `;
             }).join('')}
@@ -1591,11 +1449,6 @@ export default function ProposalGenerator() {
                           <span className="text-slate-700 text-sm">{service.name}</span>
                           <span className="font-semibold text-slate-900">{formatCurrency(service.price)}</span>
                         </div>
-                        {service.gantt && (
-                          <div className="mt-2">
-                            <ProposalGanttChart gantt={service.gantt} />
-                          </div>
-                        )}
                       </div>
                     ))}
                   </div>
@@ -1758,11 +1611,6 @@ export default function ProposalGenerator() {
                                 </li>
                               ))}
                             </ul>
-                          )}
-                          {service.gantt && (
-                            <div className="mt-4">
-                              <ProposalGanttChart gantt={service.gantt} />
-                            </div>
                           )}
                         </div>
                       );
