@@ -47,6 +47,7 @@ interface SelectedService {
   price: number;
   category: 'program' | 'gsa' | 'addon';
   description?: string;
+  highlights?: string[];
   gantt?: GanttData;
 }
 
@@ -177,35 +178,70 @@ const gsaServices = [
     ]
   },
   {
-    id: 'gsa-maintenance',
-    name: 'GSA Contract Maintenance',
-    price: 2500,
+    id: 'gsa-mgmt-3mo',
+    name: 'GSA Contract Management (3 Months)',
+    price: 1200,
+    category: 'gsa' as const,
+    priceLabel: ' ($400/mo)',
+    icon: Settings,
+    color: 'slate',
+    description: 'Full-service GSA contract management for 3 months — we handle compliance, reporting, modifications, and portal management so you can focus on revenue.',
+    highlights: [
+      'SAM.gov Registration & Ongoing Maintenance',
+      'GSA Advisor Scheduled Check-Ins (2x per month)',
+      'Monthly Sales Reporting (IFF / 72A submission)',
+      'Mass Modifications & Solicitation Refreshes (as needed)',
+      'FCP Catalog Product/Price Management (as needed)',
+      'Major Modifications — SIN adds, pricing, service/product updates (up to 1)',
+      'eBuy & GSA Advantage Management (as needed)',
+      'Needs Analysis — contract requirements & performance review',
+      'Administrative Modifications — POC updates, address changes',
+      'Audits & GSA Review Support',
+    ]
+  },
+  {
+    id: 'gsa-mgmt-6mo',
+    name: 'GSA Contract Management (6 Months)',
+    price: 2400,
+    category: 'gsa' as const,
+    priceLabel: ' ($400/mo)',
+    icon: Settings,
+    color: 'slate',
+    description: 'Full-service GSA contract management for 6 months — comprehensive compliance, reporting, and strategic modifications to keep your schedule active and growing.',
+    highlights: [
+      'SAM.gov Registration & Ongoing Maintenance',
+      'GSA Advisor Scheduled Check-Ins (2x per month)',
+      'Monthly Sales Reporting (IFF / 72A submission)',
+      'Mass Modifications & Solicitation Refreshes (as needed)',
+      'FCP Catalog Product/Price Management (as needed)',
+      'Major Modifications — SIN adds, pricing, service/product updates (up to 2)',
+      'eBuy & GSA Advantage Management (as needed)',
+      'Needs Analysis — contract requirements & performance review',
+      'Administrative Modifications — POC updates, address changes',
+      'Audits & GSA Review Support',
+    ]
+  },
+  {
+    id: 'gsa-mgmt-annual',
+    name: 'GSA Contract Management (Annual)',
+    price: 4500,
     category: 'gsa' as const,
     priceLabel: '/year',
     icon: Settings,
     color: 'slate',
-    description: 'Annual GSA Schedule compliance and maintenance services.',
+    description: 'Year-round GSA contract management at our best rate — everything needed to keep your GSA Schedule fully compliant, optimized, and growing.',
     highlights: [
-      'Annual compliance review',
-      'Price modifications',
-      'SIN additions/deletions',
-      'IFF reporting support',
-      'Option period exercises'
-    ],
-    gantt: {
-      label: 'Annual Modification & Compliance Cycle',
-      unit: 'Mo',
-      total: 12,
-      phases: [
-        { label: 'Baseline Audit & Setup', start: 0, duration: 1, color: 'bg-blue-600', details: ['Contract health assessment', 'SAM & DSBS review', 'Compliance gap analysis'] },
-        { label: 'Q1 IFF Sales Report', start: 0, duration: 3, color: 'bg-sky-500', details: ['Monthly/quarterly IFF calculation', 'Submit 72A sales report', 'Discrepancy resolution'] },
-        { label: 'Admin & Technical Mods', start: 1, duration: 5, color: 'bg-indigo-500', details: ['Address & POC updates', 'Name changes & novations', 'Technical scope revisions'] },
-        { label: 'Q2 IFF Sales Report', start: 3, duration: 3, color: 'bg-sky-500', details: ['Monthly/quarterly IFF calculation', 'Submit 72A sales report', 'Mid-year reconciliation'] },
-        { label: 'Major Mods & SIN Adds', start: 3, duration: 6, color: 'bg-amber-500', details: ['New SIN additions', 'Product & labor category additions', 'Pricing adjustments & CSP updates'] },
-        { label: 'Q3 IFF Sales Report', start: 6, duration: 3, color: 'bg-sky-500', details: ['Monthly/quarterly IFF calculation', 'Submit 72A sales report', 'Year-to-date analysis'] },
-        { label: 'Q4 Report & Option Review', start: 9, duration: 3, color: 'bg-emerald-600', details: ['Final IFF sales report', 'Annual reconciliation', 'Option year assessment & renewal prep'] },
-      ]
-    }
+      'SAM.gov Registration & Ongoing Maintenance',
+      'GSA Advisor Scheduled Check-Ins (2x per month)',
+      'Monthly Sales Reporting (IFF / 72A submission)',
+      'Mass Modifications & Solicitation Refreshes (as needed)',
+      'FCP Catalog Product/Price Management (as needed)',
+      'Major Modifications — SIN adds, pricing, service/product updates (3x per year)',
+      'eBuy & GSA Advantage Management (as needed)',
+      'Needs Analysis — contract requirements & performance review',
+      'Administrative Modifications — POC updates, address changes, novations',
+      'Audits & GSA Review Support (5-year reviews & GSA-requested audits)',
+    ]
   },
   {
     id: 'new-contractor-onboarding',
@@ -310,7 +346,9 @@ const paymentTermOptions = [
   'Net 15',
   'Net 30',
   '50% upfront, 50% at completion',
-  '3 monthly installments',
+  'Monthly payments (no lock-in)',
+  'Monthly payments with 3-month lock-in',
+  'Monthly payments with 6-month lock-in',
   'Custom (specify in notes)'
 ];
 
@@ -453,6 +491,7 @@ export default function ProposalGenerator() {
             price: service.price,
             category: service.category,
             description: service.description,
+            highlights: (service as any).highlights,
             gantt: (service as any).gantt
           }]
         };
@@ -899,6 +938,11 @@ export default function ProposalGenerator() {
                     <div class="service-price">${formatCurrency(service.price)}</div>
                   </div>
                   <div class="service-description">${service.description || ''}</div>
+                  ${service.highlights && service.highlights.length > 0 ? `
+                    <ul style="margin-top:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:4px 24px;padding:0;list-style:none">
+                      ${service.highlights.map(h => `<li style="display:flex;align-items:flex-start;gap:6px;font-size:12px;color:#475569"><span style="color:#10b981;font-size:12px;margin-top:1px">✓</span>${h}</li>`).join('')}
+                    </ul>
+                  ` : ''}
                   ${ganttHtml}
                 </div>
               `;
@@ -1368,6 +1412,9 @@ export default function ProposalGenerator() {
                         <option key={opt} value={opt}>{opt}</option>
                       ))}
                     </select>
+                    <p className="text-sm text-slate-500 mt-2">
+                      Monthly payment choices now include no lock-in, 3-month lock-in, and 6-month lock-in options for GSA contract management.
+                    </p>
                   </div>
                 </div>
 
@@ -1645,6 +1692,16 @@ export default function ProposalGenerator() {
                           </div>
                           {service.description && (
                             <p className="text-slate-500 text-sm mt-3">{service.description}</p>
+                          )}
+                          {service.highlights && service.highlights.length > 0 && (
+                            <ul className="mt-3 grid sm:grid-cols-2 gap-x-6 gap-y-1">
+                              {service.highlights.map((h, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                                  <CheckCircle size={14} className="text-emerald-500 mt-0.5 shrink-0" />
+                                  {h}
+                                </li>
+                              ))}
+                            </ul>
                           )}
                           {service.gantt && (
                             <div className="mt-4">
