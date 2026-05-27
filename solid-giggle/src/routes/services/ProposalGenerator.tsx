@@ -58,6 +58,7 @@ interface ProposalData {
   notes: string;
   discount: number;
   paymentTerms: string;
+  squareLink: string;
 }
 
 // ============================================
@@ -404,7 +405,8 @@ export default function ProposalGenerator() {
     validDays: 30,
     notes: '',
     discount: 0,
-    paymentTerms: 'Due upon receipt'
+    paymentTerms: 'Due upon receipt',
+    squareLink: ''
   });
   const [isGenerating, setIsGenerating] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -760,12 +762,10 @@ export default function ProposalGenerator() {
           }
           
           .signature-section {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
             margin-top: 60px;
             padding-top: 40px;
             border-top: 1px solid #e2e8f0;
+            max-width: 320px;
           }
           
           .signature-block {
@@ -967,18 +967,21 @@ export default function ProposalGenerator() {
             </div>
           ` : ''}
           
-          <div class="signature-section">
+          ${proposalData.squareLink ? `
+          <div style="margin-bottom:40px;padding:24px;background:#0f172a;border-radius:8px;text-align:center">
+            <div style="font-size:13px;color:#94a3b8;margin-bottom:6px">Ready to get started?</div>
+            <div style="font-size:20px;font-weight:700;color:white;margin-bottom:14px">Pay Securely Online — ${formatCurrency(total)}</div>
+            <a href="${proposalData.squareLink}" style="display:inline-block;padding:12px 32px;background:#10b981;color:white;font-weight:700;font-size:14px;border-radius:8px;text-decoration:none">Pay Now via Square →</a>
+            <div style="font-size:11px;color:#64748b;margin-top:10px">Secure payment powered by Square</div>
+          </div>
+          ` : ''}
+
+          <div class="signature-section" style="display:block;margin-top:60px;padding-top:40px;border-top:1px solid #e2e8f0">
             <div class="signature-block">
               <div class="signature-label">Client Acceptance</div>
               <div class="signature-line"></div>
               <div class="signature-name">${proposalData.client.contactName}</div>
               <div class="signature-title">${proposalData.client.companyName}</div>
-            </div>
-            <div class="signature-block">
-              <div class="signature-label">GSA Managers Inc.</div>
-              <div class="signature-line"></div>
-              <div class="signature-name">Don Sean</div>
-              <div class="signature-title">Principal Consultant</div>
             </div>
           </div>
           
@@ -1483,6 +1486,22 @@ export default function ProposalGenerator() {
 
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Square Payment Link
+                  </label>
+                  <input
+                    type="url"
+                    value={proposalData.squareLink}
+                    onChange={(e) => setProposalData(prev => ({ ...prev, squareLink: e.target.value }))}
+                    placeholder="https://square.link/u/..."
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition font-mono text-sm"
+                  />
+                  <p className="text-sm text-slate-500 mt-2">
+                    Paste the customized Square payment link for this client. It will appear as a "Pay Now" button in the proposal.
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
                     Additional Notes
                   </label>
                   <textarea
@@ -1790,19 +1809,29 @@ export default function ProposalGenerator() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-16 mt-16 pt-10 border-t border-slate-200">
-                  <div>
-                    <div className="text-xs font-bold text-slate-500 uppercase mb-2">Client Acceptance</div>
-                    <div className="border-b border-slate-900 h-10 mb-2" />
-                    <div className="font-semibold text-slate-900">{proposalData.client.contactName}</div>
-                    <div className="text-slate-500 text-sm">{proposalData.client.companyName}</div>
+                {proposalData.squareLink && (
+                  <div className="mt-10 p-6 bg-slate-900 rounded-xl text-center">
+                    <div className="text-sm text-slate-400 mb-1">Ready to get started?</div>
+                    <div className="text-white font-bold text-lg mb-3">
+                      Pay Securely Online — {formatCurrency(total)}
+                    </div>
+                    <a
+                      href={proposalData.squareLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-lg transition text-sm"
+                    >
+                      Pay Now via Square →
+                    </a>
+                    <div className="text-xs text-slate-500 mt-3">Secure payment powered by Square</div>
                   </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-500 uppercase mb-2">GSA Managers Inc.</div>
-                    <div className="border-b border-slate-900 h-10 mb-2" />
-                    <div className="font-semibold text-slate-900">Don Sean</div>
-                    <div className="text-slate-500 text-sm">Principal Consultant</div>
-                  </div>
+                )}
+
+                <div className="mt-10 pt-10 border-t border-slate-200">
+                  <div className="text-xs font-bold text-slate-500 uppercase mb-2">Client Acceptance</div>
+                  <div className="border-b border-slate-900 h-10 mb-2" />
+                  <div className="font-semibold text-slate-900">{proposalData.client.contactName}</div>
+                  <div className="text-slate-500 text-sm">{proposalData.client.companyName}</div>
                 </div>
 
                 <div className="mt-16 pt-6 border-t border-slate-200 text-center">
