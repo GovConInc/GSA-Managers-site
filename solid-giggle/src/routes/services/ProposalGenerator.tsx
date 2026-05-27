@@ -178,58 +178,13 @@ const gsaServices = [
     ]
   },
   {
-    id: 'gsa-mgmt-3mo',
-    name: 'GSA Contract Management (3 Months)',
-    price: 1200,
+    id: 'gsa-management',
+    name: 'GSA Contract Management',
+    price: 400,
     category: 'gsa' as const,
-    priceLabel: ' ($400/mo)',
     icon: Settings,
     color: 'slate',
-    description: 'Full-service GSA contract management for 3 months — we handle compliance, reporting, modifications, and portal management so you can focus on revenue.',
-    highlights: [
-      'SAM.gov Registration & Ongoing Maintenance',
-      'GSA Advisor Scheduled Check-Ins (2x per month)',
-      'Monthly Sales Reporting (IFF / 72A submission)',
-      'Mass Modifications & Solicitation Refreshes (as needed)',
-      'FCP Catalog Product/Price Management (as needed)',
-      'Major Modifications — SIN adds, pricing, service/product updates (up to 1)',
-      'eBuy & GSA Advantage Management (as needed)',
-      'Needs Analysis — contract requirements & performance review',
-      'Administrative Modifications — POC updates, address changes',
-      'Audits & GSA Review Support',
-    ]
-  },
-  {
-    id: 'gsa-mgmt-6mo',
-    name: 'GSA Contract Management (6 Months)',
-    price: 2400,
-    category: 'gsa' as const,
-    priceLabel: ' ($400/mo)',
-    icon: Settings,
-    color: 'slate',
-    description: 'Full-service GSA contract management for 6 months — comprehensive compliance, reporting, and strategic modifications to keep your schedule active and growing.',
-    highlights: [
-      'SAM.gov Registration & Ongoing Maintenance',
-      'GSA Advisor Scheduled Check-Ins (2x per month)',
-      'Monthly Sales Reporting (IFF / 72A submission)',
-      'Mass Modifications & Solicitation Refreshes (as needed)',
-      'FCP Catalog Product/Price Management (as needed)',
-      'Major Modifications — SIN adds, pricing, service/product updates (up to 2)',
-      'eBuy & GSA Advantage Management (as needed)',
-      'Needs Analysis — contract requirements & performance review',
-      'Administrative Modifications — POC updates, address changes',
-      'Audits & GSA Review Support',
-    ]
-  },
-  {
-    id: 'gsa-mgmt-annual',
-    name: 'GSA Contract Management (Annual)',
-    price: 4500,
-    category: 'gsa' as const,
-    priceLabel: '/year',
-    icon: Settings,
-    color: 'slate',
-    description: 'Year-round GSA contract management at our best rate — everything needed to keep your GSA Schedule fully compliant, optimized, and growing.',
+    description: 'Full-service GSA contract management — we handle compliance, reporting, modifications, and portal management so you can focus on revenue.',
     highlights: [
       'SAM.gov Registration & Ongoing Maintenance',
       'GSA Advisor Scheduled Check-Ins (2x per month)',
@@ -250,36 +205,21 @@ const gsaServices = [
     category: 'gsa' as const,
     icon: Rocket,
     color: 'slate',
-    description: 'Our comprehensive 90-day program transitions your contract into the Baseline Modification phase with zero downtime and maximum compliance. We handle the heavy lifting so your team can focus on revenue.',
+    description: 'We launch your engagement, take the administrative burden off your team, and step in as your full-service GSA management partner — handling compliance, reporting, modifications, and contract growth from day one.',
     highlights: [
-      'Phase 1: Implementation & Launch (Days 1–30)',
-      'Authorized Negotiator modifications & catalog submission',
-      'GSA review process management',
-      'Weekly strategy & check-in calls',
-      'Phase 2: Management & Optimization (Days 31–60)',
-      'Minor modifications, Mass Mods & Sales Reporting',
-      'Hands-on eBuy & admin portal training',
-      'Bi-weekly consulting & full admin coverage',
-      'Phase 3: Strategy & Internal Scaling (Days 61–90)',
-      'Internal Management Written Plan development',
-      'Comprehensive SIN Assessment for growth',
-      'Advanced sales & admin training',
-      'Year-Round Managed Services included',
-      'Unlimited email & phone support',
-      'Compliance oversight: Mass Mods & Sales Reporting',
-      'Administrative maintenance for all minor mods',
-    ],
-    gantt: {
-      label: '90-Day Onboarding + Year-Round Managed Services',
-      unit: 'Day',
-      total: 90,
-      phases: [
-        { label: 'Phase 1: Implementation & Launch', start: 0, duration: 30, color: 'bg-blue-600', details: ['Authorized Negotiator modifications', 'Formal Catalog submission', 'GSA review process management', 'Weekly strategy & check-in calls', 'Goal: Pricelist posted to eLibrary & GSA Advantage'] },
-        { label: 'Phase 2: Management & Optimization', start: 30, duration: 30, color: 'bg-amber-500', details: ['Minor modifications (authorized reps, etc.)', 'Mass Mod processing', 'Sales Reporting setup', 'Hands-on eBuy & admin portal training', 'Bi-weekly consulting calls'] },
-        { label: 'Phase 3: Strategy & Scaling', start: 60, duration: 30, color: 'bg-emerald-600', details: ['Internal Management Written Plan', 'Comprehensive SIN Assessment', 'Advanced sales & admin training', 'Bi-weekly calls & ongoing advisory', 'Long-term internal success planning'] },
-        { label: 'Year-Round Managed Services', start: 0, duration: 90, color: 'bg-indigo-500', details: ['Unlimited email & phone support', 'Mass Mod compliance oversight', 'Mandatory Sales Reporting', 'Minor contract modification management'] },
-      ]
-    }
+      'Authorization Modification — Authorized Negotiator setup & catalog submission',
+      'GSA Review Management — We manage the full GSA approval process',
+      'Compliance Gap Analysis — Contract review for issues, missed opportunities & priorities',
+      'Action Plan Delivery — Tailored plan for urgent fixes & strategic modifications',
+      'SAM.gov Registration & Ongoing Maintenance',
+      'Sales Reporting — Monthly IFF / 72A reporting maintained accurately',
+      'Mass Modifications & Solicitation Refreshes — Reviewed, accepted & tracked',
+      'FCP Catalog Updates — Product & service catalog maintained for visibility',
+      'Needs Analysis — Performance evaluation & management priority identification',
+      'Contract Modifications — Pricing, offerings, terms & administrative updates',
+      'eBuy & GSA Advantage Management',
+      'Audits & GSA Review Support — 5-year reviews & GSA-requested audits',
+    ]
   },
   {
     id: 'fcp-migration',
@@ -288,25 +228,17 @@ const gsaServices = [
     category: 'gsa' as const,
     icon: RefreshCw,
     color: 'slate',
-    description: 'Migrate from legacy SIP to the new FAS Catalog Platform.',
+    description: 'Migrate from legacy SIP to the new FAS Catalog Platform with full compliance verification and platform training included.',
     highlights: [
-      'Current catalog assessment',
-      'FCP baseline submission',
-      'Compliance verification',
+      'Full catalog audit & data format assessment',
+      'Product listing cleanup & pricing validation',
+      'SIN mapping verification',
+      'FCP baseline submission & upload',
+      'System validation & error resolution',
+      'Compliance verification post-submission',
+      'GSA Advantage visibility confirmation',
       'Platform training included',
-      '7-day completion guarantee'
-    ],
-    gantt: {
-      label: '7-Day FCP Migration Timeline',
-      unit: 'Day',
-      total: 7,
-      phases: [
-        { label: 'Catalog Audit', start: 0, duration: 1, color: 'bg-blue-600', details: ['Existing catalog review', 'Data format assessment', 'Gap identification'] },
-        { label: 'Data Prep & Pricing QA', start: 1, duration: 2, color: 'bg-sky-500', details: ['Product listing cleanup', 'Pricing validation', 'SIN mapping verification'] },
-        { label: 'FCP Upload & Validation', start: 3, duration: 2, color: 'bg-amber-500', details: ['Baseline upload to FCP', 'System validation checks', 'Error resolution'] },
-        { label: 'Compliance & Go-Live', start: 5, duration: 2, color: 'bg-emerald-600', details: ['Final compliance check', 'GSA Advantage visibility', 'Platform training handoff'] },
-      ]
-    }
+    ]
   }
 ];
 
@@ -339,6 +271,13 @@ const addons = [
     category: 'addon' as const,
     description: 'Single state vendor registration and certification support.'
   }
+];
+
+const gsaMgmtBillingOptions = [
+  { id: 'monthly',  label: 'Monthly',          price: 400,  priceLabel: '/mo',  note: 'No lock-in' },
+  { id: '3mo',      label: '3-Month Lock-in',   price: 1200, priceLabel: ' total', note: '$400/mo' },
+  { id: '6mo',      label: '6-Month Lock-in',   price: 2400, priceLabel: ' total', note: '$400/mo' },
+  { id: 'annual',   label: 'Annual',            price: 4500, priceLabel: '/yr',  note: 'Best value — save $300' },
 ];
 
 const paymentTermOptions = [
@@ -469,6 +408,7 @@ export default function ProposalGenerator() {
   });
   const [isGenerating, setIsGenerating] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [gsaMgmtBilling, setGsaMgmtBilling] = useState('annual');
 
   const updateClient = (field: keyof ClientInfo, value: string) => {
     setProposalData(prev => ({
@@ -500,6 +440,42 @@ export default function ProposalGenerator() {
   };
 
   const isServiceSelected = (id: string) => proposalData.services.some(s => s.id === id);
+
+  const toggleGsaMgmt = () => {
+    const option = gsaMgmtBillingOptions.find(o => o.id === gsaMgmtBilling)!;
+    const svc = gsaServices.find(s => s.id === 'gsa-management')!;
+    setProposalData(prev => {
+      const exists = prev.services.find(s => s.id === 'gsa-management');
+      if (exists) return { ...prev, services: prev.services.filter(s => s.id !== 'gsa-management') };
+      return {
+        ...prev,
+        services: [...prev.services, {
+          id: 'gsa-management',
+          name: `GSA Contract Management — ${option.label}`,
+          price: option.price,
+          category: 'gsa' as const,
+          description: svc.description,
+          highlights: (svc as any).highlights,
+        }]
+      };
+    });
+  };
+
+  const changeGsaMgmtBilling = (optionId: string) => {
+    setGsaMgmtBilling(optionId);
+    const option = gsaMgmtBillingOptions.find(o => o.id === optionId)!;
+    setProposalData(prev => {
+      const exists = prev.services.find(s => s.id === 'gsa-management');
+      if (!exists) return prev;
+      return {
+        ...prev,
+        services: prev.services.map(s => s.id === 'gsa-management'
+          ? { ...s, name: `GSA Contract Management — ${option.label}`, price: option.price }
+          : s
+        )
+      };
+    });
+  };
 
   const subtotal = proposalData.services.reduce((sum, s) => sum + s.price, 0);
   const discountAmount = (subtotal * proposalData.discount) / 100;
@@ -1271,8 +1247,75 @@ export default function ProposalGenerator() {
                   <Shield size={20} className="text-emerald-600" />
                   GSA Schedule Services
                 </h3>
+
+                {/* GSA Contract Management — full-width billing picker */}
+                {(() => {
+                  const svc = gsaServices.find(s => s.id === 'gsa-management')!;
+                  const selected = isServiceSelected('gsa-management');
+                  const activeOption = gsaMgmtBillingOptions.find(o => o.id === gsaMgmtBilling)!;
+                  return (
+                    <div className={cn(
+                      "mb-4 p-5 rounded-xl border-2 transition-all",
+                      selected ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20" : "border-slate-200 bg-white"
+                    )}>
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          <div className={cn(
+                            "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
+                            selected ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-600"
+                          )}>
+                            <Settings size={20} />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-slate-900">{svc.name}</h4>
+                            <p className="text-sm text-slate-500 mt-0.5">{svc.description}</p>
+                          </div>
+                        </div>
+                        {selected && <CheckCircle size={20} className="text-emerald-500 shrink-0 ml-4 mt-1" />}
+                      </div>
+
+                      {/* Billing term selector */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+                        {gsaMgmtBillingOptions.map(opt => (
+                          <button
+                            type="button"
+                            key={opt.id}
+                            onClick={() => changeGsaMgmtBilling(opt.id)}
+                            className={cn(
+                              "p-3 rounded-lg border-2 text-left transition-all",
+                              gsaMgmtBilling === opt.id
+                                ? "border-emerald-500 bg-white ring-1 ring-emerald-500/20"
+                                : "border-slate-200 bg-white hover:border-slate-300"
+                            )}
+                          >
+                            <div className="text-xs font-semibold text-slate-500 mb-1">{opt.label}</div>
+                            <div className="text-lg font-bold text-slate-900 leading-none">
+                              {formatCurrency(opt.price)}
+                              <span className="text-xs font-normal text-slate-500">{opt.priceLabel}</span>
+                            </div>
+                            <div className="text-[11px] text-slate-400 mt-1">{opt.note}</div>
+                          </button>
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={toggleGsaMgmt}
+                        className={cn(
+                          "px-4 py-2 rounded-lg font-medium text-sm transition",
+                          selected
+                            ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-200"
+                            : "bg-slate-900 text-white hover:bg-slate-800"
+                        )}
+                      >
+                        {selected ? `Remove (${activeOption.label})` : `Add to Proposal — ${formatCurrency(activeOption.price)}${activeOption.priceLabel}`}
+                      </button>
+                    </div>
+                  );
+                })()}
+
+                {/* All other GSA services */}
                 <div className="grid md:grid-cols-3 gap-4">
-                  {gsaServices.map((service) => {
+                  {gsaServices.filter(s => s.id !== 'gsa-management').map((service) => {
                     const Icon = service.icon;
                     const selected = isServiceSelected(service.id);
                     return (
@@ -1296,12 +1339,6 @@ export default function ProposalGenerator() {
                           {selected && <CheckCircle size={20} className="text-emerald-500" />}
                         </div>
                         <h4 className="font-bold text-slate-900 text-sm">{service.name}</h4>
-                        {(service as any).gantt && (
-                          <span className="inline-flex items-center gap-1 text-[10px] text-emerald-600 bg-emerald-50 rounded px-1.5 py-0.5 mt-1">
-                            <Clock size={10} />
-                            Timeline included
-                          </span>
-                        )}
                         <p className="text-xl font-bold text-slate-900 mt-2">
                           {formatCurrency(service.price)}
                           {(service as any).priceLabel && <span className="text-sm font-normal text-slate-500">{(service as any).priceLabel}</span>}
