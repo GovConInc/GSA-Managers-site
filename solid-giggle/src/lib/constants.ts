@@ -17,4 +17,4 @@ export const LINKS = {
 };
 
 export const DEFAULT_RSS_URL =
-  "https://sam.gov/content/sam/en/about-sam/newsroom.rss";
+  "https://www.gsa.gov/_rssfeed/hq_newsReleases.xml";

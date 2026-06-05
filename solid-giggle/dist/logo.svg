@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" fill="none">
+  <defs>
+    <linearGradient id="sg" x1="4" y1="4" x2="52" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A3F7A"/>
+      <stop offset="1" stop-color="#103A7A"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield -->
+  <path d="M28 4L4 14v14c0 12.5 10.3 22.8 24 28 13.7-5.2 24-15.5 24-28V14L28 4z" fill="url(#sg)"/>
+  <!-- Checkmark -->
+  <path d="M19 28l5 5 13-13" stroke="#D8893A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- GSA text -->
+  <text x="64" y="24" font-family="Nunito, system-ui, sans-serif" font-weight="800" font-size="20" fill="#173460" letter-spacing="-0.02em">GSA</text>
+  <!-- MANAGERS text -->
+  <text x="64" y="44" font-family="Nunito, system-ui, sans-serif" font-weight="700" font-size="14" fill="#506A92" letter-spacing="0.06em">MANAGERS</text>
+</svg>

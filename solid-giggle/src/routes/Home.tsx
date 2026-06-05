@@ -20,6 +20,7 @@ import {
   Zap,
 } from "lucide-react";
 import { LinkButton } from "../components/Button";
+import GsaNewsFeed from "../components/GsaNewsFeed";
 import { BRAND, LINKS } from "../lib/constants";
 
 const services = [
@@ -327,6 +328,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── GSA NEWS FEED ── */}
+      <GsaNewsFeed />
 
       {/* ── PROCESS ── */}
       <section className="bg-white py-24 lg:py-32 relative">

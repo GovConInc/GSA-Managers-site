@@ -8,11 +8,11 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <img
-                src="/favicon.svg"
+                src="/logo.svg"
                 alt={BRAND.name}
-                className="h-9 w-auto brightness-0 invert"
+                className="h-8 w-auto brightness-0 invert"
               />
               <span className="font-display text-lg font-bold text-white">{BRAND.name}</span>
             </div>

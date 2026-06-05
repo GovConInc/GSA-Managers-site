@@ -35,11 +35,11 @@ export default function Navbar() {
       )}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3 lg:px-8 lg:py-4">
-        <NavLink to="/" className="flex items-center">
+        <NavLink to="/" className="flex items-center gap-2.5 group">
           <img
-            src="/favicon.svg"
+            src="/logo.svg"
             alt={BRAND.name}
-            className="h-14 w-auto drop-shadow-[0_4px_12px_rgba(216,137,58,0.15)] transition-transform duration-300 lg:h-16"
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-[1.03] lg:h-11"
           />
         </NavLink>
 

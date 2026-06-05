@@ -35,6 +35,7 @@ export type RSSItem = {
   title: string;
   link: string;
   pubDate?: string;
+  description?: string;
 };
 
 export type RSSResponse = {
