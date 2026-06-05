@@ -23,7 +23,7 @@ export const Button = forwardRef<HTMLButtonElement, BtnProps>(function Button(
 
   const styles: Record<string, string> = {
     primary:
-      "bg-ink text-white hover:bg-ink/90 active:scale-[0.98]",
+      "bg-cta text-white hover:bg-cta-hover active:scale-[0.98]",
     secondary:
       "bg-white text-ink border border-warm-border hover:border-ink/30 hover:text-ink active:bg-surface",
     ghost:
@@ -56,7 +56,7 @@ export function LinkButton({ className, variant = "primary", size = "md", ...pro
 
   const styles: Record<string, string> = {
     primary:
-      "bg-ink text-white hover:bg-ink/90 active:scale-[0.98]",
+      "bg-cta text-white hover:bg-cta-hover active:scale-[0.98]",
     secondary:
       "bg-white text-ink border border-warm-border hover:border-ink/30 hover:text-ink active:bg-surface",
     ghost:

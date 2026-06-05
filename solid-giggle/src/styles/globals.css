@@ -39,7 +39,7 @@
 
   html {
     scroll-behavior: smooth;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   body {
@@ -49,6 +49,7 @@
     flex-direction: column;
     font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -68,7 +69,13 @@
 }
 
 @layer utilities {
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-cta/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+  }
+
   .input-field {
-    @apply mt-2 block w-full rounded-lg border border-warm-border bg-white px-4 py-3 text-base transition placeholder:text-ink-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20;
+    @apply mt-2 block w-full rounded-lg border border-warm-border bg-white px-4 py-3 text-base transition
+      placeholder:text-ink-muted
+      focus:border-cta focus:outline-none focus:ring-2 focus:ring-cta/20;
   }
 }

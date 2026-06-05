@@ -388,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* ── DIFFERENTIATORS ── */}
-      <section className="bg-[#1E1A16] py-24 text-white relative overflow-hidden">
+      <section className="bg-ink py-24 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_90%,rgba(216,137,58,0.15),transparent)]" />
 
@@ -465,7 +465,7 @@ export default function Home() {
                 compliance and federal revenue growth.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <LinkButton href="/services/gsa-contractors" size="lg" className="bg-cta hover:bg-cta-hover text-white shadow-md hover:shadow-lg transition-shadow">
+                <LinkButton href="/services/gsa-contractors" size="lg" className="shadow-md hover:shadow-lg">
                   Explore GSA Services
                   <ArrowRight size={18} className="ml-2" />
                 </LinkButton>

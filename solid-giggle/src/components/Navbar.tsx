@@ -78,6 +78,7 @@ export default function Navbar() {
         </div>
 
         <button
+          type="button"
           className="flex h-10 w-10 items-center justify-center rounded-lg border border-warm-border bg-surface text-ink shadow-soft lg:hidden"
           onClick={() => setOpen((s) => !s)}
           aria-label="Toggle navigation"
