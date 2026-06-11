@@ -2,13 +2,25 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./routes/Home";
 import NotFound from "./routes/NotFound";
-import Enroll from "./routes/Enroll";
 
-// Services Pages
-import ServicesGSA from "./routes/services/GSA";
-import ServicesPrograms from "./routes/services/Programs";
-import ServicesCompliance from "./routes/services/Compliance";
-import ServicesProposalWriting from "./routes/services/ProposalWriting";
+// Services — SEO silo pages
+import ServicesHub from "./routes/ServicesHub";
+import Management from "./routes/services/Management";
+import Modifications from "./routes/services/Modifications";
+import FcpTransition from "./routes/services/FcpTransition";
+import Submission from "./routes/services/Submission";
+
+// Pricing
+import Pricing from "./routes/Pricing";
+
+// Intelligence Hub
+import IntelligenceIndex from "./routes/intelligence/Index";
+import FcpGuide from "./routes/intelligence/FcpGuide";
+import ModRejections from "./routes/intelligence/ModRejections";
+import InHouseVsOutsourced from "./routes/intelligence/InHouseVsOutsourced";
+
+// Resources
+import FcpChecklist from "./routes/resources/FcpChecklist";
 
 // Order
 import Order from "./routes/Order";
@@ -23,18 +35,30 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
 
-        {/* Services Routes */}
-        <Route path="/services" element={<ServicesGSA />} />
-        <Route path="/services/gsa-contractors" element={<ServicesGSA />} />
-        <Route path="/services/programs" element={<ServicesPrograms />} />
-        <Route path="/services/compliance-capture" element={<ServicesCompliance />} />
-        <Route path="/services/proposal-writing" element={<ServicesProposalWriting />} />
+        {/* Services hub (legacy /services/gsa-contractors hashes redirect inside) */}
+        <Route path="/services" element={<ServicesHub />} />
+        <Route path="/services/gsa-contractors" element={<ServicesHub />} />
+
+        {/* SEO silo — keyword slugs */}
+        <Route path="/gsa-contract-management" element={<Management />} />
+        <Route path="/gsa-modification-consultant" element={<Modifications />} />
+        <Route path="/fcp-transition-service" element={<FcpTransition />} />
+        <Route path="/gsa-schedule-submission" element={<Submission />} />
+
+        {/* Pricing */}
+        <Route path="/pricing" element={<Pricing />} />
+
+        {/* Intelligence Hub */}
+        <Route path="/intelligence" element={<IntelligenceIndex />} />
+        <Route path="/intelligence/fas-catalog-platform-transition-guide" element={<FcpGuide />} />
+        <Route path="/intelligence/gsa-modification-rejected" element={<ModRejections />} />
+        <Route path="/intelligence/in-house-vs-outsourced-gsa-management" element={<InHouseVsOutsourced />} />
+
+        {/* Resources */}
+        <Route path="/resources/fcp-compliance-checklist" element={<FcpChecklist />} />
 
         {/* Order Page */}
         <Route path="/order" element={<Order />} />
-
-        {/* Enroll Page */}
-        <Route path="/enroll" element={<Enroll />} />
 
         {/* About & Contact */}
         <Route path="/about" element={<About />} />

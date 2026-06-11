@@ -85,8 +85,8 @@ export default function About() {
               className="grid grid-cols-2 gap-4"
             >
               {([
-                { value: "15+", label: "Years Experience" },
-                { value: "99%", label: "Approval Rate" },
+                { value: "15+", label: "Years in Federal Contracting" },
+                { value: "98%", label: "Approval Rate" },
                 { value: "$640M", label: "Largest Win Supported" },
                 { value: "500+", label: "Schedules Managed" },
               ]).map((stat) => (

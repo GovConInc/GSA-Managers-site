@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /p/
+Disallow: /api/
+
+Sitemap: https://gsamanagers.com/sitemap.xml

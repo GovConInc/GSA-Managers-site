@@ -1,10 +1,11 @@
 export const BRAND = {
   name: "GSA Managers",
-  tagline: "Expert GSA Schedule Consulting",
+  tagline: "GSA Schedule Management, Modifications & Compliance",
   phone: "(813) 665-0308",
   email: "Info@GSAManagers.com",
   location: "Tampa, FL",
   founder: "Sean Conway",
+  url: "https://gsamanagers.com",
 };
 
 export const LINKS = {
@@ -15,6 +16,24 @@ export const LINKS = {
   fcpPlatform: "https://fcp.gsa.gov/",
   gsaeBuy: "https://www.ebuy.gsa.gov/",
 };
+
+/**
+ * Signature numbers — repeated deliberately across hero, mid-page, and footer
+ * of every page so they stick. Keep this the single source of truth.
+ */
+export const SIGNATURE_STATS = [
+  { value: "98%", label: "Approval Rate" },
+  { value: "14-Day", label: "Mod Submission Guarantee" },
+  { value: "500+", label: "Schedules Managed" },
+  { value: "15+", label: "Years in Federal Contracting" },
+];
+
+/** Risk-reversal trust strip — shown under primary CTAs. */
+export const TRUST_POINTS = [
+  "Flat-fee pricing — no surprises",
+  "14-day submission guarantee",
+  "No long-term lock-in",
+];
 
 export const DEFAULT_RSS_URL =
   "https://www.gsa.gov/_rssfeed/hq_newsReleases.xml";
