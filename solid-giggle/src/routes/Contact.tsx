@@ -115,10 +115,12 @@ export default function Contact() {
                       <label htmlFor="interest" className="block text-sm font-medium text-ink">Primary Interest</label>
                       <select id="interest" name="interest" value={formData.interest} onChange={handleInputChange} className="input-field">
                         <option>General Inquiry</option>
-                        <option>FCP Baseline Package</option>
-                        <option>GSA Schedule Management</option>
-                        <option>Compliance &amp; Certifications</option>
-                        <option>Proposal Writing</option>
+                        <option>FCP Transition &amp; Compliance ($499)</option>
+                        <option>Standalone GSA Modification ($2,999)</option>
+                        <option>GSA Core Maintenance (6 Months)</option>
+                        <option>GSA Complete Management (12 Months)</option>
+                        <option>GSA Schedule Submission</option>
+                        <option>New Vendor Special</option>
                       </select>
                     </div>
                   </div>
