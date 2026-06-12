@@ -17,6 +17,25 @@ import Order from "./routes/Order";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
 
+// Location Pages — City
+import TampaPage from "./routes/locations/Tampa";
+import WashingtonDCPage from "./routes/locations/WashingtonDC";
+import OrlandoPage from "./routes/locations/Orlando";
+import MiamiPage from "./routes/locations/Miami";
+import AtlantaPage from "./routes/locations/Atlanta";
+import DallasPage from "./routes/locations/Dallas";
+import SanDiegoPage from "./routes/locations/SanDiego";
+import NorfolkPage from "./routes/locations/Norfolk";
+import HuntsvillePage from "./routes/locations/Huntsville";
+import ColoradoSpringsPage from "./routes/locations/ColoradoSprings";
+
+// Location Pages — State
+import FloridaPage from "./routes/locations/Florida";
+import VirginiaPage from "./routes/locations/Virginia";
+import MarylandPage from "./routes/locations/Maryland";
+import TexasPage from "./routes/locations/Texas";
+import CaliforniaPage from "./routes/locations/California";
+
 export default function App() {
   return (
     <Routes>
@@ -39,6 +58,25 @@ export default function App() {
         {/* About & Contact */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+
+        {/* Location Routes — City */}
+        <Route path="/locations/tampa-fl" element={<TampaPage />} />
+        <Route path="/locations/washington-dc" element={<WashingtonDCPage />} />
+        <Route path="/locations/orlando-fl" element={<OrlandoPage />} />
+        <Route path="/locations/miami-fl" element={<MiamiPage />} />
+        <Route path="/locations/atlanta-ga" element={<AtlantaPage />} />
+        <Route path="/locations/dallas-tx" element={<DallasPage />} />
+        <Route path="/locations/san-diego-ca" element={<SanDiegoPage />} />
+        <Route path="/locations/norfolk-va" element={<NorfolkPage />} />
+        <Route path="/locations/huntsville-al" element={<HuntsvillePage />} />
+        <Route path="/locations/colorado-springs-co" element={<ColoradoSpringsPage />} />
+
+        {/* Location Routes — State */}
+        <Route path="/locations/florida" element={<FloridaPage />} />
+        <Route path="/locations/virginia" element={<VirginiaPage />} />
+        <Route path="/locations/maryland" element={<MarylandPage />} />
+        <Route path="/locations/texas" element={<TexasPage />} />
+        <Route path="/locations/california" element={<CaliforniaPage />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -21,6 +20,7 @@ import {
 import { LinkButton } from "../../components/Button";
 import { LINKS } from "../../lib/constants";
 import { cn } from "../../components/cn";
+import SEO, { serviceSchema, faqPageSchema, breadcrumbSchema } from "../../components/SEO";
 
 // ─── TYPES ───
 type ServiceId = "submission" | "management" | "new-vendor" | "fcp";
@@ -325,12 +325,59 @@ export default function ServicesGSA() {
     }
   }, [location.hash]);
 
+  const gsaFaqs = [
+    { question: "How long does it take to get on the GSA Schedule?", answer: "With our accelerated process, most clients receive their GSA Schedule within 4–6 months. The industry average is 12+ months. We achieve this through our 'Holy Trinity' review that anticipates CO concerns before submission." },
+    { question: "What are the minimum qualifications?", answer: "You need 2 years of corporate experience, relevant past performance (typically 3–5 projects), and financial viability demonstrated through tax returns and financial statements. Specific requirements vary by SIN category." },
+    { question: "What's the difference between MAS and OASIS+?", answer: "MAS (Multiple Award Schedule) is GSA's primary vehicle for commercial products and services. OASIS+ is a specialized IDIQ for professional services requiring complex statements of work. We can help determine which is right for you." },
+    { question: "What are the ongoing requirements after award?", answer: "Monthly or quarterly IFF sales reporting via 72A, 0.75% Industrial Funding Fee remittance, SAM & DSBS registration maintenance, FCP catalog pricing updates, contract modifications (admin, technical, and major), mass modification responses, and continued compliance monitoring. Our Contract Management service handles all of this." },
+    { question: "Can you help if I already have a GSA Schedule?", answer: "Absolutely. We provide ongoing Contract Management for existing holders — modifications, sales reporting, catalog updates, and compliance support." },
+  ];
+
+  const schema = [
+    serviceSchema(
+      "GSA Schedule Services",
+      "Full-service GSA Schedule submission, annual contract management, FCP catalog uploads, and new vendor onboarding.",
+      "https://gsamanagers.com/services/gsa-contractors"
+    ),
+    faqPageSchema(gsaFaqs),
+    breadcrumbSchema([
+      { name: "Home", url: "https://gsamanagers.com/" },
+      { name: "GSA Schedule Services", url: "https://gsamanagers.com/services/gsa-contractors" },
+    ]),
+  ];
+
   return (
     <div className="bg-surface selection:bg-brand/20 selection:text-ink">
-      <Helmet>
-        <title>GSA Schedule Services — Submissions, Management & FCP | GSA Managers</title>
-        <meta name="description" content="Get on the GSA Schedule in 4–6 months. Full-service submissions, annual management, FCP uploads, and new vendor onboarding." />
-      </Helmet>
+      <SEO
+        title="GSA Schedule Services — Submissions, Management & FCP"
+        description="Get on the GSA Schedule in 4–6 months. Full-service submissions, annual management, FCP uploads, and new vendor onboarding. 98% approval rate. Tampa-based, serving nationwide."
+        canonical="/services/gsa-contractors"
+        keywords={[
+          "GSA Schedule services",
+          "GSA MAS submission",
+          "GSA contract management",
+          "FCP catalog upload",
+          "new vendor GSA",
+          "GSA Schedule help",
+          "GSA submission guarantee",
+          "GSA compliance management",
+          "GSA catalog baseline",
+          "GSA Advantage setup",
+          "GSA eBuy training",
+          "GSA modification services",
+          "GSA IFF reporting",
+          "GSA sales reporting",
+          "GSA option year renewal",
+          "GSA Schedule Tampa",
+          "GSA Schedule Florida",
+          "GSA consultants near me",
+        ]}
+        schema={schema}
+        city="Tampa"
+        state="Florida"
+        geoRegion="US-FL"
+        geoPlacename="Tampa, Florida, United States"
+      />
 
       {/* ──────── HERO ──────── */}
       <section className="relative overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-24">
@@ -477,8 +524,8 @@ export default function ServicesGSA() {
                     ))}
                   </div>
 
-                  {/* Gantt Chart (Only for new GSA Submissions) */}
-                  {svc.id === "submission" && <GanttChart service={svc} />}
+                  {/* Gantt Chart */}
+                  <GanttChart service={svc} />
                 </motion.div>
               </div>
 

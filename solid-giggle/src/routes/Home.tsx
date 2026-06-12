@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -9,136 +8,150 @@ import {
   Rocket,
   Award,
   Phone,
-  Building2,
-  Target,
+  Clock,
+  BadgeCheck,
   TrendingUp,
-  Globe,
-  Briefcase,
-  Scale,
-  Sparkles,
   Users,
   Zap,
+  Star,
+  MessageSquare,
 } from "lucide-react";
 import { LinkButton } from "../components/Button";
 import GsaNewsFeed from "../components/GsaNewsFeed";
-import { BRAND, LINKS } from "../lib/constants";
+import { LINKS } from "../lib/constants";
+import SEO, { localBusinessSchema, faqPageSchema, breadcrumbSchema } from "../components/SEO";
 
 const services = [
   {
     icon: Award,
-    title: "GSA MAS Contract Submission",
+    title: "GSA Schedule Submission",
+    tagline: "45-day guarantee. 98% approval rate.",
     description:
-      "End-to-end GSA Schedule submission support — from solicitation analysis and proposal writing to portal delivery with a clear, milestone-driven timeline.",
-    features: ["Solicitation analysis & strategy", "Proposal writing & document prep", "Weekly progress updates & portal delivery"],
+      "We prepare and submit your complete GSA MAS offer in 30 days or less. Our \"Holy Trinity\" review — Admin, Technical, and Pricing — catches every issue before the Contracting Officer sees it. Most clients receive their award in 4–6 months.",
+    features: ["Eligibility review & SIN selection", "Complete document preparation & eOffer build", "Holy Trinity quality audit", "45-day submission guarantee"],
     hash: "#submission",
   },
   {
     icon: Shield,
-    title: "GSA Schedule Contract Management",
+    title: "Annual Contract Management",
+    tagline: "Hands-off compliance. Cancel anytime.",
     description:
-      "Ongoing GSA MAS contract compliance and management support to keep your schedule healthy, compliant, and positioned for revenue growth year-round.",
-    features: ["Compliance monitoring & reporting", "Catalog & pricing updates", "Dedicated account management"],
+      "Maintaining a GSA Schedule takes 10+ hours a month. We handle every modification, sales report, and compliance deadline so you never risk penalties or contract cancellation. One dedicated account manager. No lock-in.",
+    features: ["Monthly/quarterly IFF sales reporting", "All contract modifications (admin, technical, major)", "FCP catalog maintenance & mass mods", "Option year renewal management"],
     hash: "#management",
   },
   {
     icon: Rocket,
-    title: "New GSA Vendor Support",
+    title: "New Vendor Onboarding",
+    tagline: "From award to operational in weeks.",
     description:
-      "Structured onboarding for first-time GSA Schedule holders — get your team operational on GSA Advantage, eBuy, and FCP with confidence.",
-    features: ["GSA platform training", "Launch roadmap & milestones", "Hands-on onboarding support"],
+      "Just got your GSA Schedule? We handle your FCP Catalog Baseline upload, walk you through every GSA platform 1-on-1, and include 90 days of complimentary contract management so nothing falls through the cracks.",
+    features: ["Full FCP Catalog Baseline upload", "1-on-1 GSA Advantage, eBuy & FCP training", "Sales reporting walkthrough", "90-day contract management included"],
     hash: "#new-vendor",
   },
   {
     icon: FileText,
-    title: "FCP Catalog Baseline Setup",
+    title: "FCP Catalog Baseline",
+    tagline: "Meet the 30-day GSA mandate.",
     description:
-      "Accurate FCP catalog setup and validation to meet GSA requirements, avoid mod rejections, and prevent costly delays.",
-    features: ["Catalog formatting & structure", "Pricing QA & compliance checks", "GSA requirement validation"],
+      "SIP is retired. Without an FCP Baseline Upload, your products are invisible on GSA Advantage — agencies can't find or buy from you. We upload your catalog within the mandated 30-day window and ensure every line item is compliant.",
+    features: ["Full FCP Baseline catalog upload", "Product listing & pricing QA", "SIN & product issue resolution", "30-day delivery guarantee"],
     hash: "#fcp",
   },
 ];
 
-const seoTopics = [
+const differentiators = [
   {
-    icon: Building2,
-    title: "What Is a GSA Schedule?",
-    description:
-      "A GSA Schedule (also called a GSA MAS Contract) is a long-term governmentwide contract that lets federal agencies purchase your products and services at pre-negotiated prices. It's the most common way businesses enter the federal marketplace.",
-    link: "/information/vehicles",
+    icon: BadgeCheck,
+    stat: "98%",
+    label: "Approval Rate",
+    detail: "Nearly every client we submit gets awarded. Our Holy Trinity review catches CO concerns before submission — that's the difference.",
   },
   {
-    icon: Target,
-    title: "GSA MAS Contract Eligibility",
-    description:
-      "To qualify for a GSA MAS Contract, your business must demonstrate past performance, financial stability, and compliance with the Trade Agreements Act. We help you assess readiness and close any gaps before you submit.",
-    link: "/services/gsa-contractors#submission",
+    icon: Clock,
+    stat: "4–6 mo",
+    label: "Average Award Time",
+    detail: "The industry average is 12+ months. We cut that in half with an accelerated process built on 15+ years of GSA experience.",
   },
   {
-    icon: TrendingUp,
-    title: "GSA Schedule vs. Other Vehicles",
-    description:
-      "GSA Schedules offer streamlined ordering for agencies, lower competition barriers, and recurring revenue. Compared to open-market bids, a GSA MAS Contract positions you for faster, more predictable federal sales.",
-    link: "/information/vehicles",
+    icon: Star,
+    stat: "45-Day",
+    label: "Submission Guarantee",
+    detail: "We commit to preparing your complete GSA MAS offer in 30 days or less, or we work for free until it's done. No other consultant offers this.",
   },
   {
-    icon: Globe,
-    title: "Selling to the Federal Government",
-    description:
-      "The federal government spends over $600B annually on contracts. A GSA Schedule gives your business direct access to this market — but the application process is complex. We simplify every step.",
-    link: "/services/gsa-contractors",
+    icon: Users,
+    stat: "80+",
+    label: "Active Clients",
+    detail: "From first-time vendors to established contractors with $50M+ in federal revenue — we manage GSA Schedules across every SIN category.",
   },
-  {
-    icon: Briefcase,
-    title: "GSA Contract Compliance Requirements",
-    description:
-      "Maintaining a GSA MAS Contract requires ongoing compliance — from IFF payments and sales reporting to catalog accuracy and TAA adherence. Our management service keeps you covered year-round.",
-    link: "/services/gsa-contractors#management",
-  },
-  {
-    icon: Scale,
-    title: "GSA Schedule for Small Businesses",
-    description:
-      "Small businesses can leverage set-aside opportunities and the MAS pathway to win federal contracts without competing against large primes. We help you position your business for maximum advantage.",
-    link: "/services/gsa-contractors#new-vendor",
-  },
+];
+
+const homeFaqs = [
+  { question: "How long does it take to get a GSA Schedule?", answer: "With our accelerated process, most clients receive their GSA Schedule within 4–6 months. The industry average is 12+ months. We achieve this through our 'Holy Trinity' review that anticipates CO concerns before submission." },
+  { question: "What are the minimum qualifications for a GSA MAS Contract?", answer: "You need 2 years of corporate experience, relevant past performance (typically 3–5 projects), and financial viability demonstrated through tax returns and financial statements. Specific requirements vary by SIN category." },
+  { question: "What's the difference between MAS and OASIS+?", answer: "MAS (Multiple Award Schedule) is GSA's primary vehicle for commercial products and services. OASIS+ is a specialized IDIQ for professional services requiring complex statements of work. We can help determine which is right for you." },
+  { question: "What are the ongoing requirements after GSA award?", answer: "Monthly or quarterly IFF sales reporting via 72A, 0.75% Industrial Funding Fee remittance, SAM & DSBS registration maintenance, FCP catalog pricing updates, contract modifications (admin, technical, and major), mass modification responses, and continued compliance monitoring. Our Contract Management service handles all of this." },
+  { question: "Can you help if I already have a GSA Schedule?", answer: "Absolutely. We provide ongoing Contract Management for existing holders — modifications, sales reporting, catalog updates, and compliance support." },
 ];
 
 const fade = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } };
 
 export default function Home() {
+  const schema = [
+    localBusinessSchema(),
+    faqPageSchema(homeFaqs),
+    breadcrumbSchema([
+      { name: "Home", url: "https://gsamanagers.com/" },
+    ]),
+  ];
+
   return (
     <div className="bg-surface selection:bg-brand/20 selection:text-ink">
-      <Helmet>
-        <title>GSA Schedule Consultants | GSA MAS Contract Assistance | {BRAND.name}</title>
-        <meta
-          name="description"
-          content="Expert GSA Schedule consulting and GSA MAS Contract assistance. We help businesses obtain, manage, and grow their GSA Schedule with 98% approval rate. Submission support, contract management, and compliance services."
-        />
-        <meta
-          name="keywords"
-          content="GSA Schedule, GSA MAS Contract, GSA Schedule consultants, GSA Schedule assistance, GSA Multiple Award Schedule, GSA contract management, federal contracting, GSA Advantage, GSA submission help, GSA Schedule application"
-        />
-        <link rel="canonical" href="https://gsamanagers.com/" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            name: BRAND.name,
-            description: "Expert GSA Schedule consulting and GSA MAS Contract assistance for businesses seeking federal contracts.",
-            url: "https://gsamanagers.com/",
-            telephone: BRAND.phone,
-            email: BRAND.email,
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Tampa",
-              addressRegion: "FL",
-              addressCountry: "US",
-            },
-            areaServed: "US",
-            serviceType: ["GSA Schedule Consulting", "GSA MAS Contract Assistance", "Federal Contract Management"],
-          })}
-        </script>
-      </Helmet>
+      <SEO
+        title="GSA Schedule Consultants | GSA MAS Contract Assistance | GSA Managers"
+        description="Expert GSA Schedule consulting and GSA MAS Contract assistance. We help businesses obtain, manage, and grow their GSA Schedule with 98% approval rate. Submission support, contract management, and compliance services."
+        canonical="/"
+        keywords={[
+          "GSA Schedule",
+          "GSA MAS Contract",
+          "GSA Schedule consultants",
+          "GSA Schedule assistance",
+          "GSA Multiple Award Schedule",
+          "GSA contract management",
+          "federal contracting",
+          "GSA Advantage",
+          "GSA submission help",
+          "GSA Schedule application",
+          "GSA Schedule Tampa",
+          "GSA Schedule Florida",
+          "GSA consultants near me",
+          "federal contracting help",
+          "government contract consultants",
+          "SAM.gov registration help",
+          "SBA certification help",
+          "GSA proposal writing",
+          "GSA compliance services",
+          "GSA catalog management",
+          "GSA FCP upload",
+          "GSA modification help",
+          "GSA sales reporting",
+          "GSA IFF reporting",
+          "GSA contract renewal",
+          "GSA option year",
+          "GSA small business",
+          "GSA set-aside",
+          "GSA 8(a)",
+          "GSA WOSB",
+          "GSA SDVOSB",
+          "GSA HUBZone",
+        ]}
+        schema={schema}
+        city="Tampa"
+        state="Florida"
+        geoRegion="US-FL"
+        geoPlacename="Tampa, Florida, United States"
+      />
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden pt-28 pb-20 lg:pt-40 lg:pb-32">
@@ -150,30 +163,31 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cta/10 border border-cta/20 mb-8">
               <Zap size={14} className="text-cta" />
               <span className="text-xs font-semibold uppercase tracking-wide text-cta">
-                GSA Schedule & MAS Contract Experts
+                98% Approval Rate — 45-Day Submission Guarantee
               </span>
             </div>
 
             <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-              Get Your GSA Schedule.
+              We get businesses on the
               <span className="block mt-2 text-cta">
-                Keep It Compliant. Grow Federal Revenue.
+                GSA Schedule. Fast.
               </span>
             </h1>
 
             <p className="mt-8 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl mx-auto">
-              We help businesses obtain, manage, and maximize their GSA MAS Contract — from first-time
-              GSA Schedule submissions to ongoing compliance and catalog management.
+              Most consultants take 12+ months. We submit your complete GSA MAS offer in 30 days
+              and get you awarded in 4–6 months — with a 98% approval rate. Then we keep you
+              compliant so you actually make money from it.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <LinkButton href="/services/gsa-contractors" size="lg" className="shadow-soft hover:shadow-md transition-shadow">
-                Explore GSA Services
+                See How We Do It
                 <ArrowRight size={18} className="ml-2" />
               </LinkButton>
               <LinkButton href={LINKS.booking} target="_blank" rel="noreferrer" variant="secondary" size="lg" className="bg-white">
                 <Phone size={18} className="mr-2 text-ink-light" />
-                Free GSA Strategy Call
+                Free Strategy Call
               </LinkButton>
             </div>
           </motion.div>
@@ -185,15 +199,16 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
-            {[
-              { value: "98%", label: "Approval Rate" },
-              { value: "4–6 mo", label: "Avg. Award Time" },
-              { value: "80+", label: "Active Clients" },
-              { value: "15+", label: "Years of Experience" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="font-display text-2xl font-bold text-ink">{stat.value}</div>
-                <div className="text-sm text-ink-light mt-1">{stat.label}</div>
+            {differentiators.map((item) => (
+              <div key={item.label} className="text-center group cursor-default">
+                <div className="flex items-center justify-center gap-1.5 mb-1">
+                  <item.icon size={16} className="text-cta" />
+                  <div className="font-display text-2xl font-bold text-ink">{item.stat}</div>
+                </div>
+                <div className="text-sm text-ink-light mt-1">{item.label}</div>
+                <div className="text-xs text-ink-muted mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 max-w-[180px] mx-auto leading-snug hidden md:block">
+                  {item.detail}
+                </div>
               </div>
             ))}
           </motion.div>
@@ -211,13 +226,13 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="max-w-2xl"
             >
-              <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">GSA Schedule Services</p>
+              <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">What We Do</p>
               <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-                Full-spectrum GSA MAS Contract support.
+                One GSA Schedule. Four ways we make it work for you.
               </h2>
               <p className="mt-6 text-ink-light text-lg leading-relaxed">
-                From obtaining your first GSA Schedule to managing ongoing compliance, every service is designed
-                to help you win and grow federal revenue.
+                Whether you need to get on the Schedule, stay compliant, onboard your team, or fix your catalog —
+                pick the service that fits. No upsell. No lock-in.
               </p>
             </motion.div>
             <motion.div
@@ -227,7 +242,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <LinkButton href="/services/gsa-contractors" variant="secondary" className="bg-surface">
-                View Full Service Details
+                Full Service Details & Gantt Charts
               </LinkButton>
             </motion.div>
           </div>
@@ -250,6 +265,10 @@ export default function Home() {
                         <svc.icon size={26} className="text-cta group-hover:text-white transition-colors" />
                       </div>
 
+                      <div className="mb-2">
+                        <span className="text-xs font-bold uppercase tracking-wider text-cta">{svc.tagline}</span>
+                      </div>
+
                       <h3 className="font-display text-2xl font-bold text-ink mb-3 group-hover:text-cta transition-colors">
                         {svc.title}
                       </h3>
@@ -266,7 +285,7 @@ export default function Home() {
                       </div>
 
                       <span className="inline-flex items-center gap-2 text-sm font-bold text-ink group-hover:text-cta transition-colors mt-auto">
-                        Learn more
+                        See timeline & details
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                       </span>
                     </div>
@@ -278,7 +297,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SEO CONTENT: GSA SCHEDULE KNOWLEDGE ── */}
+      {/* ── HOW WE'RE DIFFERENT ── */}
       <section className="bg-surface py-24 lg:py-32 relative">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
@@ -289,40 +308,43 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">GSA Schedule Resources</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Why We Win</p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              Understanding GSA Schedules & MAS Contracts
+              Three things no other GSA consultant does.
             </h2>
-            <p className="mt-6 text-ink-light text-lg leading-relaxed">
-              The GSA Multiple Award Schedule (MAS) is the most widely used contract vehicle for selling to the
-              federal government. Here's what you need to know.
-            </p>
           </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {seoTopics.map((topic, idx) => (
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              {
+                icon: Shield,
+                title: "The Holy Trinity Review",
+                desc: "Before we submit, your offer goes through three independent reviews — Admin, Technical, and Pricing. Each reviewer looks for what a Contracting Officer would flag. This is why our approval rate is 98%, not 60%.",
+              },
+              {
+                icon: Clock,
+                title: "45-Day Submission Guarantee",
+                desc: "We commit to preparing your complete GSA MAS offer in 30 days or less. If we miss the deadline, we work for free until it's done. No other GSA consultant puts their money where their mouth is.",
+              },
+              {
+                icon: MessageSquare,
+                title: "No Black Box Process",
+                desc: "Weekly updates, a shared project tracker, and a direct line to your specialist. You always know exactly where your submission stands and what's happening next. No chasing. No guessing.",
+              },
+            ].map((item, idx) => (
               <motion.div
-                key={topic.title}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: idx * 0.06, duration: 0.5 }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="rounded-2xl border border-warm-border bg-white p-8 transition-all duration-300 hover:shadow-elevated hover:-translate-y-1"
               >
-                <Link to={topic.link} className="group block h-full">
-                  <div className="h-full rounded-2xl border border-warm-border bg-white p-8 transition-all duration-300 hover:shadow-elevated hover:border-cta/30 hover:-translate-y-1">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cta/10 border border-cta/15 mb-5">
-                      <topic.icon size={22} className="text-cta" />
-                    </div>
-                    <h3 className="font-display text-lg font-bold text-ink mb-3 group-hover:text-cta transition-colors">
-                      {topic.title}
-                    </h3>
-                    <p className="text-ink-light text-sm leading-relaxed mb-5">{topic.description}</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-cta">
-                      Read more
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </Link>
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cta/10 border border-cta/15 mb-6">
+                  <item.icon size={26} className="text-cta" />
+                </div>
+                <h3 className="font-display text-xl font-bold text-ink mb-3">{item.title}</h3>
+                <p className="text-ink-light leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -343,12 +365,12 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-3xl mx-auto mb-20"
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Our Process</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">How It Works</p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              Your GSA Schedule in three phases.
+              From zero to GSA Schedule in three phases.
             </h2>
             <p className="mt-6 text-ink-light text-lg">
-              A structured, transparent process designed to get your GSA MAS Contract awarded — and keep it compliant long-term.
+              A structured, transparent process. No black box. You'll know where you stand every week.
             </p>
           </motion.div>
 
@@ -358,18 +380,18 @@ export default function Home() {
             {[
               {
                 step: "01",
-                title: "GSA Readiness & Strategy",
-                desc: "We assess your eligibility, analyze the right GSA Schedule SINs, and build a roadmap tailored to your business before any paperwork begins.",
+                title: "Readiness & Strategy",
+                desc: "We assess your eligibility, identify the right SINs, and build a roadmap tailored to your business. No paperwork starts until we know you'll qualify.",
               },
               {
                 step: "02",
                 title: "MAS Proposal Execution",
-                desc: "Our team writes, assembles, and submits your GSA Schedule proposal — handling every document, pricing narrative, and portal requirement.",
+                desc: "Our team writes, assembles, and submits your complete GSA offer — handling every document, pricing narrative, and portal requirement. 30 days, guaranteed.",
               },
               {
                 step: "03",
-                title: "Award & Ongoing Compliance",
-                desc: "After your GSA MAS Contract is awarded, we keep you compliant with reporting, catalog updates, and growth strategy support.",
+                title: "Award & Compliance",
+                desc: "After award, we keep your Schedule healthy — IFF reporting, catalog updates, mods, and option year renewals. You focus on selling; we handle the rest.",
               },
             ].map((item, idx) => (
               <motion.div
@@ -391,7 +413,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── DIFFERENTIATORS ── */}
+      {/* ── SOCIAL PROOF ── */}
       <section className="bg-ink py-24 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_90%,rgba(216,137,58,0.15),transparent)]" />
@@ -404,28 +426,28 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-16"
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Why GSA Managers</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">By the Numbers</p>
             <h2 className="font-display text-3xl font-bold sm:text-4xl tracking-tight text-white">
-              GSA Schedule expertise that delivers results.
+              We've done this before. A lot.
             </h2>
           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-3">
             {[
               {
-                icon: Sparkles,
-                label: "Transparent Communication",
-                detail: "Weekly updates, clear milestones, and a dedicated point of contact so your team always knows where your GSA Schedule stands.",
+                stat: "80+",
+                label: "Active GSA Schedules Managed",
+                detail: "From first-time vendors to contractors with $50M+ in federal revenue — across every SIN category.",
               },
               {
-                icon: Shield,
-                label: "Compliance-First Process",
-                detail: "Every step is built around GSA requirements — reducing risk, avoiding mod rejections, and keeping your MAS Contract healthy.",
+                stat: "98%",
+                label: "Submission Approval Rate",
+                detail: "The industry hovers around 60%. Our Holy Trinity review catches what others miss — that's the 38% difference.",
               },
               {
-                icon: Users,
-                label: "Dedicated GSA Support",
-                detail: "A responsive team that treats your federal revenue goals as their own. 80+ active clients trust us with their GSA Schedules.",
+                stat: "15+",
+                label: "Years of GSA Experience",
+                detail: "We've been through every GSA policy change, platform migration, and compliance shift. There's no scenario we haven't handled.",
               },
             ].map((item, idx) => (
               <motion.div
@@ -434,12 +456,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="rounded-2xl bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm p-8 text-center md:text-left"
+                className="rounded-2xl bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm p-8 text-center"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cta/20 mb-5 mx-auto md:mx-0">
-                  <item.icon className="text-cta" size={22} />
-                </div>
-                <h4 className="font-display text-xl font-semibold text-white mb-3">{item.label}</h4>
+                <div className="font-display text-5xl font-bold text-cta mb-3">{item.stat}</div>
+                <h4 className="font-display text-lg font-semibold text-white mb-3">{item.label}</h4>
                 <p className="text-white/60 leading-relaxed text-sm">{item.detail}</p>
               </motion.div>
             ))}
@@ -462,25 +482,27 @@ export default function Home() {
 
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
-                Ready to get your GSA Schedule or MAS Contract?
+                Most consultants take a year. We take 30 days.
               </h2>
               <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
-                Let&apos;s map a practical path for your GSA goals — from first submission to long-term contract
-                compliance and federal revenue growth.
+                Let's talk about your business and whether a GSA Schedule makes sense. No pitch. No pressure.
+                Just a straight answer from someone who's done this 80+ times.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <LinkButton href="/services/gsa-contractors" size="lg" className="shadow-md hover:shadow-lg">
-                  Explore GSA Services
+                  See the Full Process
                   <ArrowRight size={18} className="ml-2" />
                 </LinkButton>
                 <LinkButton
-                  href="/contact"
+                  href={LINKS.booking}
+                  target="_blank"
+                  rel="noreferrer"
                   size="lg"
                   variant="secondary"
                   className="bg-white"
                 >
                   <Phone size={18} className="mr-2 text-ink-light" />
-                  Contact Us
+                  Book a Free Call
                 </LinkButton>
               </div>
             </div>

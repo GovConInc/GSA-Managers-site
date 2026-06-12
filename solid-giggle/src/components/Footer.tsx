@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-ink text-white">
       <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2.5">
               <img
@@ -37,6 +37,22 @@ export default function Footer() {
               <Link to="/about" className="block text-white/60 hover:text-white transition-colors">About Us</Link>
               <Link to="/contact" className="block text-white/60 hover:text-white transition-colors">Contact</Link>
               <Link to="/order" className="block text-white/60 hover:text-white transition-colors">Get Started</Link>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-medium uppercase tracking-widest text-white/30 mb-4">Locations</p>
+            <div className="space-y-3 text-sm">
+              <Link to="/locations/tampa-fl" className="block text-white/60 hover:text-white transition-colors">Tampa, FL</Link>
+              <Link to="/locations/washington-dc" className="block text-white/60 hover:text-white transition-colors">Washington, DC</Link>
+              <Link to="/locations/orlando-fl" className="block text-white/60 hover:text-white transition-colors">Orlando, FL</Link>
+              <Link to="/locations/miami-fl" className="block text-white/60 hover:text-white transition-colors">Miami, FL</Link>
+              <Link to="/locations/atlanta-ga" className="block text-white/60 hover:text-white transition-colors">Atlanta, GA</Link>
+              <Link to="/locations/dallas-tx" className="block text-white/60 hover:text-white transition-colors">Dallas, TX</Link>
+              <Link to="/locations/san-diego-ca" className="block text-white/60 hover:text-white transition-colors">San Diego, CA</Link>
+              <Link to="/locations/norfolk-va" className="block text-white/60 hover:text-white transition-colors">Norfolk, VA</Link>
+              <Link to="/locations/huntsville-al" className="block text-white/60 hover:text-white transition-colors">Huntsville, AL</Link>
+              <Link to="/locations/colorado-springs-co" className="block text-white/60 hover:text-white transition-colors">Colorado Springs, CO</Link>
             </div>
           </div>
 
