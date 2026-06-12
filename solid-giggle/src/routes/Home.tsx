@@ -116,16 +116,12 @@ export default function Home() {
           "GSA Schedule",
           "GSA MAS Contract",
           "GSA Schedule consultants",
-          "GSA Schedule assistance",
           "GSA Multiple Award Schedule",
           "GSA contract management",
           "federal contracting",
           "GSA Advantage",
           "GSA submission help",
           "GSA Schedule application",
-          "GSA Schedule Tampa",
-          "GSA Schedule Florida",
-          "GSA consultants near me",
           "federal contracting help",
           "government contract consultants",
           "SAM.gov registration help",
@@ -168,16 +164,16 @@ export default function Home() {
             </div>
 
             <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-              We get businesses on the
+              Your GSA Schedule —
               <span className="block mt-2 text-cta">
-                GSA Schedule. Fast.
+                submitted in 30 days, awarded in months.
               </span>
             </h1>
 
             <p className="mt-8 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl mx-auto">
-              Most consultants take 12+ months. We submit your complete GSA MAS offer in 30 days
-              and get you awarded in 4–6 months — with a 98% approval rate. Then we keep you
-              compliant so you actually make money from it.
+              The industry average is 12+ months. We prepare and submit your complete GSA MAS offer
+              in 30 days or less, with a 98% approval rate. After award, we handle compliance so
+              your team can focus on selling.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
@@ -228,11 +224,11 @@ export default function Home() {
             >
               <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">What We Do</p>
               <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-                One GSA Schedule. Four ways we make it work for you.
+                Four services. One GSA Schedule.
               </h2>
               <p className="mt-6 text-ink-light text-lg leading-relaxed">
                 Whether you need to get on the Schedule, stay compliant, onboard your team, or fix your catalog —
-                pick the service that fits. No upsell. No lock-in.
+                pick the service that fits.
               </p>
             </motion.div>
             <motion.div
@@ -310,7 +306,7 @@ export default function Home() {
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Why We Win</p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              Three things no other GSA consultant does.
+              What sets our process apart.
             </h2>
           </motion.div>
 
@@ -324,12 +320,12 @@ export default function Home() {
               {
                 icon: Clock,
                 title: "45-Day Submission Guarantee",
-                desc: "We commit to preparing your complete GSA MAS offer in 30 days or less. If we miss the deadline, we work for free until it's done. No other GSA consultant puts their money where their mouth is.",
+                desc: "We commit to preparing your complete GSA MAS offer in 30 days or less. If we miss the deadline, we work for free until it's done. No other GSA consultant offers this.",
               },
               {
                 icon: MessageSquare,
                 title: "No Black Box Process",
-                desc: "Weekly updates, a shared project tracker, and a direct line to your specialist. You always know exactly where your submission stands and what's happening next. No chasing. No guessing.",
+                desc: "Weekly updates, a shared project tracker, and a direct line to your specialist. You always know exactly where your submission stands and what's happening next.",
               },
             ].map((item, idx) => (
               <motion.div
@@ -428,7 +424,7 @@ export default function Home() {
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">By the Numbers</p>
             <h2 className="font-display text-3xl font-bold sm:text-4xl tracking-tight text-white">
-              We've done this before. A lot.
+              15+ years. 80+ clients. One focus.
             </h2>
           </motion.div>
 
@@ -482,11 +478,11 @@ export default function Home() {
 
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
-                Most consultants take a year. We take 30 days.
+                Ready to get on the GSA Schedule?
               </h2>
               <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
-                Let's talk about your business and whether a GSA Schedule makes sense. No pitch. No pressure.
-                Just a straight answer from someone who's done this 80+ times.
+                Let's discuss whether a GSA MAS Contract fits your business. No pitch. No obligation.
+                Just a straight assessment from a team that's done this 80+ times.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <LinkButton href="/services/gsa-contractors" size="lg" className="shadow-md hover:shadow-lg">
