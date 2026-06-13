@@ -1,114 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <!-- Core Pages -->
-  <url>
-    <loc>https://gsamanagers.com/</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/services/gsa-contractors</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/services/programs</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/services/compliance-capture</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/services/proposal-writing</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/about</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/contact</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/enroll</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/order</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- Information Hub -->
-  <url>
-    <loc>https://gsamanagers.com/information/vehicles</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/information/bids</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/information/sam</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/information/proposals</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/information/certification-data</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://gsamanagers.com/information/search-contracts</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url><loc>https://gsamanagers.com/</loc></url>
+	<url><loc>https://gsamanagers.com/services</loc></url>
+	<url><loc>https://gsamanagers.com/services/gsa-contractors</loc></url>
+	<url><loc>https://gsamanagers.com/services/programs</loc></url>
+	<url><loc>https://gsamanagers.com/services/compliance-capture</loc></url>
+	<url><loc>https://gsamanagers.com/services/proposal-writing</loc></url>
+	<url><loc>https://gsamanagers.com/gsa-contract-management</loc></url>
+	<url><loc>https://gsamanagers.com/gsa-modification-consultant</loc></url>
+	<url><loc>https://gsamanagers.com/fcp-transition-service</loc></url>
+	<url><loc>https://gsamanagers.com/gsa-schedule-submission</loc></url>
+	<url><loc>https://gsamanagers.com/pricing</loc></url>
+	<url><loc>https://gsamanagers.com/intelligence</loc></url>
+	<url><loc>https://gsamanagers.com/intelligence/fas-catalog-platform-transition-guide</loc></url>
+	<url><loc>https://gsamanagers.com/intelligence/gsa-modification-rejected</loc></url>
+	<url><loc>https://gsamanagers.com/intelligence/in-house-vs-outsourced-gsa-management</loc></url>
+	<url><loc>https://gsamanagers.com/resources/fcp-compliance-checklist</loc></url>
+	<url><loc>https://gsamanagers.com/about</loc></url>
+	<url><loc>https://gsamanagers.com/contact</loc></url>
+	<url><loc>https://gsamanagers.com/order</loc></url>
+	<url><loc>https://gsamanagers.com/enroll</loc></url>
 </urlset>

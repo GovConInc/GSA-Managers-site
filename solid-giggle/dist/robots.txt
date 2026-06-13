@@ -1,18 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
 Sitemap: https://gsamanagers.com/sitemap.xml
-
-# Crawl rate
-Crawl-delay: 1
-
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /p/
-
-# Allow important assets
-Allow: /sitemap.xml
-Allow: /logo.svg
-Allow: /favicon.svg
-Allow: /og-image.jpg

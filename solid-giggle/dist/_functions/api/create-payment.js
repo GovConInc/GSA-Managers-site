@@ -60,6 +60,11 @@ export async function onRequestPost(context) {
     // ── Build order description ──
     var serviceNames = {
       "test-payment": "Test Connection",
+      "fcp-transition": "FCP Transition & Compliance Assurance",
+      "standalone-mod": "Standalone GSA Modification",
+      "core-maintenance": "GSA Core Maintenance / Back Office (6 Months)",
+      "complete-management": "GSA Complete Management (12 Months)",
+      // Legacy ids kept for backward compatibility
       "fcp-baseline": "FCP Catalog Baseline",
       "new-vendor": "New Vendor Special",
       "gsa-submission": "GSA Schedule Submission",
