@@ -150,7 +150,7 @@ export default function Footer() {
               rel="noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-lg bg-cta text-white px-4 py-2.5 text-sm font-medium transition hover:bg-cta-hover"
             >
-              Book a Free Strategy Call
+              Schedule a Consultation
               <ArrowUpRight size={14} />
             </a>
           </div>
@@ -159,13 +159,20 @@ export default function Footer() {
 
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/10">
-        <div className="mx-auto w-full max-w-7xl px-6 py-5 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="text-xs text-white/30">
-            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+        <div className="mx-auto w-full max-w-7xl px-6 py-5 lg:px-8 flex flex-col items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 w-full">
+            <div className="text-xs text-white/30">
+              &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+            </div>
+            <div className="text-xs text-white/40 font-medium">
+              Powered by GSA Support Center LLC
+            </div>
           </div>
-          <div className="text-xs text-white/40 font-medium">
-            Powered by GSA Support Center LLC
-          </div>
+          <p className="text-[10px] text-white/25 text-center max-w-2xl leading-relaxed">
+            {BRAND.name} is a private consulting firm and is not affiliated with,
+            endorsed by, or part of the U.S. General Services Administration (GSA)
+            or any other government agency.
+          </p>
         </div>
       </div>
     </footer>

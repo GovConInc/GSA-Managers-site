@@ -91,7 +91,7 @@ export default function FcpChecklist() {
 
       {/* ── Header ── */}
       <section className="relative overflow-hidden pt-16 pb-12 lg:pt-24 lg:pb-16 print:pt-6 print:pb-4">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_30%_20%,#FEF3E2,transparent_60%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_30%_20%,#E8ECF2,transparent_60%)]" />
         <div className="mx-auto w-full max-w-3xl px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cta/10 border border-cta/20 mb-5 print:hidden">

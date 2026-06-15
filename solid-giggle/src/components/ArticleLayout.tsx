@@ -128,7 +128,7 @@ export default function ArticleLayout({
 
       {/* Header */}
       <section className="relative overflow-hidden pt-16 pb-12 lg:pt-24 lg:pb-16">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_30%_20%,#FEF3E2,transparent_60%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_30%_20%,#E8ECF2,transparent_60%)]" />
         <div className="mx-auto w-full max-w-3xl px-6 lg:px-8">
           <Link
             to="/intelligence"

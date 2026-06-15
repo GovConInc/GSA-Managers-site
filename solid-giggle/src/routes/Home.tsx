@@ -293,8 +293,8 @@ export default function Home() {
           HERO
          ══════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden pt-20 pb-20 lg:pt-28 lg:pb-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_30%_20%,#FEF3E2,transparent_60%)]" />
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_40%_at_80%_60%,#E8F0FE,transparent_60%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_30%_20%,#E8ECF2,transparent_60%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_40%_at_80%_60%,#DCE3EE,transparent_60%)]" />
 
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
           <motion.div
@@ -449,7 +449,7 @@ export default function Home() {
          ══════════════════════════════════════════════════════════════ */}
       <section className="bg-ink py-20 lg:py-28 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_90%,rgba(216,137,58,0.15),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_90%,rgba(182,45,62,0.15),transparent)]" />
 
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 relative z-10">
           <motion.div
@@ -826,7 +826,7 @@ export default function Home() {
             className="rounded-3xl bg-ink p-10 md:p-16 text-center relative overflow-hidden"
           >
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_40%,rgba(216,137,58,0.12),transparent)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_40%,rgba(182,45,62,0.12),transparent)]" />
 
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl leading-tight">

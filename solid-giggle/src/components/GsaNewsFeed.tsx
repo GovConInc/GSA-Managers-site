@@ -233,7 +233,7 @@ export default function GsaNewsFeed() {
   return (
     <section className="bg-ink py-24 lg:py-32 relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_80%_20%,rgba(216,137,58,0.1),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_80%_20%,rgba(182,45,62,0.1),transparent)]" />
 
       <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 relative z-10">
         {/* Header */}

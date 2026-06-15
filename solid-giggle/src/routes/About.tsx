@@ -133,7 +133,7 @@ export default function About() {
       {/* CTA */}
       <section className="bg-ink py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_90%,rgba(216,137,58,0.12),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_90%,rgba(182,45,62,0.12),transparent)]" />
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 text-center relative z-10">
           <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
             Have questions? Let's talk.

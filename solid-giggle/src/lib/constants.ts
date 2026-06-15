@@ -2,7 +2,7 @@ export const BRAND = {
   name: "GSA Managers",
   tagline: "GSA Schedule Management, Modifications & Compliance",
   phone: "(813) 665-0308",
-  email: "Info@GSAManagers.com",
+  email: "info@gsamanager.com",
   location: "Tampa, FL",
   founder: "Sean Conway",
   url: "https://gsamanagers.com",
