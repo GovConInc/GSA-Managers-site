@@ -81,7 +81,7 @@ export default function FcpChecklist() {
   return (
     <div className="bg-surface selection:bg-brand/20 selection:text-ink">
       <Helmet>
-        <title>The 2026 GSA Compliance & FCP Survival Checklist | {BRAND.name}</title>
+        <title>2026 GSA Compliance & FCP Readiness Checklist | {BRAND.name}</title>
         <meta
           name="description"
           content="The exact 28-point checklist we use to audit GSA Schedules: FCP transition readiness, catalog accuracy, TAA documentation, sales reporting, and audit-readiness. Free, printable."
@@ -99,11 +99,11 @@ export default function FcpChecklist() {
               <span className="text-xs font-bold uppercase tracking-wide text-cta">Free Resource</span>
             </div>
             <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-[1.15]">
-              The 2026 GSA Compliance &amp; FCP Survival Checklist
+              2026 GSA Compliance &amp; FCP Readiness Checklist
             </h1>
             <p className="mt-5 text-lg text-ink-light leading-relaxed">
-              The exact {total}-point assessment we run on every schedule we audit. Work through it
-              honestly — every unchecked box is a finding an auditor can make before you do.
+              The {total}-point assessment we run on every schedule we manage. Every unchecked
+              box is a compliance gap a Contracting Officer can flag.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-4 print:hidden">
               <Button variant="secondary" onClick={() => window.print()} className="bg-white">
@@ -169,12 +169,11 @@ export default function FcpChecklist() {
             <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" />
             <div className="relative z-10">
               <h3 className="font-display text-xl font-bold text-white">
-                More unchecked boxes than you expected?
+                Too many gaps to fix internally?
               </h3>
               <p className="mt-3 text-white/70 text-sm leading-relaxed max-w-xl">
-                That&apos;s what the FCP Transition &amp; Compliance Assurance package exists for:
-                we execute your migration and resolve every finding on this list — $499 flat,
-                kickoff within one business day.
+                We handle the full FCP migration and resolve every compliance issue on this list.
+                $499 flat fee, kickoff within one business day.
               </p>
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <LinkButton href="/order?service=fcp-transition" className="shadow-md">
@@ -196,9 +195,9 @@ export default function FcpChecklist() {
 
       <div className="print:hidden">
         <ServiceFinalCta
-          title="Auditors check this list. Now you can check it first."
-          body="If working through it surfaced problems, the fastest path back to compliant is handing them to us — flat fee, guaranteed timelines."
-          primaryLabel="Secure My Schedule — $499"
+          title="Found issues? We fix them."
+          body="FCP migration and full compliance resolution. $499 flat, kickoff within one business day."
+          primaryLabel="Order FCP Transition — $499"
           primaryHref="/order?service=fcp-transition"
         />
       </div>

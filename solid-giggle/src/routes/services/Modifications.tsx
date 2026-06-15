@@ -265,7 +265,7 @@ export default function Modifications() {
 
       <ServiceFinalCta
         title="Get your modification moving today."
-        body="Because we handle the bureaucratic heavy lifting, your new products and services go live faster — meaning you start capturing that revenue immediately."
+        body="We prepare the documentation, pricing support, and narrative — then submit and track through approval. 14-day submission guarantee."
         primaryLabel="Buy a Standalone Mod — $2,999"
         primaryHref="/order?service=standalone-mod"
       />

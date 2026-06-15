@@ -110,8 +110,8 @@ export default function InHouseVsOutsourced() {
       </P>
 
       <ArticleCta
-        title="The math, as a checkout button."
-        body="Complete Management: every modification, every report, every deadline — handled for 12 months. $4,500 flat, or $375/month. No lock-in."
+        title="$4,500/year vs. $6,000–$12,000 in staff time."
+        body="Complete Management: every modification, every report, every deadline — 12 months, flat fee. $375/month option available. No lock-in."
         label="Start Complete Management"
         href="/order?service=complete-management"
         price="$4,500"
@@ -155,8 +155,8 @@ export default function InHouseVsOutsourced() {
       </P>
 
       <ArticleCta
-        title="Want a second opinion on your numbers?"
-        body="Book a free strategy call. Bring your schedule; we'll tell you honestly whether outsourcing pencils out for your situation."
+        title="Not sure which side you fall on?"
+        body="15-minute call. Bring your schedule details — we'll tell you straight whether outsourcing makes financial sense for your situation."
         label="Book a Free Call"
         href="https://calendar.app.google/EA6JzEhbNTH6AM6S8"
       />

@@ -34,9 +34,9 @@ export const OFFERS: Offer[] = [
     displayPrice: "$499",
     priceNote: "flat fee",
     badge: "Most Urgent",
-    hook: "The mandatory catalog migration — handled this week.",
+    hook: "SIP is retired. FCP is mandatory. We handle the migration.",
     description:
-      "We execute your mandatory FAS Catalog Platform (FCP) transition and audit your GSA Schedule to guarantee 100% compliance. Because we take on this immediate, complex heavy lifting, your team bypasses the administrative bottleneck and eliminates the risk of suspension. That means your schedule is instantly modernized, secured, and ready to sell.",
+      "We execute your full FCP catalog migration and audit your GSA Schedule for compliance. Your catalog goes live on GSA Advantage, your pricing is verified against your contract, and every line item passes validation.",
     features: [
       "Complete FCP catalog migration",
       "Full GSA Schedule compliance audit",
@@ -53,9 +53,9 @@ export const OFFERS: Offer[] = [
     priceCents: 2999_00,
     displayPrice: "$2,999",
     priceNote: "flat fee",
-    hook: "One major modification. Start to finish. Flawless.",
+    hook: "One major mod — prepared, submitted, tracked to completion.",
     description:
-      "We flawlessly execute your single major GSA modification from start to finish. Because we handle the bureaucratic heavy lifting, your team gets new products and services live on your schedule faster — meaning you start capturing that revenue immediately.",
+      "We prepare and submit one major GSA modification: new SINs, products, services, or pricing changes. Documentation, pricing support, CO communications — all included. Submitted within 14 days.",
     features: [
       "One major modification, end-to-end",
       "New SINs, products, or services added",
@@ -73,9 +73,9 @@ export const OFFERS: Offer[] = [
     displayPrice: "$1,499",
     priceNote: "6 months, total",
     monthlyOption: "or $250 / month",
-    hook: "Your GSA back office — taken over.",
+    hook: "6 months of GSA back-office coverage.",
     description:
-      "We take over your ongoing GSA back office and build your baseline revenue strategy. We handle all minor modifications and deliver targeted sales training. Because we secure your foundation, you stop losing ground and actively capture market share.",
+      "We handle all minor modifications, run three sales assessments, and deliver three training sessions over six months. Your team stops touching GSA admin work.",
     features: [
       "All minor modifications included",
       "3 sales assessments",
@@ -94,9 +94,9 @@ export const OFFERS: Offer[] = [
     priceNote: "12 months, total",
     monthlyOption: "or $375 / month",
     badge: "Best Value",
-    hook: "A dedicated GSA team for a full year — for $1,501 more than a single mod.",
+    hook: "Full-year management — $1,501 more than a single mod, unlimited mods included.",
     description:
-      "We act as your dedicated, end-to-end GSA management team for a full year. We execute all modifications, guarantee 14-day submissions, and deliver comprehensive training. Because we eliminate your red tape, your team focuses 100% on driving revenue.",
+      "Every major and minor modification, IFF reporting, FCP catalog maintenance, compliance monitoring, and CO communications — handled for 12 months. Dedicated PM, 14-day submission guarantee.",
     features: [
       "All major & minor modifications",
       "14-day submission guarantee",
@@ -113,9 +113,9 @@ export const OFFERS: Offer[] = [
     priceCents: 4995_00,
     displayPrice: "$4,995",
     priceNote: "starting at",
-    hook: "Not on the Schedule yet? We get you there.",
+    hook: "Full MAS submission — 45-day guarantee, 98% approval rate.",
     description:
-      "We prepare and submit your complete GSA MAS offer — every document, pricing narrative, and portal requirement — with a 45-day submission guarantee. Because we anticipate Contracting Officer concerns before you submit, 98% of our clients are approved.",
+      "We prepare and submit your complete GSA MAS offer: eligibility review, SIN selection, pricing narrative, eOffer portal build, and every required document. Submission-ready in 45 days.",
     features: [
       "Eligibility review & SIN selection",
       "Complete document preparation",
@@ -132,9 +132,9 @@ export const OFFERS: Offer[] = [
     priceCents: 1450_00,
     displayPrice: "$1,450",
     priceNote: "flat fee",
-    hook: "Just awarded? Get operational in weeks, not months.",
+    hook: "Just got your award? We make it operational.",
     description:
-      "We handle your FCP Catalog Baseline upload, train your team 1-on-1 on every GSA platform, and include 90 days of complimentary contract management. Because we run your activation, your first federal sale comes faster.",
+      "FCP catalog baseline upload, 1-on-1 training on GSA Advantage, eBuy, and sales reporting, plus 90 days of contract management included. You go from award letter to selling in weeks.",
     features: [
       "Full FCP catalog baseline upload",
       "1-on-1 training on all GSA platforms",
@@ -152,21 +152,21 @@ export const OFFERS: Offer[] = [
  */
 export const SERVICE_DICTIONARY: Record<string, string> = {
   "FCP Transition":
-    "We handle your complete FAS Catalog Platform migration from start to finish. Because we execute this mandatory shift, your team reclaims its bandwidth to focus entirely on winning bids.",
+    "Full FAS Catalog Platform migration — data prep, baseline upload, validation cycles, and GSA Advantage verification. Your catalog goes live and stays compliant.",
   "Compliance Review":
-    "We aggressively audit and secure your GSA Schedule to guarantee 100% compliance. That means you completely eliminate the risk of suspension while saving your team hundreds of administrative hours.",
+    "We audit your entire GSA Schedule against current requirements: SAM registration, mass mod status, catalog accuracy, reporting history, and TAA documentation.",
   "Major Modifications":
-    "We flawlessly execute the heavy lifting of adding new SINs, products, and services to your schedule. That means you actively expand your offerings and capture more market share without draining your internal resources.",
+    "New SINs, products, services, or pricing changes — we prepare the documentation, pricing support, and narrative, then submit and track through approval.",
   "Minor Modifications":
-    "We offload your tedious, ongoing administrative updates. Because we manage these seamless catalog changes, your schedule stays perfectly positioned for growth while saving you countless hours.",
+    "Address updates, POC changes, and routine catalog corrections. We handle the paperwork and portal submissions so your team doesn't have to.",
   "Sales Assessment":
-    "We analyze your current offerings and historical data to pinpoint exact revenue opportunities. That means your schedule is strategically positioned to maximize value and win more bids.",
+    "We review your current catalog, pricing position, and GSA sales history to identify where you're leaving federal revenue on the table.",
   "Sales Training":
-    "We equip your team with data-backed, tactical strategies to win more business. Because your team learns exactly how to navigate the market, you capture more market share and maximize your revenue potential.",
+    "Practical training on how to find and respond to GSA opportunities — eBuy, GSA Advantage positioning, and agency outreach.",
   "Admin Training":
-    "We train your team on the most efficient ways to handle reporting and compliance requirements. That means you eliminate bottlenecks entirely and stop wasting bandwidth on administrative red tape.",
+    "Hands-on training for IFF reporting, eMod submissions, FCP catalog updates, and compliance tracking so your team can handle the basics.",
   "14-Day Guarantee":
-    "We guarantee your modifications and updates are submitted within 14 days. Because speed wins deals, your schedule is optimized and ready to generate revenue faster.",
+    "Every modification we prepare is submitted within 14 days of kickoff. That's a guarantee, not an estimate.",
 };
 
 export const TIER1_OFFERS = OFFERS.filter((o) => o.tier === 1);

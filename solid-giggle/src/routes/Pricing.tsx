@@ -76,13 +76,12 @@ export default function Pricing() {
             className="max-w-3xl mx-auto text-center"
           >
             <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
-              Every price. Published.
-              <span className="block mt-2 text-cta">No sales call required.</span>
+              Flat rates. Published.
+              <span className="block mt-2 text-cta">Order online right now.</span>
             </h1>
             <p className="mt-7 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl mx-auto">
-              Other consultants make you book a discovery call to learn what anything costs.
-              Here&apos;s our entire price list — flat fees, guaranteed timelines, checkout online
-              in two clicks.
+              Most GSA consultants hide pricing behind a sales call.
+              Below is everything we charge — flat fees, guaranteed timelines, two-click checkout.
             </p>
             <TrustStrip className="mt-8" />
           </motion.div>
@@ -101,10 +100,10 @@ export default function Pricing() {
           <div className="mt-16">
             <div className="mb-8">
               <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-2">
-                Getting On — and Getting Live
+                New to GSA
               </p>
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-ink">
-                Not on the Schedule yet? Just awarded?
+                Need a schedule or just got one?
               </h3>
             </div>
             <div className="grid gap-8 md:grid-cols-2 max-w-5xl">
@@ -162,12 +161,12 @@ export default function Pricing() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-3xl mx-auto mb-14"
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">An Honest Answer</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Honest Assessment</p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl tracking-tight">
-              Should you even hire us?
+              Do you actually need us?
             </h2>
             <p className="mt-5 text-ink-light text-lg">
-              Sometimes DIY genuinely makes sense. Here&apos;s how to tell which side you&apos;re on.
+              Sometimes handling GSA in-house is the right call. Here's how to tell.
             </p>
           </motion.div>
 
@@ -198,11 +197,11 @@ export default function Pricing() {
                 ))}
               </div>
               <p className="mt-6 text-sm text-ink-muted leading-relaxed border-t border-warm-border pt-5">
-                If that&apos;s you — genuinely, keep it in-house. Bookmark our{" "}
+                If that describes you, handle it internally. Use our{" "}
                 <a href="/intelligence" className="font-semibold text-brand hover:underline">
                   Intelligence Hub
                 </a>{" "}
-                and come back when the workload outgrows the desk it sits on.
+                for guidance, and reach out when the workload outgrows internal capacity.
               </p>
             </div>
           </div>
@@ -221,8 +220,8 @@ export default function Pricing() {
       </section>
 
       <ServiceFinalCta
-        title="Found your fix? Start it today."
-        body="Checkout takes two minutes, kickoff happens within one business day, and every timeline above is guaranteed in writing."
+        title="Ready to order? Checkout takes two minutes."
+        body="Kickoff happens within one business day. Every timeline above is guaranteed in writing."
         primaryLabel="Go to Secure Checkout"
         primaryHref="/order"
       />

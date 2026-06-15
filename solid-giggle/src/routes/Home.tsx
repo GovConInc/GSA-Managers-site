@@ -25,117 +25,117 @@ import { LinkButton } from "../components/Button";
 import GsaNewsFeed from "../components/GsaNewsFeed";
 import { BRAND, LINKS, HERO_STATS, TRUST_POINTS } from "../lib/constants";
 
-/* ── Objection cards — written in the customer's voice, then answered ── */
+/* ── Objection cards ── */
 const objections = [
   {
-    objection: '"We don\'t have the bandwidth for this."',
-    answer: "We handle everything.",
+    objection: '"We don\'t have the bandwidth."',
+    answer: "We do all the work.",
     detail:
-      "Your team spends zero hours on GSA paperwork. We execute every modification, upload, and compliance task. You review and approve — that's it.",
+      "Your team doesn't touch GSA paperwork. We run every mod, upload, and compliance task. You sign off when we're done.",
     icon: Clock,
   },
   {
-    objection: '"What if my mod gets rejected?"',
+    objection: '"What if the mod gets rejected?"',
     answer: "98% approval rate.",
     detail:
-      "Our pre-submission QA process catches the errors that cause rejections. Every file is audited against current GSA requirements before it's submitted.",
+      "We audit every file against current GSA requirements before submission. Rejections happen when people skip steps. We don't skip steps.",
     icon: ShieldCheck,
   },
   {
-    objection: '"Is it worth the investment?"',
-    answer: "$50B+ in annual federal buying power.",
+    objection: '"Is it worth the cost?"',
+    answer: "One federal contract pays for years of management.",
     detail:
-      "A single federal contract can return 10-50x the cost of management. Our clients access a market most competitors never reach.",
+      "The federal government spends $50B+ through GSA annually. At $375/month, our management fee is a rounding error on your first task order.",
     icon: DollarSign,
   },
   {
-    objection: '"How do I know you\'re the right team?"',
-    answer: "500+ schedules. 15+ years.",
+    objection: '"How do I know you can deliver?"',
+    answer: "500+ schedules managed. Look at the track record.",
     detail:
-      "We've managed GSA Schedules across IT, professional services, manufacturing, and more. Every engagement gets a dedicated project manager.",
+      "We've done this across IT, professional services, manufacturing, and construction. Every client gets a dedicated PM who knows their contract.",
     icon: BadgeCheck,
   },
 ];
 
-/* ── "What You Gain" — outcomes, not features ── */
+/* ── What a GSA Schedule actually does for you ── */
 const outcomes = [
   {
     icon: Globe,
     stat: "$50B+",
-    title: "Access the Federal Marketplace",
-    desc: "Your GSA Schedule puts you in front of every federal agency buying your category — $50B+ in annual procurement, available to you.",
+    title: "Direct Access to Federal Buyers",
+    desc: "GSA Schedules connect you to every federal agency purchasing in your category. That's $50B+ in annual spend you're currently locked out of.",
   },
   {
     icon: Users,
-    stat: "96%",
-    title: "Less Competition Than Open Market",
-    desc: "Only ~4% of small businesses hold a GSA Schedule. You compete against a fraction of the vendors bidding on open-market contracts.",
+    stat: "~4%",
+    title: "A Fraction of the Competition",
+    desc: "Only about 4% of small businesses hold a GSA Schedule. On the open market, you compete against everyone. On Schedule, the field is thin.",
   },
   {
     icon: ShieldCheck,
     stat: "Instant",
-    title: "Pre-Vetted Credibility",
-    desc: "A GSA Schedule tells agencies you've already been vetted. Procurement officers trust Schedule holders — it shortens your sales cycle dramatically.",
+    title: "You're Already Vetted",
+    desc: "Procurement officers see your GSA contract number and skip the risk assessment. You've already passed. That alone shortens deal cycles by weeks.",
   },
   {
     icon: TrendingUp,
     stat: "20-Year",
-    title: "Recurring Revenue Vehicle",
-    desc: "GSA Schedules last up to 20 years with 5-year option periods. One award creates a decades-long revenue stream from the federal government.",
+    title: "One Award, Decades of Revenue",
+    desc: "A GSA Schedule runs for 20 years (5-year base + three options). You apply once. You sell for two decades.",
   },
   {
     icon: BarChart3,
     stat: "Faster",
-    title: "Shorter Sales Cycles",
-    desc: "Agencies can buy from your GSA Schedule without a full competitive bid process. That means faster purchase orders and quicker revenue.",
+    title: "Agencies Buy Without Full Bids",
+    desc: "Agencies can order off your schedule without running a competitive solicitation. Faster POs, faster revenue, less back-and-forth.",
   },
   {
     icon: Shield,
     stat: "24/7",
-    title: "Visibility on GSA Advantage",
-    desc: "Your products and services are listed on GSA Advantage — the federal government's online shopping platform, visible to every buyer.",
+    title: "Listed on GSA Advantage",
+    desc: "Your catalog lives on the government's online marketplace. Every contracting officer in every agency can search and buy from you.",
   },
 ];
 
-/* ── Buyer segmentation — "Which describes you?" ── */
+/* ── Buyer segmentation ── */
 const buyerTypes = [
   {
-    title: "I Already Have a GSA Schedule",
-    subtitle: "Keep it compliant. Maximize revenue.",
-    desc: "You need ongoing contract management, modifications, FCP compliance, and a team that handles the back office so you can focus on winning work.",
-    cta: "Explore Management Plans",
+    title: "I Have a GSA Schedule",
+    subtitle: "Keep it compliant. Stop burning internal hours.",
+    desc: "Mods, IFF reporting, catalog updates, FCP compliance — we take over the back office. You keep your team on revenue-generating work.",
+    cta: "See Management Plans",
     href: "/pricing",
     icon: Shield,
     color: "brand",
   },
   {
-    title: "I Need a GSA Modification",
-    subtitle: "Add SINs, update pricing, expand your catalog.",
-    desc: "Whether it's a major mod to add new services or a minor catalog update, we execute your modification and guarantee submission within 14 days.",
-    cta: "Get Your Mod Done",
+    title: "I Need a Modification",
+    subtitle: "New SINs, pricing changes, catalog expansion.",
+    desc: "We prepare and submit your modification — major or minor — within 14 days. One flat fee, no hourly billing, no surprises.",
+    cta: "Order a Modification",
     href: "/order?service=standalone-mod",
     icon: FileText,
     color: "cta",
   },
   {
-    title: "I'm New to GSA",
-    subtitle: "Get on the Schedule. We handle the heavy lifting.",
-    desc: "From eligibility assessment to proposal writing to portal submission — we build and submit your GSA MAS application with a 45-day submission guarantee.",
-    cta: "Start Your Application",
+    title: "I Need a GSA Schedule",
+    subtitle: "First-time applicant. We run the process.",
+    desc: "We write the proposal, build the pricing, manage the portal, and submit within 45 days. 98% of our clients get approved.",
+    cta: "Start the Process",
     href: "/order?service=gsa-submission",
     icon: Rocket,
     color: "brand",
   },
 ];
 
-/* ── Pricing preview — anchoring ── */
+/* ── Pricing preview ── */
 const pricingPreview = [
   {
     name: "FCP Transition & Compliance",
     price: "$499",
     period: "flat fee",
     hook: "Most Urgent",
-    desc: "We execute your mandatory FAS Catalog Platform transition and audit your GSA Schedule to guarantee 100% compliance.",
+    desc: "Your mandatory FAS Catalog Platform migration, executed and audited for compliance. Done this week.",
     href: "/order?service=fcp-transition",
   },
   {
@@ -143,7 +143,7 @@ const pricingPreview = [
     price: "$2,999",
     period: "flat fee",
     hook: "One-Time Fix",
-    desc: "We flawlessly execute your single major GSA modification from start to finish — new products and services live on your schedule faster.",
+    desc: "One major modification — new SINs, products, or pricing — prepared, submitted, and tracked to completion.",
     href: "/order?service=standalone-mod",
   },
   {
@@ -151,59 +151,59 @@ const pricingPreview = [
     price: "$4,500",
     period: "/ year",
     hook: "Best Value",
-    desc: "Your dedicated, end-to-end GSA management team for a full year. All modifications, 14-day submission guarantee, and comprehensive training.",
+    desc: "Every modification, every compliance task, every report — handled for 12 months. Dedicated PM. 14-day submission guarantee.",
     href: "/order?service=complete-management",
     featured: true,
   },
 ];
 
-/* ── FAQ — buyer-focused, doubles as SEO ── */
+/* ── FAQ ── */
 const homeFaqs = [
   {
-    q: "What is a GSA Schedule and why do I need one?",
-    a: "A GSA Schedule (also called a GSA MAS Contract) is a long-term government contract that lets federal agencies purchase your products and services at pre-negotiated prices. It's the primary gateway to $50B+ in annual federal procurement — and it gives you pre-vetted credibility that shortens sales cycles.",
+    q: "What is a GSA Schedule?",
+    a: "A GSA Schedule (also called a MAS Contract) is a long-term contract with the federal government. It lets agencies buy your products and services at pre-negotiated prices without running a full competitive bid. It's the main way businesses sell to the government.",
   },
   {
-    q: "How long does it take to get a GSA Schedule?",
-    a: "With our team handling the process, we guarantee your submission package is ready within 45 days. After submission, GSA typically takes 90-120 days for review and award. Your total time commitment is minimal — we handle the document prep, pricing narratives, and portal management.",
+    q: "How long does it take to get one?",
+    a: "We guarantee your submission package is ready within 45 days. GSA typically takes 90-120 days after that for review and award. Total timeline: about 4-6 months. We handle the documents, the pricing narrative, and the portal — you provide business info and approve.",
   },
   {
-    q: "How much of my time does this actually require?",
-    a: "Very little. For ongoing management, your team reviews and approves — that's it. For new submissions, we need your input on pricing and past performance, but we write every document and manage the entire portal process. Most clients spend less than 3-5 hours total on our managed engagements.",
+    q: "How much of my time does this take?",
+    a: "For management clients: almost none. You review what we prepare and sign off. For new submissions: we need your input on pricing and past performance, but we write everything. Most clients spend 3-5 hours total across the entire engagement.",
   },
   {
-    q: "What if my GSA modification gets rejected?",
-    a: "Our 98% approval rate exists because we pre-audit every submission against current GSA requirements before it goes in. If a modification is rejected, we diagnose the issue and resubmit at no additional cost. Our 14-day submission guarantee means your mods move fast.",
+    q: "What if my modification gets rejected?",
+    a: "We audit every submission against current GSA requirements before filing. That's why our approval rate is 98%. If a mod is rejected, we fix it and resubmit at no extra cost.",
   },
   {
-    q: "Do I need past federal experience to get a GSA Schedule?",
-    a: "No. You need demonstrated commercial past performance, financial stability, and TAA-compliant products/services — but you don't need prior government contracts. We assess your eligibility and close any gaps before submission.",
+    q: "Do I need federal experience to qualify?",
+    a: "No. You need commercial past performance, financial stability, and TAA-compliant products or services. Prior government contracts are not required. We assess eligibility before you pay anything.",
   },
   {
-    q: "Why pay for management when I could handle it in-house?",
-    a: "Most businesses underestimate the true cost of in-house GSA management: 200-500 hours of staff time annually on compliance, IFF reporting, catalog updates, and modifications. At $4,500/year, our management plan costs less than a single week of a mid-level employee's salary — and we guarantee 14-day mod submissions.",
+    q: "Why not just handle GSA in-house?",
+    a: "You can. But most companies burn 200-500 staff hours per year on IFF reporting, catalog updates, mods, and compliance. At $4,500/year, our management plan costs less than a week of one employee's time — and we guarantee 14-day mod submissions.",
   },
 ];
 
-/* ── "How It Works" steps ── */
+/* ── How it works ── */
 const steps = [
   {
     step: "01",
-    title: "Free Strategy Call",
-    time: "~30 min",
-    desc: "We assess your situation, identify the right path, and give you a clear recommendation — whether that's management, a modification, or a new submission.",
+    title: "Tell Us What You Need",
+    time: "~30 min call or just order online",
+    desc: "We figure out where you are — new applicant, existing holder, or somewhere in between — and recommend the right service. No pressure, no pitch deck.",
   },
   {
     step: "02",
-    title: "We Handle the Heavy Lifting",
-    time: "You review & approve",
-    desc: "Our team executes every document, modification, and compliance task. You get weekly updates and a dedicated project manager. Your only job is to approve.",
+    title: "We Execute",
+    time: "You approve, we do the rest",
+    desc: "Our team handles the documents, the portal, the mods, the compliance — all of it. You get weekly status updates and a dedicated PM. Your job is to say 'approved.'",
   },
   {
     step: "03",
-    title: "Your Schedule Works for You",
+    title: "You Stay Compliant and Sell",
     time: "Ongoing",
-    desc: "Your GSA Schedule stays compliant, your catalog stays current, and you focus 100% on winning federal contracts and growing revenue.",
+    desc: "Your catalog is current. Your reports are filed. Your mods are submitted. You focus on winning task orders and closing federal deals.",
   },
 ];
 
@@ -338,16 +338,15 @@ export default function Home() {
             className="max-w-3xl mx-auto text-center"
           >
             <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-              Stop Losing Revenue to
+              Your GSA Schedule.
               <span className="block mt-2 text-cta">
-                GSA Red Tape.
+                Managed. Compliant. Done.
               </span>
             </h1>
 
             <p className="mt-8 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl mx-auto">
-              We manage your entire GSA Schedule — modifications, compliance, FCP
-              transitions, and catalog maintenance — so your team focuses 100% on
-              winning contracts.{" "}
+              Modifications, compliance, FCP transitions, catalog updates — we
+              run your GSA back office so you don't have to.{" "}
               <strong className="text-ink">
                 Flat fees. 14-day guarantee. Cancel anytime.
               </strong>
@@ -405,10 +404,10 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              We've Heard It All
+              Common Questions
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl tracking-tight">
-              Your concerns. Answered.
+              You asked. Here's the straight answer.
             </h2>
           </motion.div>
 
@@ -461,14 +460,14 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Why a GSA Schedule
+              Why It Matters
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              What your business gains with a managed GSA Schedule.
+              What a GSA Schedule actually gets you.
             </h2>
             <p className="mt-6 text-ink-light text-lg leading-relaxed">
-              A GSA Schedule isn't just a contract — it's a revenue engine. Here's
-              what changes when you have one, and when we manage it.
+              A GSA contract opens doors that don't exist on the commercial side.
+              Here's what changes when you hold one — and keep it current.
             </p>
           </motion.div>
 
@@ -516,13 +515,13 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Where Are You Starting?
+              Start Here
             </p>
             <h2 className="font-display text-3xl font-bold sm:text-4xl tracking-tight text-white">
-              Which describes your situation?
+              Tell us where you are. We'll handle the rest.
             </h2>
             <p className="mt-5 text-white/60 text-lg">
-              Pick your path. Each leads to the right next step.
+              Three starting points. Same result: your GSA is handled.
             </p>
           </motion.div>
 
@@ -577,14 +576,13 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-20"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              How It Works
+              The Process
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              Three steps. We do the rest.
+              Three steps. Zero guesswork.
             </h2>
             <p className="mt-6 text-ink-light text-lg">
-              The federal procurement process is complex. Your experience with us
-              isn't.
+              Federal procurement is complicated. Working with us isn't.
             </p>
           </motion.div>
 
@@ -619,8 +617,8 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-14 text-center font-display text-xl font-bold text-ink"
           >
-            That's it. You focus on winning work.{" "}
-            <span className="text-cta">We handle the GSA.</span>
+            You sell. We manage the contract behind it.{" "}
+            <span className="text-cta">That's the deal.</span>
           </motion.p>
         </div>
       </section>
@@ -637,15 +635,14 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Transparent Pricing
+              Pricing
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              Every price. Published. No sales call required.
+              Published rates. No call needed.
             </h2>
             <p className="mt-6 text-ink-light text-lg leading-relaxed">
-              Why pay $2,999 for a single modification when $4,500 gets you a
-              full year of management — including{" "}
-              <em>unlimited</em> modifications?
+              A single modification costs $2,999. Full-year management —
+              including <em>unlimited</em> mods — is $4,500. Do the math.
             </p>
           </motion.div>
 
@@ -712,7 +709,7 @@ export default function Home() {
             className="mt-10 text-center"
           >
             <LinkButton href="/pricing" variant="secondary" size="lg" className="bg-white">
-              See All Plans & Full Pricing Details
+              View All Plans & Pricing
               <ArrowRight size={18} className="ml-2" />
             </LinkButton>
           </motion.div>
@@ -731,14 +728,14 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              GSA Intelligence Hub
+              Intelligence Hub
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl tracking-tight">
-              Deep-dive guides for GSA Schedule holders.
+              Guides written by the team behind 500+ schedules.
             </h2>
             <p className="mt-6 text-ink-light text-lg leading-relaxed">
-              Real answers to the questions you're googling right now — written by
-              the team that manages 500+ schedules.
+              Practical breakdowns of the issues GSA holders actually deal with —
+              FCP migration, mod rejections, cost of in-house management.
             </p>
           </motion.div>
 
@@ -828,10 +825,10 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Frequently Asked Questions
+              FAQ
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl tracking-tight">
-              Answers to the questions you're asking right now.
+              Straight answers to common questions.
             </h2>
           </motion.div>
 
@@ -884,12 +881,12 @@ export default function Home() {
 
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl leading-tight">
-                Your GSA Schedule should be generating revenue —
-                <span className="text-cta"> not draining your team.</span>
+                Stop managing your GSA Schedule.
+                <span className="text-cta"> Start using it.</span>
               </h2>
               <p className="mt-6 text-white/60 text-lg leading-relaxed mb-10">
                 500+ schedules managed. 98% approval rate. 14-day mod
-                submission guarantee. Flat-fee pricing with no lock-in.
+                submission guarantee. Flat fees, no lock-in.
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center gap-4">

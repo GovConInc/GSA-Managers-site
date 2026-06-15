@@ -62,10 +62,10 @@ export default function Contact() {
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-4">Contact Us</p>
           <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Let's Build Your GSA Strategy.
+            Get in touch.
           </h1>
           <p className="mt-6 mx-auto max-w-3xl text-lg text-ink-light leading-relaxed">
-            Have questions? Whether you're just starting out or optimizing your existing GSA contract, our team is ready to help.
+            New applicant, existing holder, or just have a question — send us a message or book a call. We respond within one business day.
           </p>
         </div>
       </section>
@@ -170,9 +170,9 @@ export default function Contact() {
               </Card>
 
               <Card className="p-6 bg-ink text-white border-0" hover={false}>
-                <h3 className="font-bold text-lg text-white">Ready for a Strategy Call?</h3>
+                <h3 className="font-bold text-lg text-white">Prefer a call?</h3>
                 <p className="mt-2 text-sm text-white/60">
-                  The fastest way to get answers is a free, 15-minute readiness call. No pressure, just a clear plan.
+                  15 minutes. We'll assess where your schedule stands and tell you what it needs. Free, no obligation.
                 </p>
                 <LinkButton
                   href={LINKS.booking}
@@ -186,9 +186,9 @@ export default function Contact() {
               </Card>
 
               <Card className="p-6 border-warm-border" hover={false}>
-                <h3 className="font-bold text-lg text-ink">Ready to Order?</h3>
+                <h3 className="font-bold text-lg text-ink">Know what you need?</h3>
                 <p className="mt-2 text-sm text-ink-light">
-                  Know what you need? Skip the call and head straight to our order page to get started right away.
+                  Skip the form. Order directly — checkout takes two minutes.
                 </p>
                 <LinkButton
                   href="/order"

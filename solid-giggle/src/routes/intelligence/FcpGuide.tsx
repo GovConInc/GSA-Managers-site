@@ -26,8 +26,8 @@ export default function FcpGuide() {
         can escalate to suspension.
       </P>
       <Callout>
-        The blunt version: an unmigrated catalog means you hold a 20-year contract that buyers
-        can&apos;t buy from. Every day in that state is federal revenue handed to a competitor.
+        If your catalog hasn't been migrated, you hold a 20-year contract that buyers can't
+        purchase from. Every day without FCP is federal revenue you're leaving on the table.
       </Callout>
 
       <H2>What the FCP transition actually involves</H2>
@@ -76,8 +76,8 @@ export default function FcpGuide() {
       </P>
 
       <ArticleCta
-        title="Want it handled this week instead?"
-        body="Our FCP Transition & Compliance Assurance package executes your complete migration and audits your entire schedule for compliance — flat fee, kickoff within one business day."
+        title="Need this done, not learned?"
+        body="We execute the full FCP migration and audit your schedule for compliance. Flat $499, kickoff within one business day."
         label="Fix It Now"
         href="/order?service=fcp-transition"
         price="$499"
@@ -134,7 +134,7 @@ export default function FcpGuide() {
 
       <ArticleCta
         title="FCP Transition & Compliance Assurance"
-        body="Complete migration + full compliance audit. Kickoff within one business day. Suspension risk, eliminated."
+        body="Complete migration + full compliance audit. Kickoff within one business day."
         label="Start My Transition"
         href="/order?service=fcp-transition"
         price="$499"

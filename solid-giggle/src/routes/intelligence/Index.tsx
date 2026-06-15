@@ -13,7 +13,7 @@ export const ARTICLES = [
     category: "FCP & Compliance",
     title: "The 2026 Guide to the FAS Catalog Platform (FCP) Transition",
     description:
-      "SIP is gone, FCP is mandatory, and an unmigrated catalog is invisible to federal buyers. What the transition actually requires, the tripwires that get schedules suspended, and how to get it done this month.",
+      "SIP is retired, FCP is mandatory. If you haven't migrated, your catalog is invisible on GSA Advantage. What the transition requires, common mistakes, and how to complete it.",
     readTime: "9 min read",
     datePublished: "2026-01-15",
   },
@@ -23,7 +23,7 @@ export const ARTICLES = [
     category: "Modifications",
     title: "Why Your GSA Modifications Keep Getting Rejected (And How to Fix It)",
     description:
-      "Every rejected mod is weeks of lost revenue. The six rejection patterns Contracting Officers flag most, why they happen, and the pre-submission checklist that gets mods approved the first time.",
+      "The six submission mistakes that trigger most GSA mod rejections, why they happen, and the pre-submission checks that prevent them.",
     readTime: "8 min read",
     datePublished: "2026-02-10",
   },
@@ -33,7 +33,7 @@ export const ARTICLES = [
     category: "Strategy & ROI",
     title: "In-House GSA Management vs. Outsourcing: The True Cost",
     description:
-      "A line-by-line cost breakdown of managing a GSA Schedule internally — hours, salary math, rejection risk, and opportunity cost — against a flat-fee retainer. The numbers aren't close.",
+      "A line-by-line cost comparison: internal staff hours, salary cost, rejection risk, and missed deadlines vs. a flat-fee management retainer.",
     readTime: "7 min read",
     datePublished: "2026-03-05",
   },
@@ -63,11 +63,11 @@ export default function IntelligenceIndex() {
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">GSA Intelligence Hub</p>
             <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl leading-[1.1]">
-              The answers GSA contract holders are googling at 11pm.
+              Practical guides for GSA Schedule holders.
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl">
-              No top-of-funnel fluff. These are practitioner-grade breakdowns of the problems that
-              actually cost schedule holders revenue — written by the team that fixes them daily.
+              FCP migration, mod rejections, compliance deadlines, cost of in-house management — the issues
+              that actually affect your contract, broken down by the team that manages 500+ schedules.
             </p>
           </motion.div>
         </div>

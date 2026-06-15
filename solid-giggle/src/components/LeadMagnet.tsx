@@ -51,12 +51,11 @@ export default function LeadMagnet({ compact = false }: { compact?: boolean }) {
             <span className="text-xs font-bold uppercase tracking-wide text-cta">Free Download</span>
           </div>
           <h3 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
-            The 2026 GSA Compliance &amp; FCP Survival Checklist
+            2026 GSA Compliance &amp; FCP Readiness Checklist
           </h3>
           <p className="mt-4 text-white/70 leading-relaxed">
-            Don&apos;t risk suspension during the FCP transition. Download our exact compliance
-            checklist. Because you&apos;ll know exactly what auditors are looking for, your team
-            completely avoids costly administrative tripwires.
+            The same 28-point assessment we run on every schedule we manage. Work through it
+            before a Contracting Officer does.
           </p>
         </div>
 

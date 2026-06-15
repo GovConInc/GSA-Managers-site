@@ -79,8 +79,8 @@ export default function ModRejections() {
       </Callout>
 
       <ArticleCta
-        title="Have a mod that keeps bouncing back?"
-        body="We diagnose the rejection, rebuild the package, and resubmit — documentation, pricing support, narrative, and CO communications all handled. Submitted within 14 days, guaranteed."
+        title="Mod keeps getting rejected?"
+        body="We diagnose the issue, rebuild the package, and resubmit — pricing support, narrative, CO communications included. 14-day submission guarantee."
         label="Get My Mod Approved"
         href="/order?service=standalone-mod"
         price="$2,999"
@@ -119,8 +119,8 @@ export default function ModRejections() {
       </P>
 
       <ArticleCta
-        title="Every mod, all year, one flat fee."
-        body="Complete Management: unlimited major & minor modifications, 14-day submission guarantee, 6 training sessions, dedicated PM. $4,500 for 12 months — or $375/month."
+        title="Multiple mods this year? One annual fee covers all of them."
+        body="Complete Management: unlimited modifications, 14-day submission guarantee, dedicated PM. $4,500/year or $375/month."
         label="See Management Plans"
         href="/gsa-contract-management"
         price="$4,500"

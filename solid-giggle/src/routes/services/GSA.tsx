@@ -54,9 +54,9 @@ const allServices: ServiceData[] = [
     id: "submission",
     icon: Award,
     title: "GSA MAS Submission",
-    tagline: "Full-service. 45-day guarantee.",
+    tagline: "Submission-ready in 30 days. 98% approval rate.",
     description:
-      "We prepare and submit your complete GSA Multiple Award Schedule offer in 30 days or less. Our accelerated process is built on the \"Holy Trinity\" review — Admin, Technical, and Pricing volumes — that anticipates Contracting Officer concerns before you submit. 98% of our clients receive their award within 4–6 months.",
+      "We build and submit your complete GSA MAS offer — Admin, Technical, and Pricing volumes — in 30 days or less. Every package goes through our three-volume review that catches the issues Contracting Officers flag. 98% of our clients receive their award within 4–6 months, vs. the 12+ month industry average.",
     features: [
       "Eligibility review & SIN selection",
       "Complete document preparation",
@@ -86,9 +86,9 @@ const allServices: ServiceData[] = [
     id: "management",
     icon: Shield,
     title: "Annual Contract Management",
-    tagline: "Hands-off compliance. Cancel anytime.",
+    tagline: "Every compliance task, every mod — handled. Cancel anytime.",
     description:
-      "Maintaining a GSA Schedule takes 10+ hours a month. We handle every modification, sales report, and compliance requirement so you never risk penalties, missed option renewals, or contract cancellation. From monthly or quarterly IFF reporting to major SIN additions and mass modifications — one dedicated account manager covers it all. No lock-in. This program is available as 12 equal monthly payments of the total annual amount.",
+      "GSA Schedule maintenance burns 10+ hours a month internally — IFF reporting, catalog updates, mods, option renewals. We take over all of it. One dedicated account manager runs your contract so nothing lapses, nothing gets rejected, and you never touch GSA paperwork again. No lock-in. Pay monthly or annually.",
     features: [
       "Monthly or Quarterly IFF Sales Reporting",
       "SAM & DSBS Compliance",
@@ -120,9 +120,9 @@ const allServices: ServiceData[] = [
     id: "new-vendor",
     icon: Rocket,
     title: "New Vendor Special",
-    tagline: "The fast-start package.",
+    tagline: "Award in hand. Now make it operational.",
     description:
-      "Just got your GSA Schedule? This package gets you from award to operational in weeks, not months. We handle your FCP Catalog Baseline upload, walk you through every GSA website and process 1-on-1, and provide 90 days of complimentary contract management so nothing falls through the cracks.",
+      "You just received your GSA Schedule — now what? We upload your FCP catalog, train your team on GSA Advantage, eBuy, and sales reporting, and manage your contract for the first 90 days so nothing slips while you're learning the ropes.",
     features: [
       "Full FCP Catalog Baseline upload",
       "1-on-1 training: GSA Advantage",
@@ -149,9 +149,9 @@ const allServices: ServiceData[] = [
     id: "fcp",
     icon: FileText,
     title: "FCP Catalog Baseline",
-    tagline: "Meet the 30-day mandate.",
+    tagline: "SIP is gone. FCP is mandatory. We handle the switch.",
     description:
-      "GSA retired SIP and transitioned to the Federal Catalog Platform (FCP). Without an FCP Baseline Upload, your products are invisible on GSA Advantage — meaning agencies can't find or buy from you. We upload your catalog within the GSA-mandated 30-day window and ensure every line item is compliant.",
+      "GSA retired SIP and moved to the FAS Catalog Platform. If you haven't uploaded your FCP Baseline, your products don't show up on GSA Advantage — agencies literally cannot find you. We migrate your catalog, validate every line item, and get you compliant within 30 days.",
     features: [
       "Full FCP Baseline catalog upload",
       "Product listing & offer pricing QA",
@@ -176,12 +176,12 @@ const allServices: ServiceData[] = [
 
 // ─── WHY GSA DATA ───
 const gsaBenefits = [
-  { title: "Pre-Vetted Credibility", desc: "Agencies trust GSA contractors — you've passed rigorous government scrutiny.", icon: BadgeCheck, stat: "80%", statLabel: "of agencies prefer GSA" },
-  { title: "Streamlined Procurement", desc: "Agencies buy from you in days, not months — no lengthy competitive bidding.", icon: Zap, stat: "90%", statLabel: "faster procurement" },
-  { title: "Massive Buying Pool", desc: "Access $50B+ in annual federal spending through GSA vehicles.", icon: DollarSign, stat: "$50B+", statLabel: "annual spend" },
-  { title: "Reduced Competition", desc: "Compete against thousands instead of hundreds of thousands.", icon: Target, stat: "10X", statLabel: "less competition" },
-  { title: "20-Year Contract", desc: "5-year base + three 5-year options = stable, long-term revenue.", icon: Calendar, stat: "20yr", statLabel: "contract term" },
-  { title: "24/7 Visibility", desc: "Listed on GSA Advantage — the government's online marketplace.", icon: TrendingUp, stat: "24/7", statLabel: "always visible" },
+  { title: "Pre-Vetted Status", desc: "Contracting officers see your GSA contract number and skip the risk assessment. You've already been vetted.", icon: BadgeCheck, stat: "80%", statLabel: "of agencies prefer GSA" },
+  { title: "Faster Purchasing", desc: "Agencies can order directly from your schedule without running a full competitive solicitation.", icon: Zap, stat: "90%", statLabel: "faster procurement" },
+  { title: "$50B+ in Annual Spend", desc: "That's how much flows through GSA vehicles every year. Without a schedule, you're locked out of it.", icon: DollarSign, stat: "$50B+", statLabel: "annual spend" },
+  { title: "Smaller Competitive Field", desc: "Only ~4% of small businesses hold a GSA Schedule. On the open market, you compete against everyone.", icon: Target, stat: "10X", statLabel: "less competition" },
+  { title: "20-Year Contract Term", desc: "5-year base plus three 5-year options. One award, two decades of federal selling.", icon: Calendar, stat: "20yr", statLabel: "contract term" },
+  { title: "GSA Advantage Listing", desc: "Your catalog is live on the government's online marketplace. Every federal buyer can search and purchase.", icon: TrendingUp, stat: "24/7", statLabel: "always visible" },
 ];
 
 // ─── FAQ DATA ───
@@ -362,10 +362,10 @@ export default function ServicesGSA() {
             </div>
             
             <h1 className="font-display text-4xl font-bold leading-tight text-ink sm:text-5xl lg:text-[4rem] lg:leading-[1.05]">
-              Every stage of your GSA journey. <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cta">Covered.</span>
+              GSA services. <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cta">Pick what you need.</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl">
-              From first submission to ongoing compliance — pick the service that fits, and we'll handle the rest. No lock-in.
+              New submission, annual management, standalone modification, or FCP migration — flat fees, no lock-in, 14-day guarantee on every mod.
             </p>
           </motion.div>
 
@@ -541,7 +541,7 @@ export default function ServicesGSA() {
                 Why get on the GSA Schedule?
               </h2>
               <p className="mt-6 text-ink-light text-lg leading-relaxed">
-                The Multiple Award Schedule is the government's preferred procurement vehicle. Here's what it unlocks for your business.
+                The MAS is the government's primary purchasing vehicle. Here's what holding one gives your business.
               </p>
             </motion.div>
           </div>
@@ -646,10 +646,10 @@ export default function ServicesGSA() {
         </div>
         <div className="relative z-10 max-w-2xl mx-auto">
           <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
-            Ready to get on the <br className="hidden sm:block"/> GSA Schedule?
+            Pick a service. <br className="hidden sm:block"/> We'll take it from here.
           </h2>
           <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
-            Whether you need an FCP upload or full-service submission and management — we've got you covered.
+            FCP migration, new submission, standalone mod, or full management — order online or talk to us first.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <LinkButton

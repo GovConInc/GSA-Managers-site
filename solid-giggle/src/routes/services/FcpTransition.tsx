@@ -65,7 +65,7 @@ const faqs = [
   },
   {
     q: "What does the $499 package include?",
-    a: "Two things: your complete FCP catalog migration executed start to finish, and a full compliance audit of your GSA Schedule. Because we take on this complex heavy lifting, your team bypasses the administrative bottleneck entirely — and you eliminate the risk of suspension.",
+    a: "Two things: your complete FCP catalog migration — data prep through verification — and a full compliance audit of your GSA Schedule covering catalog accuracy, TAA documentation, SAM status, and reporting posture.",
   },
   {
     q: "How long does an FCP migration take?",
@@ -111,7 +111,7 @@ export default function FcpTransition() {
         eyebrow="FCP Transition & Compliance Assurance"
         title="Your FAS Catalog Platform migration."
         accent="Done for you. $499 flat."
-        lede="We execute your mandatory FCP transition and audit your GSA Schedule to guarantee 100% compliance. Because we take on this immediate, complex heavy lifting, your team bypasses the administrative bottleneck and eliminates the risk of suspension."
+        lede="We execute your full FCP migration and audit your GSA Schedule for compliance — catalog data prep, baseline upload, validation, and GSA Advantage verification. $499, kickoff within one business day."
         primaryLabel="Fix It Now — $499"
         primaryHref="/order?service=fcp-transition"
       />
