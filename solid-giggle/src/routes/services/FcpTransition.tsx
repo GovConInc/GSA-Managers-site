@@ -111,7 +111,7 @@ export default function FcpTransition() {
         eyebrow="FCP Transition & Compliance Assurance"
         title="Your FAS Catalog Platform migration."
         accent="Done for you. $499 flat."
-        lede="We execute your full FCP migration and audit your GSA Schedule for compliance — catalog data prep, baseline upload, validation, and GSA Advantage verification. $499, kickoff within one business day."
+        lede="We execute your full FCP migration and audit your GSA Schedule for compliance — catalog data prep, baseline upload, validation, and GSA Advantage verification. $499 flat, 7-day delivery guarantee."
         primaryLabel="Fix It Now — $499"
         primaryHref="/order?service=fcp-transition"
       />

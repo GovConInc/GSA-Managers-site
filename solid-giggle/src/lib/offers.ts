@@ -40,8 +40,8 @@ export const OFFERS: Offer[] = [
     features: [
       "Complete FCP catalog migration",
       "Full GSA Schedule compliance audit",
-      "Suspension-risk elimination",
-      "Catalog modernized & ready to sell",
+      "7-day delivery guarantee",
+      "Catalog live & verified on GSA Advantage",
     ],
     orderHref: "/order?service=fcp-transition",
     learnHref: "/fcp-transition-service",

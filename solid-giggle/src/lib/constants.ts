@@ -18,29 +18,21 @@ export const LINKS = {
 };
 
 /**
- * Signature numbers — repeated deliberately across hero, mid-page, and footer
- * of every page so they stick. Keep this the single source of truth.
+ * Signature numbers — repeated deliberately across mid-page and footer.
+ * Keep this the single source of truth.
  */
 export const SIGNATURE_STATS = [
-  { value: "98%", label: "Approval Rate" },
   { value: "14-Day", label: "Mod Submission Guarantee" },
-  { value: "500+", label: "Schedules Managed" },
+  { value: "7-Day", label: "FCP Transition Guarantee" },
   { value: "15+", label: "Years in Federal Contracting" },
-];
-
-/** Hero stat bar — hard numbers above the fold to persuade before the pitch. */
-export const HERO_STATS = [
-  { value: "98%", label: "Submission Approval Rate" },
-  { value: "14 Days", label: "Mod Submission Guarantee" },
-  { value: "500+", label: "Schedules Managed" },
   { value: "$50B+", label: "Annual Federal Buying Power" },
 ];
 
 /** Risk-reversal trust strip — shown under primary CTAs. */
 export const TRUST_POINTS = [
-  "Flat-fee pricing — no surprises",
-  "14-day submission guarantee",
-  "Cancel anytime — no lock-in",
+  "Flat-fee pricing",
+  "14-day mod guarantee",
+  "No long-term contracts",
 ];
 
 export const DEFAULT_RSS_URL =

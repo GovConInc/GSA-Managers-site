@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet-async";
 import { ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import { LinkButton } from "./Button";
 import TrustStrip from "./TrustStrip";
-import StatBar from "./StatBar";
 import { BRAND, LINKS } from "../lib/constants";
 
 /** Standard service-page hero: promise headline, lede, dual-intent CTAs, trust strip. */
@@ -150,7 +149,6 @@ export function ServiceFinalCta({
   return (
     <section className="bg-surface py-24 lg:py-28">
       <div className="mx-auto w-full max-w-5xl px-6 lg:px-8">
-        <StatBar className="mb-14" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

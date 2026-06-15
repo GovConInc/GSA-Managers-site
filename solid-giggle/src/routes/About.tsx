@@ -44,7 +44,7 @@ export default function About() {
             We manage GSA Schedules. That's all we do.
           </h1>
           <p className="mt-6 mx-auto max-w-3xl text-lg text-ink-light leading-relaxed">
-            500+ schedules managed across IT, professional services, manufacturing, and construction. 98% approval rate. 15+ years doing nothing but GSA.
+            We've assisted hundreds of contractors across IT, professional services, manufacturing, and construction. 15+ years doing nothing but GSA.
           </p>
         </div>
       </section>
@@ -86,9 +86,9 @@ export default function About() {
             >
               {([
                 { value: "15+", label: "Years in Federal Contracting" },
-                { value: "98%", label: "Approval Rate" },
+                { value: "14-Day", label: "Mod Submission Guarantee" },
                 { value: "$640M", label: "Largest Win Supported" },
-                { value: "500+", label: "Schedules Managed" },
+                { value: "7-Day", label: "FCP Transition Guarantee" },
               ]).map((stat) => (
                 <Card key={stat.label} className="p-6 text-center" hover>
                   <div className="font-display text-3xl font-bold text-cta">{stat.value}</div>

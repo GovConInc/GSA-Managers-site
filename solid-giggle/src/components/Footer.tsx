@@ -1,28 +1,10 @@
 import { Link } from "react-router-dom";
-import { BRAND, LINKS, SIGNATURE_STATS, TRUST_POINTS } from "../lib/constants";
+import { BRAND, LINKS, TRUST_POINTS } from "../lib/constants";
 import { Phone, Mail, MapPin, ArrowUpRight, CheckCircle2 } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-ink text-white">
-      {/* ── Signature stats bar ── */}
-      <div className="border-b border-white/10">
-        <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 py-8">
-            {SIGNATURE_STATS.map((stat) => (
-              <div key={stat.label} className="text-center px-4">
-                <div className="font-display text-2xl font-bold text-cta">
-                  {stat.value}
-                </div>
-                <div className="text-xs text-white/50 uppercase tracking-wide mt-1">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* ── Main footer content ── */}
       <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">

@@ -72,9 +72,9 @@ const CALENDLY_URL = "https://calendar.app.google/EA6JzEhbNTH6AM6S8";
 const deliverables = [
   {
     title: "$500 FCP Catalog Baseline Only",
-    desc: "Catalog Baseline upload within GSA requirement of 30 days. Includes QA and roadmap & technical consultations.",
+    desc: "Catalog Baseline upload with our 7-day delivery guarantee. Includes QA and roadmap & technical consultations.",
     items: [
-      "FCP Catalog Baseline Upload (30 Days)",
+      "FCP Catalog Baseline Upload (7-Day Guarantee)",
       "Product Listing & Offer Pricing QA",
       "Roadmap Consultations",
       "Technical Consultations"
@@ -82,7 +82,7 @@ const deliverables = [
   },
   {
     title: "$1,450 New Vendor Special",
-    desc: "Includes the Catalog Baseline upload within 30 days, specialized 1-on-1 training for all GSA-related websites and processes, and complimentary 90-day contract management.",
+    desc: "Includes the Catalog Baseline upload (7-day guarantee), specialized 1-on-1 training for all GSA-related websites and processes, and complimentary 90-day contract management.",
     items: [
       "Full FCP Catalog Upload",
       "Specialized 1-1 Training (All GSA Sites)",

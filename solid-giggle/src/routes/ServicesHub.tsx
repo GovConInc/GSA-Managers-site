@@ -12,7 +12,6 @@ import {
   KeyRound,
   HeartPulse,
 } from "lucide-react";
-import StatBar from "../components/StatBar";
 import TrustStrip from "../components/TrustStrip";
 import { ServiceFinalCta } from "../components/ServiceBlocks";
 import { BRAND } from "../lib/constants";
@@ -146,7 +145,6 @@ export default function ServicesHub() {
             </p>
             <TrustStrip className="mt-8" />
           </motion.div>
-          <StatBar className="max-w-3xl mx-auto mt-14" />
         </div>
       </section>
 

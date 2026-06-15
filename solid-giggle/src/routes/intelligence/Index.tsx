@@ -67,7 +67,7 @@ export default function IntelligenceIndex() {
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl">
               FCP migration, mod rejections, compliance deadlines, cost of in-house management — the issues
-              that actually affect your contract, broken down by the team that manages 500+ schedules.
+              that actually affect your contract, broken down by the team that manages schedules for hundreds of contractors.
             </p>
           </motion.div>
         </div>

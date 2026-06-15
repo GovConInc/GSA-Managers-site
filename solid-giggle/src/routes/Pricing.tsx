@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { CheckCircle2, XCircle, ArrowRight, BadgeCheck } from "lucide-react";
 import { LinkButton } from "../components/Button";
 import PricingTiers from "../components/PricingTiers";
-import StatBar from "../components/StatBar";
 import TrustStrip from "../components/TrustStrip";
 import FaqList from "../components/FaqList";
 import { ServiceFinalCta } from "../components/ServiceBlocks";
@@ -85,8 +84,6 @@ export default function Pricing() {
             </p>
             <TrustStrip className="mt-8" />
           </motion.div>
-
-          <StatBar className="max-w-3xl mx-auto mt-14" />
         </div>
       </section>
 

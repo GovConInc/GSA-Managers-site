@@ -7,13 +7,11 @@ import {
   Shield,
   FileText,
   Rocket,
-  Phone,
   TrendingUp,
   Globe,
   Clock,
   DollarSign,
   Users,
-  XCircle,
   BadgeCheck,
   BarChart3,
   ShieldCheck,
@@ -23,105 +21,95 @@ import {
 import { useState } from "react";
 import { LinkButton } from "../components/Button";
 import GsaNewsFeed from "../components/GsaNewsFeed";
-import { BRAND, LINKS, HERO_STATS, TRUST_POINTS } from "../lib/constants";
+import { BRAND, LINKS, TRUST_POINTS } from "../lib/constants";
 
-/* ── Objection cards ── */
-const objections = [
+/* ── Why contractors choose us ── */
+const differentiators = [
   {
-    objection: '"We don\'t have the bandwidth."',
-    answer: "We do all the work.",
+    title: "We do the work — not you",
     detail:
-      "Your team doesn't touch GSA paperwork. We run every mod, upload, and compliance task. You sign off when we're done.",
+      "Your team doesn't touch GSA paperwork. We handle every modification, catalog upload, and compliance filing. You review, approve, and move on.",
     icon: Clock,
   },
   {
-    objection: '"What if the mod gets rejected?"',
-    answer: "98% approval rate.",
+    title: "98% modification approval rate",
     detail:
-      "We audit every file against current GSA requirements before submission. Rejections happen when people skip steps. We don't skip steps.",
+      "We audit every submission against current GSA requirements before filing. Rejections come from missed steps — we don't miss steps.",
     icon: ShieldCheck,
   },
   {
-    objection: '"Is it worth the cost?"',
-    answer: "One federal contract pays for years of management.",
+    title: "Flat fees, published pricing",
     detail:
-      "The federal government spends $50B+ through GSA annually. At $375/month, our management fee is a rounding error on your first task order.",
+      "No hourly billing, no retainer surprises. Every service has a fixed price and a guaranteed delivery timeline, listed on our website.",
     icon: DollarSign,
   },
   {
-    objection: '"How do I know you can deliver?"',
-    answer: "500+ schedules managed. Look at the track record.",
+    title: "Dedicated project manager",
     detail:
-      "We've done this across IT, professional services, manufacturing, and construction. Every client gets a dedicated PM who knows their contract.",
+      "Every client is assigned a PM who knows their contract, their SINs, and their compliance calendar. One point of contact, start to finish.",
     icon: BadgeCheck,
   },
 ];
 
-/* ── What a GSA Schedule actually does for you ── */
+/* ── What a GSA Schedule does ── */
 const outcomes = [
   {
     icon: Globe,
-    stat: "$50B+",
-    title: "Direct Access to Federal Buyers",
-    desc: "GSA Schedules connect you to every federal agency purchasing in your category. That's $50B+ in annual spend you're currently locked out of.",
+    title: "Access to federal agency buyers",
+    desc: "A GSA Schedule connects you to every federal agency purchasing in your category — over $50 billion in annual spend.",
   },
   {
     icon: Users,
-    stat: "~4%",
-    title: "A Fraction of the Competition",
-    desc: "Only about 4% of small businesses hold a GSA Schedule. On the open market, you compete against everyone. On Schedule, the field is thin.",
+    title: "Less competition",
+    desc: "Only about 4% of small businesses hold a GSA Schedule. On Schedule, you compete against a fraction of the open market.",
   },
   {
     icon: ShieldCheck,
-    stat: "Instant",
-    title: "You're Already Vetted",
-    desc: "Procurement officers see your GSA contract number and skip the risk assessment. You've already passed. That alone shortens deal cycles by weeks.",
+    title: "Pre-vetted status",
+    desc: "Contracting officers see your GSA contract number and skip the risk assessment. You're already approved to sell.",
   },
   {
     icon: TrendingUp,
-    stat: "20-Year",
-    title: "One Award, Decades of Revenue",
-    desc: "A GSA Schedule runs for 20 years (5-year base + three options). You apply once. You sell for two decades.",
+    title: "20-year contract term",
+    desc: "A GSA Schedule runs for 20 years (5-year base plus three option periods). Apply once, sell for decades.",
   },
   {
     icon: BarChart3,
-    stat: "Faster",
-    title: "Agencies Buy Without Full Bids",
-    desc: "Agencies can order off your schedule without running a competitive solicitation. Faster POs, faster revenue, less back-and-forth.",
+    title: "Simplified procurement",
+    desc: "Agencies can order directly from your schedule without a full competitive solicitation. Faster purchase orders, faster revenue.",
   },
   {
     icon: Shield,
-    stat: "24/7",
-    title: "Listed on GSA Advantage",
-    desc: "Your catalog lives on the government's online marketplace. Every contracting officer in every agency can search and buy from you.",
+    title: "GSA Advantage listing",
+    desc: "Your products and services are listed on the federal government's online marketplace, searchable by every contracting officer.",
   },
 ];
 
 /* ── Buyer segmentation ── */
 const buyerTypes = [
   {
-    title: "I Have a GSA Schedule",
-    subtitle: "Keep it compliant. Stop burning internal hours.",
-    desc: "Mods, IFF reporting, catalog updates, FCP compliance — we take over the back office. You keep your team on revenue-generating work.",
-    cta: "See Management Plans",
+    title: "I have a GSA Schedule",
+    subtitle: "Ongoing contract management",
+    desc: "We handle modifications, IFF reporting, catalog updates, and compliance — so your team stays focused on winning work.",
+    cta: "Explore Management Services",
     href: "/pricing",
     icon: Shield,
     color: "brand",
   },
   {
-    title: "I Need a Modification",
-    subtitle: "New SINs, pricing changes, catalog expansion.",
-    desc: "We prepare and submit your modification — major or minor — within 14 days. One flat fee, no hourly billing, no surprises.",
-    cta: "Order a Modification",
+    title: "I need a modification",
+    subtitle: "Add SINs, update pricing, expand your catalog",
+    desc: "We prepare and submit your modification within 14 days. Flat fee, no hourly billing.",
+    cta: "Request a Modification",
     href: "/order?service=standalone-mod",
     icon: FileText,
     color: "cta",
   },
   {
-    title: "I Need a GSA Schedule",
-    subtitle: "First-time applicant. We run the process.",
-    desc: "We write the proposal, build the pricing, manage the portal, and submit within 45 days. 98% of our clients get approved.",
-    cta: "Start the Process",
+    title: "I want a GSA Schedule",
+    subtitle: "New MAS contract application",
+    desc: "We prepare your complete offer package, build your pricing narrative, and manage the submission through award.",
+    cta: "Start Your Application",
     href: "/order?service=gsa-submission",
     icon: Rocket,
     color: "brand",
@@ -131,27 +119,27 @@ const buyerTypes = [
 /* ── Pricing preview ── */
 const pricingPreview = [
   {
-    name: "FCP Transition & Compliance",
+    name: "FCP Transition",
     price: "$499",
-    period: "flat fee",
-    hook: "Most Urgent",
-    desc: "Your mandatory FAS Catalog Platform migration, executed and audited for compliance. Done this week.",
+    period: "one-time",
+    hook: "Compliance",
+    desc: "Complete FAS Catalog Platform migration and compliance audit. 7-day delivery.",
     href: "/order?service=fcp-transition",
   },
   {
-    name: "Standalone GSA Modification",
+    name: "Contract Modification",
     price: "$2,999",
-    period: "flat fee",
-    hook: "One-Time Fix",
-    desc: "One major modification — new SINs, products, or pricing — prepared, submitted, and tracked to completion.",
+    period: "one-time",
+    hook: "One-Time",
+    desc: "Major modification — new SINs, pricing updates, or catalog changes — submitted within 14 days.",
     href: "/order?service=standalone-mod",
   },
   {
-    name: "GSA Complete Management",
+    name: "Full Contract Management",
     price: "$4,500",
     period: "/ year",
-    hook: "Best Value",
-    desc: "Every modification, every compliance task, every report — handled for 12 months. Dedicated PM. 14-day submission guarantee.",
+    hook: "Most Popular",
+    desc: "12 months of complete GSA management: modifications, compliance, reporting, and catalog maintenance. Dedicated PM included.",
     href: "/order?service=complete-management",
     featured: true,
   },
@@ -161,27 +149,27 @@ const pricingPreview = [
 const homeFaqs = [
   {
     q: "What is a GSA Schedule?",
-    a: "A GSA Schedule (also called a MAS Contract) is a long-term contract with the federal government. It lets agencies buy your products and services at pre-negotiated prices without running a full competitive bid. It's the main way businesses sell to the government.",
+    a: "A GSA Schedule (also called a MAS contract) is a long-term government-wide contract that lets federal agencies purchase your products or services at pre-negotiated prices. It is the primary vehicle for selling to the federal government.",
   },
   {
-    q: "How long does it take to get one?",
-    a: "We guarantee your submission package is ready within 45 days. GSA typically takes 90-120 days after that for review and award. Total timeline: about 4-6 months. We handle the documents, the pricing narrative, and the portal — you provide business info and approve.",
+    q: "How long does the application process take?",
+    a: "We prepare your complete submission package within 45 days. GSA typically takes 90-120 days for review and award after submission. Total timeline is approximately 4-6 months from start to contract award.",
   },
   {
-    q: "How much of my time does this take?",
-    a: "For management clients: almost none. You review what we prepare and sign off. For new submissions: we need your input on pricing and past performance, but we write everything. Most clients spend 3-5 hours total across the entire engagement.",
+    q: "How much of my time is required?",
+    a: "For management clients, very little — you review and approve what we prepare. For new applications, we need your input on pricing and past performance, but we draft all documents. Most clients spend 3-5 hours total.",
   },
   {
-    q: "What if my modification gets rejected?",
-    a: "We audit every submission against current GSA requirements before filing. That's why our approval rate is 98%. If a mod is rejected, we fix it and resubmit at no extra cost.",
+    q: "What happens if a modification is rejected?",
+    a: "We review every submission against current GSA requirements before filing, which is why our approval rate is 98%. If a modification is returned, we correct and resubmit at no additional cost.",
   },
   {
-    q: "Do I need federal experience to qualify?",
-    a: "No. You need commercial past performance, financial stability, and TAA-compliant products or services. Prior government contracts are not required. We assess eligibility before you pay anything.",
+    q: "Do I need prior government contract experience?",
+    a: "No. You need commercial past performance, financial stability, and TAA-compliant products or services. We assess eligibility before you commit to anything.",
   },
   {
-    q: "Why not just handle GSA in-house?",
-    a: "You can. But most companies burn 200-500 staff hours per year on IFF reporting, catalog updates, mods, and compliance. At $4,500/year, our management plan costs less than a week of one employee's time — and we guarantee 14-day mod submissions.",
+    q: "Why outsource GSA management instead of handling it in-house?",
+    a: "Most companies spend 200-500 staff hours per year on IFF reporting, catalog updates, modifications, and compliance. At $4,500 per year, our management service costs less than a week of a single employee's time.",
   },
 ];
 
@@ -189,21 +177,21 @@ const homeFaqs = [
 const steps = [
   {
     step: "01",
-    title: "Tell Us What You Need",
-    time: "~30 min call or just order online",
-    desc: "We figure out where you are — new applicant, existing holder, or somewhere in between — and recommend the right service. No pressure, no pitch deck.",
+    title: "Schedule a consultation",
+    time: "15-30 minutes",
+    desc: "We review your current GSA contract status, identify what you need, and recommend the right service. No obligation.",
   },
   {
     step: "02",
-    title: "We Execute",
-    time: "You approve, we do the rest",
-    desc: "Our team handles the documents, the portal, the mods, the compliance — all of it. You get weekly status updates and a dedicated PM. Your job is to say 'approved.'",
+    title: "We handle the execution",
+    time: "You approve, we deliver",
+    desc: "Our team prepares all documentation, manages submissions, and coordinates with GSA on your behalf. You receive weekly status updates.",
   },
   {
     step: "03",
-    title: "You Stay Compliant and Sell",
-    time: "Ongoing",
-    desc: "Your catalog is current. Your reports are filed. Your mods are submitted. You focus on winning task orders and closing federal deals.",
+    title: "Stay compliant, keep selling",
+    time: "Ongoing support available",
+    desc: "Your catalog stays current, reports are filed on time, and modifications are submitted as needed. You focus on winning contracts.",
   },
 ];
 
@@ -213,7 +201,7 @@ const homeSchema = [
     "@type": "ProfessionalService",
     name: BRAND.name,
     description:
-      "GSA Schedule management, modifications, FCP transition, and compliance services. 500+ schedules managed, 98% approval rate, 14-day mod submission guarantee.",
+      "GSA Schedule consulting services including contract management, modifications, FAS Catalog Platform transitions, and new MAS applications for federal contractors.",
     url: BRAND.url,
     telephone: BRAND.phone,
     email: BRAND.email,
@@ -239,7 +227,7 @@ const homeSchema = [
     name: BRAND.name,
     url: BRAND.url,
     description:
-      "GSA Schedule management, modifications, compliance, and consulting. Transparent pricing, 14-day submission guarantee.",
+      "GSA Schedule management, modifications, and compliance consulting for federal contractors. Fixed-fee services with guaranteed timelines.",
   },
 ];
 
@@ -260,24 +248,24 @@ export default function Home() {
     <div className="bg-surface selection:bg-brand/20 selection:text-ink">
       <Helmet>
         <title>
-          GSA Schedule Management, Modifications & Compliance | {BRAND.name}
+          GSA Schedule Consulting — Management, Modifications & Compliance | {BRAND.name}
         </title>
         <meta
           name="description"
-          content="Outsource your GSA catalog maintenance, modifications, and compliance. 500+ schedules managed, 98% approval rate, 14-day mod submission guarantee. Flat-fee pricing, no lock-in."
+          content="GSA Schedule consulting for federal contractors. Contract management, modifications, FCP transitions, and new MAS applications. Fixed fees, guaranteed timelines."
         />
         <meta
           name="keywords"
-          content="GSA Schedule management, outsource GSA catalog maintenance, GSA major modification consultant, FAS Catalog Platform migration service, GSA schedule compliance audit, GSA MAS Contract, federal contracting services"
+          content="GSA Schedule management, GSA Schedule consulting, GSA contract modification, FAS Catalog Platform migration, GSA compliance audit, GSA MAS application, federal contracting services"
         />
         <link rel="canonical" href="https://gsamanagers.com/" />
         <meta
           property="og:title"
-          content={`GSA Schedule Management, Modifications & Compliance | ${BRAND.name}`}
+          content={`GSA Schedule Consulting — Management, Modifications & Compliance | ${BRAND.name}`}
         />
         <meta
           property="og:description"
-          content="Outsource your GSA catalog maintenance, modifications, and compliance. 500+ schedules managed. Flat-fee pricing."
+          content="GSA Schedule consulting for federal contractors. Contract management, modifications, and compliance services with fixed fees."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={BRAND.url} />
@@ -285,11 +273,11 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content={`GSA Schedule Management & Modifications | ${BRAND.name}`}
+          content={`GSA Schedule Consulting | ${BRAND.name}`}
         />
         <meta
           name="twitter:description"
-          content="Outsource your GSA catalog maintenance, modifications, and compliance. 500+ schedules managed. Flat-fee pricing."
+          content="GSA Schedule consulting for federal contractors. Contract management, modifications, and compliance services."
         />
         <meta name="twitter:image" content={`${BRAND.url}/logo.png`} />
         <meta
@@ -302,30 +290,7 @@ export default function Home() {
       </Helmet>
 
       {/* ══════════════════════════════════════════════════════════════
-          1. STAT BAR — hard numbers before anything else
-         ══════════════════════════════════════════════════════════════ */}
-      <div className="bg-ink text-white">
-        <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-            {HERO_STATS.map((stat) => (
-              <div key={stat.label} className="py-3.5 text-center">
-                <span className="font-display text-lg font-bold text-cta sm:text-xl">
-                  {stat.value}
-                </span>
-                <span className="ml-2 text-xs text-white/60 uppercase tracking-wide hidden sm:inline">
-                  {stat.label}
-                </span>
-                <div className="text-[10px] text-white/50 uppercase tracking-wide mt-0.5 sm:hidden">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ══════════════════════════════════════════════════════════════
-          2. HERO — promise headline, not a description of the company
+          HERO
          ══════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden pt-20 pb-20 lg:pt-28 lg:pb-28">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_50%_at_30%_20%,#FEF3E2,transparent_60%)]" />
@@ -338,44 +303,36 @@ export default function Home() {
             className="max-w-3xl mx-auto text-center"
           >
             <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-              Your GSA Schedule.
-              <span className="block mt-2 text-cta">
-                Managed. Compliant. Done.
-              </span>
+              GSA Schedule Consulting Services
             </h1>
 
             <p className="mt-8 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl mx-auto">
-              Modifications, compliance, FCP transitions, catalog updates — we
-              run your GSA back office so you don't have to.{" "}
-              <strong className="text-ink">
-                Flat fees. 14-day guarantee. Cancel anytime.
-              </strong>
+              We help federal contractors manage, modify, and maintain their GSA
+              Schedules — from new applications through ongoing compliance.
+              Fixed fees, guaranteed timelines.
             </p>
 
-            {/* Two CTAs — high intent + low commitment */}
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-              <LinkButton
-                href="/order"
-                size="lg"
-                className="shadow-md hover:shadow-lg transition-shadow"
-              >
-                See Plans & Pricing
-                <ArrowRight size={18} className="ml-2" />
-              </LinkButton>
               <LinkButton
                 href={LINKS.booking}
                 target="_blank"
                 rel="noreferrer"
+                size="lg"
+                className="shadow-md hover:shadow-lg transition-shadow"
+              >
+                Schedule a Free Consultation
+                <ArrowRight size={18} className="ml-2" />
+              </LinkButton>
+              <LinkButton
+                href="/pricing"
                 variant="secondary"
                 size="lg"
                 className="bg-white"
               >
-                <Phone size={18} className="mr-2 text-ink-light" />
-                Free Strategy Call
+                View Services & Pricing
               </LinkButton>
             </div>
 
-            {/* Trust strip — risk reversal */}
             <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">
               {TRUST_POINTS.map((point) => (
                 <div
@@ -392,8 +349,7 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          3. OBJECTION-HANDLING GRID — strongest conversion section
-             Each card: objection in customer's voice → answer
+          WHY CHOOSE US
          ══════════════════════════════════════════════════════════════ */}
       <section className="bg-white py-20 lg:py-28 relative">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
@@ -404,41 +360,33 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Common Questions
+              Why Contractors Choose Us
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl tracking-tight">
-              You asked. Here's the straight answer.
+              What sets our approach apart
             </h2>
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-            {objections.map((obj, idx) => (
+            {differentiators.map((item, idx) => (
               <motion.div
-                key={obj.objection}
+                key={item.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: idx * 0.08, duration: 0.5 }}
                 className="rounded-2xl border border-warm-border bg-white p-8 lg:p-10 hover:shadow-elevated hover:border-cta/30 transition-all duration-300"
               >
-                <div className="flex items-start gap-4 mb-5">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 border border-red-100">
-                    <XCircle size={22} className="text-red-400" />
-                  </div>
-                  <p className="font-display text-lg font-bold text-ink italic leading-snug pt-2">
-                    {obj.objection}
-                  </p>
-                </div>
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 border border-green-100">
-                    <obj.icon size={22} className="text-green-600" />
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cta/10 border border-cta/20">
+                    <item.icon size={22} className="text-cta" />
                   </div>
                   <div>
-                    <p className="font-display text-xl font-bold text-cta mb-1">
-                      {obj.answer}
+                    <p className="font-display text-lg font-bold text-ink mb-2">
+                      {item.title}
                     </p>
                     <p className="text-ink-light text-sm leading-relaxed">
-                      {obj.detail}
+                      {item.detail}
                     </p>
                   </div>
                 </div>
@@ -449,7 +397,7 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          4. "WHAT YOU GAIN" — benefits framed as outcomes
+          BENEFITS OF A GSA SCHEDULE
          ══════════════════════════════════════════════════════════════ */}
       <section className="bg-surface py-20 lg:py-28 relative">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
@@ -460,14 +408,14 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Why It Matters
+              Benefits
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              What a GSA Schedule actually gets you.
+              What a GSA Schedule does for your business
             </h2>
             <p className="mt-6 text-ink-light text-lg leading-relaxed">
-              A GSA contract opens doors that don't exist on the commercial side.
-              Here's what changes when you hold one — and keep it current.
+              A GSA contract gives you a direct channel to federal buyers that
+              doesn't exist on the commercial side.
             </p>
           </motion.div>
 
@@ -481,13 +429,8 @@ export default function Home() {
                 transition={{ delay: idx * 0.06, duration: 0.5 }}
                 className="rounded-2xl border border-warm-border bg-white p-8 hover:shadow-elevated hover:border-cta/30 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cta/10 border border-cta/15">
-                    <item.icon size={20} className="text-cta" />
-                  </div>
-                  <span className="font-display text-2xl font-bold text-brand">
-                    {item.stat}
-                  </span>
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cta/10 border border-cta/15 mb-4">
+                  <item.icon size={20} className="text-cta" />
                 </div>
                 <h3 className="font-display text-lg font-bold text-ink mb-2">
                   {item.title}
@@ -502,7 +445,7 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          5. BUYER SEGMENTATION — "Which describes you?"
+          OUR SERVICES
          ══════════════════════════════════════════════════════════════ */}
       <section className="bg-ink py-20 lg:py-28 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
@@ -515,13 +458,13 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Start Here
+              Our Services
             </p>
             <h2 className="font-display text-3xl font-bold sm:text-4xl tracking-tight text-white">
-              Tell us where you are. We'll handle the rest.
+              How can we help?
             </h2>
             <p className="mt-5 text-white/60 text-lg">
-              Three starting points. Same result: your GSA is handled.
+              Select the service that matches where you are in the GSA process.
             </p>
           </motion.div>
 
@@ -565,7 +508,7 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          6. "HOW IT WORKS" — 3 steps, effort minimized
+          HOW IT WORKS
          ══════════════════════════════════════════════════════════════ */}
       <section className="bg-white py-20 lg:py-28 relative">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
@@ -576,14 +519,11 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-20"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              The Process
+              How It Works
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              Three steps. Zero guesswork.
+              Getting started is simple
             </h2>
-            <p className="mt-6 text-ink-light text-lg">
-              Federal procurement is complicated. Working with us isn't.
-            </p>
           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-3 relative">
@@ -612,19 +552,27 @@ export default function Home() {
             ))}
           </div>
 
-          <motion.p
+          <motion.div
             {...fadeInView}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-14 text-center font-display text-xl font-bold text-ink"
+            className="mt-14 text-center"
           >
-            You sell. We manage the contract behind it.{" "}
-            <span className="text-cta">That's the deal.</span>
-          </motion.p>
+            <LinkButton
+              href={LINKS.booking}
+              target="_blank"
+              rel="noreferrer"
+              size="lg"
+              className="shadow-md hover:shadow-lg transition-shadow"
+            >
+              Schedule a Free Consultation
+              <ArrowRight size={18} className="ml-2" />
+            </LinkButton>
+          </motion.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          7. PRICING PREVIEW — anchoring the value
+          PRICING
          ══════════════════════════════════════════════════════════════ */}
       <section className="bg-surface py-20 lg:py-28 relative">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
@@ -635,14 +583,14 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Pricing
+              Transparent Pricing
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              Published rates. No call needed.
+              Fixed fees for every service
             </h2>
             <p className="mt-6 text-ink-light text-lg leading-relaxed">
-              A single modification costs $2,999. Full-year management —
-              including <em>unlimited</em> mods — is $4,500. Do the math.
+              No hourly rates, no hidden costs. Every service is priced upfront
+              with a guaranteed delivery timeline.
             </p>
           </motion.div>
 
@@ -717,7 +665,7 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          8. INTELLIGENCE HUB — SEO pillar articles
+          RESOURCES
          ══════════════════════════════════════════════════════════════ */}
       <section className="bg-white py-20 lg:py-28 relative">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
@@ -728,14 +676,15 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              Intelligence Hub
+              Resources
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl tracking-tight">
-              Guides written by the team behind 500+ schedules.
+              GSA guides and compliance resources
             </h2>
             <p className="mt-6 text-ink-light text-lg leading-relaxed">
-              Practical breakdowns of the issues GSA holders actually deal with —
-              FCP migration, mod rejections, cost of in-house management.
+              In-depth coverage of the topics that matter most to GSA Schedule
+              holders — FCP migration, modification best practices, and
+              compliance planning.
             </p>
           </motion.div>
 
@@ -771,7 +720,7 @@ export default function Home() {
                   className="group block h-full rounded-2xl border border-warm-border bg-white p-8 hover:shadow-elevated hover:border-cta/30 hover:-translate-y-1 transition-all duration-300"
                 >
                   <p className="text-xs font-bold uppercase tracking-wide text-brand mb-4">
-                    Pillar Article
+                    Guide
                   </p>
                   <h3 className="font-display text-xl font-bold text-ink mb-4 group-hover:text-cta transition-colors">
                     {article.title}
@@ -780,7 +729,7 @@ export default function Home() {
                     {article.desc}
                   </p>
                   <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-cta">
-                    Read the guide
+                    Read more
                     <ArrowRight
                       size={14}
                       className="group-hover:translate-x-1 transition-transform"
@@ -793,7 +742,7 @@ export default function Home() {
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
             <LinkButton href="/intelligence" size="lg">
-              Visit the Intelligence Hub
+              View All Resources
               <ArrowRight size={18} className="ml-2" />
             </LinkButton>
             <LinkButton
@@ -802,7 +751,7 @@ export default function Home() {
               size="lg"
               className="bg-white"
             >
-              Download the FCP Checklist
+              FCP Compliance Checklist
             </LinkButton>
           </div>
         </div>
@@ -825,10 +774,10 @@ export default function Home() {
             className="text-center max-w-2xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">
-              FAQ
+              Frequently Asked Questions
             </p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl tracking-tight">
-              Straight answers to common questions.
+              Common questions about GSA Schedules
             </h2>
           </motion.div>
 
@@ -867,7 +816,7 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          11. FINAL CTA — repeats risk reversal & two-path buttons
+          FINAL CTA
          ══════════════════════════════════════════════════════════════ */}
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto w-full max-w-5xl px-6 lg:px-8">
@@ -881,36 +830,33 @@ export default function Home() {
 
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl leading-tight">
-                Stop managing your GSA Schedule.
-                <span className="text-cta"> Start using it.</span>
+                Ready to get started?
               </h2>
               <p className="mt-6 text-white/60 text-lg leading-relaxed mb-10">
-                500+ schedules managed. 98% approval rate. 14-day mod
-                submission guarantee. Flat fees, no lock-in.
+                Schedule a free consultation to discuss your GSA contract needs,
+                or view our services and pricing to get started today.
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <LinkButton
-                  href="/order"
-                  size="lg"
-                  className="shadow-md hover:shadow-lg"
-                >
-                  See Plans & Pricing
-                  <ArrowRight size={18} className="ml-2" />
-                </LinkButton>
-                <LinkButton
                   href={LINKS.booking}
                   target="_blank"
                   rel="noreferrer"
+                  size="lg"
+                  className="shadow-md hover:shadow-lg"
+                >
+                  Schedule a Consultation
+                  <ArrowRight size={18} className="ml-2" />
+                </LinkButton>
+                <LinkButton
+                  href="/pricing"
                   variant="secondary"
                   size="lg"
                 >
-                  <Phone size={18} className="mr-2" />
-                  Free Strategy Call
+                  View Services & Pricing
                 </LinkButton>
               </div>
 
-              {/* Trust strip repeat */}
               <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">
                 {TRUST_POINTS.map((point) => (
                   <div

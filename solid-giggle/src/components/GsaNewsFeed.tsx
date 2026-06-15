@@ -111,7 +111,7 @@ const TOPIC_MAP: { keywords: string[]; match: TopicMatch }[] = [
       color: "text-cta bg-cta/5 border-cta/10",
       simplify:
         "This directly affects GSA Schedule holders. Pay attention — changes to how the MAS program works can impact your catalog, your pricing, or your eligibility.",
-      pitch: "We manage 500+ GSA Schedules. When the rules change, we adjust your contract before it becomes a problem. $375/month for full management.",
+      pitch: "We manage GSA Schedules for hundreds of contractors. When the rules change, we adjust your contract before it becomes a problem. $375/month for full management.",
       ctaLabel: "See Management Plans",
       ctaHref: "/pricing",
     },

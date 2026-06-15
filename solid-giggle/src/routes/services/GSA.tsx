@@ -151,23 +151,22 @@ const allServices: ServiceData[] = [
     title: "FCP Catalog Baseline",
     tagline: "SIP is gone. FCP is mandatory. We handle the switch.",
     description:
-      "GSA retired SIP and moved to the FAS Catalog Platform. If you haven't uploaded your FCP Baseline, your products don't show up on GSA Advantage — agencies literally cannot find you. We migrate your catalog, validate every line item, and get you compliant within 30 days.",
+      "GSA retired SIP and moved to the FAS Catalog Platform. If you haven't uploaded your FCP Baseline, your products don't show up on GSA Advantage — agencies literally cannot find you. We migrate your catalog, validate every line item, and get you compliant within 7 days.",
     features: [
       "Full FCP Baseline catalog upload",
       "Product listing & offer pricing QA",
       "SIN & product issue resolution",
       "Roadmap & technical consultations",
       "Compliance review before submission",
-      "30-day delivery guarantee",
+      "7-day delivery guarantee",
     ],
-    ganttLabel: "30-Day FCP Upload Timeline",
+    ganttLabel: "7-Day FCP Upload Timeline",
     ganttUnit: "Day",
-    ganttTotal: 30,
+    ganttTotal: 7,
     ganttPhases: [
-      { label: "Catalog Audit", start: 0, duration: 5, color: "bg-brand", details: ["Existing catalog review", "Data format assessment", "Gap identification", "Upload plan creation"] },
-      { label: "Data Prep & Pricing QA", start: 5, duration: 8, color: "bg-sky-600", details: ["Product listing cleanup", "Pricing validation", "SIN mapping verification", "Offer structure review"] },
-      { label: "FCP Upload & Validation", start: 13, duration: 10, color: "bg-amber-600", details: ["Baseline upload to FCP", "System validation checks", "Error resolution", "Listing confirmation"] },
-      { label: "Compliance & Go-Live", start: 23, duration: 7, color: "bg-emerald-600", details: ["Final compliance check", "GSA Advantage visibility", "Roadmap consultation", "Handoff documentation"] },
+      { label: "Audit & Data Prep", start: 0, duration: 2, color: "bg-brand", details: ["Existing catalog review", "Data format assessment", "Product listing cleanup", "Pricing validation"] },
+      { label: "FCP Upload & Validation", start: 2, duration: 3, color: "bg-amber-600", details: ["Baseline upload to FCP", "System validation checks", "Error resolution", "SIN mapping verification"] },
+      { label: "Compliance & Go-Live", start: 5, duration: 2, color: "bg-emerald-600", details: ["Final compliance check", "GSA Advantage visibility", "Roadmap consultation", "Handoff documentation"] },
     ],
     cta: "Order FCP Upload",
     ctaHref: "/order",
@@ -365,7 +364,7 @@ export default function ServicesGSA() {
               GSA services. <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cta">Pick what you need.</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl">
-              New submission, annual management, standalone modification, or FCP migration — flat fees, no lock-in, 14-day guarantee on every mod.
+              New submission, annual management, standalone modification, or FCP migration — flat fees, no lock-in, guaranteed timelines.
             </p>
           </motion.div>
 
