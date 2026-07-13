@@ -6,8 +6,6 @@ import {
   CheckCircle2,
   Shield,
   FileText,
-  Rocket,
-  Award,
   Phone,
   Building2,
   Target,
@@ -24,36 +22,20 @@ import { BRAND, LINKS } from "../lib/constants";
 
 const services = [
   {
-    icon: Award,
-    title: "GSA MAS Contract Submission",
-    description:
-      "End-to-end GSA Schedule submission support — from solicitation analysis and proposal writing to portal delivery with a clear, milestone-driven timeline.",
-    features: ["Solicitation analysis & strategy", "Proposal writing & document prep", "Weekly progress updates & portal delivery"],
-    hash: "#submission",
-  },
-  {
     icon: Shield,
-    title: "GSA Schedule Contract Management",
+    title: "Annual Contract Support",
     description:
-      "Ongoing GSA MAS contract compliance and management support to keep your schedule healthy, compliant, and positioned for revenue growth year-round.",
-    features: ["Compliance monitoring & reporting", "Catalog & pricing updates", "Dedicated account management"],
+      "Ongoing GSA MAS contract compliance and management — IFF reporting, catalog maintenance, option renewals, and dedicated account management to keep your schedule healthy year-round.",
+    features: ["Quarterly IFF reporting & compliance", "Catalog & pricing maintenance", "Dedicated account manager"],
     hash: "#management",
   },
   {
-    icon: Rocket,
-    title: "New GSA Vendor Support",
-    description:
-      "Structured onboarding for first-time GSA Schedule holders — get your team operational on GSA Advantage, eBuy, and FCP with confidence.",
-    features: ["GSA platform training", "Launch roadmap & milestones", "Hands-on onboarding support"],
-    hash: "#new-vendor",
-  },
-  {
     icon: FileText,
-    title: "FCP Catalog Baseline Setup",
+    title: "GSA Modification Support",
     description:
-      "Accurate FCP catalog setup and validation to meet GSA requirements, avoid mod rejections, and prevent costly delays.",
-    features: ["Catalog formatting & structure", "Pricing QA & compliance checks", "GSA requirement validation"],
-    hash: "#fcp",
+      "Expert handling of all GSA contract modifications — pricing updates, SIN additions, scope changes, admin updates, and mass mod responses submitted correctly the first time.",
+    features: ["Pricing & scope modifications", "SIN additions & deletions", "Mass mod processing & admin changes"],
+    hash: "#modifications",
   },
 ];
 
@@ -63,34 +45,34 @@ const seoTopics = [
     title: "What Is a GSA Schedule?",
     description:
       "A GSA Schedule (also called a GSA MAS Contract) is a long-term governmentwide contract that lets federal agencies purchase your products and services at pre-negotiated prices. It's the most common way businesses enter the federal marketplace.",
-    link: "/information/vehicles",
+    link: "/services/gsa-contractors",
   },
   {
     icon: Target,
-    title: "GSA MAS Contract Eligibility",
+    title: "GSA Contract Modifications",
     description:
-      "To qualify for a GSA MAS Contract, your business must demonstrate past performance, financial stability, and compliance with the Trade Agreements Act. We help you assess readiness and close any gaps before you submit.",
-    link: "/services/gsa-contractors#submission",
+      "GSA contract modifications — pricing updates, SIN additions, scope changes, and admin updates — require precise documentation and GSA formatting. We handle every mod correctly the first time.",
+    link: "/services/gsa-contractors#modifications",
   },
   {
     icon: TrendingUp,
     title: "GSA Schedule vs. Other Vehicles",
     description:
       "GSA Schedules offer streamlined ordering for agencies, lower competition barriers, and recurring revenue. Compared to open-market bids, a GSA MAS Contract positions you for faster, more predictable federal sales.",
-    link: "/information/vehicles",
+    link: "/services/gsa-contractors",
   },
   {
     icon: Globe,
     title: "Selling to the Federal Government",
     description:
-      "The federal government spends over $600B annually on contracts. A GSA Schedule gives your business direct access to this market — but the application process is complex. We simplify every step.",
+      "The federal government spends over $600B annually on contracts. A GSA Schedule gives your business direct access to this market — but maintaining it requires ongoing compliance and management.",
     link: "/services/gsa-contractors",
   },
   {
     icon: Briefcase,
     title: "GSA Contract Compliance Requirements",
     description:
-      "Maintaining a GSA MAS Contract requires ongoing compliance — from IFF payments and sales reporting to catalog accuracy and TAA adherence. Our management service keeps you covered year-round.",
+      "Maintaining a GSA MAS Contract requires ongoing compliance — from IFF payments and sales reporting to catalog accuracy and TAA adherence. Our annual support keeps you covered year-round.",
     link: "/services/gsa-contractors#management",
   },
   {
@@ -98,7 +80,7 @@ const seoTopics = [
     title: "GSA Schedule for Small Businesses",
     description:
       "Small businesses can leverage set-aside opportunities and the MAS pathway to win federal contracts without competing against large primes. We help you position your business for maximum advantage.",
-    link: "/services/gsa-contractors#new-vendor",
+    link: "/services/gsa-contractors",
   },
 ];
 
@@ -108,10 +90,10 @@ export default function Home() {
   return (
     <div className="bg-surface selection:bg-brand/20 selection:text-ink">
       <Helmet>
-        <title>GSA Schedule Consultants | GSA MAS Contract Assistance | {BRAND.name}</title>
+        <title>GSA Schedule Management & Modifications | {BRAND.name}</title>
         <meta
           name="description"
-          content="Expert GSA Schedule consulting and GSA MAS Contract assistance. We help businesses obtain, manage, and grow their GSA Schedule with 98% approval rate. Submission support, contract management, and compliance services."
+          content="Expert GSA Schedule annual support and modification services. We handle IFF reporting, compliance, catalog management, pricing mods, SIN additions, and all contract modifications for your GSA MAS Contract."
         />
         <meta
           name="keywords"
@@ -154,15 +136,15 @@ export default function Home() {
             </div>
 
             <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-              Get Your GSA Schedule.
+              Keep Your GSA Schedule Compliant.
               <span className="block mt-2 text-cta">
-                Keep It Compliant. Grow Federal Revenue.
+                We Handle the Mods & Management.
               </span>
             </h1>
 
             <p className="mt-8 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl mx-auto">
-              We help businesses obtain, manage, and maximize their GSA MAS Contract — from first-time
-              GSA Schedule submissions to ongoing compliance and catalog management.
+              Annual contract support and expert modification handling for your GSA MAS Contract —
+              so you stay compliant, avoid penalties, and focus on winning federal revenue.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
@@ -212,11 +194,11 @@ export default function Home() {
             >
               <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">GSA Schedule Services</p>
               <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-                Full-spectrum GSA MAS Contract support.
+                Two services. Complete GSA coverage.
               </h2>
               <p className="mt-6 text-ink-light text-lg leading-relaxed">
-                From obtaining your first GSA Schedule to managing ongoing compliance, every service is designed
-                to help you win and grow federal revenue.
+                Annual contract support to keep you compliant year-round, and expert modification handling
+                to keep your schedule current and competitive.
               </p>
             </motion.div>
             <motion.div
@@ -341,10 +323,10 @@ export default function Home() {
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Our Process</p>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl lg:text-5xl tracking-tight">
-              Your GSA Schedule in three phases.
+              How we keep your GSA Schedule healthy.
             </h2>
             <p className="mt-6 text-ink-light text-lg">
-              A structured, transparent process designed to get your GSA MAS Contract awarded — and keep it compliant long-term.
+              A structured, transparent process designed to keep your GSA MAS Contract compliant and growing.
             </p>
           </motion.div>
 
@@ -354,18 +336,18 @@ export default function Home() {
             {[
               {
                 step: "01",
-                title: "GSA Readiness & Strategy",
-                desc: "We assess your eligibility, analyze the right GSA Schedule SINs, and build a roadmap tailored to your business before any paperwork begins.",
+                title: "Contract Review & Onboarding",
+                desc: "We review your current GSA Schedule, identify compliance gaps, and set up your account with a dedicated manager — ready to go in days.",
               },
               {
                 step: "02",
-                title: "MAS Proposal Execution",
-                desc: "Our team writes, assembles, and submits your GSA Schedule proposal — handling every document, pricing narrative, and portal requirement.",
+                title: "Ongoing Annual Support",
+                desc: "Quarterly IFF reporting, catalog maintenance, option renewals, mass mod responses, and CO communications — all handled for you, year-round.",
               },
               {
                 step: "03",
-                title: "Award & Ongoing Compliance",
-                desc: "After your GSA MAS Contract is awarded, we keep you compliant with reporting, catalog updates, and growth strategy support.",
+                title: "Modifications & Growth",
+                desc: "Pricing updates, SIN additions, scope changes, and admin mods — submitted correctly the first time so you can focus on winning business.",
               },
             ].map((item, idx) => (
               <motion.div
@@ -458,11 +440,11 @@ export default function Home() {
 
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
-                Ready to get your GSA Schedule or MAS Contract?
+                Ready to simplify your GSA contract management?
               </h2>
               <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
-                Let&apos;s map a practical path for your GSA goals — from first submission to long-term contract
-                compliance and federal revenue growth.
+                Let&apos;s talk about keeping your GSA Schedule compliant and handling the modifications
+                that keep your contract current and competitive.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <LinkButton href="/services/gsa-contractors" size="lg" className="bg-cta hover:bg-cta-hover text-white shadow-md hover:shadow-lg transition-shadow">

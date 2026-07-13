@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle,
-  AlertTriangle,
   FileText,
   Shield,
   Zap,
@@ -16,14 +15,13 @@ import {
   Target,
   DollarSign,
   BadgeCheck,
-  Rocket,
 } from "lucide-react";
 import { LinkButton } from "../../components/Button";
 import { LINKS } from "../../lib/constants";
 import { cn } from "../../components/cn";
 
 // ─── TYPES ───
-type ServiceId = "submission" | "management" | "new-vendor" | "fcp";
+type ServiceId = "management" | "modifications";
 
 interface GanttPhase {
   label: string;
@@ -51,52 +49,20 @@ interface ServiceData {
 // ─── SERVICE DATA ───
 const allServices: ServiceData[] = [
   {
-    id: "submission",
-    icon: Award,
-    title: "GSA MAS Submission",
-    tagline: "Full-service. 45-day guarantee.",
-    description:
-      "We prepare and submit your complete GSA Multiple Award Schedule offer in 30 days or less. Our accelerated process is built on the \"Holy Trinity\" review — Admin, Technical, and Pricing volumes — that anticipates Contracting Officer concerns before you submit. 98% of our clients receive their award within 4–6 months.",
-    features: [
-      "Eligibility review & SIN selection",
-      "Complete document preparation",
-      "eOffer portal build & management",
-      "Holy Trinity review (Admin, Technical, Pricing)",
-      "Commercial Sales Practice analysis",
-      "Price escalation methodology",
-      "Pre-submission quality audit",
-      "45-day submission guarantee",
-    ],
-    ganttLabel: "30-Day Submission Timeline",
-    ganttUnit: "Day",
-    ganttTotal: 30,
-    ganttPhases: [
-      { label: "Kickoff & Strategy", start: 0, duration: 2, color: "bg-brand", details: ["Business capabilities review", "Target SIN identification", "Communication cadence setup", "Milestone expectations"] },
-      { label: "Document Collection", start: 2, duration: 6, color: "bg-brand-light", details: ["Federal tax returns (2yr min)", "Financial statements", "Past performance narratives", "Commercial price lists"] },
-      { label: "eOffer Preparation", start: 8, duration: 5, color: "bg-sky-600", details: ["SAM.gov verification", "FAS ID creation", "SIN justification", "Portal data entry"] },
-      { label: "Holy Trinity Review", start: 13, duration: 2, color: "bg-amber-600", details: ["Admin completeness check", "Technical validation", "Pricing verification", "Cross-volume consistency"] },
-      { label: "Price & Tech Deep Dive", start: 15, duration: 5, color: "bg-brand", details: ["CSP analysis", "Price escalation", "Labor category descriptions", "Technical narrative refinement"] },
-      { label: "Final Polish", start: 20, duration: 5, color: "bg-brand-light", details: ["Document formatting", "Signature verification", "Attachment checklist", "Quality audit"] },
-      { label: "GSA Submission", start: 25, duration: 5, color: "bg-emerald-600", details: ["eOffer package upload", "Confirmation receipt", "CO assignment notification", "Clarification prep"] },
-    ],
-    cta: "Get Started",
-    ctaHref: "/order",
-  },
-  {
     id: "management",
     icon: Shield,
-    title: "Annual Contract Management",
+    title: "Annual Contract Support",
     tagline: "Hands-off compliance. Cancel anytime.",
     description:
-      "Maintaining a GSA Schedule takes 10+ hours a month. We handle every modification, quarterly report, and compliance requirement so you never risk penalties, missed option renewals, or contract cancellation. One dedicated account manager. Full coverage. No lock-in.",
+      "Maintaining a GSA Schedule takes 10+ hours a month. We handle every quarterly report, compliance requirement, catalog update, and option renewal so you never risk penalties or contract cancellation. One dedicated account manager. Full coverage. No lock-in.",
     features: [
       "Quarterly IFF reporting & sales data",
-      "FCP catalog maintenance & updates",
-      "Contract modifications (admin & technical)",
+      "Catalog maintenance & updates",
       "Compliance monitoring & audit prep",
       "Option year renewal management",
       "CO communication handling",
       "SAM + Advantage + eBuy management",
+      "Mass modification responses",
       "Dedicated account manager",
     ],
     ganttLabel: "Annual Management Cycle",
@@ -104,70 +70,44 @@ const allServices: ServiceData[] = [
     ganttTotal: 12,
     ganttPhases: [
       { label: "Baseline Audit & Setup", start: 0, duration: 1, color: "bg-brand", details: ["Contract health assessment", "Catalog review", "Compliance gap analysis", "Account setup"] },
-      { label: "Q1 Sales Report & IFF", start: 0, duration: 3, color: "bg-sky-600", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Transaction record maintenance", "Discrepancy resolution"] },
-      { label: "Catalog Management", start: 1, duration: 11, color: "bg-amber-600", details: ["Product/service updates", "Pricing modifications", "New SIN additions", "Refresh submissions"] },
-      { label: "Q2 Sales Report & IFF", start: 3, duration: 3, color: "bg-sky-600", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Mid-year reconciliation", "Discrepancy resolution"] },
-      { label: "Modifications & Compliance", start: 2, duration: 8, color: "bg-brand-light", details: ["Address/POC updates", "Scope expansions", "TDR monitoring", "Price reduction compliance"] },
-      { label: "Q3 Sales Report & IFF", start: 6, duration: 3, color: "bg-sky-600", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Year-to-date analysis", "Discrepancy resolution"] },
-      { label: "Q4 Report & Option Review", start: 9, duration: 3, color: "bg-emerald-600", details: ["Final quarterly report", "Annual reconciliation", "Option year assessment", "Renewal preparation"] },
+      { label: "Q1 Sales Report & IFF", start: 0, duration: 3, color: "bg-brand-light", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Transaction record maintenance", "Discrepancy resolution"] },
+      { label: "Catalog Management", start: 1, duration: 11, color: "bg-cta", details: ["Product/service updates", "Pricing modifications", "New SIN additions", "Refresh submissions"] },
+      { label: "Q2 Sales Report & IFF", start: 3, duration: 3, color: "bg-brand-light", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Mid-year reconciliation", "Discrepancy resolution"] },
+      { label: "Compliance Monitoring", start: 2, duration: 8, color: "bg-brand", details: ["Address/POC updates", "Scope expansions", "TDR monitoring", "Price reduction compliance"] },
+      { label: "Q3 Sales Report & IFF", start: 6, duration: 3, color: "bg-brand-light", details: ["Calculate 0.75% IFF", "Submit quarterly report", "Year-to-date analysis", "Discrepancy resolution"] },
+      { label: "Q4 Report & Option Review", start: 9, duration: 3, color: "bg-brand-dark", details: ["Final quarterly report", "Annual reconciliation", "Option year assessment", "Renewal preparation"] },
     ],
-    cta: "Start Management",
+    cta: "Start Annual Support",
     ctaHref: "/order",
   },
   {
-    id: "new-vendor",
-    icon: Rocket,
-    title: "New Vendor Special",
-    tagline: "The fast-start package.",
-    description:
-      "Just got your GSA Schedule? This package gets you from award to operational in weeks, not months. We handle your FCP Catalog Baseline upload, walk you through every GSA website and process 1-on-1, and provide 90 days of complimentary contract management so nothing falls through the cracks.",
-    features: [
-      "Full FCP Catalog Baseline upload",
-      "1-on-1 training: GSA Advantage",
-      "1-on-1 training: eBuy & FCP platforms",
-      "Sales reporting walkthrough",
-      "Compliance requirements overview",
-      "Process & procedure documentation",
-      "90-day contract management included",
-      "Dedicated onboarding specialist",
-    ],
-    ganttLabel: "120-Day Onboarding Timeline",
-    ganttUnit: "Week",
-    ganttTotal: 16,
-    ganttPhases: [
-      { label: "FCP Catalog Upload", start: 0, duration: 4, color: "bg-amber-600", details: ["Catalog data gathering", "Product listing QA", "Pricing review", "FCP upload & validation"] },
-      { label: "Platform Training", start: 2, duration: 4, color: "bg-brand", details: ["GSA Advantage walkthrough", "eBuy training", "FCP navigation", "Account configuration"] },
-      { label: "Process Onboarding", start: 4, duration: 3, color: "bg-brand-light", details: ["Sales reporting training", "Compliance overview", "Modification process", "Documentation handoff"] },
-      { label: "90-Day Management", start: 4, duration: 12, color: "bg-emerald-600", details: ["Ongoing compliance monitoring", "First quarterly report prep", "Catalog maintenance", "Issue resolution support"] },
-    ],
-    cta: "Get Started",
-    ctaHref: "/order",
-  },
-  {
-    id: "fcp",
+    id: "modifications",
     icon: FileText,
-    title: "FCP Catalog Baseline",
-    tagline: "Meet the 30-day mandate.",
+    title: "GSA Modification Support",
+    tagline: "Every mod type. Done right the first time.",
     description:
-      "GSA retired SIP and transitioned to the Federal Catalog Platform (FCP). Without an FCP Baseline Upload, your products are invisible on GSA Advantage — meaning agencies can't find or buy from you. We upload your catalog within the GSA-mandated 30-day window and ensure every line item is compliant.",
+      "GSA contract modifications are complex — pricing updates, SIN additions, scope changes, admin updates, and mass mod responses all have specific requirements and formatting. We handle every modification type so you avoid rejections, delays, and compliance issues.",
     features: [
-      "Full FCP Baseline catalog upload",
-      "Product listing & offer pricing QA",
-      "SIN & product issue resolution",
-      "Roadmap & technical consultations",
-      "Compliance review before submission",
-      "30-day delivery guarantee",
+      "Pricing & economic price adjustments",
+      "SIN additions & deletions",
+      "Scope of work changes",
+      "Administrative updates (POC, address, name)",
+      "Mass modification processing",
+      "Catalog & pricing file updates",
+      "CO negotiation support",
+      "Compliance verification before submission",
     ],
-    ganttLabel: "30-Day FCP Upload Timeline",
+    ganttLabel: "Typical Modification Timeline",
     ganttUnit: "Day",
     ganttTotal: 30,
     ganttPhases: [
-      { label: "Catalog Audit", start: 0, duration: 5, color: "bg-brand", details: ["Existing catalog review", "Data format assessment", "Gap identification", "Upload plan creation"] },
-      { label: "Data Prep & Pricing QA", start: 5, duration: 8, color: "bg-sky-600", details: ["Product listing cleanup", "Pricing validation", "SIN mapping verification", "Offer structure review"] },
-      { label: "FCP Upload & Validation", start: 13, duration: 10, color: "bg-amber-600", details: ["Baseline upload to FCP", "System validation checks", "Error resolution", "Listing confirmation"] },
-      { label: "Compliance & Go-Live", start: 23, duration: 7, color: "bg-emerald-600", details: ["Final compliance check", "GSA Advantage visibility", "Roadmap consultation", "Handoff documentation"] },
+      { label: "Mod Request & Review", start: 0, duration: 3, color: "bg-brand", details: ["Identify modification type", "Requirements analysis", "Documentation checklist", "Timeline planning"] },
+      { label: "Document Preparation", start: 3, duration: 8, color: "bg-brand-light", details: ["Pricing narratives", "Supporting documentation", "Catalog file updates", "Compliance verification"] },
+      { label: "GSA Submission", start: 11, duration: 2, color: "bg-cta", details: ["eMod portal submission", "Attachment uploads", "Confirmation receipt", "CO notification"] },
+      { label: "CO Review & Negotiation", start: 13, duration: 12, color: "bg-brand", details: ["Clarification responses", "Pricing negotiations", "Technical discussions", "Revision handling"] },
+      { label: "Award & Implementation", start: 25, duration: 5, color: "bg-brand-dark", details: ["Modification award", "Catalog updates", "GSA Advantage refresh", "Compliance confirmation"] },
     ],
-    cta: "Order FCP Upload",
+    cta: "Get Mod Support",
     ctaHref: "/order",
   },
 ];
@@ -184,11 +124,11 @@ const gsaBenefits = [
 
 // ─── FAQ DATA ───
 const faqs = [
-  { q: "How long does it take to get on the GSA Schedule?", a: "With our accelerated process, most clients receive their GSA Schedule within 4–6 months. The industry average is 12+ months. We achieve this through our 'Holy Trinity' review that anticipates CO concerns before submission." },
-  { q: "What are the minimum qualifications?", a: "You need 2 years of corporate experience, relevant past performance (typically 3–5 projects), and financial viability demonstrated through tax returns and financial statements. Specific requirements vary by SIN category." },
-  { q: "What's the difference between MAS and OASIS+?", a: "MAS (Multiple Award Schedule) is GSA's primary vehicle for commercial products and services. OASIS+ is a specialized IDIQ for professional services requiring complex statements of work. We can help determine which is right for you." },
-  { q: "What are the ongoing requirements after award?", a: "Quarterly sales reports, 0.75% Industrial Funding Fee, catalog pricing maintenance, mass modification responses, and continued compliance. Our Contract Management service handles all of this." },
-  { q: "Can you help if I already have a GSA Schedule?", a: "Absolutely. We provide ongoing Contract Management for existing holders — modifications, sales reporting, catalog updates, and compliance support." },
+  { q: "What does annual contract support include?", a: "Everything you need to stay compliant — quarterly IFF reporting, catalog maintenance, option year renewals, mass mod responses, CO communications, and SAM/Advantage/eBuy management. One dedicated account manager handles it all." },
+  { q: "What types of modifications do you handle?", a: "All of them — pricing updates (EPA), SIN additions and deletions, scope changes, administrative updates (POC, address, name changes), mass modifications, and catalog file updates. We handle the documentation, submission, and CO negotiations." },
+  { q: "How long does a typical modification take?", a: "Simple admin mods can be processed in 1–2 weeks. Pricing and scope modifications typically take 3–4 weeks depending on CO workload. We prepare everything correctly the first time to avoid rejections and delays." },
+  { q: "What are the ongoing requirements for a GSA Schedule?", a: "Quarterly sales reports, 0.75% Industrial Funding Fee, catalog pricing maintenance, mass modification responses, option year exercises, and continued compliance with TAA and other requirements. Our annual support handles all of this." },
+  { q: "Can I start with just modification support?", a: "Yes. You can engage us for a single modification or sign up for annual support that includes all mods. No lock-in on either option — cancel anytime." },
 ];
 
 // ─── GANTT CHART ───
@@ -304,13 +244,11 @@ function GanttChart({ service }: { service: ServiceData }) {
 // ─── MAIN COMPONENT ───
 export default function ServicesGSA() {
   const location = useLocation();
-  const [activeService, setActiveService] = useState<ServiceId>("submission");
+  const [activeService, setActiveService] = useState<ServiceId>("management");
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const sectionRefs = useRef<Record<ServiceId, HTMLElement | null>>({
-    submission: null,
     management: null,
-    "new-vendor": null,
-    fcp: null,
+    modifications: null,
   });
 
   useEffect(() => {
@@ -326,8 +264,8 @@ export default function ServicesGSA() {
   return (
     <div className="bg-surface selection:bg-brand/20 selection:text-ink">
       <Helmet>
-        <title>GSA Schedule Services — Submissions, Management & FCP | GSA Managers</title>
-        <meta name="description" content="Get on the GSA Schedule in 4–6 months. Full-service submissions, annual management, FCP uploads, and new vendor onboarding." />
+        <title>GSA Schedule Services — Annual Support & Modification Services | GSA Managers</title>
+        <meta name="description" content="Expert GSA contract management and modification support. Annual compliance, IFF reporting, catalog maintenance, pricing mods, SIN additions, and more." />
       </Helmet>
 
       {/* ──────── HERO ──────── */}
@@ -360,10 +298,10 @@ export default function ServicesGSA() {
             </div>
             
             <h1 className="font-display text-4xl font-bold leading-tight text-ink sm:text-5xl lg:text-[4rem] lg:leading-[1.05]">
-              Every stage of your GSA journey. <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cta">Covered.</span>
+              Annual support & modifications. <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cta">Handled.</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-ink-light leading-relaxed max-w-2xl">
-              From first submission to ongoing compliance — pick the service that fits, and we'll handle the rest. No lock-in.
+              Keep your GSA Schedule compliant year-round and get every modification done right the first time. No lock-in.
             </p>
           </motion.div>
 
@@ -398,31 +336,6 @@ export default function ServicesGSA() {
           </motion.div>
         </div>
       </section>
-
-      {/* ──────── FCP ALERT ──────── */}
-      <div className="bg-gradient-to-r from-red-600 to-red-700 shadow-inner relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div className="mx-auto w-full max-w-7xl px-6 py-4 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
-          <div className="flex items-center gap-3 text-white">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20">
-              <AlertTriangle size={18} />
-            </div>
-            <p className="text-sm md:text-base text-white/90">
-              <strong className="text-white">SIP is retired. FCP is mandatory.</strong>{" "}
-              Without an FCP Baseline Upload, your catalog is invisible on GSA Advantage.
-            </p>
-          </div>
-          <button
-            onClick={() => {
-              setActiveService("fcp");
-              sectionRefs.current.fcp?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
-            className="shrink-0 rounded-full bg-white px-5 py-2 text-sm font-bold text-red-600 hover:bg-red-50 hover:shadow-md transition-all active:scale-95"
-          >
-            Fix it now &rarr;
-          </button>
-        </div>
-      </div>
 
       {/* ──────── SERVICE SECTIONS ──────── */}
       {allServices.map((svc, svcIdx) => (
@@ -475,8 +388,8 @@ export default function ServicesGSA() {
                     ))}
                   </div>
 
-                  {/* Gantt Chart (Only for new GSA Submissions) */}
-                  {svc.id === "submission" && <GanttChart service={svc} />}
+                  {/* Gantt Chart */}
+                  <GanttChart service={svc} />
                 </motion.div>
               </div>
 
@@ -637,17 +550,17 @@ export default function ServicesGSA() {
         className="rounded-3xl bg-surface border border-warm-border p-10 md:p-16 text-center shadow-elevated relative overflow-hidden mt-24"
       >
         <div className="absolute top-0 left-0 p-8 opacity-5 pointer-events-none">
-          <Award size={160} />
+          <Shield size={160} />
         </div>
         <div className="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none translate-y-1/4 translate-x-1/4">
-          <Rocket size={160} />
+          <FileText size={160} />
         </div>
         <div className="relative z-10 max-w-2xl mx-auto">
           <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl leading-tight">
-            Ready to get on the <br className="hidden sm:block"/> GSA Schedule?
+            Ready to simplify your <br className="hidden sm:block"/> GSA contract management?
           </h2>
           <p className="mt-6 text-ink-light text-lg leading-relaxed mb-10">
-            Whether you need an FCP upload or full-service submission and management — we've got you covered.
+            Whether you need annual support or help with a specific modification — we've got you covered.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <LinkButton
