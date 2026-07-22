@@ -674,9 +674,9 @@ export default function PrimeProgram() {
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6 text-amber-200">
-            <a href="tel:8136650308" className="flex items-center gap-2 hover:text-white transition">
+            <a href="tel:7274251998" className="flex items-center gap-2 hover:text-white transition">
               <Phone size={18} />
-              (813) 665-0308
+              (727) 425-1998
             </a>
             <a href="mailto:Info@GSAManagers.com" className="flex items-center gap-2 hover:text-white transition">
               <Mail size={18} />

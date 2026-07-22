@@ -142,7 +142,7 @@ export async function onRequestPost(context) {
               "<p><strong>Payment ID:</strong> " + (payment.id || "N/A") + "</p>",
               "<hr/>",
               "<p>Our onboarding team will reach out within 1 business day to schedule your kickoff call.</p>",
-              "<p>Questions? Call us at (813) 665-0308 or email Info@GSAManagers.com</p>",
+              "<p>Questions? Call us at (727) 425-1998 or email Info@GSAManagers.com</p>",
             ].join(""),
           }),
         });

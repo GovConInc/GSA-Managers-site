@@ -751,7 +751,7 @@ export default function ProposalGenerator() {
 
           <div class="footer">
             <div class="footer-disclaimer">This proposal is confidential and intended solely for the named recipient.</div>
-            <div class="footer-contact">GSA Managers Inc. &bull; (813) 665-0308 &bull; Info@GSAManagers.com &bull; www.GSAManagers.com</div>
+            <div class="footer-contact">GSA Managers Inc. &bull; (727) 425-1998 &bull; Info@GSAManagers.com &bull; www.GSAManagers.com</div>
           </div>
         </div>
       </body>
@@ -1390,7 +1390,7 @@ export default function ProposalGenerator() {
 
                 <div className="mt-16 pt-6 border-t border-slate-200 text-center">
                   <p className="text-slate-400 text-sm">This proposal is confidential and intended solely for the named recipient.</p>
-                  <p className="text-slate-500 text-sm mt-2">GSA Managers Inc. • (813) 665-0308 • Info@GSAManagers.com • www.GSAManagers.com</p>
+                  <p className="text-slate-500 text-sm mt-2">GSA Managers Inc. • (727) 425-1998 • Info@GSAManagers.com • www.GSAManagers.com</p>
                 </div>
               </div>
             </div>
