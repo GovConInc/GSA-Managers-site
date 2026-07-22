@@ -97,7 +97,7 @@ export default function InHouseVsOutsourced() {
       <H2>The outsourced column</H2>
       <P>
         Our <strong>Complete Management</strong> retainer is $4,500 for twelve months — flat. That
-        covers every major and minor modification (a single standalone mod alone runs $2,999), all
+        covers every major and minor modification (a single standalone mod alone runs $1,999), all
         reporting and compliance work, FCP catalog maintenance, a 14-day submission guarantee, six
         sales and admin training sessions, and a dedicated project manager. Your team&apos;s
         involvement drops to approving our work.
@@ -136,12 +136,11 @@ export default function InHouseVsOutsourced() {
         and the flat fee becomes the cheap option.
       </P>
 
-      <H2>A middle path: the 6-month back office</H2>
+      <H2>A middle path: start with a single mod</H2>
       <P>
-        Not ready to commit to a year? <strong>Core Maintenance</strong> is $1,499 for six months
-        (or $250/month): all minor modifications, three sales assessments, and three training
-        sessions. It&apos;s the &quot;take the back office off my desk&quot; option — and most
-        clients upgrade to Complete Management when their first major mod comes up, because the
+        Not ready to commit to a year? A <strong>standalone modification</strong> is $1,999 flat —
+        any mod, end-to-end, submitted within 14 days. It&apos;s the &quot;take this one task off my desk&quot;
+        option — and most clients upgrade to Complete Management when their second mod comes up, because the
         included-mods math makes the decision for them.
       </P>
 

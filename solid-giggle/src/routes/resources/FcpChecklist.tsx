@@ -173,11 +173,11 @@ export default function FcpChecklist() {
               </h3>
               <p className="mt-3 text-white/70 text-sm leading-relaxed max-w-xl">
                 We handle the full FCP migration and resolve every compliance issue on this list.
-                $499 flat fee, 7-day delivery guarantee.
+                $999 flat fee, 7-day delivery guarantee.
               </p>
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <LinkButton href="/order?service=fcp-transition" className="shadow-md">
-                  Fix Everything — $499
+                  Fix Everything — $999
                   <ArrowRight size={15} className="ml-2" />
                 </LinkButton>
                 <LinkButton
@@ -196,8 +196,8 @@ export default function FcpChecklist() {
       <div className="print:hidden">
         <ServiceFinalCta
           title="Found issues? We fix them."
-          body="FCP migration and full compliance resolution. $499 flat, 7-day delivery guarantee."
-          primaryLabel="Order FCP Transition — $499"
+          body="FCP migration, full compliance resolution, and training. $999 flat, 7-day delivery guarantee."
+          primaryLabel="Order Catalog Upload & Training — $999"
           primaryHref="/order?service=fcp-transition"
         />
       </div>

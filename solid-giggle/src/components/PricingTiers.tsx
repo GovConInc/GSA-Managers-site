@@ -79,7 +79,7 @@ function OfferCard({ offer, featured, idx }: { offer: Offer; featured?: boolean;
 
 /**
  * Transparent tiered pricing — Tier 1 immediate-action offers up top,
- * Tier 2 retainers side-by-side beneath, with the $2,999 standalone mod
+ * Tier 2 retainers side-by-side beneath, with the $1,999 modification
  * deliberately anchoring the $4,500 annual plan.
  */
 export default function PricingTiers({ showHeaders = true }: { showHeaders?: boolean }) {
@@ -109,14 +109,14 @@ export default function PricingTiers({ showHeaders = true }: { showHeaders?: boo
         {showHeaders && (
           <div className="mb-8">
             <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-2">
-              Core Maintenance Programs
+              Management Programs
             </p>
             <h3 className="font-display text-2xl sm:text-3xl font-bold text-ink">
-              Why pay $2,999 for one mod when $4,500 covers a full year?
+              Why pay $1,999 for one mod when $4,500 covers a full year?
             </h3>
             <p className="mt-3 text-ink-light max-w-2xl">
-              One standalone major modification costs $2,999. For $1,501 more, Complete Management
-              covers <em>every</em> modification for 12 months — plus training, guaranteed 14-day
+              One standalone modification costs $1,999. For $2,501 more, Complete Management
+              covers <em>every</em> modification for 12 months — plus all backend services, eBuy support, guaranteed 14-day
               submissions, and a dedicated PM. That&apos;s the math.
             </p>
           </div>

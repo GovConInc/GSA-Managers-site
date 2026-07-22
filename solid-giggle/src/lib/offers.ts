@@ -1,9 +1,9 @@
 /**
  * Master offer catalog + conversion copy dictionary.
  *
- * Pricing architecture (per GSAmanager Conversion Strategy):
+ * Pricing architecture:
  *  - Tier 1: immediate-action, a-la-carte offers (quick checkout)
- *  - Tier 2: core maintenance retainers, anchored by the $2,999 standalone mod
+ *  - Tier 2: core maintenance retainers, anchored by the $1,999 standalone mod
  *
  * Copy follows the "Because / That means" framework — every description
  * names what we take off the client's plate, then the payoff.
@@ -29,19 +29,19 @@ export const OFFERS: Offer[] = [
   {
     id: "fcp-transition",
     tier: 1,
-    name: "FCP Transition & Compliance Assurance",
-    priceCents: 499_00,
-    displayPrice: "$499",
+    name: "GSA Catalog Upload & Training for New Contractors",
+    priceCents: 999_00,
+    displayPrice: "$999",
     priceNote: "flat fee",
     badge: "Most Urgent",
-    hook: "SIP is retired. FCP is mandatory. We handle the migration.",
+    hook: "Catalog upload, compliance audit, and 1-on-1 training — all in one.",
     description:
-      "We execute your full FCP catalog migration and audit your GSA Schedule for compliance. Your catalog goes live on GSA Advantage, your pricing is verified against your contract, and every line item passes validation.",
+      "We execute your full FCP catalog migration, audit your GSA Schedule for compliance, and train your team on every GSA platform. Your catalog goes live on GSA Advantage, your pricing is verified, and you understand how to run your contract.",
     features: [
-      "Complete FCP catalog migration",
+      "Complete FCP catalog migration & upload",
       "Full GSA Schedule compliance audit",
+      "1-on-1 training on all GSA platforms",
       "7-day delivery guarantee",
-      "Catalog live & verified on GSA Advantage",
     ],
     orderHref: "/order?service=fcp-transition",
     learnHref: "/fcp-transition-service",
@@ -49,15 +49,15 @@ export const OFFERS: Offer[] = [
   {
     id: "standalone-mod",
     tier: 1,
-    name: "Standalone GSA Modification",
-    priceCents: 2999_00,
-    displayPrice: "$2,999",
+    name: "GSA Modification",
+    priceCents: 1999_00,
+    displayPrice: "$1,999",
     priceNote: "flat fee",
-    hook: "One major mod — prepared, submitted, tracked to completion.",
+    hook: "Any modification — prepared, submitted, tracked to completion.",
     description:
-      "We prepare and submit one major GSA modification: new SINs, products, services, or pricing changes. Documentation, pricing support, CO communications — all included. Submitted within 14 days.",
+      "We prepare and submit any GSA modification: new SINs, products, services, or pricing changes. Documentation, pricing support, CO communications — all included. Submitted within 14 days.",
     features: [
-      "One major modification, end-to-end",
+      "Any modification, end-to-end",
       "New SINs, products, or services added",
       "Pricing & documentation prepared for you",
       "Submitted within 14 days",
@@ -88,19 +88,20 @@ export const OFFERS: Offer[] = [
   {
     id: "complete-management",
     tier: 2,
-    name: "GSA Complete Management",
+    name: "Complete GSA Management",
     priceCents: 4500_00,
     displayPrice: "$4,500",
     priceNote: "12 months, total",
     monthlyOption: "or $375 / month",
     badge: "Best Value",
-    hook: "Full-year management — $1,501 more than a single mod, unlimited mods included.",
+    hook: "Full-year management — all backend, all modifications, all eBuy support included.",
     description:
-      "Every major and minor modification, IFF reporting, FCP catalog maintenance, compliance monitoring, and CO communications — handled for 12 months. Dedicated PM, 14-day submission guarantee.",
+      "Every major and minor modification, all backend services, IFF reporting, FCP catalog maintenance, GSA eBuy support, compliance monitoring, and CO communications — handled for 12 months. Dedicated PM, 14-day submission guarantee.",
     features: [
-      "All major & minor modifications",
+      "All major & minor modifications included",
+      "All backend services & compliance handled",
+      "GSA eBuy support & management",
       "14-day submission guarantee",
-      "6 sales & admin training sessions",
       "Dedicated project manager",
     ],
     orderHref: "/order?service=complete-management",
@@ -128,18 +129,18 @@ export const OFFERS: Offer[] = [
   {
     id: "new-vendor",
     tier: 3,
-    name: "New Vendor Special",
-    priceCents: 1450_00,
-    displayPrice: "$1,450",
+    name: "GSA Catalog Upload & Training for New Contractors",
+    priceCents: 999_00,
+    displayPrice: "$999",
     priceNote: "flat fee",
     hook: "Just got your award? We make it operational.",
     description:
-      "FCP catalog baseline upload, 1-on-1 training on GSA Advantage, eBuy, and sales reporting, plus 90 days of contract management included. You go from award letter to selling in weeks.",
+      "FCP catalog baseline upload, 1-on-1 training on GSA Advantage, eBuy, and sales reporting, plus compliance audit. You go from award letter to selling in weeks.",
     features: [
       "Full FCP catalog baseline upload",
       "1-on-1 training on all GSA platforms",
-      "Process & procedure documentation",
-      "90-day contract management included",
+      "Full GSA Schedule compliance audit",
+      "7-day delivery guarantee",
     ],
     orderHref: "/order?service=new-vendor",
     learnHref: "/fcp-transition-service",

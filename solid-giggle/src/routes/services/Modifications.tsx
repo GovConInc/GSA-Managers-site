@@ -37,7 +37,7 @@ const steps = [
 const faqs = [
   {
     q: "How much does a GSA modification consultant cost?",
-    a: "Our standalone major modification is a flat $2,999 — documentation, submission, CO communications, and verification included. If you expect more than one modification this year, our 12-month Complete Management plan covers unlimited major and minor mods for $4,500 total.",
+    a: "Our standalone modification is a flat $1,999 — documentation, submission, CO communications, and verification included. If you expect more than one modification this year, our 12-month Complete Management plan covers unlimited major and minor mods for $4,500 total.",
   },
   {
     q: "What counts as a major modification?",
@@ -68,7 +68,7 @@ export default function Modifications() {
         <title>GSA Major Modification Consultant — Submitted in 14 Days | {BRAND.name}</title>
         <meta
           name="description"
-          content="GSA major modification consultant. We execute your modification start to finish — new SINs, products, labor categories — for $2,999 flat, submitted within 14 days. 98% approval rate."
+          content="GSA major modification consultant. We execute your modification start to finish — new SINs, products, labor categories — for $1,999 flat, submitted within 14 days. 98% approval rate."
         />
         <meta
           name="keywords"
@@ -88,7 +88,7 @@ export default function Modifications() {
         title="Your GSA modification consultant."
         accent="Submitted in 14 days. Flat fee."
         lede={SERVICE_DICTIONARY["Major Modifications"]}
-        primaryLabel="Buy a Standalone Mod — $2,999"
+        primaryLabel="Buy a Standalone Mod — $1,999"
         primaryHref="/order?service=standalone-mod"
       />
 
@@ -140,7 +140,7 @@ export default function Modifications() {
             <div className="lg:col-span-1">
               <BuyCard
                 name="Standalone GSA Modification"
-                price="$2,999"
+                price="$1,999"
                 priceNote="flat fee"
                 features={[
                   "One major modification, end-to-end",
@@ -150,7 +150,7 @@ export default function Modifications() {
                   "Approval verified on every GSA platform",
                 ]}
                 orderHref="/order?service=standalone-mod"
-                ctaLabel="Buy Now — $2,999"
+                ctaLabel="Buy Now — $1,999"
               />
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function Modifications() {
             <div className="relative z-10 max-w-2xl mx-auto">
               <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Before You Buy One Mod</p>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
-                $2,999 buys one modification.
+                $1,999 buys one modification.
                 <span className="block mt-1 text-cta">$4,500 buys all of them — for a year.</span>
               </h2>
               <p className="mt-5 text-white/70 leading-relaxed">
@@ -266,7 +266,7 @@ export default function Modifications() {
       <ServiceFinalCta
         title="Get your modification moving today."
         body="We prepare the documentation, pricing support, and narrative — then submit and track through approval. 14-day submission guarantee."
-        primaryLabel="Buy a Standalone Mod — $2,999"
+        primaryLabel="Buy a Standalone Mod — $1,999"
         primaryHref="/order?service=standalone-mod"
       />
     </div>

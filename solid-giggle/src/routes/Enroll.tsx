@@ -23,43 +23,43 @@ import { BRAND } from "../lib/constants";
 // ENROLL PAGE DATA
 const PLANS = {
   fcpOnly: {
-    label: "FCP Catalog Baseline Only",
-    name: "FCP Catalog Baseline Upload",
-    price: 500,
+    label: "Catalog Upload & Training",
+    name: "GSA Catalog Upload & Training",
+    price: 999,
     note: "billed once",
-    cadence: "One-time — $500",
+    cadence: "One-time — $999",
     stripe_mode: "payment" as const,
   },
   newVendor: {
-    label: "New Vendor Special",
-    name: "$1,450 New Vendor Special",
-    price: 1450,
+    label: "Catalog Upload & Training",
+    name: "GSA Catalog Upload & Training",
+    price: 999,
     note: "billed once",
-    cadence: "One-time — $1,450",
+    cadence: "One-time — $999",
     stripe_mode: "payment" as const,
   },
   submission: {
     label: "Full-Service Submission",
     name: "GSA Schedule Submission",
-    price: 4500,
+    price: 4995,
     note: "Starting at",
     cadence: "45-Day Guarantee",
     stripe_mode: "contact" as const,
   },
   management: {
     label: "Contract Management",
-    name: "Annual GSA Contract Management",
-    price: 6500,
+    name: "Complete GSA Management",
+    price: 4500,
     note: "billed annually",
-    cadence: "Annual — $6,500",
+    cadence: "Annual — $4,500",
     stripe_mode: "contact" as const,
   },
   monthly: {
     label: "Contract Management",
-    name: "Monthly GSA Contract Management",
-    price: 541.67,
+    name: "Complete GSA Management",
+    price: 375,
     note: "12 monthly payments — same total annual amount",
-    cadence: "Monthly — $541.67/mo",
+    cadence: "Monthly — $375/mo",
     stripe_mode: "contact" as const,
   },
 } as const;
@@ -71,7 +71,7 @@ const CALENDLY_URL = "https://calendar.app.google/EA6JzEhbNTH6AM6S8";
 /* ─── SECTION DATA ─── */
 const deliverables = [
   {
-    title: "$500 FCP Catalog Baseline Only",
+    title: "$999 Catalog Upload & Training",
     desc: "Catalog Baseline upload with our 7-day delivery guarantee. Includes QA and roadmap & technical consultations.",
     items: [
       "FCP Catalog Baseline Upload (7-Day Guarantee)",
@@ -81,7 +81,7 @@ const deliverables = [
     ]
   },
   {
-    title: "$1,450 New Vendor Special",
+    title: "$999 Catalog Upload & Training",
     desc: "Includes the Catalog Baseline upload (7-day guarantee), specialized 1-on-1 training for all GSA-related websites and processes, and complimentary 90-day contract management.",
     items: [
       "Full FCP Catalog Upload",
@@ -101,7 +101,7 @@ const deliverables = [
     ]
   },
   {
-    title: "GSA Contract Management ($6,500/yr)",
+    title: "Complete GSA Management ($4,500/yr)",
     desc: "Annual support for GSA Contractors including modifications, reporting, SAM registration, and expert guidance.",
     items: [
       "FCP Baseline Upload & Revisions",
@@ -441,7 +441,7 @@ export default function Enroll() {
                 <p className="mt-1 text-sm text-blue-300">Everything you need to go from awarded to operational.</p>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-black text-white">$1,200</div>
+                <div className="text-3xl font-black text-white">$999</div>
                 <div className="text-xs text-blue-300">one-time investment</div>
               </div>
             </div>
@@ -472,7 +472,7 @@ export default function Enroll() {
                   onClick={() => openModal("fcp")}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-4 text-base font-extrabold text-white transition hover:bg-red-700 active:scale-[.98]"
                 >
-                  Start Catalog Upload — $1,200 <ArrowRight size={18} />
+                  Start Catalog Upload — $999 <ArrowRight size={18} />
                 </button>
                 <p className="mt-3 text-center text-xs text-slate-400">
                   Secured by Stripe · No hidden fees · Intro meeting included
@@ -577,7 +577,7 @@ export default function Enroll() {
               </div>
               <div className="text-right">
                 <div className="text-3xl font-black text-white">
-                  {annualPlan === "annual" ? "$6,500" : "$541.67/mo"}
+                  {annualPlan === "annual" ? "$4,500" : "$375/mo"}
                 </div>
                 <div className="text-xs text-slate-500">
                   {annualPlan === "annual" ? "per year" : "per month"}
@@ -622,7 +622,7 @@ export default function Enroll() {
                     <div className={cn("text-[10px] font-bold uppercase tracking-widest", annualPlan === "annual" ? "text-brand" : "text-slate-400")}>
                       Pay annually
                     </div>
-                    <div className="mt-1 text-xl font-black text-brand">$6,500</div>
+                    <div className="mt-1 text-xl font-black text-brand">$4,500</div>
                     <div className="mt-0.5 text-xs text-slate-500">Same total annual amount with year-round coverage</div>
                   </button>
                   <button
@@ -638,9 +638,9 @@ export default function Enroll() {
                       Pay monthly
                     </div>
                     <div className="mt-1 text-xl font-black text-brand">
-                      $541.67<span className="text-sm font-semibold">/mo</span>
+                      $375<span className="text-sm font-semibold">/mo</span>
                     </div>
-                    <div className="mt-0.5 text-xs text-slate-500">$6,500/yr — same total annual amount, no lock-in</div>
+                    <div className="mt-0.5 text-xs text-slate-500">$4,500/yr — same total annual amount, no lock-in</div>
                   </button>
                 </div>
 
@@ -739,13 +739,13 @@ export default function Enroll() {
             onClick={() => openModal("fcp")}
             className="rounded-xl bg-brand px-8 py-4 text-sm font-extrabold text-white transition hover:bg-red-700"
           >
-            Start Catalog Upload — $1,200
+            Start Catalog Upload — $999
           </button>
           <button
             onClick={() => openModal("mgmt")}
             className="rounded-xl border-2 border-white/20 bg-white/10 px-8 py-4 text-sm font-semibold text-white transition hover:bg-white/15"
           >
-            Start Annual Management — $6,500
+            Start Annual Management — $4,500
           </button>
         </div>
       </section>

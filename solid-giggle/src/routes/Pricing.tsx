@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: "Can I pay monthly instead of up front?",
-    a: "Yes — Core Maintenance is $250/month and Complete Management is $375/month. No long-term lock-in; the flat annual totals simply save you the equivalent of paying as you go.",
+    a: "Yes — Complete Management is $375/month. No long-term lock-in; the flat annual total simply saves you the equivalent of paying as you go.",
   },
   {
     q: "What if I need something that isn't listed?",
@@ -54,7 +54,7 @@ export default function Pricing() {
         <title>GSA Services Pricing — Flat Fees, Published | {BRAND.name}</title>
         <meta
           name="description"
-          content="Transparent GSA consulting prices: FCP transition & compliance audit $499, standalone major modification $2,999, 6-month maintenance $1,499, 12-month complete management $4,500. Flat fees, no lock-in."
+          content="Transparent GSA consulting prices: catalog upload & training $999, any GSA modification $1,999, 12-month complete management $4,500. Flat fees, no lock-in."
         />
         <meta
           name="keywords"

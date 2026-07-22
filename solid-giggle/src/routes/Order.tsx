@@ -25,9 +25,9 @@ const SQUARE_ENV = import.meta.env.VITE_SQUARE_ENV === "production" ? "productio
 
 /* ─── SERVICES / PRODUCTS ───
  * Tiered catalog per the conversion strategy:
- *  Tier 1 — immediate-action flat fees ($499 FCP tripwire, $2,999 standalone mod anchor)
- *  Tier 2 — core maintenance retainers ($1,499 / 6mo, $4,500 / 12mo)
- *  Plus acquisition & activation (submission, new vendor special)
+ *  Tier 1 — immediate-action flat fees ($999 catalog upload & training, $1,999 any modification)
+ *  Tier 2 — core maintenance retainers ($4,500 / 12mo)
+ *  Plus acquisition (submission)
  */
 const services = [
   {
@@ -44,16 +44,16 @@ const services = [
   {
     id: "fcp-transition",
     icon: FileText,
-    name: "FCP Transition & Compliance Assurance",
-    price: 499_00, // cents
-    displayPrice: "$499",
+    name: "GSA Catalog Upload & Training for New Contractors",
+    price: 999_00, // cents
+    displayPrice: "$999",
     description:
-      "We execute your mandatory FAS Catalog Platform (FCP) transition and audit your GSA Schedule to guarantee 100% compliance. Your schedule comes out modernized, secured, and ready to sell.",
+      "We execute your mandatory FAS Catalog Platform (FCP) transition, audit your GSA Schedule for compliance, and train your team on every GSA platform. Your schedule comes out modernized, compliant, and ready to sell.",
     features: [
-      "Complete FCP Catalog Migration",
+      "Complete FCP Catalog Migration & Upload",
       "Full GSA Schedule Compliance Audit",
-      "Suspension-Risk Elimination",
-      "Kickoff Within 1 Business Day",
+      "1-on-1 Training on All GSA Platforms",
+      "7-Day Delivery Guarantee",
     ],
     type: "one-time" as const,
     hidden: false,
@@ -61,13 +61,13 @@ const services = [
   {
     id: "standalone-mod",
     icon: Wrench,
-    name: "Standalone GSA Modification",
-    price: 2999_00,
-    displayPrice: "$2,999",
+    name: "GSA Modification",
+    price: 1999_00,
+    displayPrice: "$1,999",
     description:
-      "One major GSA modification executed flawlessly from start to finish — new SINs, products, services, or labor categories — so you start capturing that revenue immediately.",
+      "Any GSA modification executed flawlessly from start to finish — new SINs, products, services, labor categories, or pricing changes — so you start capturing that revenue immediately.",
     features: [
-      "One Major Modification, End-to-End",
+      "Any Modification, End-to-End",
       "All Documentation Prepared For You",
       "Submitted Within 14 Days — Guaranteed",
       "CO Communications Handled",
@@ -79,8 +79,8 @@ const services = [
     id: "core-maintenance",
     icon: Shield,
     name: "GSA Core Maintenance / Back Office (6 Months)",
-    price: 1499_00,
-    displayPrice: "$1,499",
+    price: 1999_00,
+    displayPrice: "$1,999",
     description:
       "We take over your ongoing GSA back office and build your baseline revenue strategy. All minor modifications handled, plus targeted sales training. Monthly option available at $250/mo — contact us.",
     features: [
@@ -95,18 +95,18 @@ const services = [
   {
     id: "complete-management",
     icon: Award,
-    name: "GSA Complete Management (12 Months)",
+    name: "Complete GSA Management (12 Months)",
     price: 4500_00,
     displayPrice: "$4,500",
     description:
-      "Your dedicated, end-to-end GSA management team for a full year. All modifications, guaranteed 14-day submissions, comprehensive training, and a dedicated PM. Monthly option available at $375/mo — contact us.",
+      "Your dedicated, end-to-end GSA management team for a full year. All backend services, all modifications, GSA eBuy support, guaranteed 14-day submissions, and a dedicated PM. Monthly option available at $375/mo — contact us.",
     features: [
-      "All Major & Minor Modifications",
+      "All Major & Minor Modifications Included",
+      "All Backend Services & Compliance Handled",
+      "GSA eBuy Support & Management",
       "14-Day Submission Guarantee",
-      "6 Sales & Admin Training Sessions",
       "Dedicated Project Manager",
       "IFF Reporting & Compliance Handled",
-      "eBuy & GSA Advantage! Management",
     ],
     type: "annual" as const,
     hidden: false,
@@ -131,16 +131,16 @@ const services = [
   {
     id: "new-vendor",
     icon: Rocket,
-    name: "New Vendor Special",
-    price: 1450_00,
-    displayPrice: "$1,450",
+    name: "GSA Catalog Upload & Training for New Contractors",
+    price: 999_00,
+    displayPrice: "$999",
     description:
-      "FCP Catalog Baseline upload, specialized 1-on-1 training for all GSA websites and processes, plus complimentary 90-day GSA Contract Management.",
+      "FCP Catalog Baseline upload, 1-on-1 training for all GSA websites and processes, plus a full compliance audit. Get from award letter to operational in days.",
     features: [
       "Full FCP Catalog Upload",
-      "Specialized 1-on-1 Training (All GSA Sites)",
-      "Process & Understanding Guide",
-      "90-Day Contract Management (Initiation)",
+      "1-on-1 Training (All GSA Sites)",
+      "Full GSA Schedule Compliance Audit",
+      "7-Day Delivery Guarantee",
     ],
     type: "one-time" as const,
     hidden: false,

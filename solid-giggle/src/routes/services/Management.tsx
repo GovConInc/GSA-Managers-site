@@ -94,11 +94,11 @@ const comparison = {
 const faqs = [
   {
     q: "What's the difference between Core Maintenance and Complete Management?",
-    a: "Core Maintenance ($1,499 / 6 months) covers all minor modifications plus 3 sales assessments and 3 training sessions — the essential back office. Complete Management ($4,500 / 12 months) covers everything: all major AND minor modifications, the 14-day submission guarantee, 6 sales and admin training sessions, and a dedicated project manager.",
+    a: "Complete Management ($4,500 / 12 months) covers everything: all major AND minor modifications, all backend services, GSA eBuy support, the 14-day submission guarantee, and a dedicated project manager.",
   },
   {
     q: "Why is annual management cheaper than buying modifications one at a time?",
-    a: "A single standalone major modification is $2,999. Complete Management is $4,500 for twelve months of unlimited major and minor mods. If you expect even two modifications this year, the annual plan already pays for itself — everything else it includes is effectively free.",
+    a: "A single standalone modification is $1,999. Complete Management is $4,500 for twelve months of unlimited major and minor mods. If you expect even two modifications this year, the annual plan already pays for itself — everything else it includes is effectively free.",
   },
   {
     q: "Can I pay monthly?",
@@ -125,7 +125,7 @@ export default function Management() {
         <title>Outsource GSA Catalog Maintenance & Contract Management | {BRAND.name}</title>
         <meta
           name="description"
-          content="Outsource GSA catalog maintenance and contract management. All modifications, IFF reporting, FCP updates, and compliance handled — $1,499 for 6 months or $4,500 for a full year. 14-day submission guarantee."
+          content="Outsource GSA catalog maintenance and contract management. All modifications, IFF reporting, FCP updates, eBuy support, and compliance handled — $4,500 for a full year. 14-day submission guarantee."
         />
         <meta
           name="keywords"
@@ -165,7 +165,7 @@ export default function Management() {
               <div className="lg:col-span-2">
                 <p className="text-sm font-semibold uppercase tracking-widest text-cta mb-3">Do the Math</p>
                 <h2 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
-                  One modification: $2,999. A full year of <em>every</em> modification — plus
+                  One modification: $1,999. A full year of <em>every</em> modification — plus
                   training and a dedicated PM: $4,500.
                 </h2>
                 <p className="mt-5 text-white/70 leading-relaxed max-w-2xl">

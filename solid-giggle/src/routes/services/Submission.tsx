@@ -130,7 +130,7 @@ const faqs = [
   { q: "What are the minimum qualifications?", a: "You need 2 years of corporate experience, relevant past performance (typically 3–5 projects), and financial viability demonstrated through tax returns and financial statements. Specific requirements vary by SIN category — we assess your eligibility before any payment for the full submission service." },
   { q: "How much of my time does the application take?", a: "A few hours, total. We handle the document preparation, pricing narratives, and the entire eOffer portal build. Your team supplies source documents and approvals — we do the rest." },
   { q: "What's your 45-day guarantee?", a: "We guarantee your complete MAS offer is submitted to GSA within 45 days of kickoff. Most submissions go in within 30 days, following the timeline published on this page." },
-  { q: "What happens after the award?", a: "Your catalog must go live on the FAS Catalog Platform within 30 days. Our New Vendor Special ($1,450) covers the baseline upload, 1-on-1 platform training, and 90 days of complimentary management — so the award actually turns into revenue." },
+  { q: "What happens after the award?", a: "Your catalog must go live on the FAS Catalog Platform within 30 days. Our Catalog Upload & Training ($999) covers the baseline upload, 1-on-1 platform training, and a full compliance audit — so the award actually turns into revenue." },
   { q: "GSA Schedule vs. subcontracting — which is right for me?", a: "Subcontracting gets you revenue share on someone else's contract; a Schedule makes you the prime. If you have two years of past performance and want direct federal relationships, the Schedule wins long-term. If you're earlier than that, subcontract now and build toward a submission." },
 ];
 

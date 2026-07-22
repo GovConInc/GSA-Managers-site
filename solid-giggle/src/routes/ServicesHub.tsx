@@ -34,9 +34,9 @@ const getOnBucket = [
   },
   {
     icon: Rocket,
-    title: "New Vendor Special",
-    desc: "Just awarded? FCP baseline upload, 1-on-1 platform training, and 90 days of complimentary management — operational in weeks.",
-    price: "$1,450 flat",
+    title: "Catalog Upload & Training",
+    desc: "Just awarded? FCP baseline upload, 1-on-1 platform training, and full compliance audit — operational in days.",
+    price: "$999 flat",
     to: "/fcp-transition-service",
   },
 ];
@@ -45,22 +45,22 @@ const keepHealthyBucket = [
   {
     icon: Shield,
     title: "GSA Contract Management",
-    desc: "6 and 12-month retainers covering every modification, report, and compliance deadline — plus training and a dedicated PM.",
-    price: "From $1,499",
+    desc: "12-month retainer covering every modification, all backend services, eBuy support, compliance, and reporting — plus a dedicated PM.",
+    price: "From $4,500",
     to: "/gsa-contract-management",
   },
   {
     icon: Wrench,
     title: "GSA Modifications",
-    desc: "Standalone major modifications executed end-to-end and submitted within 14 days, guaranteed.",
-    price: "$2,999 flat",
+    desc: "Any modification executed end-to-end and submitted within 14 days, guaranteed.",
+    price: "$1,999 flat",
     to: "/gsa-modification-consultant",
   },
   {
     icon: FileWarning,
-    title: "FCP Transition & Compliance",
-    desc: "The mandatory FAS Catalog Platform migration plus a full compliance audit. Suspension risk, eliminated.",
-    price: "$499 flat",
+    title: "Catalog Upload & Training",
+    desc: "The mandatory FAS Catalog Platform migration, full compliance audit, and 1-on-1 training. Suspension risk, eliminated.",
+    price: "$999 flat",
     to: "/fcp-transition-service",
   },
 ];

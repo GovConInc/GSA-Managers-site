@@ -83,7 +83,7 @@ export default function ModRejections() {
         body="We diagnose the issue, rebuild the package, and resubmit — pricing support, narrative, CO communications included. 14-day submission guarantee."
         label="Get My Mod Approved"
         href="/order?service=standalone-mod"
-        price="$2,999"
+        price="$1,999"
       />
 
       <H2>The pre-submission checklist that prevents all six</H2>
@@ -110,7 +110,7 @@ export default function ModRejections() {
         <Link to="/gsa-modification-consultant" className="font-bold text-brand hover:underline">
           standalone major modification
         </Link>{" "}
-        with us is $2,999, flat — drafted to pre-empt every pattern in this article and submitted
+        with us is $1,999, flat — drafted to pre-empt every pattern in this article and submitted
         within 14 days. And if you expect more than one mod this year,{" "}
         <Link to="/gsa-contract-management" className="font-bold text-brand hover:underline">
           Complete Management

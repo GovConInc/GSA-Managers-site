@@ -37,8 +37,8 @@ const TOPIC_MAP: { keywords: string[]; match: TopicMatch }[] = [
       color: "text-red-600 bg-red-50 border-red-100",
       simplify:
         "This affects how your products appear on the government's online store (GSA Advantage). If your catalog isn't on the new FCP system, federal buyers literally can't find you.",
-      pitch: "We handle FCP migrations for $499 flat — catalog data prep, upload, validation, and verification that your products are live and findable.",
-      ctaLabel: "FCP Migration — $499",
+      pitch: "We handle FCP migrations for $999 flat — catalog data prep, upload, validation, and verification that your products are live and findable.",
+      ctaLabel: "FCP Migration — $999",
       ctaHref: "/order?service=fcp-transition",
     },
   },
@@ -50,7 +50,7 @@ const TOPIC_MAP: { keywords: string[]; match: TopicMatch }[] = [
       color: "text-brand bg-brand/5 border-brand/10",
       simplify:
         "When GSA changes mod rules, it directly affects how you add products, adjust pricing, or expand your contract scope. Getting it wrong means rejections and weeks of delay.",
-      pitch: "We submit mods within 14 days, 98% approval rate. $2,999 standalone or included in annual management ($4,500/yr).",
+      pitch: "We submit mods within 14 days, 98% approval rate. $1,999 standalone or included in annual management ($4,500/yr).",
       ctaLabel: "Order a Modification",
       ctaHref: "/order?service=standalone-mod",
     },
@@ -244,16 +244,16 @@ export default function GsaNewsFeed() {
           transition={{ duration: 0.5 }}
           className="max-w-3xl mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 mb-6">
-            <Newspaper size={14} className="text-cta" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-cta">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-6">
+            <Newspaper size={14} className="text-[#E88B98]" />
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#E88B98]">
               Live GSA News
             </span>
           </div>
           <h2 className="font-display text-3xl font-bold text-white sm:text-4xl tracking-tight">
             GSA updates — simplified.
           </h2>
-          <p className="mt-5 text-white/50 text-lg leading-relaxed">
+          <p className="mt-5 text-white/70 text-lg leading-relaxed">
             Latest GSA announcements, translated into plain English. Each update
             includes what it means for your schedule and where we can help.
           </p>
@@ -261,7 +261,7 @@ export default function GsaNewsFeed() {
 
         {/* Loading */}
         {loading && (
-          <div className="flex items-center justify-center gap-3 py-16 text-white/50">
+          <div className="flex items-center justify-center gap-3 py-16 text-white/70">
             <RefreshCw size={20} className="animate-spin" />
             <span>Loading GSA news&hellip;</span>
           </div>
@@ -270,12 +270,12 @@ export default function GsaNewsFeed() {
         {/* Error */}
         {error && !loading && (
           <div className="text-center py-12">
-            <p className="text-white/50 mb-4">Unable to load GSA news at this time.</p>
+            <p className="text-white/70 mb-4">Unable to load GSA news at this time.</p>
             <a
               href="https://www.gsa.gov/about-us/newsroom/news-releases"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-cta font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-[#E88B98] font-semibold hover:underline"
             >
               Visit GSA Newsroom
               <ExternalLink size={16} />
@@ -311,7 +311,7 @@ export default function GsaNewsFeed() {
                             {topic.category}
                           </span>
                           {item.pubDate && (
-                            <span className="text-[11px] text-white/30">
+                            <span className="text-[11px] text-white/50">
                               {timeAgo(item.pubDate)}
                             </span>
                           )}
@@ -324,7 +324,7 @@ export default function GsaNewsFeed() {
 
                         {/* Date */}
                         {item.pubDate && (
-                          <div className="flex items-center gap-1.5 text-xs text-white/30 mb-4">
+                          <div className="flex items-center gap-1.5 text-xs text-white/50 mb-4">
                             <Calendar size={11} />
                             <time dateTime={item.pubDate}>{formatDate(item.pubDate)}</time>
                           </div>
@@ -332,10 +332,10 @@ export default function GsaNewsFeed() {
 
                         {/* "What this means" — always visible */}
                         <div className="rounded-xl bg-white/[0.05] border border-white/[0.06] p-4 mb-4">
-                          <p className="text-[11px] font-bold uppercase tracking-wider text-cta mb-2">
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-[#E88B98] mb-2">
                             What this means
                           </p>
-                          <p className="text-white/60 text-sm leading-relaxed">
+                          <p className="text-white/75 text-sm leading-relaxed">
                             {topic.simplify}
                           </p>
                         </div>
@@ -344,19 +344,19 @@ export default function GsaNewsFeed() {
                         <button
                           type="button"
                           onClick={() => setExpanded(isExpanded ? null : idx)}
-                          className="text-sm font-semibold text-cta hover:text-cta/80 transition-colors"
+                          className="text-sm font-semibold text-[#E88B98] hover:text-white transition-colors"
                         >
                           {isExpanded ? "Show less" : "How we help →"}
                         </button>
 
                         {isExpanded && (
-                          <div className="mt-4 rounded-xl bg-cta/10 border border-cta/15 p-4">
-                            <p className="text-white/70 text-sm leading-relaxed mb-4">
+                          <div className="mt-4 rounded-xl bg-white/[0.08] border border-white/15 p-4">
+                            <p className="text-white/80 text-sm leading-relaxed mb-4">
                               {topic.pitch}
                             </p>
                             <Link
                               to={topic.ctaHref}
-                              className="inline-flex items-center gap-1.5 text-sm font-bold text-cta hover:gap-2.5 transition-all"
+                              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#E88B98] hover:gap-2.5 transition-all"
                             >
                               {topic.ctaLabel}
                               <ArrowRight size={14} />
@@ -371,7 +371,7 @@ export default function GsaNewsFeed() {
                           href={item.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-white/30 hover:text-white/60 transition-colors"
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-white/50 hover:text-white/80 transition-colors"
                         >
                           Read official GSA release
                           <ExternalLink size={11} />
@@ -388,7 +388,7 @@ export default function GsaNewsFeed() {
               <div className="mt-10 text-center">
                 <button
                   onClick={() => setShowAll(!showAll)}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/15 text-white font-semibold text-sm hover:border-cta/40 hover:text-cta transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-white font-semibold text-sm hover:border-[#E88B98] hover:text-[#E88B98] transition-all"
                 >
                   {showAll ? "Show Less" : `Show All ${items.length} Updates`}
                 </button>
@@ -396,13 +396,13 @@ export default function GsaNewsFeed() {
             )}
 
             {/* Attribution */}
-            <p className="mt-8 text-center text-xs text-white/25">
+            <p className="mt-8 text-center text-xs text-white/50">
               Source:{" "}
               <a
                 href="https://www.gsa.gov/about-us/newsroom/news-releases"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-white/50 transition-colors"
+                className="underline hover:text-white/80 transition-colors"
               >
                 GSA Newsroom
               </a>{" "}
