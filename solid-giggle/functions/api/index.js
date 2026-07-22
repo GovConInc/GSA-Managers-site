@@ -38,9 +38,11 @@ export async function onRequestPost(context) {
       }
     }
 
+    var monthlyPayment = (fd.monthly_payment === true || fd.monthly_payment === "true" || fd.monthly_payment === "1" || fd.monthly_payment === "on");
+
     // Auto-generate Square checkout link
     var squareLink = fd.square_checkout_link || "";
-    if (!squareLink && priceCents > 0 && env.SQUARE_ACCESS_TOKEN && env.SQUARE_LOCATION_ID) {
+    if (!squareLink && !monthlyPayment && priceCents > 0 && env.SQUARE_ACCESS_TOKEN && env.SQUARE_LOCATION_ID) {
       try {
         var progNames = { annual_management: "GSA Annual Management", gsa_submission: "GSA Submission Program", gsa_modification: "GSA Modification Program", new_contractor_fcp: "GSA New Contractor FCP" };
         var sqRes = await fetch("https://connect.squareup.com/v2/online-checkout/payment-links", {
@@ -62,11 +64,28 @@ export async function onRequestPost(context) {
       } catch (e) { /* Square failed, continue without */ }
     }
 
+    // Parse valid_days (default 30 days)
+    var validDays = parseInt(fd.valid_days) || 30;
+    var expiresAt;
+    var ttlSeconds;
+    if (validDays === 0) {
+      // Never expire — set far future date, no KV TTL
+      expiresAt = new Date(Date.now() + 365 * 10 * 3600000).toISOString(); // 10 years
+      ttlSeconds = 0; // no TTL
+    } else {
+      expiresAt = new Date(Date.now() + validDays * 24 * 3600000).toISOString();
+      ttlSeconds = validDays * 86400;
+    }
+
+    // Parse allow_edit flag
+    var allowEdit = (fd.allow_edit === "true" || fd.allow_edit === true || fd.allow_edit === "1" || fd.allow_edit === "on");
+
     var proposal = {
       token: token,
       status: "pending",
       createdAt: new Date().toISOString(),
-      expiresAt: new Date(Date.now() + 48 * 3600000).toISOString(),
+      expiresAt: expiresAt,
+      allowEdit: allowEdit,
       cageCode: fd.client_uei || "",
       clientName: fd.client_legal_name || "",
       contactName: fd.client_contact_name || "",
@@ -90,6 +109,7 @@ export async function onRequestPost(context) {
       reportingCadence: fd.reporting_support || "Quarterly",
       samSupport: fd.sam_support || "yes",
       eBuySupport: fd.ebuy_support || "yes",
+      monthlyPayment: monthlyPayment,
       meetingNotes: fd.meeting_notes || "",
       priorityGoals: fd.priority_goals || "",
       knownPainPoints: fd.known_pain_points || "",
@@ -125,7 +145,11 @@ export async function onRequestPost(context) {
     };
 
     try {
-      await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal), { expirationTtl: 172800 });
+      var kvOpts = {};
+      if (ttlSeconds > 0) {
+        kvOpts.expirationTtl = ttlSeconds;
+      }
+      await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal), kvOpts);
     } catch (kvErr) {
       return json({ error: "Failed to save proposal: " + kvErr.message }, 500);
     }

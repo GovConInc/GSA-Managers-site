@@ -36,22 +36,44 @@ export async function onRequestPost(context) {
       proposal.lastEditedAt = new Date().toISOString();
     }
 
+    // Handle lock/unlock
+    if (body.lock === true) {
+      proposal.locked = true;
+      proposal.lockedAt = new Date().toISOString();
+    }
+    if (body.unlock === true) {
+      proposal.locked = false;
+      proposal.lockedAt = null;
+      proposal.editedContent = null; // clear saved edits so re-render shows original clean content
+    }
+    if (body.clearEdits === true) {
+      proposal.editedContent = null;
+    }
+
     // Handle signature finalization
     if (body.clientSignature) {
       if (proposal.status === "signed") return json({ error: "Already signed" }, 409);
-      proposal.status = "signed";
       proposal.clientSignature = body.clientSignature;
+    }
+    if (body.providerSignature) {
+      proposal.providerSignature = body.providerSignature;
+      proposal.providerSignedAt = new Date().toISOString();
+    }
+    if (body.clientSignature) {
+      proposal.status = "signed";
       proposal.signedAt = new Date().toISOString();
     }
 
     // Re-store WITHOUT TTL — signed/edited = permanent
     await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal));
 
-    return json({ 
-      success: true, 
-      signedAt: proposal.signedAt, 
+    return json({
+      success: true,
+      signedAt: proposal.signedAt,
       lastEditedAt: proposal.lastEditedAt,
-      status: proposal.status 
+      locked: proposal.locked || false,
+      lockedAt: proposal.lockedAt || null,
+      status: proposal.status
     });
   } catch (err) {
     return json({ error: "Server error: " + err.message }, 500);

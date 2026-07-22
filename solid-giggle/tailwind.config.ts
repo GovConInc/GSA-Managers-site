@@ -12,26 +12,26 @@ export default {
     },
     extend: {
       colors: {
-        /* Warm + trustworthy palette (welcoming neutrals with logo-aligned blues) */
-        surface: "#FFF8F2",
+        /* Red + Blue palette */
+        surface: "#F5F7FA",
         ink: {
-          DEFAULT: "#173460",
-          light: "#506A92",
-          muted: "#8296B6",
+          DEFAULT: "#294067",
+          light: "#4A6085",
+          muted: "#7B8FA8",
         },
         brand: {
-          DEFAULT: "#103A7A",
-          light: "#2A83DA",
-          dark: "#0C2D5E",
+          DEFAULT: "#294067",
+          light: "#3A5A8A",
+          dark: "#1C2D47",
         },
         cta: {
-          DEFAULT: "#D8893A",
-          hover: "#BA6F24",
+          DEFAULT: "#b62d3e",
+          hover: "#9A2533",
         },
         warm: {
-          border: "#EBD9C6",
-          100: "#F8ECDF",
-          50: "#FFF8F2",
+          border: "#D4DAE3",
+          100: "#E8ECF2",
+          50: "#F5F7FA",
         },
         /* Keep system tokens for shadcn compatibility */
         border: "hsl(var(--border))",

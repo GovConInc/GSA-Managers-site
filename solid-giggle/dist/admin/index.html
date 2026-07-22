@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Create Proposal | GSA Manager</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Plus Jakarta Sans',sans-serif;background:#f4f5fa;color:#3a4560}
@@ -17,6 +18,8 @@ label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5
 .gen{width:100%;padding:16px;background:linear-gradient(135deg,#4a7cff,#3358d4);color:#fff;border:none;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(74,124,255,.3);margin-top:8px}.gen:disabled{opacity:.6;cursor:not-allowed}
 .res{display:none;margin-top:24px;padding:24px;background:#f0fff4;border:1px solid #c6f6d5;border-radius:14px}.res h4{font-weight:700;color:#2e7d32;margin-bottom:8px;font-size:16px}.res input{background:#fff;border:1px solid #c6f6d5;cursor:text;margin-top:4px}.res .copy{margin-top:8px;padding:8px 20px;background:#4a7cff;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}.res .exp{margin-top:8px;font-size:12px;color:#8896b0}.res .sq{margin-top:6px;font-size:13px;color:#006aff;font-weight:600}
 .another{margin-top:12px;padding:10px 24px;background:none;border:1px solid #dde1e8;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:#3a4560}
+.wf-box{background:#f8f9ff;border-radius:10px;padding:14px 16px;margin-bottom:18px;border:1px solid #e0e7ff}.wf-box-title{font-size:11px;font-weight:700;color:#8896b0;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}.wf-steps{display:flex;flex-direction:column;gap:8px}.wf-step{display:flex;align-items:flex-start;gap:10px;font-size:13px}.wf-num{border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;margin-top:1px;color:#fff}.wf-num.blue{background:#4a7cff}.wf-num.green{background:#2e7d32}
+.res-label{margin-bottom:4px;font-size:12px;font-weight:700;color:#3a4560;text-transform:uppercase;letter-spacing:.06em}
 @media(max-width:640px){.g2,.g3,.progs{grid-template-columns:1fr}.wrap{padding:0 12px 40px}}
 </style>
 </head>
@@ -68,6 +71,8 @@ label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5
       <div><label>Price</label><input id="price" placeholder="$14,400"></div>
       <div><label>Term Length</label><input id="term_length" value="12 months"></div>
       <div><label>Payment Terms</label><input id="payment_terms" value="Due upon execution"></div>
+      <div style="grid-column:1/-1;font-size:12px;color:#8896b0;line-height:1.5">For monthly payment proposals, set Term Length to "12 months" and Payment Terms to "12 monthly payments of the total annual amount, no lock-in."</div>
+      <div><label>Proposal Link Expires In</label><select id="valid_days"><option value="2">2 days (48 hours)</option><option value="7">7 days</option><option value="14">14 days</option><option value="30" selected>30 days</option><option value="60">60 days</option><option value="90">90 days</option><option value="0">Never (no expiration)</option></select></div>
     </div>
     <div class="disc">
       <b>💰 Discount (optional — leave blank to hide)</b>
@@ -76,6 +81,13 @@ label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5
         <div><label>Discount Label</label><input id="discount_label" placeholder="e.g. Early signup discount"></div>
       </div>
     </div>
+    <div style="margin-top:14px;padding:14px 18px;background:rgba(74,124,255,.04);border-radius:12px;border:1px solid rgba(74,124,255,.12)">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;font-weight:600;color:#1a2744">
+        <input type="checkbox" id="allow_edit" style="width:18px;height:18px;accent-color:#4a7cff"> Allow client to edit proposal text
+      </label>
+      <div style="font-size:12px;color:#8896b0;margin-top:6px;margin-left:28px">When unchecked, the client sees a read-only proposal. You can still edit via the Edit button yourself.</div>
+    </div>
+
     <div class="sqbox">
       <div class="sqh"><b>◼ Square Checkout</b></div>
       <label>Square Checkout Link (optional — auto-generates if blank and Square is configured)</label>
@@ -154,11 +166,20 @@ label{display:block;font-size:13px;font-weight:600;color:#3a4560;margin-bottom:5
 
   <div class="res" id="res">
     <h4>✅ Proposal Created</h4>
-    <div style="margin-bottom:6px">Send this link to your client:</div>
+    <div class="wf-box">
+      <div class="wf-box-title">Workflow</div>
+      <div class="wf-steps">
+        <div class="wf-step"><span class="wf-num blue">1</span><span><strong>Edit</strong> — Open the admin link below and click <em>Edit</em> to customize any proposal text.</span></div>
+        <div class="wf-step"><span class="wf-num blue">2</span><span><strong>Lock</strong> — Click <em>Lock & Send</em> in the toolbar. Edits are saved and the proposal becomes read-only.</span></div>
+        <div class="wf-step"><span class="wf-num green">3</span><span><strong>Send</strong> — Copy the client link below and send it. The client can review and sign — but cannot edit.</span></div>
+      </div>
+    </div>
+    <div class="res-label">Client Link (share this)</div>
     <input id="resurl" readonly onclick="this.select()">
     <button class="copy" onclick="cpLink()">Copy Link</button>
     <div class="sq" id="ressq" style="display:none"></div>
     <div class="exp" id="resexp"></div>
+    <div class="exp" id="resedit" style="display:none;color:#4a7cff;font-weight:600"></div>
     <button class="another" onclick="document.getElementById('res').style.display='none'">Create Another</button>
   </div>
 </div></div>
@@ -169,11 +190,18 @@ function tryLogin(){KEY=document.getElementById("pw").value;if(!KEY){document.ge
 if(sessionStorage.getItem("ak")){KEY=sessionStorage.getItem("ak");document.getElementById("gate").style.display="none";document.getElementById("app").style.display="block";}
 function pickP(el){document.querySelectorAll(".prog").forEach(function(p){p.classList.remove("on")});el.classList.add("on");var v=el.getAttribute("data-v");document.getElementById("program_type").value=v;document.getElementById("phase-card").style.display=v==="annual_management"?"block":"none";document.getElementById("step-card").style.display=v==="gsa_modification"?"block":"none";}
 function cpLink(){navigator.clipboard.writeText(document.getElementById("resurl").value).then(function(){var b=document.querySelector(".copy");b.textContent="Copied!";setTimeout(function(){b.textContent="Copy Link"},2000)});}
-
+function getNumericPrice(value){var match=(value||"").toString().match(/\d[\d,\.]*?/);if(!match)return NaN;return parseFloat(match[0].replace(/,/g,""));}
+function updateMonthlyFields(){var cb=document.getElementById("monthly_payment");var term=document.getElementById("term_length");var payment=document.getElementById("payment_terms");var price=document.getElementById("price");if(cb && cb.checked){if(!term.value.trim()) term.value="12 months";var numeric=getNumericPrice(price.value||"");if(!isNaN(numeric) && numeric>0){payment.value="12 monthly payments of $"+numeric.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+" each, no lock-in.";} else if(!payment.value.trim()){payment.value="12 monthly payments of the total annual amount, no lock-in.";}}}
+document.addEventListener("DOMContentLoaded",function(){var cb=document.getElementById("monthly_payment");var price=document.getElementById("price");if(cb){cb.addEventListener("change",updateMonthlyFields);}if(price){price.addEventListener("blur",function(){if(cb && cb.checked) updateMonthlyFields();});}});
 async function generate(){
   var btn=document.getElementById("genbtn");btn.disabled=true;btn.textContent="Creating...";
+<<<<<<< HEAD
   var ids=["client_legal_name","client_contact_name","client_contact_title","client_email","client_phone","client_uei","client_gsa_status","program_type","price","term_length","payment_terms","square_checkout_link","discount_amount","discount_label","provider_company","provider_signer_name","provider_signer_title","meeting_notes","known_pain_points","priority_goals","objections","urgency","major_mods_included","training_sessions","calls_per_month","reporting_support","sam_support","ebuy_support","phase_1_title","phase_1_dur","phase_1_items","phase_2_title","phase_2_dur","phase_2_items","phase_3_title","phase_3_dur","phase_3_items","phase_4_title","phase_4_dur","phase_4_items","step_1_dur","step_2_dur","step_3_dur","step_4_dur","step_5_dur","step_6_dur"];
+=======
+  var ids=["client_legal_name","client_contact_name","client_contact_title","client_email","client_phone","client_uei","client_gsa_status","program_type","price","term_length","payment_terms","square_checkout_link","discount_amount","discount_label","provider_company","provider_signer_name","provider_signer_title","meeting_notes","known_pain_points","priority_goals","objections","urgency","major_mods_included","training_sessions","calls_per_month","reporting_support","sam_support","ebuy_support","valid_days","phase_1_title","phase_1_dur","phase_1_items","phase_2_title","phase_2_dur","phase_2_items","phase_3_title","phase_3_dur","phase_3_items","phase_4_title","phase_4_dur","phase_4_items","step_1_dur","step_2_dur","step_3_dur","step_4_dur","step_5_dur","step_6_dur"];
+>>>>>>> 19a6ef05ececc454f82d08586ca4f1d11343f77a
   var data={};ids.forEach(function(id){var el=document.getElementById(id);if(el)data[id]=el.value;});
+  var aeEl=document.getElementById("allow_edit");data.allow_edit=aeEl&&aeEl.checked?"true":"false";
   if(!data.client_legal_name){alert("Client name is required.");btn.disabled=false;btn.textContent="Generate Proposal →";return;}
   try{
     var res=await fetch("/api/",{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Key":KEY},body:JSON.stringify(data)});
@@ -183,6 +211,9 @@ async function generate(){
       document.getElementById("res").style.display="block";
       document.getElementById("resurl").value=j.url;
       document.getElementById("resexp").textContent="Expires: "+new Date(j.expiresAt).toLocaleString();
+      var editLink=j.url+"&edit=1";
+      document.getElementById("resedit").style.display="block";
+      document.getElementById("resedit").innerHTML='✏ <a href="'+editLink+'" target="_blank" style="color:#4a7cff;text-decoration:underline">Open with editing enabled</a> (admin link — keep private)';
       if(j.squareLink){document.getElementById("ressq").style.display="block";document.getElementById("ressq").textContent="Square link: "+j.squareLink;}
       else{document.getElementById("ressq").style.display="none";}
     }else{alert("Error: "+(j.error||"Unknown"));}

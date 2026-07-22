@@ -1,16 +1,67 @@
-import { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { LinkButton } from "./Button";
 import { BRAND } from "../lib/constants";
 import { cn } from "./cn";
-import { Menu, X, Phone, ArrowRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  Phone,
+  ArrowRight,
+  ChevronDown,
+  Shield,
+  Wrench,
+  FileWarning,
+  Award,
+  BookOpen,
+} from "lucide-react";
+
+const serviceLinks = [
+  {
+    label: "GSA Contract Management",
+    desc: "6 & 12-month retainers — your GSA back office, handled",
+    to: "/services/gsa-contractors#management",
+    icon: Shield,
+  },
+  {
+    label: "GSA Modifications",
+    desc: "Major & minor mods, submitted in 14 days",
+    to: "/services/gsa-contractors#submission",
+    icon: Wrench,
+  },
+  {
+    label: "FCP Transition & Compliance",
+    desc: "$499 flat-fee migration + compliance audit",
+    to: "/services/gsa-contractors#fcp",
+    icon: FileWarning,
+  },
+  {
+    label: "GSA Schedule Submission",
+    desc: "Get on the Schedule — 45-day submission guarantee",
+    to: "/services/gsa-contractors#submission",
+    icon: Award,
+  },
+  {
+    label: "Sales & Admin Training",
+    desc: "Assessment, strategy, and team training",
+    to: "/services/gsa-contractors#new-vendor",
+    icon: BookOpen,
+  },
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => { setOpen(false); }, [location]);
+  useEffect(() => {
+    setOpen(false);
+    setServicesOpen(false);
+    setMobileServicesOpen(false);
+  }, [location]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -18,9 +69,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  function openServices() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesOpen(true);
+  }
+  function scheduleCloseServices() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setServicesOpen(false), 150);
+  }
+
+  const isServiceActive =
+    location.pathname.startsWith("/services") ||
+    location.pathname.startsWith("/gsa-") ||
+    location.pathname.startsWith("/fcp-");
+
   const links = [
-    { label: "Home", to: "/" },
-    { label: "Services", to: "/services/gsa-contractors" },
+    { label: "Pricing", to: "/pricing" },
+    { label: "Intelligence Hub", to: "/intelligence" },
     { label: "About", to: "/about" },
     { label: "Contact", to: "/contact" },
   ];
@@ -30,20 +95,84 @@ export default function Navbar() {
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-brand/10 bg-white/96 shadow-[0_10px_30px_-24px_rgba(9,31,102,0.7)] backdrop-blur-md"
-          : "bg-white/88 backdrop-blur-sm"
+          ? "border-b border-warm-border/60 bg-surface/98 shadow-[0_8px_24px_-12px_rgba(23,52,96,0.12)] backdrop-blur-lg"
+          : "bg-surface/90 backdrop-blur-md"
       )}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-3 lg:px-8 lg:py-4">
-        <NavLink to="/" className="flex items-center">
+        <NavLink to="/" className="flex items-center gap-2.5 group">
           <img
-            src="/logo.png"
+            src="/logo.svg"
             alt={BRAND.name}
-            className="h-14 w-auto drop-shadow-[0_8px_12px_rgba(18,107,214,0.18)] transition-transform duration-300 lg:h-16"
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-[1.03] lg:h-11"
           />
         </NavLink>
 
-        <nav className="hidden items-center gap-2 rounded-full border border-brand/10 bg-white/90 p-1.5 shadow-[0_8px_24px_-20px_rgba(9,31,102,0.8)] lg:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-warm-border/70 bg-surface/80 p-1.5 shadow-soft backdrop-blur-sm lg:flex">
+          {/* Services dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={openServices}
+            onMouseLeave={scheduleCloseServices}
+          >
+            <button
+              type="button"
+              onClick={() => setServicesOpen((s) => !s)}
+              aria-expanded={servicesOpen}
+              className={cn(
+                "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                isServiceActive || servicesOpen
+                  ? "bg-cta text-white shadow-soft"
+                  : "text-ink-light hover:bg-warm-100 hover:text-ink"
+              )}
+            >
+              Services
+              <ChevronDown
+                size={14}
+                className={cn(
+                  "transition-transform duration-200",
+                  servicesOpen && "rotate-180"
+                )}
+              />
+            </button>
+
+            {servicesOpen && (
+              <div className="absolute left-1/2 top-full z-50 mt-3 w-[420px] -translate-x-1/2 rounded-2xl border border-warm-border bg-white p-3 shadow-elevated">
+                {serviceLinks.map((svc) => (
+                  <Link
+                    key={svc.label}
+                    to={svc.to}
+                    className="flex items-start gap-3.5 rounded-xl px-4 py-3.5 hover:bg-warm-100/70 transition-colors group/item"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand/5 border border-brand/10 group-hover/item:bg-brand group-hover/item:border-brand transition-colors">
+                      <svc.icon
+                        size={18}
+                        className="text-brand group-hover/item:text-white transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-ink group-hover/item:text-brand transition-colors">
+                        {svc.label}
+                      </p>
+                      <p className="text-xs text-ink-light mt-0.5">
+                        {svc.desc}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+                <div className="mt-2 border-t border-warm-border pt-2">
+                  <Link
+                    to="/pricing"
+                    className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-brand hover:bg-brand/5 transition-colors"
+                  >
+                    See all services &amp; transparent pricing
+                    <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
           {links.map((x) => (
             <NavLink
               key={x.to}
@@ -52,11 +181,10 @@ export default function Navbar() {
                 cn(
                   "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-brand text-white shadow-soft"
-                    : "text-ink-light hover:bg-surface hover:text-ink"
+                    ? "bg-cta text-white shadow-soft"
+                    : "text-ink-light hover:bg-warm-100 hover:text-ink"
                 )
               }
-              end={x.to === "/"}
             >
               {x.label}
             </NavLink>
@@ -71,14 +199,15 @@ export default function Navbar() {
             <Phone size={14} />
             {BRAND.phone}
           </a>
-          <LinkButton href="/contact" size="sm">
-            Contact Us
+          <LinkButton href="/order" size="sm">
+            Get Started
             <ArrowRight size={14} className="ml-1.5" />
           </LinkButton>
         </div>
 
         <button
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-brand/15 bg-white text-ink shadow-soft lg:hidden"
+          type="button"
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-warm-border bg-surface text-ink shadow-soft lg:hidden"
           onClick={() => setOpen((s) => !s)}
           aria-label="Toggle navigation"
         >
@@ -87,8 +216,37 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-warm-border bg-white lg:hidden">
+        <div className="border-t border-warm-border bg-surface lg:hidden">
           <div className="mx-auto w-full max-w-7xl px-6 py-4 space-y-1">
+            {/* Mobile services accordion */}
+            <button
+              type="button"
+              onClick={() => setMobileServicesOpen((s) => !s)}
+              className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-ink hover:bg-warm-100 transition-colors"
+            >
+              Services
+              <ChevronDown
+                size={16}
+                className={cn(
+                  "transition-transform duration-200",
+                  mobileServicesOpen && "rotate-180"
+                )}
+              />
+            </button>
+            {mobileServicesOpen && (
+              <div className="ml-3 space-y-1 border-l-2 border-warm-border pl-3">
+                {serviceLinks.map((svc) => (
+                  <Link
+                    key={svc.label}
+                    to={svc.to}
+                    className="block rounded-lg px-4 py-2.5 text-sm font-medium text-ink-light hover:bg-warm-100 transition-colors"
+                  >
+                    {svc.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+
             {links.map((x) => (
               <NavLink
                 key={x.to}
@@ -96,10 +254,11 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   cn(
                     "block rounded-lg px-4 py-3 text-sm font-medium transition-colors",
-                    isActive ? "text-brand bg-brand/5" : "text-ink hover:bg-surface"
+                    isActive
+                      ? "text-cta bg-cta/5"
+                      : "text-ink hover:bg-warm-100"
                   )
                 }
-                end={x.to === "/"}
               >
                 {x.label}
               </NavLink>
@@ -112,8 +271,8 @@ export default function Navbar() {
                 <Phone size={14} />
                 {BRAND.phone}
               </a>
-              <LinkButton href="/contact" className="w-full">
-                Contact Us <ArrowRight size={14} className="ml-1.5" />
+              <LinkButton href="/order" className="w-full">
+                Get Started <ArrowRight size={14} className="ml-1.5" />
               </LinkButton>
             </div>
           </div>

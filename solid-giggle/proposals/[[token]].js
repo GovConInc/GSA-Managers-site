@@ -28,17 +28,38 @@ export async function onRequestPost(context) {
     if (!data) return json({ error: "Proposal not found or expired" }, 404);
 
     var proposal = JSON.parse(data);
-    if (proposal.status === "signed") return json({ error: "Already signed" }, 409);
-
     var body = await request.json();
-    proposal.status = "signed";
-    proposal.clientSignature = body.clientSignature;
-    proposal.signedAt = new Date().toISOString();
+
+    // Handle edited content save (before or after signing)
+    if (body.editedContent) {
+      proposal.editedContent = body.editedContent;
+      proposal.lastEditedAt = new Date().toISOString();
+    }
+
+    // Handle signature finalization
+    if (body.clientSignature) {
+      if (proposal.status === "signed") return json({ error: "Already signed" }, 409);
+      proposal.clientSignature = body.clientSignature;
+    }
+    if (body.providerSignature) {
+      proposal.providerSignature = body.providerSignature;
+      proposal.providerSignedAt = new Date().toISOString();
+    }
+    if (body.clientSignature) {
+      proposal.status = "signed";
+      proposal.signedAt = new Date().toISOString();
+    }
 
     // Re-store WITHOUT TTL — signed = permanent
     await env.PROPOSALS.put("proposal:" + token, JSON.stringify(proposal));
 
-    return json({ success: true, signedAt: proposal.signedAt });
+    return json({ 
+      success: true, 
+      signedAt: proposal.signedAt, 
+      providerSignedAt: proposal.providerSignedAt,
+      lastEditedAt: proposal.lastEditedAt,
+      status: proposal.status 
+    });
   } catch (err) {
     return json({ error: "Server error: " + err.message }, 500);
   }

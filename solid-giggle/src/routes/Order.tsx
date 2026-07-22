@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import {
@@ -7,10 +8,11 @@ import {
   ArrowRight,
   Shield,
   FileText,
+  Wrench,
+  Rocket,
   Award,
   Loader2,
 } from "lucide-react";
-import Card from "../components/Card";
 import { Button } from "../components/Button";
 import { cn } from "../components/cn";
 import { BRAND } from "../lib/constants";
@@ -21,7 +23,12 @@ const SQUARE_APP_ID = import.meta.env.VITE_SQUARE_APP_ID ?? "";
 const SQUARE_LOCATION_ID = import.meta.env.VITE_SQUARE_LOCATION_ID ?? "";
 const SQUARE_ENV = import.meta.env.VITE_SQUARE_ENV === "production" ? "production" : "sandbox";
 
-/* ─── SERVICES / PRODUCTS ─── */
+/* ─── SERVICES / PRODUCTS ───
+ * Tiered catalog per the conversion strategy:
+ *  Tier 1 — immediate-action flat fees ($499 FCP tripwire, $2,999 standalone mod anchor)
+ *  Tier 2 — core maintenance retainers ($1,499 / 6mo, $4,500 / 12mo)
+ *  Plus acquisition & activation (submission, new vendor special)
+ */
 const services = [
   {
     id: "test-payment",
@@ -32,40 +39,77 @@ const services = [
     description: "Use this to test the checkout flow, Square API, and Resend email delivery.",
     features: ["Verifies Square Token", "Verifies Backend", "Sends Test Emails"],
     type: "one-time" as const,
+    hidden: true, // only shown with ?test=1
   },
   {
-    id: "contract-management",
-    icon: Shield,
-    name: "Annual Contract Support",
-    price: 4995_00,
-    displayPrice: "Starting at $4,995 / year",
-    description:
-      "Full annual GSA contract management — IFF reporting, catalog maintenance, compliance monitoring, option renewals, and a dedicated account manager.",
-    features: [
-      "Quarterly IFF Reporting & Sales Data",
-      "Catalog Maintenance & Updates",
-      "Compliance Monitoring & Audit Prep",
-      "Option Year Renewal Management",
-      "SAM + Advantage + eBuy Management",
-      "Dedicated Account Manager",
-    ],
-    type: "annual" as const,
-  },
-  {
-    id: "modification-support",
+    id: "fcp-transition",
     icon: FileText,
-    name: "GSA Modification Support",
-    price: 1500_00,
-    displayPrice: "Starting at $1,500",
+    name: "FCP Transition & Compliance Assurance",
+    price: 499_00, // cents
+    displayPrice: "$499",
     description:
-      "Expert handling of GSA contract modifications — pricing updates, SIN additions, scope changes, admin updates, and mass mod processing.",
+      "We execute your mandatory FAS Catalog Platform (FCP) transition and audit your GSA Schedule to guarantee 100% compliance. Your schedule comes out modernized, secured, and ready to sell.",
     features: [
-      "Pricing & Economic Price Adjustments",
-      "SIN Additions & Deletions",
-      "Scope & Admin Modifications",
-      "CO Negotiation Support",
+      "Complete FCP Catalog Migration",
+      "Full GSA Schedule Compliance Audit",
+      "Suspension-Risk Elimination",
+      "Kickoff Within 1 Business Day",
     ],
     type: "one-time" as const,
+    hidden: false,
+  },
+  {
+    id: "standalone-mod",
+    icon: Wrench,
+    name: "Standalone GSA Modification",
+    price: 2999_00,
+    displayPrice: "$2,999",
+    description:
+      "One major GSA modification executed flawlessly from start to finish — new SINs, products, services, or labor categories — so you start capturing that revenue immediately.",
+    features: [
+      "One Major Modification, End-to-End",
+      "All Documentation Prepared For You",
+      "Submitted Within 14 Days — Guaranteed",
+      "CO Communications Handled",
+    ],
+    type: "one-time" as const,
+    hidden: false,
+  },
+  {
+    id: "core-maintenance",
+    icon: Shield,
+    name: "GSA Core Maintenance / Back Office (6 Months)",
+    price: 1499_00,
+    displayPrice: "$1,499",
+    description:
+      "We take over your ongoing GSA back office and build your baseline revenue strategy. All minor modifications handled, plus targeted sales training. Monthly option available at $250/mo — contact us.",
+    features: [
+      "All Minor Modifications Included",
+      "3 Sales Assessments",
+      "3 Sales Training Sessions",
+      "Ongoing Back-Office Management",
+    ],
+    type: "one-time" as const,
+    hidden: false,
+  },
+  {
+    id: "complete-management",
+    icon: Award,
+    name: "GSA Complete Management (12 Months)",
+    price: 4500_00,
+    displayPrice: "$4,500",
+    description:
+      "Your dedicated, end-to-end GSA management team for a full year. All modifications, guaranteed 14-day submissions, comprehensive training, and a dedicated PM. Monthly option available at $375/mo — contact us.",
+    features: [
+      "All Major & Minor Modifications",
+      "14-Day Submission Guarantee",
+      "6 Sales & Admin Training Sessions",
+      "Dedicated Project Manager",
+      "IFF Reporting & Compliance Handled",
+      "eBuy & GSA Advantage! Management",
+    ],
+    type: "annual" as const,
+    hidden: false,
   },
   {
     id: "gsa-submission",
@@ -82,6 +126,24 @@ const services = [
       "Guaranteed Submission (45 Days)",
     ],
     type: "one-time" as const,
+    hidden: false,
+  },
+  {
+    id: "new-vendor",
+    icon: Rocket,
+    name: "New Vendor Special",
+    price: 1450_00,
+    displayPrice: "$1,450",
+    description:
+      "FCP Catalog Baseline upload, specialized 1-on-1 training for all GSA websites and processes, plus complimentary 90-day GSA Contract Management.",
+    features: [
+      "Full FCP Catalog Upload",
+      "Specialized 1-on-1 Training (All GSA Sites)",
+      "Process & Understanding Guide",
+      "90-Day Contract Management (Initiation)",
+    ],
+    type: "one-time" as const,
+    hidden: false,
   },
 ];
 
@@ -134,13 +196,29 @@ function loadSquareSdk(): Promise<typeof window.Square> {
 }
 
 export default function Order() {
-  const [form, setForm] = useState<OrderForm>(initialForm);
+  const [searchParams] = useSearchParams();
+  const [form, setForm] = useState<OrderForm>(() => {
+    // Preselect services from ?service=id (comma-separated) so "Buy Now"
+    // buttons across the site land with the right item already in the cart.
+    const param = searchParams.get("service");
+    const preselected = param
+      ? param
+          .split(",")
+          .map((s) => s.trim())
+          .filter((id) => services.some((svc) => svc.id === id))
+      : [];
+    return { ...initialForm, selectedServices: preselected };
+  });
   const [step, setStep] = useState<"select" | "details" | "payment" | "success">("select");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [cardReady, setCardReady] = useState(false);
   const [cardInstance, setCardInstance] = useState<any>(null);
   const [paymentsInstance, setPaymentsInstance] = useState<any>(null);
+
+  // The $1 test item stays functional but only appears with ?test=1
+  const showTest = searchParams.get("test") === "1";
+  const visibleServices = services.filter((s) => !s.hidden || showTest);
 
   const selectedItems = services.filter((s) => form.selectedServices.includes(s.id));
   const total = selectedItems.reduce((sum, s) => sum + s.price, 0);
@@ -326,7 +404,7 @@ export default function Order() {
               transition={{ duration: 0.3 }}
             >
               <div className="grid gap-5">
-                {services.map((svc) => {
+                {visibleServices.map((svc) => {
                   const selected = form.selectedServices.includes(svc.id);
                   return (
                     <div
