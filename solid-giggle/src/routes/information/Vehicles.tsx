@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle, ExternalLink, Shield } from "lucide-react";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LinkButton } from "../../components/Button";
-import { LINKS } from "../../lib/constants";
+import { LINKS, BRAND } from "../../lib/constants";
 import { motion } from "framer-motion";
 
 const vehicles = [
@@ -45,7 +45,7 @@ export default function InformationVehicles() {
   return (
     <>
       <Helmet>
-        <title>Contract Vehicles 101 — {LINKS.name}</title>
+        <title>Contract Vehicles 101 — {BRAND.name}</title>
         <meta name="description" content="Learn about major federal contract vehicles like GSA MAS, OASIS+, SEWP, and CIO-SP4. Understand how getting on the right vehicle can unlock government sales." />
       </Helmet>
 

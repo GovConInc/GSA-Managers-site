@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import Section from "../../components/Section";
 import ContractDataExplorer from "../../components/ContractDataExplorer";
-import { LINKS } from "../../lib/constants";
+import { LINKS, BRAND } from "../../lib/constants";
 
 export default function SearchContracts() {
   return (
     <>
       <Helmet>
-        <title>Search Contract Award Data — {LINKS.name}</title>
+        <title>Search Contract Award Data — {BRAND.name}</title>
         <meta name="description" content="Search, filter, and analyze federal contract award data from SAM.gov. Use our market intelligence tool to find competitors, identify opportunities, and understand agency spending." />
       </Helmet>
 

@@ -5,7 +5,7 @@ import {
   Calendar, Phone, Mail, Shield, Check, FileText,
   MessageSquare, ChevronDown, ChevronRight,
   Timer, Lightbulb, Star, Users, Target,
-  Zap, TrendingUp, AlertCircle, Gift, Megaphone,
+  Zap, AlertCircle, Gift, Megaphone,
   Database, Search, Send, CheckCheck, Crown
 } from "lucide-react";
 import { cn } from "../../components/cn";

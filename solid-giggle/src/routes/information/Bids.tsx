@@ -3,7 +3,7 @@ import { ArrowRight, Search, Globe, Bell, CheckCircle, ExternalLink, AlertCircle
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LinkButton } from "../../components/Button";
-import { LINKS } from "../../lib/constants";
+import { LINKS, BRAND } from "../../lib/constants";
 import { motion } from "framer-motion";
 
 const searchSources = [
@@ -62,7 +62,7 @@ export default function InformationBids() {
   return (
     <>
       <Helmet>
-        <title>Finding Government Bids — {LINKS.name}</title>
+        <title>Finding Government Bids — {BRAND.name}</title>
         <meta name="description" content="Learn how to find government bids on SAM.gov, GSA eBuy, and state portals. Understand RFPs, RFQs, and Sources Sought notices to build a winning pipeline." />
       </Helmet>
 

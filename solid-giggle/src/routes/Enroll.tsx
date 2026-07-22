@@ -124,6 +124,77 @@ const faqs = [
   }
 ];
 
+/* ─── CHECKOUT WORKER ─── */
+const CHECKOUT_WORKER = "/api/create-payment";
+
+/* ─── PROBLEM DATA ─── */
+const problems = [
+  "Catalog won't upload or keeps getting rejected",
+  "Don't know what FCP, eBuy, or GSA Advantage actually do",
+  "No idea when or how to file quarterly sales reports",
+  "Modifications feel like a foreign language",
+  "Worried about compliance but not sure what to check",
+  "Spending hours on portals instead of selling",
+];
+
+/* ─── RISK DATA ─── */
+const risks = [
+  { title: "Contract Suspension", desc: "Missed reporting or catalog errors can trigger GSA to suspend your contract — freezing all sales." },
+  { title: "Financial Penalties", desc: "Late IFF payments accrue interest. Repeated violations lead to fines and potential cancellation." },
+  { title: "Lost Revenue", desc: "An outdated or invisible catalog means agencies can't find or buy from you. Every day offline costs sales." },
+];
+
+/* ─── FCP DELIVERABLES ─── */
+const fcpDeliverables = [
+  { title: "FCP Catalog Baseline Upload", desc: "Full catalog upload to the FAS Catalog Platform with 7-day guarantee." },
+  { title: "Product Listing QA", desc: "Every line item validated for pricing, SIN mapping, and compliance." },
+  { title: "1-on-1 Platform Training", desc: "GSA Advantage, eBuy, FCP navigation, and sales reporting walkthrough." },
+  { title: "Process & Understanding Guide", desc: "Documentation so your team knows what to do and when." },
+];
+
+/* ─── STEPS ─── */
+const steps = [
+  { title: "Enroll & Pay", desc: "Choose your plan and check out securely via Stripe. You'll get an instant confirmation." },
+  { title: "Book Your Intro Meeting", desc: "Pick a time on our calendar. We'll review your contract, catalog, and goals." },
+  { title: "We Upload & Train", desc: "Within 7 days, your catalog is live on FCP and your team is trained on every portal." },
+  { title: "Ongoing Support", desc: "Questions come up? We're a call away. Upgrade to annual management anytime." },
+];
+
+/* ─── TRANSITION ITEMS ─── */
+const transitionItems = [
+  "Quarterly IFF sales reporting (72A)",
+  "Contract modifications — admin, technical, and major",
+  "Mass modification responses",
+  "Catalog pricing updates and maintenance",
+  "Option year renewal preparation",
+  "Compliance monitoring and audit prep",
+];
+
+/* ─── ANNUAL DELIVERABLES ─── */
+const annualDeliverables = [
+  { title: "All Modifications Included", desc: "Admin, technical, major, and mass mods — all handled by your dedicated manager." },
+  { title: "IFF Sales Reporting", desc: "Monthly or quarterly 72A reports filed on time, every time." },
+  { title: "FCP Catalog Maintenance", desc: "Pricing updates, product additions, and catalog refreshes throughout the year." },
+  { title: "Compliance Monitoring", desc: "Continuous tracking of TAA, TDR, SAM, and DSBS requirements." },
+  { title: "Option Year Renewal", desc: "We prepare and submit your option exercise so your contract never lapses." },
+  { title: "Dedicated Account Manager", desc: "One point of contact who knows your contract inside and out." },
+];
+
+/* ─── FIT DATA ─── */
+const fitYes = [
+  "You have a GSA Schedule but aren't sure how to operate it",
+  "Your team doesn't have time to manage GSA portals",
+  "You want expert help without hiring a full-time employee",
+  "You need your catalog live and compliant quickly",
+];
+
+const fitNo = [
+  "You don't have a GSA Schedule yet (start with our Submission service)",
+  "You have an in-house GSA expert who handles everything",
+  "You're not planning to sell to the federal government",
+  "You want hourly consulting instead of flat-fee services",
+];
+
 /* ─── MAIN COMPONENT ─── */
 export default function Enroll() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -157,8 +228,14 @@ export default function Enroll() {
   }, []);
 
   function openModal(svc: "fcp" | "mgmt") {
-    let key: PlanKey = svc;
-    if (svc === "mgmt" && annualPlan === "monthly") key = "monthly";
+    let key: PlanKey;
+    if (svc === "fcp") {
+      key = "fcpOnly";
+    } else if (annualPlan === "monthly") {
+      key = "monthly";
+    } else {
+      key = "management";
+    }
     setCurrentPlan(key);
     setModalOpen(true);
     document.body.style.overflow = "hidden";
@@ -799,7 +876,7 @@ export default function Enroll() {
                 disabled={submitting}
                 className={cn(
                   "flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-extrabold text-white transition active:scale-[.98] disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400",
-                  currentPlan === "fcp"
+                  currentPlan === "fcpOnly"
                     ? "bg-brand hover:bg-red-700"
                     : "bg-brand hover:bg-slate-800"
                 )}

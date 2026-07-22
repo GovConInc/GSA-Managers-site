@@ -12,7 +12,7 @@ import {
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LinkButton } from "../../components/Button";
-import { LINKS } from "../../lib/constants";
+import { LINKS, BRAND } from "../../lib/constants";
 import { motion } from "framer-motion";
 
 const services = [
@@ -50,7 +50,7 @@ export default function ServicesCertifications() {
   return (
     <>
       <Helmet>
-        <title>Certifications & Compliance Services — {LINKS.name}</title>
+        <title>Certifications & Compliance Services — {BRAND.name}</title>
         <meta name="description" content="Unlock federal set-aside contracts with our expert SAM.gov registration, DSBS profile optimization, and SBA certification services. Stay compliant and win more." />
       </Helmet>
 

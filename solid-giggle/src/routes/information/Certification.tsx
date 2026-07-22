@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LinkButton } from "../../components/Button";
-import { LINKS } from "../../lib/constants";
+import { LINKS, BRAND } from "../../lib/constants";
 import { motion } from "framer-motion";
 
 const certifications = [
@@ -49,7 +49,7 @@ export default function InformationCertification() {
   return (
     <>
       <Helmet>
-        <title>SBA Certification Data — {LINKS.name}</title>
+        <title>SBA Certification Data — {BRAND.name}</title>
         <meta name="description" content="Explore data on SBA certifications like 8(a), HUBZone, SDVOSB, and WOSB. Learn how set-asides can unlock billions in federal contracts." />
       </Helmet>
 

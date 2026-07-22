@@ -1,4 +1,7 @@
 
+import { Helmet } from "react-helmet-async";
+import Section from "../../components/Section";
+
 export default function AboutMethodology() {
   return (
     <>
@@ -6,7 +9,7 @@ export default function AboutMethodology() {
         <title>Our Approach — GSA Managers Inc.</title>
         <meta name="description" content="How GSA Managers Inc. delivers honest, expert help for GSA Schedule submissions, contract management, and the $500 FCP Catalog Baseline Only." />
       </Helmet>
-      <Section className="py-16">
+      <Section title="Our Approach" className="py-16">
         <div className="mx-auto max-w-3xl px-5">
           <h1 className="font-display text-4xl font-bold mb-6 text-gov-brand">Our Approach</h1>
           <p className="text-lg text-slate-700 mb-8">

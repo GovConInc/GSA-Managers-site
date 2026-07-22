@@ -3,7 +3,7 @@ import { ExternalLink, CheckCircle, AlertCircle, ArrowRight, Award, Landmark, Be
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LinkButton } from "../../components/Button";
-import { LINKS } from "../../lib/constants";
+import { LINKS, BRAND } from "../../lib/constants";
 import { motion } from "framer-motion";
 
 const registrationSteps = [
@@ -16,7 +16,7 @@ export default function InformationSAM() {
   return (
     <>
       <Helmet>
-        <title>SAM, DSBS & FEMA Registration Guide — {LINKS.name}</title>
+        <title>SAM, DSBS & FEMA Registration Guide — {BRAND.name}</title>
         <meta name="description" content="A complete guide to federal contractor registration. Learn how to register on SAM.gov, optimize your DSBS profile, and prepare for FEMA disaster contracts." />
       </Helmet>
 

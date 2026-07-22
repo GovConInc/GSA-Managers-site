@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { cn } from "../../components/cn";
 import { LinkButton } from "../../components/Button";
-import { LINKS } from "../../lib/constants";
+import { LINKS, BRAND } from "../../lib/constants";
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { motion } from "framer-motion";
@@ -813,7 +813,7 @@ export default function Programs() {
   return (
     <>
       <Helmet>
-        <title>Federal Contractor Programs — {LINKS.name}</title>
+        <title>Federal Contractor Programs — {BRAND.name}</title>
         <meta name="description" content="Win federal contracts with our FedStart, Growth, and Prime programs. Built on our proven 5C methodology, we provide everything from compliance to capture." />
       </Helmet>
 

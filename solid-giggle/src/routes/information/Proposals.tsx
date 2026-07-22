@@ -3,7 +3,7 @@ import { ArrowRight, FileText, CheckCircle, AlertTriangle, Users, Award } from "
 import Section from "../../components/Section";
 import Card from "../../components/Card";
 import { LinkButton } from "../../components/Button";
-import { LINKS } from "../../lib/constants";
+import { LINKS, BRAND } from "../../lib/constants";
 import { motion } from "framer-motion";
 
 const colorTeams = [
@@ -35,7 +35,7 @@ export default function InformationProposals() {
   return (
     <>
       <Helmet>
-        <title>Proposal Writing 101 — {LINKS.name}</title>
+        <title>Proposal Writing 101 — {BRAND.name}</title>
         <meta name="description" content="Learn the fundamentals of writing winning government proposals, including the Shipley color team review process and standard proposal structure." />
       </Helmet>
 
