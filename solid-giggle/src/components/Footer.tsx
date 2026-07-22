@@ -14,7 +14,7 @@ export default function Footer() {
               <img
                 src="/logo.svg"
                 alt={BRAND.name}
-                className="h-8 w-auto brightness-0 invert"
+                className="h-8 w-auto"
               />
               <span className="font-display text-lg font-bold text-white">
                 {BRAND.name}
@@ -158,17 +158,17 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-brand/15">
         <div className="mx-auto w-full max-w-7xl px-6 py-5 lg:px-8 flex flex-col items-center gap-3">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2 w-full">
-            <div className="text-xs text-white/30">
+            <div className="text-xs text-brand/80">
               &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
             </div>
-            <div className="text-xs text-white/40 font-medium">
+            <div className="text-xs text-white/70 font-medium">
               Powered by GSA Support Center LLC
             </div>
           </div>
-          <p className="text-[10px] text-white/25 text-center max-w-2xl leading-relaxed">
+          <p className="text-[10px] text-white/45 text-center max-w-2xl leading-relaxed">
             {BRAND.name} is a private consulting firm and is not affiliated with,
             endorsed by, or part of the U.S. General Services Administration (GSA)
             or any other government agency.

@@ -194,7 +194,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-5 lg:flex">
           <a
             href={`tel:${BRAND.phone}`}
-            className="flex items-center gap-2 text-sm text-ink-light hover:text-ink transition-colors"
+            className="flex items-center gap-2 text-sm font-medium text-brand transition-colors hover:text-cta"
           >
             <Phone size={14} />
             {BRAND.phone}
@@ -266,7 +266,7 @@ export default function Navbar() {
             <div className="pt-3 space-y-3">
               <a
                 href={`tel:${BRAND.phone}`}
-                className="flex items-center gap-2 px-4 text-sm text-ink-light"
+                className="flex items-center gap-2 px-4 text-sm font-medium text-brand"
               >
                 <Phone size={14} />
                 {BRAND.phone}
