@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { ServiceHero, BuyCard, ServiceFinalCta, ServiceSchema } from "../../components/ServiceBlocks";
 import FaqList from "../../components/FaqList";
-import LeadMagnet from "../../components/LeadMagnet";
 import { LinkButton } from "../../components/Button";
 import { BRAND } from "../../lib/constants";
 import { SERVICE_DICTIONARY } from "../../lib/offers";
@@ -64,7 +63,7 @@ const faqs = [
     a: "GSA retired the legacy SIP system and now requires all Schedule holders to manage their catalogs on the FAS Catalog Platform. The migration is mandatory — and until your baseline is live on FCP, your products can be invisible to buyers on GSA Advantage.",
   },
   {
-    q: "What does the $999 package include?",
+    q: "What does the $599 package include?",
     a: "Two things: your complete FCP catalog migration — data prep through verification — and a full compliance audit of your GSA Schedule covering catalog accuracy, TAA documentation, SAM status, and reporting posture.",
   },
   {
@@ -77,7 +76,7 @@ const faqs = [
   },
   {
     q: "I was just awarded my schedule. Is this for me?",
-    a: "Yes — new awardees must complete an FCP catalog baseline upload within GSA's 30-day window. Our Catalog Upload & Training ($999) bundles the baseline upload with 1-on-1 platform training and a full compliance audit.",
+    a: "Yes — new awardees must complete an FCP catalog baseline upload within GSA's 30-day window. Our Catalog Upload & Training ($599) bundles the baseline upload with 1-on-1 platform training and a full compliance audit.",
   },
   {
     q: "What happens after the migration?",
@@ -89,10 +88,10 @@ export default function FcpTransition() {
   return (
     <div className="bg-surface selection:bg-brand/20 selection:text-ink">
       <Helmet>
-        <title>FAS Catalog Platform Migration Service — $999 Flat Fee | {BRAND.name}</title>
+        <title>FAS Catalog Platform Migration Service — $599 Flat Fee | {BRAND.name}</title>
         <meta
           name="description"
-          content="FAS Catalog Platform (FCP) migration service plus a complete GSA Schedule compliance audit and training — $999 flat fee. We execute the mandatory transition, eliminate suspension risk, and get your catalog selling on GSA Advantage."
+          content="FAS Catalog Platform (FCP) migration service plus a complete GSA Schedule compliance audit and training — $599 flat fee. We execute the mandatory transition, eliminate suspension risk, and get your catalog selling on GSA Advantage."
         />
         <meta
           name="keywords"
@@ -102,7 +101,7 @@ export default function FcpTransition() {
       </Helmet>
       <ServiceSchema
         name="FAS Catalog Platform Migration & GSA Compliance Audit"
-        description="Complete FCP transition execution plus a full GSA Schedule compliance audit and training for a $999 flat fee."
+        description="Complete FCP transition execution plus a full GSA Schedule compliance audit and training for a $599 flat fee."
         price="499"
         url="/fcp-transition-service"
       />
@@ -110,9 +109,9 @@ export default function FcpTransition() {
       <ServiceHero
         eyebrow="FCP Transition & Compliance Assurance"
         title="Your FAS Catalog Platform migration."
-        accent="Done for you. $999 flat."
-        lede="We execute your full FCP migration, audit your GSA Schedule for compliance, and train your team on every GSA platform — catalog data prep, baseline upload, validation, and GSA Advantage verification. $999 flat, 7-day delivery guarantee."
-        primaryLabel="Fix It Now — $999"
+        accent="Done for you. $599 flat."
+        lede="We execute your full FCP migration, audit your GSA Schedule for compliance, and train your team on every GSA platform — catalog data prep, baseline upload, validation, and GSA Advantage verification. $599 flat, 7-day delivery guarantee."
+        primaryLabel="Fix It Now — $599"
         primaryHref="/order?service=fcp-transition"
       />
 
@@ -199,7 +198,7 @@ export default function FcpTransition() {
             <div className="lg:col-span-1">
               <BuyCard
                 name="FCP Transition & Compliance Assurance"
-                price="$999"
+                price="$599"
                 priceNote="flat fee"
                 features={[
                   "Complete FCP catalog migration",
@@ -209,7 +208,7 @@ export default function FcpTransition() {
                   "Catalog verified live on GSA Advantage",
                 ]}
                 orderHref="/order?service=fcp-transition"
-                ctaLabel="Buy Now — $999"
+                ctaLabel="Buy Now — $599"
               />
             </div>
           </div>
@@ -244,7 +243,7 @@ export default function FcpTransition() {
                 </p>
               </div>
               <div className="text-center lg:text-right">
-                <p className="font-display text-4xl font-bold text-ink">$999</p>
+                <p className="font-display text-4xl font-bold text-ink">$599</p>
                 <p className="text-sm text-ink-muted mb-5">flat fee</p>
                 <LinkButton href="/order?service=new-vendor" size="lg" className="w-full lg:w-auto shadow-md">
                   Get the Special
@@ -278,18 +277,10 @@ export default function FcpTransition() {
         </div>
       </section>
 
-      {/* ── Lead magnet ── */}
-      <section className="bg-surface py-20 relative">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
-        <div className="mx-auto w-full max-w-5xl px-6 lg:px-8">
-          <LeadMagnet />
-        </div>
-      </section>
-
       <ServiceFinalCta
         title="Secure your schedule before the deadline does it for you."
-        body="$999 flat. 7-day delivery. That means your schedule is instantly modernized, compliant, and ready to sell."
-        primaryLabel="Start My FCP Transition — $999"
+        body="$599 flat. 7-day delivery. That means your schedule is instantly modernized, compliant, and ready to sell."
+        primaryLabel="Start My FCP Transition — $599"
         primaryHref="/order?service=fcp-transition"
       />
     </div>

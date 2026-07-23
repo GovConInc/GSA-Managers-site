@@ -128,8 +128,8 @@ export default function InHouseVsOutsourced() {
       />
       <P>
         If that&apos;s your situation, keep it in-house — our{" "}
-        <Link to="/resources/fcp-compliance-checklist" className="font-bold text-brand hover:underline">
-          free compliance checklist
+        <Link to="/intelligence" className="font-bold text-brand hover:underline">
+          free intelligence hub
         </Link>{" "}
         will cover most of what you need to track. The economics flip the moment your schedule is
         supposed to <em>produce revenue</em>: then every week of administrative delay has a price,

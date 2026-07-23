@@ -98,12 +98,6 @@ export default function Footer() {
                 FCP Transition Guide
               </Link>
               <Link
-                to="/resources/fcp-compliance-checklist"
-                className="block text-white/60 hover:text-white transition-colors"
-              >
-                FCP Compliance Checklist
-              </Link>
-              <Link
                 to="/about"
                 className="block text-white/60 hover:text-white transition-colors"
               >
@@ -164,8 +158,16 @@ export default function Footer() {
             <div className="text-xs text-brand/80">
               &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
             </div>
-            <div className="text-xs text-white/70 font-medium">
-              Powered by GSA Support Center LLC
+            <div className="flex items-center gap-4 text-xs">
+              <Link
+                to="/terms"
+                className="text-white/60 hover:text-white transition-colors"
+              >
+                Terms of Service
+              </Link>
+              <div className="text-white/70 font-medium">
+                Powered by GSA Support Center LLC
+              </div>
             </div>
           </div>
           <p className="text-[10px] text-white/45 text-center max-w-2xl leading-relaxed">

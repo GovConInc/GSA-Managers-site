@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 56" fill="none">
   <defs>
     <linearGradient id="gmTile" x1="2" y1="4" x2="50" y2="52" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1A4488"/>
-      <stop offset="1" stop-color="#0C2D5E"/>
+      <stop stop-color="#294067"/>
+      <stop offset="1" stop-color="#1C2D47"/>
     </linearGradient>
   </defs>
-  <!-- Mark: managed growth tile — ascending bars with an orange momentum arrow -->
+  <!-- Mark: managed growth tile — ascending bars with a red momentum arrow -->
   <rect x="2" y="4" width="48" height="48" rx="13" fill="url(#gmTile)"/>
-  <rect x="11" y="32" width="7.5" height="11" rx="2.5" fill="#5C8FD6"/>
-  <rect x="22.25" y="26" width="7.5" height="17" rx="2.5" fill="#8CB4FF"/>
+  <rect x="11" y="32" width="7.5" height="11" rx="2.5" fill="#5C7CA8"/>
+  <rect x="22.25" y="26" width="7.5" height="17" rx="2.5" fill="#8CA8D6"/>
   <rect x="33.5" y="19" width="7.5" height="24" rx="2.5" fill="#FFFFFF"/>
-  <path d="M11 22.5 L24 16.5 L40 11.5" stroke="#D8893A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <path d="M33.2 9.2 L40 11.5 L37.2 17.6" stroke="#D8893A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M11 22.5 L24 16.5 L40 11.5" stroke="#b62d3e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M33.2 9.2 L40 11.5 L37.2 17.6" stroke="#b62d3e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   <!-- Wordmark -->
-  <text x="62" y="31" font-family="Nunito, system-ui, sans-serif" font-weight="900" font-size="23" fill="#173460" letter-spacing="-0.01em">GSA<tspan fill="#D8893A" dx="6">MANAGERS</tspan></text>
-  <text x="63" y="47" font-family="Nunito, system-ui, sans-serif" font-weight="700" font-size="9.5" fill="#506A92" letter-spacing="0.22em">SCHEDULE · MODS · COMPLIANCE</text>
+  <text x="62" y="31" font-family="Nunito, system-ui, sans-serif" font-weight="900" font-size="23" fill="#294067" letter-spacing="-0.01em">GSA<tspan fill="#b62d3e" dx="6">MANAGERS</tspan></text>
+  <text x="63" y="47" font-family="Nunito, system-ui, sans-serif" font-weight="700" font-size="9.5" fill="#4A6085" letter-spacing="0.22em">SCHEDULE · MODS · COMPLIANCE</text>
 </svg>

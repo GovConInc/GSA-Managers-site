@@ -120,7 +120,7 @@ const buyerTypes = [
 const pricingPreview = [
   {
     name: "Catalog Upload & Training",
-    price: "$999",
+    price: "$599",
     period: "one-time",
     hook: "New Contractors",
     desc: "Complete FCP catalog migration, compliance audit, and 1-on-1 training on all GSA platforms. 7-day delivery.",
@@ -745,14 +745,6 @@ export default function Home() {
             <LinkButton href="/intelligence" size="lg">
               View All Resources
               <ArrowRight size={18} className="ml-2" />
-            </LinkButton>
-            <LinkButton
-              href="/resources/fcp-compliance-checklist"
-              variant="secondary"
-              size="lg"
-              className="bg-white"
-            >
-              FCP Compliance Checklist
             </LinkButton>
           </div>
         </div>

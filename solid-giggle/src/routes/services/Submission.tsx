@@ -15,7 +15,7 @@ import FaqList from "../../components/FaqList";
 import { BRAND } from "../../lib/constants";
 import { cn } from "../../components/cn";
 
-/* ── 30-day submission timeline ── */
+/* ── 45-day submission timeline ── */
 interface GanttPhase {
   label: string;
   start: number;
@@ -25,24 +25,24 @@ interface GanttPhase {
 }
 
 const ganttPhases: GanttPhase[] = [
-  { label: "Kickoff & Strategy", start: 0, duration: 2, color: "bg-brand", details: ["Business capabilities review", "Target SIN identification", "Communication cadence setup", "Milestone expectations"] },
-  { label: "Document Collection", start: 2, duration: 6, color: "bg-brand-light", details: ["Federal tax returns (2yr min)", "Financial statements", "Past performance narratives", "Commercial price lists"] },
-  { label: "eOffer Preparation", start: 8, duration: 5, color: "bg-sky-600", details: ["SAM.gov verification", "FAS ID creation", "SIN justification", "Portal data entry"] },
-  { label: "Holy Trinity Review", start: 13, duration: 2, color: "bg-amber-600", details: ["Admin completeness check", "Technical validation", "Pricing verification", "Cross-volume consistency"] },
-  { label: "Price & Tech Deep Dive", start: 15, duration: 5, color: "bg-brand", details: ["CSP analysis", "Price escalation", "Labor category descriptions", "Technical narrative refinement"] },
-  { label: "Final Polish", start: 20, duration: 5, color: "bg-brand-light", details: ["Document formatting", "Signature verification", "Attachment checklist", "Quality audit"] },
-  { label: "GSA Submission", start: 25, duration: 5, color: "bg-emerald-600", details: ["eOffer package upload", "Confirmation receipt", "CO assignment notification", "Clarification prep"] },
+  { label: "Kickoff & Strategy", start: 0, duration: 3, color: "bg-brand", details: ["Business capabilities review", "Target SIN identification", "Communication cadence setup", "Milestone expectations"] },
+  { label: "Document Collection", start: 3, duration: 9, color: "bg-brand-light", details: ["Federal tax returns (2yr min)", "Financial statements", "Past performance narratives", "Commercial price lists"] },
+  { label: "eOffer Preparation", start: 12, duration: 7, color: "bg-sky-600", details: ["SAM.gov verification", "FAS ID creation", "SIN justification", "Portal data entry"] },
+  { label: "Holy Trinity Review", start: 19, duration: 3, color: "bg-amber-600", details: ["Admin completeness check", "Technical validation", "Pricing verification", "Cross-volume consistency"] },
+  { label: "Price & Tech Deep Dive", start: 22, duration: 7, color: "bg-brand", details: ["CSP analysis", "Price escalation", "Labor category descriptions", "Technical narrative refinement"] },
+  { label: "Final Polish", start: 29, duration: 7, color: "bg-brand-light", details: ["Document formatting", "Signature verification", "Attachment checklist", "Quality audit"] },
+  { label: "GSA Submission", start: 36, duration: 9, color: "bg-emerald-600", details: ["eOffer package upload", "Confirmation receipt", "CO assignment notification", "Clarification prep"] },
 ];
 
 function GanttChart() {
   const [hoveredPhase, setHoveredPhase] = useState<number | null>(null);
-  const unitCount = 30;
-  const markers = [0, 5, 10, 15, 20, 25, 30];
+  const unitCount = 45;
+  const markers = [0, 9, 18, 27, 36, 45];
 
   return (
     <div className="mt-10 rounded-xl border border-warm-border bg-white p-6 lg:p-8">
       <h4 className="text-xs font-medium uppercase tracking-widest text-ink-muted mb-6">
-        30-Day Submission Timeline
+        45-Day Submission Timeline
       </h4>
 
       <div className="relative h-4 mb-2">
@@ -130,7 +130,7 @@ const faqs = [
   { q: "What are the minimum qualifications?", a: "You need 2 years of corporate experience, relevant past performance (typically 3–5 projects), and financial viability demonstrated through tax returns and financial statements. Specific requirements vary by SIN category — we assess your eligibility before any payment for the full submission service." },
   { q: "How much of my time does the application take?", a: "A few hours, total. We handle the document preparation, pricing narratives, and the entire eOffer portal build. Your team supplies source documents and approvals — we do the rest." },
   { q: "What's your 45-day guarantee?", a: "We guarantee your complete MAS offer is submitted to GSA within 45 days of kickoff. Most submissions go in within 30 days, following the timeline published on this page." },
-  { q: "What happens after the award?", a: "Your catalog must go live on the FAS Catalog Platform within 30 days. Our Catalog Upload & Training ($999) covers the baseline upload, 1-on-1 platform training, and a full compliance audit — so the award actually turns into revenue." },
+  { q: "What happens after the award?", a: "Your catalog must go live on the FAS Catalog Platform within 30 days. Our Catalog Upload & Training ($599) covers the baseline upload, 1-on-1 platform training, and a full compliance audit — so the award actually turns into revenue." },
   { q: "GSA Schedule vs. subcontracting — which is right for me?", a: "Subcontracting gets you revenue share on someone else's contract; a Schedule makes you the prime. If you have two years of past performance and want direct federal relationships, the Schedule wins long-term. If you're earlier than that, subcontract now and build toward a submission." },
 ];
 

@@ -54,7 +54,7 @@ export default function Pricing() {
         <title>GSA Services Pricing — Flat Fees, Published | {BRAND.name}</title>
         <meta
           name="description"
-          content="Transparent GSA consulting prices: catalog upload & training $999, any GSA modification $1,999, 12-month complete management $4,500. Flat fees, no lock-in."
+          content="Transparent GSA consulting prices: catalog upload & training $599, any GSA modification $1,999, 12-month complete management $4,500. Flat fees, no lock-in."
         />
         <meta
           name="keywords"

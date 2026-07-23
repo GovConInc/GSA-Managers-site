@@ -25,7 +25,7 @@ const SQUARE_ENV = import.meta.env.VITE_SQUARE_ENV === "production" ? "productio
 
 /* ─── SERVICES / PRODUCTS ───
  * Tiered catalog per the conversion strategy:
- *  Tier 1 — immediate-action flat fees ($999 catalog upload & training, $1,999 any modification)
+ *  Tier 1 — immediate-action flat fees ($599 catalog upload & training, $1,999 any modification)
  *  Tier 2 — core maintenance retainers ($4,500 / 12mo)
  *  Plus acquisition (submission)
  */
@@ -45,8 +45,8 @@ const services = [
     id: "fcp-transition",
     icon: FileText,
     name: "GSA Catalog Upload & Training for New Contractors",
-    price: 999_00, // cents
-    displayPrice: "$999",
+    price: 599_00, // cents
+    displayPrice: "$599",
     description:
       "We execute your mandatory FAS Catalog Platform (FCP) transition, audit your GSA Schedule for compliance, and train your team on every GSA platform. Your schedule comes out modernized, compliant, and ready to sell.",
     features: [
@@ -132,8 +132,8 @@ const services = [
     id: "new-vendor",
     icon: Rocket,
     name: "GSA Catalog Upload & Training for New Contractors",
-    price: 999_00,
-    displayPrice: "$999",
+    price: 599_00,
+    displayPrice: "$599",
     description:
       "FCP Catalog Baseline upload, 1-on-1 training for all GSA websites and processes, plus a full compliance audit. Get from award letter to operational in days.",
     features: [
@@ -215,6 +215,7 @@ export default function Order() {
   const [cardReady, setCardReady] = useState(false);
   const [cardInstance, setCardInstance] = useState<any>(null);
   const [paymentsInstance, setPaymentsInstance] = useState<any>(null);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   // The $1 test item stays functional but only appears with ?test=1
   const showTest = searchParams.get("test") === "1";
@@ -714,6 +715,55 @@ export default function Order() {
                   </div>
                 )}
 
+                {/* Terms-at-a-glance summary */}
+                <div className="rounded-2xl border border-warm-border bg-surface p-5 sm:p-6 mb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <FileText size={16} className="text-brand" />
+                    <h4 className="text-sm font-bold uppercase tracking-wider text-brand">
+                      Before You Pay — Key Terms
+                    </h4>
+                  </div>
+                  <ul className="space-y-2 text-xs text-ink-light leading-relaxed">
+                    <li className="flex gap-2">
+                      <span className="font-bold text-ink">Guarantees</span>
+                      <span>
+                        cover preparation &amp; submission timelines only — not
+                        government approval. Missed timelines earn a pro-rata
+                        service credit, not a cash refund.
+                      </span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-bold text-ink">Cancellation</span>
+                      <span>
+                        within 48 hours &amp; before work starts = full refund
+                        minus a $150 processing fee. Once work begins, one-time
+                        fees are non-refundable; retainers need 30 days' notice
+                        and may carry a 15% early-termination fee.
+                      </span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="font-bold text-ink">Liability</span>
+                      <span>
+                        is capped at the amount paid for the specific service.
+                        We do not guarantee GSA approval or any revenue outcome.
+                      </span>
+                    </li>
+                  </ul>
+                  <p className="mt-3 text-[11px] text-ink-muted">
+                    This is a summary only. The full{" "}
+                    <a
+                      href="/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-brand hover:underline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Terms of Service
+                    </a>{" "}
+                    governs your purchase.
+                  </p>
+                </div>
+
                 <div className="mt-8 flex flex-col-reverse sm:flex-row gap-4 justify-between">
                   <Button variant="secondary" onClick={() => setStep("details")} className="w-full sm:w-auto bg-surface">
                     Back to Details
@@ -721,7 +771,7 @@ export default function Order() {
                   <Button
                     size="lg"
                     onClick={handlePayment}
-                    disabled={loading || (!cardReady && !!SQUARE_APP_ID)}
+                    disabled={loading || (!cardReady && !!SQUARE_APP_ID) || !agreedToTerms}
                     className="w-full sm:w-auto shadow-md hover:shadow-lg transition-shadow bg-cta hover:bg-cta-hover text-white"
                   >
                     {loading ? (
@@ -738,9 +788,27 @@ export default function Order() {
                   </Button>
                 </div>
 
-                <p className="mt-6 text-center text-xs font-medium text-ink-muted">
-                  By completing this purchase you agree to {BRAND.name}'s terms of service.
-                </p>
+                <label className="mt-6 flex items-start gap-3 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    checked={agreedToTerms}
+                    onChange={(e) => setAgreedToTerms(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-warm-border text-brand focus:ring-brand accent-brand cursor-pointer"
+                  />
+                  <span className="text-xs font-medium text-ink-muted leading-relaxed">
+                    I have read and agree to {BRAND.name}'s{" "}
+                    <a
+                      href="/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand font-semibold hover:underline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Terms of Service
+                    </a>
+                    , including the cancellation policy, guarantee definitions, and limitation of liability.
+                  </span>
+                </label>
               </div>
             </motion.div>
           )}

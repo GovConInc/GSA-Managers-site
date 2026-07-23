@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import ArticleLayout, { P, H2, H3, UL, Callout, ArticleCta } from "../../components/ArticleLayout";
-import LeadMagnet from "../../components/LeadMagnet";
 
 export default function FcpGuide() {
   return (
@@ -77,10 +76,10 @@ export default function FcpGuide() {
 
       <ArticleCta
         title="Need this done, not learned?"
-        body="We execute the full FCP migration, audit your schedule for compliance, and train your team. Flat $999, 7-day delivery."
+        body="We execute the full FCP migration, audit your schedule for compliance, and train your team. Flat $599, 7-day delivery."
         label="Fix It Now"
         href="/order?service=fcp-transition"
-        price="$999"
+        price="$599"
       />
 
       <H2>The DIY path, honestly</H2>
@@ -127,7 +126,7 @@ export default function FcpGuide() {
       </P>
       <P>
         If you&apos;d rather not gamble a hundred internal hours on it: we execute the entire
-        migration, audit your schedule&apos;s compliance, and train your team for a flat $999. Because we take on the
+        migration, audit your schedule&apos;s compliance, and train your team for a flat $599. Because we take on the
         heavy lifting, your team bypasses the bottleneck entirely — and your schedule comes out
         modernized, secured, and ready to sell.
       </P>
@@ -137,12 +136,9 @@ export default function FcpGuide() {
         body="Complete migration + full compliance audit + 1-on-1 training. 7-day delivery."
         label="Start My Transition"
         href="/order?service=fcp-transition"
-        price="$999"
+        price="$599"
       />
 
-      <div className="mt-16">
-        <LeadMagnet compact />
-      </div>
     </ArticleLayout>
   );
 }

@@ -33,6 +33,16 @@ export default {
           100: "#E8ECF2",
           50: "#F5F7FA",
         },
+        /* ── Legacy aliases ──
+         * Older pages reference these token names. They are aliased here to
+         * the canonical palette so every page shares one coherent color
+         * scheme and no element falls back to an inherited/wrong color. */
+        "brand-blue": "#294067", // alias of brand DEFAULT
+        "brand-sky": "#7BA7CC", // light sky-blue accent for dark backgrounds
+        "gov-brand": "#294067", // alias of brand DEFAULT
+        "gov-blue": "#3A5A8A", // alias of brand-light
+        "gov-crimson": "#b62d3e", // alias of cta DEFAULT
+        navy: "#1C2D47", // alias of brand-dark / ink DEFAULT
         /* Keep system tokens for shadcn compatibility */
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

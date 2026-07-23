@@ -36,7 +36,7 @@ const getOnBucket = [
     icon: Rocket,
     title: "Catalog Upload & Training",
     desc: "Just awarded? FCP baseline upload, 1-on-1 platform training, and full compliance audit — operational in days.",
-    price: "$999 flat",
+    price: "$599 flat",
     to: "/fcp-transition-service",
   },
 ];
@@ -60,7 +60,7 @@ const keepHealthyBucket = [
     icon: FileWarning,
     title: "Catalog Upload & Training",
     desc: "The mandatory FAS Catalog Platform migration, full compliance audit, and 1-on-1 training. Suspension risk, eliminated.",
-    price: "$999 flat",
+    price: "$599 flat",
     to: "/fcp-transition-service",
   },
 ];

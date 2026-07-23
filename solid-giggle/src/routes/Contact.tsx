@@ -115,7 +115,7 @@ export default function Contact() {
                       <label htmlFor="interest" className="block text-sm font-medium text-ink">Primary Interest</label>
                       <select id="interest" name="interest" value={formData.interest} onChange={handleInputChange} className="input-field">
                         <option>General Inquiry</option>
-                        <option>Catalog Upload &amp; Training ($999)</option>
+                        <option>Catalog Upload &amp; Training ($599)</option>
                         <option>GSA Modification ($1,999)</option>
                         <option>Complete GSA Management ($4,500/yr)</option>
                         <option>GSA Schedule Submission</option>

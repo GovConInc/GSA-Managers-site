@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
   <defs>
     <linearGradient id="gmTileF" x1="4" y1="4" x2="52" y2="52" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1A4488"/>
-      <stop offset="1" stop-color="#0C2D5E"/>
+      <stop stop-color="#294067"/>
+      <stop offset="1" stop-color="#1C2D47"/>
     </linearGradient>
   </defs>
   <rect x="2" y="2" width="52" height="52" rx="14" fill="url(#gmTileF)"/>
-  <rect x="11.5" y="32" width="8" height="13" rx="2.5" fill="#5C8FD6"/>
-  <rect x="24" y="26" width="8" height="19" rx="2.5" fill="#8CB4FF"/>
+  <rect x="11.5" y="32" width="8" height="13" rx="2.5" fill="#5C7CA8"/>
+  <rect x="24" y="26" width="8" height="19" rx="2.5" fill="#8CA8D6"/>
   <rect x="36.5" y="18" width="8" height="27" rx="2.5" fill="#FFFFFF"/>
-  <path d="M11.5 23 L26 16.5 L44 11" stroke="#D8893A" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <path d="M36.6 8.4 L44 11 L40.9 17.7" stroke="#D8893A" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M11.5 23 L26 16.5 L44 11" stroke="#b62d3e" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M36.6 8.4 L44 11 L40.9 17.7" stroke="#b62d3e" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

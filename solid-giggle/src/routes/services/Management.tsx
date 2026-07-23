@@ -16,7 +16,6 @@ import {
 import { ServiceHero, ServiceFinalCta, ServiceSchema } from "../../components/ServiceBlocks";
 import PricingTiers from "../../components/PricingTiers";
 import FaqList from "../../components/FaqList";
-import LeadMagnet from "../../components/LeadMagnet";
 import { BRAND } from "../../lib/constants";
 import { SERVICE_DICTIONARY } from "../../lib/offers";
 
@@ -343,14 +342,6 @@ export default function Management() {
             </h2>
           </div>
           <FaqList faqs={faqs} />
-        </div>
-      </section>
-
-      {/* ── Lead magnet ── */}
-      <section className="bg-white py-20 relative">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
-        <div className="mx-auto w-full max-w-5xl px-6 lg:px-8">
-          <LeadMagnet />
         </div>
       </section>
 

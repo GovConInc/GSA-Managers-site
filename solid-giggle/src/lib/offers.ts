@@ -130,8 +130,8 @@ export const OFFERS: Offer[] = [
     id: "new-vendor",
     tier: 3,
     name: "GSA Catalog Upload & Training for New Contractors",
-    priceCents: 999_00,
-    displayPrice: "$999",
+    priceCents: 599_00,
+    displayPrice: "$599",
     priceNote: "flat fee",
     hook: "Just got your award? We make it operational.",
     description:

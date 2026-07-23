@@ -14,14 +14,14 @@ import IntelligenceIndex from "./routes/intelligence/Index";
 import FcpGuide from "./routes/intelligence/FcpGuide";
 import ModRejections from "./routes/intelligence/ModRejections";
 import InHouseVsOutsourced from "./routes/intelligence/InHouseVsOutsourced";
-import FcpChecklist from "./routes/resources/FcpChecklist";
 
 // Order
 import Order from "./routes/Order";
 
-// About & Contact
+// About, Contact & Legal
 import About from "./routes/About";
 import Contact from "./routes/Contact";
+import Terms from "./routes/Terms";
 
 export default function App() {
   return (
@@ -51,9 +51,6 @@ export default function App() {
         <Route path="/intelligence/gsa-modification-rejected" element={<ModRejections />} />
         <Route path="/intelligence/in-house-vs-outsourced-gsa-management" element={<InHouseVsOutsourced />} />
 
-        {/* Resources */}
-        <Route path="/resources/fcp-compliance-checklist" element={<FcpChecklist />} />
-
         {/* Order / Checkout */}
         <Route path="/order" element={<Order />} />
 
@@ -63,6 +60,9 @@ export default function App() {
         {/* About & Contact */}
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+
+        {/* Legal */}
+        <Route path="/terms" element={<Terms />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />

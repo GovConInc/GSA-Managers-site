@@ -37,8 +37,8 @@ const TOPIC_MAP: { keywords: string[]; match: TopicMatch }[] = [
       color: "text-red-600 bg-red-50 border-red-100",
       simplify:
         "This affects how your products appear on the government's online store (GSA Advantage). If your catalog isn't on the new FCP system, federal buyers literally can't find you.",
-      pitch: "We handle FCP migrations for $999 flat — catalog data prep, upload, validation, and verification that your products are live and findable.",
-      ctaLabel: "FCP Migration — $999",
+      pitch: "We handle FCP migrations for $599 flat — catalog data prep, upload, validation, and verification that your products are live and findable.",
+      ctaLabel: "FCP Migration — $599",
       ctaHref: "/order?service=fcp-transition",
     },
   },

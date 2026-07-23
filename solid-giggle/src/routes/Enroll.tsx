@@ -25,17 +25,17 @@ const PLANS = {
   fcpOnly: {
     label: "Catalog Upload & Training",
     name: "GSA Catalog Upload & Training",
-    price: 999,
+    price: 599,
     note: "billed once",
-    cadence: "One-time — $999",
+    cadence: "One-time — $599",
     stripe_mode: "payment" as const,
   },
   newVendor: {
     label: "Catalog Upload & Training",
     name: "GSA Catalog Upload & Training",
-    price: 999,
+    price: 599,
     note: "billed once",
-    cadence: "One-time — $999",
+    cadence: "One-time — $599",
     stripe_mode: "payment" as const,
   },
   submission: {
@@ -71,7 +71,7 @@ const CALENDLY_URL = "https://calendar.app.google/EA6JzEhbNTH6AM6S8";
 /* ─── SECTION DATA ─── */
 const deliverables = [
   {
-    title: "$999 Catalog Upload & Training",
+    title: "$599 Catalog Upload & Training",
     desc: "Catalog Baseline upload with our 7-day delivery guarantee. Includes QA and roadmap & technical consultations.",
     items: [
       "FCP Catalog Baseline Upload (7-Day Guarantee)",
@@ -81,7 +81,7 @@ const deliverables = [
     ]
   },
   {
-    title: "$999 Catalog Upload & Training",
+    title: "$599 Catalog Upload & Training",
     desc: "Includes the Catalog Baseline upload (7-day guarantee), specialized 1-on-1 training for all GSA-related websites and processes, and complimentary 90-day contract management.",
     items: [
       "Full FCP Catalog Upload",
@@ -202,6 +202,7 @@ export default function Enroll() {
   const [annualPlan, setAnnualPlan] = useState<"annual" | "monthly">("annual");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   // Form state
   const [company, setCompany] = useState("");
@@ -308,7 +309,7 @@ export default function Enroll() {
 
           <button
             onClick={() => window.open(CALENDLY_URL, "_blank")}
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-4 text-base font-bold text-white transition hover:bg-slate-800"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-4 text-base font-bold text-white transition hover:bg-brand-dark"
           >
             Book Your Intro Meeting <ArrowRight size={18} />
           </button>
@@ -364,7 +365,7 @@ export default function Enroll() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <button
               onClick={() => openModal("fcp")}
-              className="inline-flex items-center gap-2 rounded-xl bg-brand px-7 py-3.5 text-sm font-extrabold text-white transition hover:bg-red-700 active:scale-[.98]"
+              className="inline-flex items-center gap-2 rounded-xl bg-brand px-7 py-3.5 text-sm font-extrabold text-white transition hover:bg-brand-dark active:scale-[.98]"
             >
               Upload My Catalog & Get Training
             </button>
@@ -441,7 +442,7 @@ export default function Enroll() {
                 <p className="mt-1 text-sm text-blue-300">Everything you need to go from awarded to operational.</p>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-black text-white">$999</div>
+                <div className="text-3xl font-black text-white">$599</div>
                 <div className="text-xs text-blue-300">one-time investment</div>
               </div>
             </div>
@@ -470,9 +471,9 @@ export default function Enroll() {
               <div className="border-t border-slate-200 pt-6">
                 <button
                   onClick={() => openModal("fcp")}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-4 text-base font-extrabold text-white transition hover:bg-red-700 active:scale-[.98]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-4 text-base font-extrabold text-white transition hover:bg-brand-dark active:scale-[.98]"
                 >
-                  Start Catalog Upload — $999 <ArrowRight size={18} />
+                  Start Catalog Upload — $599 <ArrowRight size={18} />
                 </button>
                 <p className="mt-3 text-center text-xs text-slate-400">
                   Secured by Stripe · No hidden fees · Intro meeting included
@@ -646,7 +647,7 @@ export default function Enroll() {
 
                 <button
                   onClick={() => openModal("mgmt")}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-4 text-base font-extrabold text-white transition hover:bg-slate-800 active:scale-[.98]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-4 text-base font-extrabold text-white transition hover:bg-brand-dark active:scale-[.98]"
                 >
                   Start Annual Management <ArrowRight size={18} />
                 </button>
@@ -737,9 +738,9 @@ export default function Enroll() {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => openModal("fcp")}
-            className="rounded-xl bg-brand px-8 py-4 text-sm font-extrabold text-white transition hover:bg-red-700"
+            className="rounded-xl bg-brand px-8 py-4 text-sm font-extrabold text-white transition hover:bg-brand-dark"
           >
-            Start Catalog Upload — $999
+            Start Catalog Upload — $599
           </button>
           <button
             onClick={() => openModal("mgmt")}
@@ -871,14 +872,73 @@ export default function Enroll() {
                 </div>
               </div>
 
+              {/* Terms summary + agreement */}
+              <div className="mb-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2">
+                  Before You Pay
+                </p>
+                <ul className="space-y-1.5 text-[11px] text-slate-600 leading-relaxed">
+                  <li>
+                    <span className="font-bold text-slate-800">Guarantees</span> cover
+                    preparation &amp; submission timelines only — not government
+                    approval. Missed timelines earn a pro-rata service credit.
+                  </li>
+                  <li>
+                    <span className="font-bold text-slate-800">Cancellation</span> within
+                    48 hours &amp; before work starts = full refund minus a $150
+                    processing fee. Once work begins, one-time fees are
+                    non-refundable; retainers need 30 days' notice and may carry a
+                    15% early-termination fee.
+                  </li>
+                  <li>
+                    <span className="font-bold text-slate-800">Liability</span> is capped
+                    at the amount paid for the specific service.
+                  </li>
+                </ul>
+                <p className="mt-2 text-[10px] text-slate-400">
+                  Summary only — see the full{" "}
+                  <a
+                    href="/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-brand hover:underline"
+                  >
+                    Terms of Service
+                  </a>
+                  .
+                </p>
+              </div>
+
+              <label className="mb-4 flex items-start gap-2.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brand focus:ring-brand accent-brand cursor-pointer shrink-0"
+                />
+                <span className="text-[11px] text-slate-600 leading-relaxed">
+                  I have read and agree to the{" "}
+                  <a
+                    href="/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-brand hover:underline"
+                  >
+                    Terms of Service
+                  </a>
+                  , including the cancellation policy, guarantee definitions, and
+                  limitation of liability.
+                </span>
+              </label>
+
               <button
                 onClick={checkout}
-                disabled={submitting}
+                disabled={submitting || !agreedToTerms}
                 className={cn(
                   "flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-extrabold text-white transition active:scale-[.98] disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400",
                   currentPlan === "fcpOnly"
-                    ? "bg-brand hover:bg-red-700"
-                    : "bg-brand hover:bg-slate-800"
+                    ? "bg-brand hover:bg-brand-dark"
+                    : "bg-brand hover:bg-brand-dark"
                 )}
               >
                 {submitting ? "Redirecting to checkout…" : "Pay & Get Started →"}

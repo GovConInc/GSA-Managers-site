@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Clock, FileWarning, Wrench, Scale } from "lucide-react";
 import GsaNewsFeed from "../../components/GsaNewsFeed";
-import LeadMagnet from "../../components/LeadMagnet";
 import { BRAND } from "../../lib/constants";
 
 export const ARTICLES = [
@@ -115,14 +114,6 @@ export default function IntelligenceIndex() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── Lead magnet ── */}
-      <section className="bg-surface py-20 relative">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-warm-border to-transparent" />
-        <div className="mx-auto w-full max-w-5xl px-6 lg:px-8">
-          <LeadMagnet />
         </div>
       </section>
 

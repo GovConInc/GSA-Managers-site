@@ -31,7 +31,7 @@ const serviceLinks = [
   },
   {
     label: "Catalog Upload & Training",
-    desc: "$999 flat-fee catalog upload, compliance audit & training",
+    desc: "$599 flat-fee catalog upload, compliance audit & training",
     to: "/services/gsa-contractors#fcp",
     icon: FileWarning,
   },
